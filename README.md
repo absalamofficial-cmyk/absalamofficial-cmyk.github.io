@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdus Salam - Professional Android Developer | 2026 Portfolio</title>
+    Abdus Salam - Professional Android Developer | 2026 Portfolio</title>
     <meta name="description" content="Official portfolio of Abdus Salam - Android developer specializing in CNC tools & Islamic applications. Download apps from Play Store.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
