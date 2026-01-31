@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramzan Prayer & Hadees - Complete Islamic Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 50%, #4a69bd 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            margin: 30px auto;
+        }
+        
+        /* Hero Header */
+        .hero-section {
+            background: linear-gradient(rgba(12, 36, 97, 0.9), rgba(12, 36, 97, 0.8)), url('https://images.unsplash.com/photo-1516383607781-913a1921fd0b?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            padding: 20px;
+        }
+        
+        .app-name {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .app-tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        /* Download Badges */
+        .download-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .play-badge {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .play-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        
+        /* Features Grid */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #0c2461;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: #4a69bd;
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 0 40px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(74, 105, 189, 0.15);
+            border-color: #4a69bd;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #0c2461;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(74, 105, 189, 0.1);
+            border-radius: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            color: #0c2461;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .feature-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: "🕌";
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+        
+        /* Screenshots */
+        .screenshots {
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 40px 0;
+            border-radius: 25px;
+            margin: 40px;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .screenshot-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .screenshot-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .screenshot-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #0c2461, #4a69bd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Technical Specs */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 40px;
+            margin-bottom: 60px;
+        }
+        
+        .spec-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .spec-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0c2461;
+            margin-bottom: 10px;
+        }
+        
+        .spec-label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* App Stats */
+        .stats-section {
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Developer Info */
+        .developer-section {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        
+        .developer-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 20px;
+        }
+        
+        /* Privacy Section */
+        .privacy-section {
+            padding: 40px;
+            background: #f8f9fa;
+            margin: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .privacy-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #0c2461;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .privacy-btn:hover {
+            background: #1e3799;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0c2461;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #a5b1c2;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .app-name {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="app-icon">
+                <!-- App Icon Placeholder -->
+                <i class="fas fa-mosque" style="font-size: 80px; color: #0c2461;"></i>
+            </div>
+            <h1 class="app-name">Ramzan Prayer & Hadees</h1>
+            <p class="app-tagline">Your Complete Islamic Companion - Accurate Prayer Times, 3D Qibla Finder, Authentic Hadith Collection & Smart Ramadan Tools</p>
+            
+            <div class="download-section">
+                <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="play-badge" target="_blank">
+                    <i class="fab fa-google-play fa-2x"></i>
+                    <div>
+                        <div style="font-size: 0.9rem;">GET IT ON</div>
+                        <div>Google Play</div>
+                    </div>
+                </a>
+                
+                <a href="mailto:absalamofficial@gmail.com?subject=Ramzan Prayer App Inquiry" class="play-badge" style="background: #4a69bd;">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <div>
+                        <div>Contact Developer</div>
+                        <div style="font-size: 0.9rem;">For Support & Feedback</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section>
+            <h2 class="section-title">Powerful Features</h2>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Accurate Prayer Times</h3>
+                    <p class="feature-description">GPS-based prayer calculations with multiple calculation methods including Karachi, MWL, ISNA, and Egypt.</p>
+                    <ul class="feature-list">
+                        <li>Live location-based timing</li>
+                        <li>Sehri & Iftar countdown</li>
+                        <li>Customizable alarm settings</li>
+                        <li>Multiple timezone support</li>
+                        <li>Adjustable calculation methods</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="feature-title">3D Qibla Compass</h3>
+                    <p class="feature-description">Advanced 3D compass with precise Kaaba direction finding and visual indicators.</p>
+                    <ul class="feature-list">
+                        <li>Real-time 3D visualization</li>
+                        <li>Multiple mosque markers</li>
+                        <li>Vibration alert system</li>
+                        <li>Offline functionality</li>
+                        <li>Degree precision</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h3 class="feature-title">Hadith Library</h3>
+                    <p class="feature-description">Authentic collection of Hadiths with multi-language support and search functionality.</p>
+                    <ul class="feature-list">
+                        <li>40,000+ verified Hadiths</li>
+                        <li>Urdu & English support</li>
+                        <li>Daily Hadith notifications</li>
+                        <li>Bookmark & favorite system</li>
+                        <li>Search by keyword/topic</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3 class="feature-title">Ramadan Tools</h3>
+                    <p class="feature-description">Complete Ramadan 2024 companion with special features for the holy month.</p>
+                    <ul class="feature-list">
+                        <li>Sehri/Iftar timer with alarm</li>
+                        <li>Ramadan 2024 calendar</li>
+                        <li>Taraweeh prayer tracker</li>
+                        <li>Islamic date converter</li>
+                        <li>Special Ramadan duas</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="feature-title">Social Integration</h3>
+                    <p class="feature-description">Smart sharing features to spread Islamic knowledge within your community.</p>
+                    <ul class="feature-list">
+                        <li>Automated WhatsApp status</li>
+                        <li>Share prayer times</li>
+                        <li>Daily Islamic quotes</li>
+                        <li>Family coordination</li>
+                        <li>Community features</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Settings</h3>
+                    <p class="feature-description">Customizable experience tailored to your preferences and location.</p>
+                    <ul class="feature-list">
+                        <li>Custom prayer notifications</li>
+                        <li>Multiple theme options</li>
+                        <li>Silent mode during prayers</li>
+                        <li>Offline mode support</li>
+                        <li>Regular updates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Screenshots -->
+        <section class="screenshots">
+            <h2 class="section-title">App Screenshots</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        Prayer Times Screen
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        3D Qibla Compass
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        Hadith Library
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-placeholder">
+                        Ramadan Tools
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technical Specifications -->
+        <section>
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-value">Android 7.0+</div>
+                    <div class="spec-label">Compatibility</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">< 15MB</div>
+                    <div class="spec-label">App Size</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">100% Offline</div>
+                    <div class="spec-label">Core Features</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">Urdu + English</div>
+                    <div class="spec-label">Languages</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">Free Forever</div>
+                    <div class="spec-label">Pricing</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-value">Monthly</div>
+                    <div class="spec-label">Updates</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- App Stats -->
+        <section class="stats-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Why Users Love Our App</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>99.8%</h3>
+                    <p>Crash-Free Sessions</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.7⭐</h3>
+                    <p>Average Rating</p>
+                </div>
+                <div class="stat-item">
+                    <h3><24h</h3>
+                    <p>Support Response Time</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Data Privacy</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Privacy Section -->
+        <section class="privacy-section">
+            <h2>Your Privacy Matters</h2>
+            <p>We respect your privacy and handle your data with utmost care. Our app processes location data locally and doesn't transmit personal information to external servers.</p>
+            <a href="https://absalamofficial-cmyk.github.io/privacy-policy.html" class="privacy-btn" target="_blank">
+                <i class="fas fa-shield-alt"></i> View Privacy Policy
+            </a>
+        </section>
+        
+        <!-- Developer Info -->
+        <section class="developer-section">
+            <div class="developer-card">
+                <h2>About the Developer</h2>
+                <p style="margin: 20px 0;">Developed by <strong>Abdus Salam</strong>, an experienced Android developer specializing in creating meaningful applications for the Muslim community.</p>
+                <p><i class="fas fa-envelope"></i> absalamofficial@gmail.com</p>
+                <p style="margin-top: 10px;"><i class="fas fa-code"></i> 3+ Years Android Development Experience</p>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <h2>Ramzan Prayer & Hadees</h2>
+            <p>Your Complete Islamic Companion App</p>
+            
+            <div class="footer-links">
+                <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="footer-link" target="_blank">
+                    <i class="fab fa-google-play"></i> Play Store
+                </a>
+                <a href="mailto:absalamofficial@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> Support
+                </a>
+                <a href="https://absalamofficial-cmyk.github.io/privacy-policy.html" class="footer-link" target="_blank">
+                    <i class="fas fa-file-contract"></i> Privacy Policy
+                </a>
+                <a href="https://absalamofficial-cmyk.github.io/about-developer.html" class="footer-link" target="_blank">
+                    <i class="fas fa-user-tie"></i> Developer
+                </a>
+            </div>
+            
+            <p style="margin-top: 40px; opacity: 0.8; font-size: 0.9rem;">
+                © 2024 Abdus Salam. All rights reserved.<br>
+                Ramzan Prayer & Hadees is available exclusively on Google Play Store.<br>
+                This app is developed with ❤️ for the global Muslim community.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
