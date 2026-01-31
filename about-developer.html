@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Developer - Abdus Salam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .developer-name {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            color: #3498db;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .app-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #3498db;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.15);
+        }
+        
+        .app-name {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .app-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .live {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .upcoming {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: #2980b9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .developer-name {
+                font-size: 2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 class="developer-name">Abdus Salam</h1>
+            <p class="title">Android Developer & Islamic Apps Specialist</p>
+            <p>Specializing in developing high-quality Android applications with focus on Islamic content and utility tools.</p>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> absalamofficial@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Pakistan</p>
+                <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 3+ Years in Android Development</p>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <div class="section">
+            <h2 class="section-title">About Me</h2>
+            <p>I am a passionate Android developer dedicated to creating meaningful applications that serve the Muslim community. With expertise in Java, Kotlin, and modern Android architectures, I focus on building apps that combine functionality with beautiful user interfaces.</p>
+            
+            <p>My mission is to leverage technology to make Islamic knowledge and practices more accessible to people worldwide. Each app is carefully crafted with attention to detail, accuracy, and user experience.</p>
+            
+            <div class="skills">
+                <span class="skill-tag">Android Studio</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Kotlin</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Material Design</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Google Play Console</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">AdMob Integration</span>
+            </div>
+        </div>
+        
+        <!-- Published Apps Section -->
+        <div class="section">
+            <h2 class="section-title">Published Applications</h2>
+            <div class="apps-grid">
+                <!-- App 1 -->
+                <div class="app-card">
+                    <h3 class="app-name">CNC Turning Calculator Pro</h3>
+                    <p>Professional calculator for CNC machinists with advanced turning calculations and material database.</p>
+                    <span class="app-status live"><i class="fas fa-circle"></i> LIVE on Play Store</span>
+                    <p><strong>Downloads:</strong> 10,000+</p>
+                    <p><strong>Rating:</strong> 4.5 ⭐</p>
+                </div>
+                
+                <!-- App 2 -->
+                <div class="app-card">
+                    <h3 class="app-name">Ramzan Prayer & Hadees</h3>
+                    <p>Complete Islamic companion app featuring accurate prayer times, 3D Qibla finder, and authentic Hadith collection.</p>
+                    <span class="app-status live"><i class="fas fa-circle"></i> LIVE on Play Store</span>
+                    <p><strong>Category:</strong> Lifestyle / Religion</p>
+                    <p><strong>Special Features:</strong> 3D Interface, Offline Support</p>
+                </div>
+                
+                <!-- App 3 -->
+                <div class="app-card">
+                    <h3 class="app-name">Islamic Dua & Azkar</h3>
+                    <p>Comprehensive collection of Islamic supplications and daily remembrances with audio recitations.</p>
+                    <span class="app-status upcoming"><i class="fas fa-clock"></i> COMING SOON</span>
+                    <p><strong>Features:</strong> Audio Recitations, Bookmark System</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Development Philosophy -->
+        <div class="section">
+            <h2 class="section-title">Development Philosophy</h2>
+            <p><strong>Quality First:</strong> Every app undergoes rigorous testing to ensure reliability and performance.</p>
+            <p><strong>User-Centric Design:</strong> Intuitive interfaces that are easy to navigate for all age groups.</p>
+            <p><strong>Privacy Respect:</strong> Minimal data collection with transparent privacy policies.</p>
+            <p><strong>Regular Updates:</strong> Continuous improvement based on user feedback and technological advancements.</p>
+            <p><strong>Offline Functionality:</strong> Core features available without internet connectivity.</p>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="section">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>I'm always open to discussing app development projects, collaboration opportunities, or receiving feedback on my applications.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:absalamofficial@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+                <a href="https://play.google.com/store/apps/dev?id=YOUR_DEVELOPER_ID" class="contact-btn" target="_blank">
+                    <i class="fab fa-google-play"></i> Play Store
+                </a>
+                <a href="https://absalamofficial-cmyk.github.io/privacy-policy.html" class="contact-btn">
+                    <i class="fas fa-shield-alt"></i> Privacy Policy
+                </a>
+            </div>
+            
+            <p style="margin-top: 20px;"><strong>Response Time:</strong> Within 24 hours</p>
+            <p><strong>Support:</strong> Technical support provided for all published applications</p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Abdus Salam - Android Developer</p>
+            <p>All applications are available on Google Play Store</p>
+            <p>This page was last updated: March 2024</p>
+        </div>
+    </div>
+</body>
+</html>
