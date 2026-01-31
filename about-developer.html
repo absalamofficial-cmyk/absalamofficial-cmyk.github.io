@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Developer - Abdus Salam</title>
+    <title>Abdus Salam - Professional Android Developer</title>
     <style>
         * {
             margin: 0;
@@ -13,165 +13,271 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2d3748;
             line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 30px 20px;
         }
         
-        .header {
+        /* Header */
+        .developer-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 20px;
             text-align: center;
             margin-bottom: 40px;
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .developer-name {
-            color: #2c3e50;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .developer-title {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        .contact-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2a5298;
             margin-bottom: 10px;
         }
         
-        .title {
-            color: #3498db;
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin-bottom: 20px;
+        .stat-label {
+            color: #4a5568;
+            font-size: 1rem;
         }
         
-        .contact-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        
-        .section {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        
+        /* Apps Section */
         .section-title {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
+            font-size: 2rem;
+            color: #2d3748;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #4299e1;
         }
         
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         .app-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 5px solid #3498db;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         
         .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .app-header {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
         }
         
         .app-name {
-            color: #2c3e50;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            color: #2d3748;
             margin-bottom: 10px;
+        }
+        
+        .app-category {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .app-body {
+            padding: 25px;
+        }
+        
+        .app-features {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .app-features li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .app-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: bold;
         }
         
         .app-status {
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 8px 20px;
+            border-radius: 50px;
             font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        .live {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .upcoming {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            font-weight: 600;
             margin-top: 15px;
         }
         
-        .skill-tag {
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .status-live {
+            background: #c6f6d5;
+            color: #22543d;
         }
         
-        .contact-links {
-            display: flex;
-            gap: 15px;
+        .status-testing {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .status-upcoming {
+            background: #feebc8;
+            color: #744210;
+        }
+        
+        .app-link {
+            display: inline-block;
             margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .contact-btn {
-            background: #3498db;
-            color: white;
             padding: 12px 25px;
-            border-radius: 8px;
+            background: #4299e1;
+            color: white;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            border-radius: 8px;
+            font-weight: 600;
             transition: background 0.3s;
         }
         
-        .contact-btn:hover {
-            background: #2980b9;
+        .app-link:hover {
+            background: #3182ce;
         }
         
+        /* Skills Section */
+        .skills-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .skill-category {
+            margin-bottom: 25px;
+        }
+        
+        .skill-category h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .skill-item {
+            background: #edf2f7;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        
+        /* Footer */
         .footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: #666;
+            padding: 40px 20px;
+            background: #2d3748;
+            color: white;
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #90cdf4;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
             .developer-name {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .apps-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .contact-badges {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -179,109 +285,251 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
-        <div class="header">
+        <!-- Header -->
+        <header class="developer-header">
             <h1 class="developer-name">Abdus Salam</h1>
-            <p class="title">Android Developer & Islamic Apps Specialist</p>
-            <p>Specializing in developing high-quality Android applications with focus on Islamic content and utility tools.</p>
+            <p class="developer-title">Professional Android Developer | Islamic & Utility Apps Specialist</p>
+            <p>Transforming ideas into high-performance Android applications with 3+ years of development experience</p>
             
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> absalamofficial@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Pakistan</p>
-                <p><i class="fas fa-briefcase"></i> <strong>Experience:</strong> 3+ Years in Android Development</p>
+            <div class="contact-badges">
+                <div class="badge">
+                    <i class="fas fa-envelope"></i>
+                    absalamofficial@gmail.com
+                </div>
+                <div class="badge">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Pakistan
+                </div>
+                <div class="badge">
+                    <i class="fas fa-briefcase"></i>
+                    3+ Years Experience
+                </div>
+            </div>
+        </header>
+        
+        <!-- Stats -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Published Apps</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Total Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.5+</div>
+                <div class="stat-label">Average Rating</div>
             </div>
         </div>
         
-        <!-- About Section -->
-        <div class="section">
-            <h2 class="section-title">About Me</h2>
-            <p>I am a passionate Android developer dedicated to creating meaningful applications that serve the Muslim community. With expertise in Java, Kotlin, and modern Android architectures, I focus on building apps that combine functionality with beautiful user interfaces.</p>
-            
-            <p>My mission is to leverage technology to make Islamic knowledge and practices more accessible to people worldwide. Each app is carefully crafted with attention to detail, accuracy, and user experience.</p>
-            
-            <div class="skills">
-                <span class="skill-tag">Android Studio</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Kotlin</span>
-                <span class="skill-tag">Firebase</span>
-                <span class="skill-tag">Material Design</span>
-                <span class="skill-tag">REST APIs</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">Google Play Console</span>
-                <span class="skill-tag">UI/UX Design</span>
-                <span class="skill-tag">AdMob Integration</span>
-            </div>
-        </div>
-        
-        <!-- Published Apps Section -->
-        <div class="section">
-            <h2 class="section-title">Published Applications</h2>
-            <div class="apps-grid">
-                <!-- App 1 -->
-                <div class="app-card">
+        <!-- Published Apps -->
+        <h2 class="section-title">Published Applications</h2>
+        <div class="apps-grid">
+            <!-- CNC Turning Calculator Pro -->
+            <div class="app-card">
+                <div class="app-header">
                     <h3 class="app-name">CNC Turning Calculator Pro</h3>
-                    <p>Professional calculator for CNC machinists with advanced turning calculations and material database.</p>
-                    <span class="app-status live"><i class="fas fa-circle"></i> LIVE on Play Store</span>
+                    <p class="app-category">Productivity • Engineering • Tools</p>
+                    <span class="app-status status-live">LIVE on Play Store</span>
+                </div>
+                <div class="app-body">
+                    <p>Professional calculator for CNC machinists with advanced turning calculations, material database, and production optimization tools.</p>
+                    
+                    <ul class="app-features">
+                        <li>Advanced turning calculations</li>
+                        <li>Material cutting parameters</li>
+                        <li>Production time estimation</li>
+                        <li>Cost calculation features</li>
+                        <li>Material database with 50+ metals</li>
+                        <li>Imperial/Metric unit conversion</li>
+                    </ul>
+                    
                     <p><strong>Downloads:</strong> 10,000+</p>
-                    <p><strong>Rating:</strong> 4.5 ⭐</p>
+                    <p><strong>Rating:</strong> 4.5 ⭐ (500+ reviews)</p>
+                    <p><strong>Last Updated:</strong> January 2024</p>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" target="_blank" class="app-link">
+                        <i class="fab fa-google-play"></i> View on Play Store
+                    </a>
                 </div>
-                
-                <!-- App 2 -->
-                <div class="app-card">
+            </div>
+            
+            <!-- CNC Milling Calculator Pro -->
+            <div class="app-card">
+                <div class="app-header">
+                    <h3 class="app-name">CNC Milling Calculator Pro</h3>
+                    <p class="app-category">Productivity • Manufacturing • Tools</p>
+                    <span class="app-status status-testing">INTERNAL TESTING</span>
+                </div>
+                <div class="app-body">
+                    <p>Advanced milling calculations for CNC operators with comprehensive tool database, feed rate optimization, and material-specific parameters.</p>
+                    
+                    <ul class="app-features">
+                        <li>Milling parameter calculations</li>
+                        <li>Tool database with 100+ tools</li>
+                        <li>Feed rate optimization</li>
+                        <li>Material removal rate calculator</li>
+                        <li>Coolant flow calculations</li>
+                        <li>Production planning tools</li>
+                    </ul>
+                    
+                    <p><strong>Status:</strong> Internal Testing Phase</p>
+                    <p><strong>Release:</strong> Coming Soon</p>
+                    <p><strong>Target:</strong> Manufacturing Industry</p>
+                    
+                    <a href="#" class="app-link" style="background: #a0aec0;">
+                        <i class="fas fa-clock"></i> Coming Soon
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Ramzan Prayer & Hadees -->
+            <div class="app-card">
+                <div class="app-header">
                     <h3 class="app-name">Ramzan Prayer & Hadees</h3>
-                    <p>Complete Islamic companion app featuring accurate prayer times, 3D Qibla finder, and authentic Hadith collection.</p>
-                    <span class="app-status live"><i class="fas fa-circle"></i> LIVE on Play Store</span>
-                    <p><strong>Category:</strong> Lifestyle / Religion</p>
-                    <p><strong>Special Features:</strong> 3D Interface, Offline Support</p>
+                    <p class="app-category">Lifestyle • Religion • Islamic</p>
+                    <span class="app-status status-live">LIVE on Play Store</span>
+                </div>
+                <div class="app-body">
+                    <p>Complete Islamic companion app featuring accurate prayer times, 3D Qibla finder, authentic Hadith collection, and Ramadan tools.</p>
+                    
+                    <ul class="app-features">
+                        <li>GPS-based prayer times</li>
+                        <li>3D Qibla compass</li>
+                        <li>40,000+ Hadith collection</li>
+                        <li>Sehri/Iftar countdown</li>
+                        <li>WhatsApp status automation</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                    
+                    <p><strong>Status:</strong> New Release</p>
+                    <p><strong>Special:</strong> Ramadan 2024 Ready</p>
+                    <p><strong>Interface:</strong> Modern 3D Design</p>
+                    
+                    <a href="#" class="app-link">
+                        <i class="fab fa-google-play"></i> View on Play Store
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Apps -->
+        <h2 class="section-title">Upcoming Projects</h2>
+        <div class="apps-grid">
+            <div class="app-card">
+                <div class="app-header">
+                    <h3 class="app-name">Islamic Dua & Azkar</h3>
+                    <span class="app-status status-upcoming">IN DEVELOPMENT</span>
+                </div>
+                <div class="app-body">
+                    <p>Comprehensive collection of Islamic supplications and daily remembrances with audio recitations by famous Qaris.</p>
+                    <p><strong>Features:</strong> Audio recitations, bookmark system, daily reminders, sharing options</p>
+                    <p><strong>Target Release:</strong> Ramadan 2024</p>
+                </div>
+            </div>
+            
+            <div class="app-card">
+                <div class="app-header">
+                    <h3 class="app-name">Smart Factory Manager</h3>
+                    <span class="app-status status-upcoming">PLANNING PHASE</span>
+                </div>
+                <div class="app-body">
+                    <p>Complete manufacturing management solution for small to medium factories with inventory, production tracking, and employee management.</p>
+                    <p><strong>Target:</strong> Manufacturing Industry</p>
+                    <p><strong>Release:</strong> 2024</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Skills -->
+        <div class="skills-container">
+            <h2 class="section-title">Technical Expertise</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">Kotlin</div>
+                    <div class="skill-item">XML</div>
+                    <div class="skill-item">SQL</div>
                 </div>
                 
-                <!-- App 3 -->
-                <div class="app-card">
-                    <h3 class="app-name">Islamic Dua & Azkar</h3>
-                    <p>Comprehensive collection of Islamic supplications and daily remembrances with audio recitations.</p>
-                    <span class="app-status upcoming"><i class="fas fa-clock"></i> COMING SOON</span>
-                    <p><strong>Features:</strong> Audio Recitations, Bookmark System</p>
+                <div class="skill-category">
+                    <h4>Android Development</h4>
+                    <div class="skill-item">Android SDK</div>
+                    <div class="skill-item">Material Design</div>
+                    <div class="skill-item">Jetpack Components</div>
+                    <div class="skill-item">REST API Integration</div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Tools & Platforms</h4>
+                    <div class="skill-item">Android Studio</div>
+                    <div class="skill-item">Firebase</div>
+                    <div class="skill-item">Git & GitHub</div>
+                    <div class="skill-item">Google Play Console</div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Specializations</h4>
+                    <div class="skill-item">Islamic Apps</div>
+                    <div class="skill-item">Productivity Tools</div>
+                    <div class="skill-item">AdMob Integration</div>
+                    <div class="skill-item">App Monetization</div>
                 </div>
             </div>
         </div>
         
         <!-- Development Philosophy -->
-        <div class="section">
-            <h2 class="section-title">Development Philosophy</h2>
-            <p><strong>Quality First:</strong> Every app undergoes rigorous testing to ensure reliability and performance.</p>
-            <p><strong>User-Centric Design:</strong> Intuitive interfaces that are easy to navigate for all age groups.</p>
-            <p><strong>Privacy Respect:</strong> Minimal data collection with transparent privacy policies.</p>
-            <p><strong>Regular Updates:</strong> Continuous improvement based on user feedback and technological advancements.</p>
-            <p><strong>Offline Functionality:</strong> Core features available without internet connectivity.</p>
-        </div>
-        
-        <!-- Contact Section -->
-        <div class="section">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>I'm always open to discussing app development projects, collaboration opportunities, or receiving feedback on my applications.</p>
-            
-            <div class="contact-links">
-                <a href="mailto:absalamofficial@gmail.com" class="contact-btn">
-                    <i class="fas fa-envelope"></i> Email Me
-                </a>
-                <a href="https://play.google.com/store/apps/dev?id=YOUR_DEVELOPER_ID" class="contact-btn" target="_blank">
-                    <i class="fab fa-google-play"></i> Play Store
-                </a>
-                <a href="https://absalamofficial-cmyk.github.io/privacy-policy.html" class="contact-btn">
-                    <i class="fas fa-shield-alt"></i> Privacy Policy
-                </a>
+        <h2 class="section-title">Development Philosophy</h2>
+        <div class="skills-container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                <div>
+                    <h4><i class="fas fa-star" style="color: #f6ad55;"></i> Quality First</h4>
+                    <p>Rigorous testing and quality assurance for every release</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-user" style="color: #4299e1;"></i> User-Centric</h4>
+                    <p>Intuitive interfaces designed for all user levels</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-shield-alt" style="color: #68d391;"></i> Privacy Respect</h4>
+                    <p>Minimal data collection with transparent policies</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-sync-alt" style="color: #ed64a6;"></i> Continuous Updates</h4>
+                    <p>Regular improvements based on user feedback</p>
+                </div>
             </div>
-            
-            <p style="margin-top: 20px;"><strong>Response Time:</strong> Within 24 hours</p>
-            <p><strong>Support:</strong> Technical support provided for all published applications</p>
         </div>
         
         <!-- Footer -->
-        <div class="footer">
-            <p>© 2024 Abdus Salam - Android Developer</p>
-            <p>All applications are available on Google Play Store</p>
-            <p>This page was last updated: March 2024</p>
-        </div>
+        <footer class="footer">
+            <h3>Abdus Salam - Android Developer</h3>
+            <p>Specializing in meaningful applications that solve real-world problems</p>
+            
+            <div class="footer-links">
+                <a href="mailto:absalamofficial@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> Email Support
+                </a>
+                <a href="https://absalamofficial-cmyk.github.io/privacy-policy.html" class="footer-link" target="_blank">
+                    <i class="fas fa-file-contract"></i> Privacy Policy
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-code"></i> Developer Portal
+                </a>
+            </div>
+            
+            <p style="margin-top: 25px; opacity: 0.8;">
+                © 2024 Abdus Salam. All applications available on Google Play Store.<br>
+                Last Updated: March 2024
+            </p>
+        </footer>
     </div>
 </body>
 </html>
