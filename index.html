@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Audio Enhancer Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0A0A0B;
+            --accent-cyan: #00D4FF;
+            --accent-purple: #8B5CF6;
+            --text-primary: #FFFFFF;
+            --text-secondary: #6B7280;
+            --success-green: #10B981;
+            --warning-amber: #F59E0B;
+            --error-red: #EF4444;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .recording-pulse {
+            animation: recordingPulse 2s infinite;
+        }
+        
+        @keyframes recordingPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .waveform-container {
+            height: 200px;
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .audio-meter {
+            width: 8px;
+            background: linear-gradient(to top, var(--success-green), var(--warning-amber), var(--error-red));
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .meter-peak {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            animation: peakHold 1s ease-out;
+        }
+        
+        @keyframes peakHold {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        .effect-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .effect-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+        }
+        
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+        
+        .ai-suggestion {
+            animation: slideInUp 0.5s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-tab {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 2px;
+        }
+        
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles Background -->
+    <div class="floating-particles" id="particles"></div>
+    
+    <!-- Neural Network Background -->
+    <div class="neural-network" id="neuralNetwork"></div>
+    
+    <!-- Main Container -->
+    <div class="min-h-screen relative z-10">
+        <!-- Header -->
+        <header class="glass-effect fixed top-0 left-0 right-0 z-50 px-4 py-3">
+            <div class="flex items-center justify-between max-w-6xl mx-auto">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">AI Audio Enhancer</h1>
+                        <p class="text-xs text-gray-400">Professional Studio Quality</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 rounded-full bg-green-400 recording-pulse"></div>
+                        <span class="text-sm text-gray-300">AI Active</span>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="pt-20 pb-24 px-4">
+            <!-- Hero Section with Recording Controls -->
+            <section class="max-w-6xl mx-auto mb-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold mb-4 gradient-text">Real-Time AI Audio Enhancement</h2>
+                    <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                        Experience professional studio-quality audio enhancement with our advanced AI neural networks
+                    </p>
+                </div>
+                
+                <!-- Recording Controls -->
+                <div class="glass-effect rounded-2xl p-8 mb-8">
+                    <div class="flex items-center justify-center mb-6">
+                        <button id="recordBtn" class="w-24 h-24 rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center glow-cyan hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105">
+                            <svg id="recordIcon" class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-center space-x-8 mb-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-mono text-cyan-400" id="timer">00:00</div>
+                            <div class="text-sm text-gray-400">Duration</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-mono text-purple-400" id="qualityScore">95</div>
+                            <div class="text-sm text-gray-400">Quality Score</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-mono text-green-400" id="noiseLevel">-45dB</div>
+                            <div class="text-sm text-gray-400">Noise Level</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Audio Meters -->
+                    <div class="flex items-center justify-center space-x-4 mb-6">
+                        <div class="text-center">
+                            <div class="text-xs text-gray-400 mb-2">Left Channel</div>
+                            <div class="audio-meter h-32 relative">
+                                <div class="meter-peak" id="leftPeak" style="top: 20%;"></div>
+                                <div class="absolute bottom-0 w-full bg-white rounded-full transition-all duration-100" id="leftMeter" style="height: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xs text-gray-400 mb-2">Right Channel</div>
+                            <div class="audio-meter h-32 relative">
+                                <div class="meter-peak" id="rightPeak" style="top: 25%;"></div>
+                                <div class="absolute bottom-0 w-full bg-white rounded-full transition-all duration-100" id="rightMeter" style="height: 55%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Playback Controls -->
+                    <div class="flex items-center justify-center space-x-4">
+                        <button id="playOriginal" class="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors">
+                            <span class="text-sm">Play Original</span>
+                        </button>
+                        <button id="playEnhanced" class="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 transition-all glow-cyan">
+                            <span class="text-sm">Play Enhanced</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Real-Time Waveform Visualization -->
+                <div class="waveform-container mb-8" id="waveformContainer">
+                    <canvas id="waveformCanvas" class="w-full h-full"></canvas>
+                </div>
+                
+                <!-- Frequency Spectrum Analyzer -->
+                <div class="glass-effect rounded-2xl p-6 mb-8">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Frequency Spectrum Analysis</h3>
+                    <div id="spectrumChart" style="height: 300px;"></div>
+                </div>
+            </section>
+            
+            <!-- AI Suggestions Panel -->
+            <section class="max-w-6xl mx-auto mb-8">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">AI Enhancement Suggestions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="aiSuggestions">
+                    <!-- AI suggestions will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Quick Effects Grid -->
+            <section class="max-w-6xl mx-auto mb-8">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">Quick AI Effects</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="quickEffects">
+                    <!-- Quick effects will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Recent Recordings -->
+            <section class="max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">Recent Recordings</h3>
+                <div class="splide" id="recentRecordings">
+                    <div class="splide__track">
+                        <ul class="splide__list" id="recordingsList">
+                            <!-- Recent recordings will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Bottom Navigation -->
+        <nav class="fixed bottom-0 left-0 right-0 glass-effect z-50 px-4 py-3">
+            <div class="flex items-center justify-around max-w-md mx-auto">
+                <a href="index.html" class="nav-tab active flex flex-col items-center space-y-1 px-4 py-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span class="text-xs">Home</span>
+                </a>
+                <a href="effects.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span class="text-xs">Effects</span>
+                </a>
+                <a href="library.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 6h-2.18c.11-.31.18-.65.18-1a3 3 0 0 0-6 0c0 .35.07.69.18 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-8 4a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>
+                    <span class="text-xs">Library</span>
+                </a>
+                <a href="settings.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.82,11.69,4.82,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                    </svg>
+                    <span class="text-xs">Settings</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
