@@ -2,336 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Audio Enhancer Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Abdus Salam · Engineering Apps Portfolio</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tailwind for rapid layout -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-bg: #0A0A0B;
-            --accent-cyan: #00D4FF;
-            --accent-purple: #8B5CF6;
-            --text-primary: #FFFFFF;
-            --text-secondary: #6B7280;
-            --success-green: #10B981;
-            --warning-amber: #F59E0B;
-            --error-red: #EF4444;
-        }
-        
+        /* Custom engineering theme */
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            overflow-x: hidden;
+            background: #0b0e14;
+            background-image: radial-gradient(circle at 15% 30%, rgba(37, 99, 235, 0.08) 0%, transparent 25%),
+                              radial-gradient(circle at 85% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 25%);
         }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
+        .glass-card {
+            background: rgba(18, 25, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            transition: all 0.25s ease;
         }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glow-cyan {
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        .glow-purple {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .recording-pulse {
-            animation: recordingPulse 2s infinite;
-        }
-        
-        @keyframes recordingPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
-        }
-        
-        .waveform-container {
-            height: 200px;
-            background: linear-gradient(180deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .audio-meter {
-            width: 8px;
-            background: linear-gradient(to top, var(--success-green), var(--warning-amber), var(--error-red));
-            border-radius: 4px;
-            position: relative;
-        }
-        
-        .meter-peak {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 2px;
-            background: white;
-            border-radius: 1px;
-            animation: peakHold 1s ease-out;
-        }
-        
-        @keyframes peakHold {
-            0% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
-        
-        .effect-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .effect-card:hover {
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 20px 30px -10px rgba(0, 180, 216, 0.15);
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
         }
-        
-        .neural-network {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.1;
+        .gradient-text {
+            background: linear-gradient(145deg, #94a3b8, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
         }
-        
-        .ai-suggestion {
-            animation: slideInUp 0.5s ease-out;
+        .cyber-glow {
+            box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2), 0 8px 20px -6px rgba(2, 132, 199, 0.3);
         }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .badge-material {
+            background: #1e293b;
+            color: #b9e6ff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.85rem;
+            border-radius: 20px;
+            border-left: 3px solid #0ea5e9;
         }
-        
-        .nav-tab {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-            border-radius: 2px;
-        }
-        
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        .developer-chip {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
-<body>
-    <!-- Floating Particles Background -->
-    <div class="floating-particles" id="particles"></div>
-    
-    <!-- Neural Network Background -->
-    <div class="neural-network" id="neuralNetwork"></div>
-    
-    <!-- Main Container -->
-    <div class="min-h-screen relative z-10">
-        <!-- Header -->
-        <header class="glass-effect fixed top-0 left-0 right-0 z-50 px-4 py-3">
-            <div class="flex items-center justify-between max-w-6xl mx-auto">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-cyan-400 to-purple-500 flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
+<body class="text-slate-200 antialiased">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+
+        <!-- ===== HERO SECTION ===== -->
+        <div class="text-center mb-12 md:mb-16 relative">
+            <div class="inline-block mb-4">
+                <span class="bg-sky-900/50 text-sky-300 px-5 py-2 rounded-full text-xs font-mono border border-sky-700/50">
+                    <i class="fas fa-cogs mr-2 text-cyan-400"></i> 机械工程师 · 10+ Years Industry
+                </span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+                <span class="text-white">Abdus </span>
+                <span class="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">Salam</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Certified Mechanical Engineer · CNC & Manufacturing Specialist · Independent Android Developer
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <span class="developer-chip"><i class="fas fa-map-pin text-cyan-400"></i> Timergara, Lower Dir, Pakistan</span>
+                <span class="developer-chip"><i class="fas fa-envelope text-cyan-400"></i> absalamofficial@gmail.com</span>
+                <span class="developer-chip"><i class="fas fa-certificate text-amber-400"></i> 10+ Years CNC Expertise</span>
+            </div>
+        </div>
+
+        <!-- ===== STATS BANNER ===== -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+            <div class="glass-card rounded-2xl p-5 text-center">
+                <div class="text-3xl font-bold text-white mb-1">3</div>
+                <div class="text-xs uppercase tracking-wider text-slate-400">Professional Apps</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-center">
+                <div class="text-3xl font-bold text-white mb-1">25+</div>
+                <div class="text-xs uppercase tracking-wider text-slate-400">Materials DB</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-center">
+                <div class="text-3xl font-bold text-white mb-1">15+</div>
+                <div class="text-xs uppercase tracking-wider text-slate-400">ISO Calculations</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-center">
+                <div class="text-3xl font-bold text-white mb-1">10y</div>
+                <div class="text-xs uppercase tracking-wider text-slate-400">Industry Trust</div>
+            </div>
+        </div>
+
+        <!-- ===== FEATURED APP (LIVE ON PLAY STORE) ===== -->
+        <div class="mb-16">
+            <div class="flex items-center gap-3 mb-7">
+                <i class="fas fa-crown text-yellow-500 text-2xl"></i>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-white">Flagship Engineering Tool</h2>
+                <span class="bg-green-700/80 text-green-200 text-xs px-4 py-1.5 rounded-full border border-green-500"><i class="fas fa-circle text-[8px] mr-1 text-green-300"></i> LIVE on Play Store</span>
+            </div>
+
+            <!-- CNC Turning Calculator Pro Card -->
+            <div class="glass-card rounded-3xl p-6 md:p-8 cyber-glow">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- App Icon / Placeholder -->
+                    <div class="flex-shrink-0 flex justify-center">
+                        <div class="w-28 h-28 bg-gradient-to-br from-slate-800 to-indigo-900 rounded-2xl flex items-center justify-center shadow-2xl border border-sky-700/50">
+                            <i class="fas fa-cogs text-6xl text-sky-300"></i>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-bold gradient-text">AI Audio Enhancer</h1>
-                        <p class="text-xs text-gray-400">Professional Studio Quality</p>
+                    <!-- App Details -->
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white">CNC Turning Calculator Pro</h3>
+                            <span class="bg-indigo-900/60 text-indigo-200 px-4 py-1.5 rounded-full text-sm border border-indigo-500/50"><i class="fas fa-check-circle mr-1"></i> Premium</span>
+                        </div>
+                        <p class="text-slate-300 text-base md:text-lg mb-4 leading-relaxed">
+                            Advanced machining calculator trusted by engineers worldwide. ISO standard parameters, 25+ aerospace materials, real-time optimization.
+                        </p>
+                        
+                        <!-- Feature badges -->
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="badge-material"><i class="fas fa-calculator mr-1"></i> Cutting Speed</span>
+                            <span class="badge-material"><i class="fas fa-tachometer-alt mr-1"></i> Feed Rate</span>
+                            <span class="badge-material"><i class="fas fa-weight-hanging mr-1"></i> MRR</span>
+                            <span class="badge-material"><i class="fas fa-ruler mr-1"></i> Surface Roughness</span>
+                            <span class="badge-material"><i class="fas fa-tools mr-1"></i> Tool Life</span>
+                            <span class="badge-material"><i class="fas fa-database mr-1"></i> 25+ Materials</span>
+                            <span class="badge-material"><i class="fas fa-shield-alt mr-1"></i> Android 15</span>
+                        </div>
+
+                        <!-- Links & metadata -->
+                        <div class="flex flex-wrap items-center gap-4 mt-4">
+                            <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 px-6 py-3 rounded-2xl text-white font-medium transition-all shadow-lg shadow-sky-900/40">
+                                <i class="fab fa-google-play text-lg"></i> View on Play Store
+                                <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                            </a>
+                            <span class="text-slate-400 text-sm flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> v3.5 · Android 15 Ready</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full bg-green-400 recording-pulse"></div>
-                        <span class="text-sm text-gray-300">AI Active</span>
-                    </div>
-                    <button class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                    </button>
+                <!-- Update highlights -->
+                <div class="mt-6 pt-5 border-t border-slate-700/70 text-sm text-slate-400 flex flex-wrap gap-4">
+                    <span><i class="fas fa-android text-green-500 mr-1"></i> Android 15 Edge-to-Edge</span>
+                    <span><i class="fas fa-lock-open text-amber-400 mr-1"></i> Premium fix v3.5</span>
+                    <span><i class="fas fa-cloud-upload-alt text-sky-400 mr-1"></i> Offline · 100% private</span>
                 </div>
             </div>
-        </header>
-        
-        <!-- Main Content -->
-        <main class="pt-20 pb-24 px-4">
-            <!-- Hero Section with Recording Controls -->
-            <section class="max-w-6xl mx-auto mb-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-4xl font-bold mb-4 gradient-text">Real-Time AI Audio Enhancement</h2>
-                    <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                        Experience professional studio-quality audio enhancement with our advanced AI neural networks
-                    </p>
-                </div>
-                
-                <!-- Recording Controls -->
-                <div class="glass-effect rounded-2xl p-8 mb-8">
-                    <div class="flex items-center justify-center mb-6">
-                        <button id="recordBtn" class="w-24 h-24 rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center glow-cyan hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105">
-                            <svg id="recordIcon" class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="flex items-center justify-center space-x-8 mb-6">
-                        <div class="text-center">
-                            <div class="text-2xl font-mono text-cyan-400" id="timer">00:00</div>
-                            <div class="text-sm text-gray-400">Duration</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-2xl font-mono text-purple-400" id="qualityScore">95</div>
-                            <div class="text-sm text-gray-400">Quality Score</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-2xl font-mono text-green-400" id="noiseLevel">-45dB</div>
-                            <div class="text-sm text-gray-400">Noise Level</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Audio Meters -->
-                    <div class="flex items-center justify-center space-x-4 mb-6">
-                        <div class="text-center">
-                            <div class="text-xs text-gray-400 mb-2">Left Channel</div>
-                            <div class="audio-meter h-32 relative">
-                                <div class="meter-peak" id="leftPeak" style="top: 20%;"></div>
-                                <div class="absolute bottom-0 w-full bg-white rounded-full transition-all duration-100" id="leftMeter" style="height: 60%;"></div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-xs text-gray-400 mb-2">Right Channel</div>
-                            <div class="audio-meter h-32 relative">
-                                <div class="meter-peak" id="rightPeak" style="top: 25%;"></div>
-                                <div class="absolute bottom-0 w-full bg-white rounded-full transition-all duration-100" id="rightMeter" style="height: 55%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Playback Controls -->
-                    <div class="flex items-center justify-center space-x-4">
-                        <button id="playOriginal" class="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors">
-                            <span class="text-sm">Play Original</span>
-                        </button>
-                        <button id="playEnhanced" class="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 transition-all glow-cyan">
-                            <span class="text-sm">Play Enhanced</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Real-Time Waveform Visualization -->
-                <div class="waveform-container mb-8" id="waveformContainer">
-                    <canvas id="waveformCanvas" class="w-full h-full"></canvas>
-                </div>
-                
-                <!-- Frequency Spectrum Analyzer -->
-                <div class="glass-effect rounded-2xl p-6 mb-8">
-                    <h3 class="text-xl font-semibold mb-4 gradient-text">Frequency Spectrum Analysis</h3>
-                    <div id="spectrumChart" style="height: 300px;"></div>
-                </div>
-            </section>
-            
-            <!-- AI Suggestions Panel -->
-            <section class="max-w-6xl mx-auto mb-8">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">AI Enhancement Suggestions</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="aiSuggestions">
-                    <!-- AI suggestions will be populated by JavaScript -->
-                </div>
-            </section>
-            
-            <!-- Quick Effects Grid -->
-            <section class="max-w-6xl mx-auto mb-8">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">Quick AI Effects</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="quickEffects">
-                    <!-- Quick effects will be populated by JavaScript -->
-                </div>
-            </section>
-            
-            <!-- Recent Recordings -->
-            <section class="max-w-6xl mx-auto">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">Recent Recordings</h3>
-                <div class="splide" id="recentRecordings">
-                    <div class="splide__track">
-                        <ul class="splide__list" id="recordingsList">
-                            <!-- Recent recordings will be populated by JavaScript -->
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </main>
-        
-        <!-- Bottom Navigation -->
-        <nav class="fixed bottom-0 left-0 right-0 glass-effect z-50 px-4 py-3">
-            <div class="flex items-center justify-around max-w-md mx-auto">
-                <a href="index.html" class="nav-tab active flex flex-col items-center space-y-1 px-4 py-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                    </svg>
-                    <span class="text-xs">Home</span>
-                </a>
-                <a href="effects.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    <span class="text-xs">Effects</span>
-                </a>
-                <a href="library.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 6h-2.18c.11-.31.18-.65.18-1a3 3 0 0 0-6 0c0 .35.07.69.18 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-8 4a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                    </svg>
-                    <span class="text-xs">Library</span>
-                </a>
-                <a href="settings.html" class="nav-tab flex flex-col items-center space-y-1 px-4 py-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.82,11.69,4.82,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
-                    </svg>
-                    <span class="text-xs">Settings</span>
-                </a>
+        </div>
+
+        <!-- ===== BETA & UPCOMING APPS ===== -->
+        <div class="mb-16">
+            <div class="flex items-center gap-3 mb-7">
+                <i class="fas fa-flask text-purple-400 text-2xl"></i>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-white">Beta & Islamic Projects</h2>
+                <span class="bg-amber-800/70 text-amber-200 text-xs px-4 py-1.5 rounded-full border border-amber-700">Testing Phase</span>
             </div>
-        </nav>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 1. Ramzan Prayer & Hadees (Beta) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col h-full border border-slate-700/60">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-emerald-900 to-teal-800 rounded-xl flex items-center justify-center text-2xl shadow-lg border border-emerald-600/40">
+                            🌙
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">Ramzan Prayer & Hadees <span class="text-xs bg-slate-800 px-3 py-1 rounded-full text-amber-300 border border-amber-500/40">Beta</span></h3>
+                            <p class="text-slate-400 text-sm mt-1">Complete Islamic companion · Ad-free · Daily duas & authentic hadees</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-3 flex flex-wrap items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fas fa-code-branch mr-1"></i> Closed testing</span>
+                        <span class="inline-flex gap-2">
+                            <span class="text-slate-400"><i class="fas fa-moon mr-1 text-emerald-400"></i> Ramadan special</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 2. CNC Milling Calculator (Beta) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col h-full border border-slate-700/60">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-14 h-14 bg-gradient-to-br from-slate-800 to-blue-900 rounded-xl flex items-center justify-center text-2xl shadow-lg border border-blue-700/40">
+                            ⚙️
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">CNC Milling Calculator <span class="text-xs bg-slate-800 px-3 py-1 rounded-full text-amber-300 border border-amber-500/40">Beta</span></h3>
+                            <p class="text-slate-400 text-sm mt-1">Precision face milling, peripheral cutting, HSM parameters. Coming soon.</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-3 flex flex-wrap items-center justify-between">
+                        <span class="text-xs text-slate-500"><i class="fas fa-flask mr-1"></i> Engineering validation</span>
+                        <span class="text-sky-300 text-sm"><i class="fas fa-database mr-1"></i> 25+ materials</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-slate-500 text-sm mt-5 flex items-center gap-2 border-t border-slate-800/70 pt-5 italic">
+                <i class="fas fa-info-circle"></i> Beta apps are under active testing. For early access inquiries: absalamofficial@gmail.com
+            </p>
+        </div>
+
+        <!-- ===== ENGINEERING EXPERTISE ===== -->
+        <div class="glass-card rounded-3xl p-6 md:p-8 mb-16">
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="md:w-1/3">
+                    <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700/80">
+                        <i class="fas fa-user-tie text-4xl text-sky-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Credential</h3>
+                        <p class="text-slate-300 text-lg font-light">Certified Mechanical Engineer</p>
+                        <p class="text-slate-400 text-sm mt-2">Specialized in CAM, CNC programming, and manufacturing process optimization.</p>
+                        <div class="mt-5 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                            <span class="text-slate-300 text-sm">10+ years industry experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h4 class="text-white font-semibold text-lg mb-4"><i class="fas fa-microchip mr-2 text-cyan-400"></i> Industry domains served</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-rocket text-indigo-400"></i> Aerospace
+                        </div>
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-car text-sky-400"></i> Automotive
+                        </div>
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-heartbeat text-rose-400"></i> Medical
+                        </div>
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-cubes text-amber-400"></i> Mold & Die
+                        </div>
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-microscope text-emerald-400"></i> R&D
+                        </div>
+                        <div class="bg-slate-800/40 p-3 rounded-xl text-slate-300 flex items-center gap-2 text-sm border border-slate-700/40">
+                            <i class="fas fa-industry text-slate-300"></i> General mfg.
+                        </div>
+                    </div>
+                    <!-- ISO Badge -->
+                    <div class="mt-6 flex items-center gap-4 flex-wrap">
+                        <span class="bg-slate-800/80 px-4 py-2 rounded-full text-xs text-slate-300 border border-slate-600"><i class="fas fa-check-circle text-blue-400"></i> ISO 9001:2015 compliant algorithms</span>
+                        <span class="bg-slate-800/80 px-4 py-2 rounded-full text-xs text-slate-300 border border-slate-600"><i class="fas fa-lock text-blue-400"></i> 100% offline, zero data collection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SUPPORT / DONATE SECTION (CLEAN, POLICY SAFE) ===== -->
+        <div class="max-w-2xl mx-auto text-center mb-12">
+            <div class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/80 rounded-3xl p-8">
+                <i class="fas fa-hand-holding-heart text-4xl text-amber-400 mb-4"></i>
+                <h3 class="text-2xl font-semibold text-white mb-2">Support Independent Engineering</h3>
+                <p class="text-slate-400 mb-6 text-base">Your contributions help maintain free updates, new materials, and Islamic apps.</p>
+                
+                <!-- Donation options – external website (policy compliant) -->
+                <div class="bg-slate-900/70 p-5 rounded-2xl border border-slate-700 mb-5">
+                    <p class="text-amber-300 text-sm mb-3 flex items-center justify-center gap-2"><i class="fas fa-shield-alt text-green-400"></i> Google Play policy compliant · External link</p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <a href="#" class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl text-sm font-medium transition flex items-center justify-center gap-2 border border-slate-600">
+                            <i class="fas fa-globe"></i> Donate via JazzCash (PK)
+                        </a>
+                        <span class="text-slate-500 px-2 py-3">or</span>
+                        <a href="mailto:absalamofficial@gmail.com?subject=Support Engineering Work" class="bg-gradient-to-r from-sky-900 to-indigo-900 hover:from-sky-800 hover:to-indigo-800 text-white px-6 py-3 rounded-xl text-sm font-medium transition flex items-center justify-center gap-2 border border-sky-700">
+                            <i class="fas fa-envelope"></i> Contact for contribution
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">JazzCash (Pakistan): 0300 5665195 · Abdus Salam</p>
+                <p class="text-[10px] text-slate-600 mt-2">*International transactions via JazzCash are not possible. Pakistani supporters only.</p>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="border-t border-slate-800/80 mt-12 pt-10 pb-6 text-sm text-slate-500">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-white font-medium">© 2026 Abdus Salam</span>
+                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+                    <span>Engineering Apps · Dir Lower, Pakistan</span>
+                </div>
+                <div class="flex gap-5">
+                    <a href="#" class="hover:text-sky-400 transition"><i class="fab fa-google-play"></i></a>
+                    <a href="mailto:absalamofficial@gmail.com" class="hover:text-sky-400 transition"><i class="fas fa-envelope"></i></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" class="hover:text-sky-400 transition"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <p class="text-center mt-6 text-xs text-slate-600">Precision · Integrity · Ihsan — Crafted with faith in Timergara.</p>
+        </footer>
     </div>
-    
-    <script src="main.js"></script>
 </body>
 </html>
