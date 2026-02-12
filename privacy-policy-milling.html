@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Privacy Policy · CNC Milling Calculator</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --milling-purple: #8b5cf6;
+            --milling-pink: #d946ef;
+            --bg-deep: #0a1a2a;
+            --bg-card: #0f1e2c;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0a1a2a, #030712);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .privacy-card {
+            background: rgba(10, 20, 30, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-light);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #c084fc;
+            padding: 10px 25px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: var(--milling-purple);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h2 i {
+            color: var(--milling-pink);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+        }
+
+        .section li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .section li:before {
+            content: "•";
+            color: var(--milling-purple);
+            font-size: 1.4rem;
+            position: absolute;
+            left: 8px;
+            top: -4px;
+        }
+
+        .highlight-box {
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 6px solid var(--milling-purple);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--milling-purple);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-card {
+                padding: 30px 25px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="privacy-card">
+            
+            <div class="app-badge">
+                <i class="fas fa-flask"></i> CNC Milling Calculator · Beta · Free
+            </div>
+
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">
+                <i class="far fa-calendar-alt"></i> Last Updated: February 2026
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>CNC Milling Calculator ("we", "our", or "the App") is an engineering calculator currently in beta testing, developed by Abdus Salam. This privacy policy explains how we handle your information.</p>
+                <p><strong style="color: #c084fc;">The app is completely free during beta testing. No payments are accepted at this stage.</strong></p>
+            </div>
+
+            <!-- NO DATA COLLECTION -->
+            <div class="highlight-box">
+                <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ WE DO NOT COLLECT ANY DATA</strong></p>
+                <p style="margin-bottom: 0;">CNC Milling Calculator does not collect, store, or transmit any personal information. All calculations are performed locally on your device.</p>
+            </div>
+
+            <!-- BETA TESTING -->
+            <div class="section">
+                <h2><i class="fas fa-flask"></i> Beta Testing</h2>
+                <p>The app is currently in beta testing phase. This means:</p>
+                <ul>
+                    <li>The app is provided "as is" for testing purposes</li>
+                    <li>No data is collected about your usage or feedback</li>
+                    <li>Crash reports are handled by Google Play Store (anonymous)</li>
+                    <li>You can leave beta testing at any time</li>
+                </ul>
+            </div>
+
+            <!-- NO PERMISSIONS -->
+            <div class="section">
+                <h2><i class="fas fa-lock"></i> Permissions</h2>
+                <p>CNC Milling Calculator does not require any special permissions. No internet, no location, no storage access needed for core functionality.</p>
+            </div>
+
+            <!-- OFFLINE FIRST -->
+            <div class="section">
+                <h2><i class="fas fa-wifi"></i> Offline Functionality</h2>
+                <p>The app works completely offline. Internet connection is only required to download the app from Play Store. All calculations work without internet.</p>
+            </div>
+
+            <!-- FUTURE PREMIUM -->
+            <div class="section">
+                <h2><i class="fas fa-clock"></i> Future Updates</h2>
+                <p>If the app moves out of beta and introduces premium features in the future, this privacy policy will be updated. You will be notified of any changes.</p>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="section">
+                <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                <p style="margin-top: 15px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px;">
+                    <strong style="color: #c084fc;">Developer:</strong> Abdus Salam<br>
+                    <strong style="color: #c084fc;">Email:</strong> absalamofficial@gmail.com<br>
+                    <strong style="color: #c084fc;">Response Time:</strong> Within 3-5 business days
+                </p>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="margin-top: 50px; text-align: center; border-top: 1px solid var(--border-light); padding-top: 40px;">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="privacy-policy-milling.html" class="footer-link" style="color: #c084fc;"><i class="fas fa-shield-alt"></i> Privacy</a>
+                    <a href="terms-conditions.html" class="footer-link"><i class="fas fa-file-contract"></i> Terms</a>
+                    <a href="about-developer.html" class="footer-link"><i class="fas fa-user-tie"></i> Developer</a>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 30px;">
+                    © 2026 Abdus Salam · CNC Milling Calculator · Beta · Free · No Data Collection
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
