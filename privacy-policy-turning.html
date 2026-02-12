@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Privacy Policy · CNC Turning Calculator Pro</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turning-blue: #3b82f6;
+            --turning-cyan: #06b6d4;
+            --bg-deep: #0a1a2a;
+            --bg-card: #0f1e2c;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0a1a2a, #030712);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .privacy-card {
+            background: rgba(10, 20, 30, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-light);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 10px 25px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: var(--turning-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h2 i {
+            color: var(--turning-cyan);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+        }
+
+        .section li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .section li:before {
+            content: "•";
+            color: var(--turning-blue);
+            font-size: 1.4rem;
+            position: absolute;
+            left: 8px;
+            top: -4px;
+        }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.08);
+            border-left: 6px solid var(--turning-blue);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--turning-blue);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-card {
+                padding: 30px 25px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="privacy-card">
+            
+            <div class="app-badge">
+                <i class="fas fa-cogs"></i> CNC Turning Calculator Pro · Free + Premium
+            </div>
+
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">
+                <i class="far fa-calendar-alt"></i> Last Updated: February 2026
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                <p>CNC Turning Calculator Pro ("we", "our", or "the App") is an engineering calculator developed by Abdus Salam. This privacy policy explains how we handle your information.</p>
+                <p><strong style="color: #60a5fa;">The app offers free basic features and optional premium upgrade via Google Play's billing system.</strong></p>
+            </div>
+
+            <!-- DATA COLLECTION -->
+            <div class="section">
+                <h2><i class="fas fa-database"></i> Data Collection</h2>
+                <p><strong style="color: #60a5fa;">We do NOT collect any personal information.</strong> The app works entirely offline and does not transmit any data to servers.</p>
+                <p>The only technical information collected is:</p>
+                <ul>
+                    <li><strong>Device ID:</strong> Used only for premium purchase verification via Google Play. This is handled entirely by Google's billing system. We do not store or access this ID.</li>
+                </ul>
+            </div>
+
+            <!-- PREMIUM PURCHASES -->
+            <div class="section">
+                <h2><i class="fas fa-crown"></i> Premium Purchases</h2>
+                <p>If you choose to upgrade to Premium:</p>
+                <ul>
+                    <li>All payments are processed by Google Play Store</li>
+                    <li>We never see or store your credit card or payment details</li>
+                    <li>Purchase history is managed by your Google account</li>
+                    <li>The app only verifies if you have an active premium license</li>
+                </ul>
+            </div>
+
+            <!-- NO PERMISSIONS -->
+            <div class="highlight-box">
+                <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ NO PERMISSIONS REQUIRED</strong></p>
+                <p style="margin-bottom: 0;">CNC Turning Calculator Pro does not require any sensitive permissions. No location, no camera, no contacts, no storage access. All calculations are performed locally.</p>
+            </div>
+
+            <!-- OFFLINE FUNCTIONALITY -->
+            <div class="section">
+                <h2><i class="fas fa-wifi"></i> Offline Functionality</h2>
+                <p>The app works completely offline. No internet connection is required for calculations. Internet is only used for:</p>
+                <ul>
+                    <li>Downloading the app from Play Store</li>
+                    <li>Processing premium purchases (via Google Play)</li>
+                </ul>
+            </div>
+
+            <!-- CHILDREN'S PRIVACY -->
+            <div class="section">
+                <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                <p>This app is designed for engineering professionals and students. It does not collect any personal information from any user, regardless of age.</p>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="section">
+                <h2><i class="fas fa-shield"></i> Data Security</h2>
+                <p>Since we collect no personal data, there is no risk of data breach. All premium verification is handled securely by Google Play's infrastructure.</p>
+            </div>
+
+            <!-- CHANGES -->
+            <div class="section">
+                <h2><i class="fas fa-pen"></i> Changes to This Policy</h2>
+                <p>Any updates to this privacy policy will be posted here. Our commitment to not collecting personal data will remain unchanged.</p>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="section">
+                <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                <p style="margin-top: 15px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 16px;">
+                    <strong style="color: #60a5fa;">Developer:</strong> Abdus Salam<br>
+                    <strong style="color: #60a5fa;">Email:</strong> absalamofficial@gmail.com<br>
+                    <strong style="color: #60a5fa;">Response Time:</strong> Within 3-5 business days
+                </p>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="margin-top: 50px; text-align: center; border-top: 1px solid var(--border-light); padding-top: 40px;">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="privacy-policy-turning.html" class="footer-link" style="color: #60a5fa;"><i class="fas fa-shield-alt"></i> Privacy</a>
+                    <a href="terms-conditions.html" class="footer-link"><i class="fas fa-file-contract"></i> Terms</a>
+                    <a href="about-developer.html" class="footer-link"><i class="fas fa-user-tie"></i> Developer</a>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 30px;">
+                    © 2026 Abdus Salam · CNC Turning Calculator Pro · Free + Premium · No Data Collection
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
