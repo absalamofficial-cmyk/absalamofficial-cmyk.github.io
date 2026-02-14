@@ -2,596 +2,564 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Donate · Ramzan Prayer & Hadees · Developer Support</title>
-    <!-- Font Awesome 6 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>✨ Developer support · Ramzan Prayer · mobile ready ✨</title>
+    <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: modern + amiri (arabic) + mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Amiri:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #0a1f2e, #0c2a3a);
-            color: #e2e8f0;
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 10% 30%, #1e3a5f, #0b1e32);
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 12px;
+            color: #f0f4fa;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .donate-container {
-            max-width: 1000px;
+
+        /* main container – full width fluid */
+        .donate-wrap {
+            max-width: 1100px;
             width: 100%;
             margin: 0 auto;
         }
-        
+
+        /* CARD – extra glow, mobile border radius adjusted */
         .donation-card {
-            background: rgba(10, 25, 35, 0.9);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 48px;
-            padding: 50px 40px;
-            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
+            background: rgba(8, 28, 46, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 40px;
+            border: 1px solid rgba(100, 200, 255, 0.25);
+            box-shadow: 0 30px 70px -10px rgba(0, 180, 255, 0.3), 0 0 0 1px rgba(210, 180, 140, 0.2) inset;
+            padding: 2.2rem 1.8rem;
+            transition: all 0.2s;
         }
-        
-        /* Islamic Pattern */
-        .donation-card::before {
-            content: "🤲 🤲 🤲";
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            font-size: 200px;
-            opacity: 0.02;
-            color: #38bdf8;
-            transform: rotate(-10deg);
-            pointer-events: none;
-            white-space: pre;
-        }
-        
-        .arabic-title {
-            font-family: 'Amiri', serif;
-            font-size: 2.2rem;
-            color: #f0f9ff;
-            margin-bottom: 5px;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-        }
-        
-        .divider {
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
-            border-radius: 2px;
-            margin: 25px 0 30px 0;
-        }
-        
-        /* ===== CRITICAL DISCLAIMER - RED BADGE ===== */
-        .disclaimer-badge {
-            display: inline-block;
-            background: #dc2626;
-            color: white;
-            padding: 12px 35px;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: 0 10px 25px rgba(220,38,38,0.4);
-        }
-        
-        /* ===== MAIN DISCLAIMER BOX ===== */
-        .disclaimer-box {
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 32px;
-            padding: 40px;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,215,0,0.3);
-            text-align: left;
-        }
-        
-        .disclaimer-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 25px;
+
+        /* colorful top badge */
+        .critical-ribbon {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 2px dashed rgba(255,215,0,0.3);
-            padding-bottom: 20px;
-        }
-        
-        .disclaimer-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .disclaimer-list li {
-            margin-bottom: 22px;
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #f0f9ff;
-        }
-        
-        .disclaimer-number {
-            color: #4ade80;
-            font-size: 1.6rem;
-            font-weight: 700;
-            min-width: 40px;
-            text-align: right;
-        }
-        
-        .disclaimer-highlight {
-            color: #ffd700;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        /* ===== DEVELOPER STATEMENT ===== */
-        .developer-statement {
-            background: linear-gradient(145deg, #0f3a4a, #0a2a38);
-            border-radius: 28px;
-            padding: 35px;
-            margin-bottom: 45px;
-            border: 1px solid #38bdf8;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            align-items: center;
-        }
-        
-        .dev-icon {
-            background: #0284c7;
-            width: 80px;
-            height: 80px;
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            margin-bottom: 20px;
         }
-        
-        .dev-icon i {
-            font-size: 3rem;
+        .disclaimer-badge {
+            background: linear-gradient(135deg, #f43f5e, #e11d48, #be123c);
             color: white;
-        }
-        
-        .dev-text {
-            flex: 1;
-        }
-        
-        .dev-text h3 {
-            color: white;
-            font-size: 1.7rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        
-        .dev-quote {
-            color: #b9f2ff;
-            font-size: 1.15rem;
-            font-style: italic;
-            line-height: 1.7;
-        }
-        
-        .dev-name {
-            color: #ffd700;
-            font-weight: 700;
-            margin-top: 15px;
-            font-size: 1.2rem;
-        }
-        
-        /* ===== PAKISTAN SECTION ===== */
-        .pakistan-section {
-            background: rgba(0,0,0,0.35);
-            backdrop-filter: blur(8px);
-            border-radius: 32px;
-            padding: 35px;
-            margin-bottom: 30px;
-            border: 1px solid #38bdf8;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .pk-badge {
-            background: #0284c7;
-            padding: 10px 25px;
-            border-radius: 60px;
-            color: white;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .iban-box {
-            background: #020617;
-            border-radius: 24px;
-            padding: 25px;
-            margin: 25px 0;
-            border: 2px dashed #38bdf8;
-            position: relative;
-        }
-        
-        .iban-label {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        
-        .iban-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #a5f3fc;
-            word-break: break-all;
-            background: #0a0f1c;
-            padding: 18px 22px;
-            border-radius: 18px;
-            border: 1px solid #0e7490;
-            text-align: center;
-            letter-spacing: 3px;
-        }
-        
-        .detail-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #1e293b;
-        }
-        
-        .detail-row:last-child {
-            border-bottom: none;
-        }
-        
-        .copy-btn {
-            background: #1e293b;
-            color: white;
-            border: 1px solid #4b5563;
             padding: 12px 30px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 2px solid #fbcfe8;
+            box-shadow: 0 15px 30px -8px #f43f5e, 0 4px 12px rgba(255,255,240,0.3);
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            transition: 0.2s;
-            font-size: 1rem;
+            backdrop-filter: blur(4px);
         }
-        
-        .copy-btn:hover {
-            background: #334155;
-            border-color: #38bdf8;
-        }
-        
-        .pk-warning {
-            color: #f59e0b;
-            font-size: 0.95rem;
-            margin-top: 20px;
-            background: rgba(245,158,11,0.1);
-            padding: 15px;
-            border-radius: 14px;
-            border-left: 6px solid #f59e0b;
-        }
-        
-        /* ===== INTERNATIONAL SECTION ===== */
-        .international-section {
-            background: linear-gradient(145deg, #0b1e2e, #0a1a28);
-            border-radius: 32px;
-            padding: 35px;
-            border: 1px solid #f59e0b;
-        }
-        
-        .int-badge {
-            background: #b45309;
-            padding: 10px 25px;
-            border-radius: 60px;
-            color: white;
+
+        .arabic-head {
+            font-family: 'Amiri', serif;
+            font-size: 2.4rem;
             font-weight: 700;
-            display: inline-flex;
-            align-items: center;
+            color: #ffe6b3;
+            text-shadow: 0 0 15px #ffb347, 0 2px 10px #7dd3fc;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #fff7d6, #bae6fd, #c7d2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            margin: 8px 0 4px;
+        }
+
+        .subhead {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #9ad0f5;
+            display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
-        
-        .email-box {
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-            margin-top: 25px;
+
+        .divider-gradient {
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(95deg, #facc15, #38bdf8, #a855f7, #f43f5e);
+            border-radius: 8px;
+            margin: 25px 0 28px;
         }
-        
-        .email-btn {
-            background: linear-gradient(145deg, #0284c7, #0369a1);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 60px;
-            text-decoration: none;
+
+        /* ===== DISCLAIMER BOX (colorful, layered) ===== */
+        .disclaimer-premium {
+            background: rgba(0, 20, 45, 0.7);
+            backdrop-filter: blur(16px);
+            border-radius: 38px;
+            padding: 32px 28px;
+            border: 2px solid rgba(250, 204, 21, 0.5);
+            box-shadow: 0 20px 30px -10px #0f172a, 0 0 0 2px rgba(255,215,0,0.3) inset;
+            margin-bottom: 40px;
+        }
+
+        .disclaimer-title {
+            font-size: 2rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ffdb7c;
+            border-bottom: 2px dashed #fbbf24;
+            padding-bottom: 16px;
+            margin-bottom: 25px;
+        }
+
+        .disclaimer-list {
+            list-style: none;
+        }
+
+        .disclaimer-list li {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            font-size: 1.15rem;
+            background: rgba(255,255,245,0.02);
+            padding: 8px 16px 8px 8px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,180,0.1);
+        }
+
+        .num-badge {
+            background: #0f2b3f;
+            color: #fcd34d;
+            font-weight: 800;
+            font-size: 1.7rem;
+            min-width: 50px;
+            text-align: center;
+            border-radius: 60px;
+            padding: 5px 0;
+        }
+
+        .gold-bold {
+            color: #ffe484;
+            font-weight: 700;
+            background: linear-gradient(145deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .legal-english {
+            background: #042c3b;
+            padding: 22px;
+            border-radius: 28px;
+            margin-top: 30px;
+            border-left: 10px solid #f97316;
+        }
+
+        /* developer bubble */
+        .dev-speech {
+            background: linear-gradient(125deg, #164863, #0b3b4b, #1d4e6f);
+            border-radius: 38px;
+            padding: 30px 35px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            border: 2px solid #ffb88c;
+            box-shadow: 0 15px 30px #00000055;
+        }
+
+        .dev-icon-big {
+            background: #df7c3f;
+            width: 85px;
+            height: 85px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            border: 3px solid #ffd966;
+            box-shadow: 0 0 30px #ffb266;
+        }
+
+        .quote {
+            flex: 1;
             font-size: 1.25rem;
+            font-style: italic;
+            color: #e9f5ff;
+        }
+        .dev-sign {
+            color: #fed7aa;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-top: 10px;
+        }
+
+        /* Pakistan card – vibrant */
+        .pakistan-card {
+            background: rgba(6, 38, 53, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px 28px;
+            border: 2px solid #38bdf8;
+            margin-bottom: 35px;
+        }
+
+        .pk-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .pk-flag {
+            background: linear-gradient(145deg, #116d3e, #0a4d2e);
+            padding: 10px 28px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.3rem;
+            border: 2px solid #fef08a;
+        }
+        .method-tag {
+            background: #0f4b6e;
+            color: #b9f2ff;
+            border-radius: 60px;
+            padding: 8px 25px;
+        }
+
+        .iban-glow {
+            background: #051e2c;
+            border-radius: 32px;
+            padding: 28px 20px;
+            border: 2px dashed #ffb347;
+            margin: 25px 0 20px;
+            box-shadow: 0 0 20px #00b7ff44;
+        }
+        .iban-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #b6f0ff;
+            background: #001d2f;
+            padding: 16px 18px;
+            border-radius: 28px;
+            text-align: center;
+            letter-spacing: 3px;
+            border: 1px solid #00e0ff;
+            word-break: break-word;
+        }
+
+        .copy-btn {
+            background: #1d4b60;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 15px 30px rgba(2,132,199,0.4);
-            border: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 15px;
-        }
-        
-        .email-btn:hover {
-            background: linear-gradient(145deg, #0369a1, #075985);
-            transform: translateY(-3px);
-            box-shadow: 0 22px 35px rgba(2,132,199,0.5);
-        }
-        
-        .free-badge {
-            background: #059669;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            margin-top: 40px;
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 1rem;
+            cursor: pointer;
+            border: 2px solid #facc15;
             transition: 0.2s;
+            margin-top: 20px;
         }
-        
-        .back-btn:hover {
+        .copy-btn:hover {
+            background: #286f8b;
+            transform: scale(1.02);
+            border-color: white;
+        }
+
+        .detail-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #266880;
+            padding: 12px 0;
+        }
+
+        .pk-warning {
+            background: #4b250e;
+            border-left: 12px solid #ff9100;
+            padding: 18px;
+            border-radius: 20px;
+            color: #ffdb9f;
+        }
+
+        /* international section – colorful */
+        .global-card {
+            background: rgba(45, 25, 65, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px;
+            border: 2px solid #f97316;
+        }
+        .intl-badge {
+            background: #b45309;
+            padding: 10px 30px;
+            border-radius: 60px;
             color: white;
+            font-weight: 700;
+            display: inline-flex;
+            gap: 8px;
         }
-        
-        @media (max-width: 640px) {
+        .email-block {
+            background: #191133;
+            border-radius: 40px;
+            padding: 30px 25px;
+            text-align: center;
+            margin-top: 25px;
+        }
+        .big-email-btn {
+            background: linear-gradient(125deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 18px 28px;
+            border-radius: 120px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #fcd34d;
+            box-shadow: 0 20px 30px #2563eb70;
+            margin-bottom: 15px;
+            transition: 0.2s;
+            word-break: break-word;
+        }
+        .big-email-btn:hover {
+            background: linear-gradient(125deg, #1d4ed8, #6b21a5);
+            transform: translateY(-4px);
+        }
+
+        .free-forever {
+            background: #065f46;
+            border-radius: 100px;
+            padding: 14px 30px;
+            display: inline-block;
+            font-weight: 700;
+            border: 2px solid #a7f3d0;
+        }
+
+        /* mobile first fine-tuning */
+        @media (max-width: 500px) {
             .donation-card {
-                padding: 30px 20px;
+                padding: 1.5rem 1rem;
+                border-radius: 32px;
             }
-            .iban-number {
-                font-size: 1.1rem;
-            }
-            .disclaimer-title {
-                font-size: 1.4rem;
+            .disclaimer-premium {
+                padding: 20px 14px;
             }
             .disclaimer-list li {
                 font-size: 1rem;
+                gap: 10px;
+                flex-wrap: wrap;
             }
+            .num-badge {
+                font-size: 1.3rem;
+                min-width: 40px;
+            }
+            .arabic-head {
+                font-size: 1.8rem;
+            }
+            .dev-speech {
+                padding: 20px;
+            }
+            .big-email-btn {
+                font-size: 1rem;
+                padding: 15px 15px;
+            }
+            .iban-number {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* smaller screen fine */
+        @media (max-width: 380px) {
+            .disclaimer-badge {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+            }
+        }
+
+        .back-link {
+            margin-top: 35px;
+            text-align: center;
+        }
+        .back-link a {
+            color: #b0d4f0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: 2px solid #3980a0;
+            padding: 12px 32px;
+            border-radius: 60px;
+            display: inline-block;
+            background: #08212e;
+        }
+        .back-link a:hover {
+            background: #1c455a;
+            color: white;
+        }
+
+        footer small {
+            color: #6f8f9f;
         }
     </style>
 </head>
 <body>
-    <div class="donate-container">
-        <!-- MAIN DONATION CARD -->
+    <div class="donate-wrap">
         <div class="donation-card">
-            
-            <!-- ===== CRITICAL NOTICE - NOT CHARITY ===== -->
-            <div style="text-align: center;">
+
+            <!-- CRITICAL badge with animation -->
+            <div class="critical-ribbon">
                 <span class="disclaimer-badge">
-                    <i class="fas fa-exclamation-triangle"></i> یہ صدقہ / خیرات نہیں ہے
+                    <i class="fas fa-exclamation-circle fa-lg"></i> یہ صدقہ نہیں ہے · NOT CHARITY
                 </span>
             </div>
-            
-            <!-- Bismillah -->
-            <div class="arabic-title">
-                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+
+            <!-- Bismillah & title -->
+            <div class="arabic-head">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <h1>🌙 Ramzan Prayer & Hadees</h1>
+            <div class="subhead">
+                <span><i class="fas fa-heart" style="color:#f87171;"></i> 100% FREE</span>
+                <span><i class="fas fa-ban" style="color:#facc15;"></i> NO ADS</span>
+                <span><i class="fas fa-lock-open" style="color:#4ade80;"></i> NO PURCHASES</span>
             </div>
-            
-            <h1 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 10px;">
-                Ramzan Prayer & Hadees
-            </h1>
-            <p style="color: #94a3b8; font-size: 1.2rem; margin-bottom: 10px;">
-                100% FREE · NO ADS · NO PURCHASES
-            </p>
-            
-            <div class="divider"></div>
-            
-            <!-- ===== MAIN DISCLAIMER - DETAILED ===== -->
-            <div class="disclaimer-box">
+            <div class="divider-gradient"></div>
+
+            <!-- MAIN DISCLAIMER (colorful, numbered) -->
+            <div class="disclaimer-premium">
                 <div class="disclaimer-title">
-                    <i class="fas fa-info-circle"></i> اہم وضاحت · Important Notice
+                    <i class="fas fa-info-circle fa-2x" style="color:#ffb84d;"></i> 
+                    اہم وضاحت · ضروری نوٹس
                 </div>
-                
                 <ul class="disclaimer-list">
-                    <li>
-                        <span class="disclaimer-number">١.</span>
-                        <span><strong class="disclaimer-highlight">یہ صدقہ، خیرات، زکوٰۃ یا چیریٹی نہیں ہے۔</strong> یہ صرف ڈویلپر کی محنت کی تعریف اور سپورٹ ہے۔</span>
-                    </li>
-                    <li>
-                        <span class="disclaimer-number">٢.</span>
-                        <span><strong class="disclaimer-highlight">کوئی تنظیم، این جی او، یا خیراتی ادارہ</strong> اس ڈونیشن سے وابستہ نہیں ہے۔</span>
-                    </li>
-                    <li>
-                        <span class="disclaimer-number">٣.</span>
-                        <span>یہ رقم مکمل طور پر <strong class="disclaimer-highlight">ذاتی ڈویلپر عبد السلام</strong> کو ان کی محنت، وقت اور ایپ کی دیکھ بھال کے لیے جاتی ہے۔</span>
-                    </li>
-                    <li>
-                        <span class="disclaimer-number">٤.</span>
-                        <span><strong class="disclaimer-highlight">ایپ مکمل طور پر مفت ہے۔</strong> ڈونیشن دینے یا نہ دینے سے ایپ کے فیچرز میں کوئی فرق نہیں آتا۔</span>
-                    </li>
+                    <li><span class="num-badge">١</span> <span><span class="gold-bold">یہ صدقہ، خیرات یا زکوٰۃ نہیں ہے۔</span> یہ ڈویلپر کی محنت کی تعریف اور سپورٹ ہے۔</span></li>
+                    <li><span class="num-badge">٢</span> <span>کوئی <span class="gold-bold">NGO، خیراتی ادارہ یا تنظیم</span> اس سے وابستہ نہیں۔</span></li>
+                    <li><span class="num-badge">٣</span> <span>رقم صرف <span class="gold-bold">ذاتی ڈویلپر عبد السلام</span> کو جاتی ہے (انٹرنیٹ، سسٹم، وقت)۔</span></li>
+                    <li><span class="num-badge">٤</span> <span>ایپ مکمل مفت ہے۔ <span class="gold-bold">ڈونیشن دینے سے کوئی فیچر نہیں کھلتا۔</span></span></li>
                 </ul>
-                
-                <!-- English Legal Disclaimer -->
-                <div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 16px;">
-                    <p style="color: #b9f2ff; font-weight: 600; margin-bottom: 10px;">
-                        <i class="fas fa-gavel"></i> LEGAL DISCLAIMER:
-                    </p>
-                    <p style="color: #d1d5db; font-size: 0.95rem; line-height: 1.7;">
-                        This is <strong style="color: #ffd700;">NOT a charity, NOT a religious donation (Sadaqah/Zakat), and NOT affiliated with any NGO or organization</strong>. 
-                        This is purely an optional appreciation gift from users to the individual developer <strong style="color: white;">(Abdus Salam)</strong> 
-                        for his time and effort in creating and maintaining this <strong style="color: #b9f2ff;">100% free, ad-free app</strong>. 
-                        No benefits, features, or privileges are given in exchange for any donation.
-                    </p>
+                <!-- legal disclaimer card -->
+                <div class="legal-english">
+                    <p style="color:#fcd34d;"><i class="fas fa-scale-balanced"></i> LEGAL DISCLAIMER (English):</p>
+                    <p style="color:#e2e8f0;">This is <strong style="color:#ffb347;">NOT a charity, NOT Sadaqah/Zakat, and NOT linked to any organization</strong>. It is an optional gift to the developer <strong style="color:#ffffff;">Abdus Salam</strong> for his 100% free, ad‑free app. No benefits or features are granted for donating.</p>
                 </div>
             </div>
-            
-            <!-- ===== DEVELOPER STATEMENT ===== -->
-            <div class="developer-statement">
-                <div class="dev-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="dev-text">
-                    <h3>ڈویلپر کا بیان</h3>
-                    <p class="dev-quote">
-                        "یہ رقم میں <strong style="color: #ffd700;">اپنی ذاتی ضروریات</strong> (انٹرنیٹ پیکج، سسٹم مینٹیننس، اور وقت کی قدر) کے لیے استعمال کرتا ہوں۔ 
-                        یہ کوئی خیراتی ادارہ نہیں ہے۔ میں نے یہ ایپ اللہ کی رضا کے لیے بنائی ہے اور اسے ہمیشہ مفت رکھوں گا۔ 
-                        اگر آپ کو میری محنت پسند آئے تو آپ سپورٹ کر سکتے ہیں، ورنہ کوئی حرج نہیں۔"
-                    </p>
-                    <p class="dev-name">— عبد السلام · ڈویلپر</p>
+
+            <!-- developer statement with color -->
+            <div class="dev-speech">
+                <div class="dev-icon-big"><i class="fas fa-user-tie"></i></div>
+                <div class="quote">
+                    <p>“یہ رقم میں اپنی ذاتی ضروریات (انٹرنیٹ پیکج، سسٹم مینٹیننس، وقت) کے لیے استعمال کرتا ہوں۔ یہ کوئی خیراتی ادارہ نہیں۔ ایپ ہمیشہ مفت رہے گی۔ شکریہ”</p>
+                    <div class="dev-sign">— عبد السلام · ڈویلپر</div>
                 </div>
             </div>
-            
-            <!-- ===== PAKISTAN DONATIONS ===== -->
-            <div class="pakistan-section">
-                <div class="section-header">
-                    <span class="pk-badge">
-                        <i class="fas fa-flag"></i> پاکستان
-                    </span>
-                    <span style="color: #86efac; font-weight: 600;">
-                        <i class="fas fa-check-circle"></i> بینک ٹرانسفر / JazzCash
-                    </span>
+
+            <!-- PAKISTAN section – vibrant & clean -->
+            <div class="pakistan-card">
+                <div class="pk-header">
+                    <span class="pk-flag"><i class="fas fa-flag"></i> پاکستان</span>
+                    <span class="method-tag"><i class="fas fa-university"></i> بینک ٹرانسفر / JazzCash</span>
                 </div>
-                
-                <!-- IBAN Box -->
-                <div class="iban-box">
-                    <div class="iban-label">
-                        <i class="fas fa-university"></i> IBAN (PAKISTAN ONLY)
-                    </div>
-                    <div class="iban-number" id="ibanText">
-                        PK35JCMA0207923005665195
-                    </div>
-                    
-                    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                        <button class="copy-btn" onclick="copyIBAN()">
-                            <i class="fas fa-copy"></i> Copy IBAN
-                        </button>
+
+                <div class="iban-glow">
+                    <div style="color:#9ac7e7; margin-bottom:10px;"><i class="fas fa-key"></i> IBAN (صرف پاکستان)</div>
+                    <div class="iban-number" id="ibanText">PK35JCMA0207923005665195</div>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="copy-btn" onclick="copyIBAN()"><i class="fas fa-copy"></i> Copy IBAN</button>
                     </div>
                 </div>
-                
-                <!-- Account Details -->
-                <div>
-                    <div class="detail-row">
-                        <span style="color: #94a3b8;"><i class="fas fa-user"></i> Account Title</span>
-                        <span style="color: white; font-weight: 600;">Abdus Salam</span>
-                    </div>
-                    <div class="detail-row">
-                        <span style="color: #94a3b8;"><i class="fas fa-building"></i> Bank Name</span>
-                        <span style="color: white;">Mobilink Microfinance Bank (JazzCash)</span>
-                    </div>
-                    <div class="detail-row">
-                        <span style="color: #94a3b8;"><i class="fas fa-mobile-alt"></i> JazzCash Number</span>
-                        <span style="color: white; font-weight: 600;">0300 5665195</span>
-                    </div>
+
+                <div class="detail-grid">
+                    <div class="detail-item"><span>Account Title</span> <strong>Abdus Salam</strong></div>
+                    <div class="detail-item"><span>Bank Name</span> <strong>Mobilink Microfinance Bank (JazzCash)</strong></div>
+                    <div class="detail-item"><span>JazzCash Number</span> <strong>0300 5665195</strong></div>
                 </div>
-                
-                <!-- Pakistan Only Warning -->
+
                 <div class="pk-warning">
                     <i class="fas fa-exclamation-triangle"></i> 
-                    <strong>یہ IBAN صرف پاکستان کے اندر کام کرتا ہے۔</strong> بین الاقوامی ٹرانزیکشن ممکن نہیں۔
+                    <strong>یہ IBAN صرف پاکستان میں کام کرتا ہے۔ بین الاقوامی ٹرانزیکشن ممکن نہیں۔</strong>
                 </div>
             </div>
-            
-            <!-- ===== INTERNATIONAL DONATIONS ===== -->
-            <div class="international-section">
-                <div class="section-header">
-                    <span class="int-badge">
-                        <i class="fas fa-globe"></i> بیرون ملک
-                    </span>
-                    <span style="color: #fde047; font-weight: 600;">
-                        <i class="fas fa-envelope"></i> صرف ای میل کے ذریعے
-                    </span>
+
+            <!-- INTERNATIONAL – attractive & clickable -->
+            <div class="global-card">
+                <div class="pk-header">
+                    <span class="intl-badge"><i class="fas fa-globe"></i> بیرون ملک</span>
+                    <span class="method-tag" style="background:#ae3a0e;"><i class="fas fa-envelope"></i> صرف ای میل</span>
                 </div>
-                
-                <p style="color: #fef08a; font-size: 1.1rem; margin-bottom: 20px;">
-                    <i class="fas fa-times-circle" style="color: #f87171;"></i> 
-                    آپ کا IBAN بین الاقوامی ٹرانزیکشن کے لیے کام نہیں کرتا۔
-                </p>
-                
-                <div class="email-box">
-                    <p style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 600;">
-                        <i class="fas fa-envelope"></i> براہ کرم ای میل کریں:
-                    </p>
-                    
+                <p style="color:#fde047; display: flex; gap: 8px;"><i class="fas fa-times-circle" style="color:#fca5a5;"></i> IBAN بین الاقوامی ٹرانزیکشن سپورٹ نہیں کرتا۔</p>
+
+                <div class="email-block">
+                    <p style="color:white; font-size:1.4rem; margin-bottom: 18px;"><i class="fas fa-envelope-open-text"></i> ای میل کریں</p>
                     <a href="mailto:absalamofficial@gmail.com?subject=🌍%20International%20Donation%20-%20Ramzan%20Prayer%20App%20(Developer%20Support)&body=Assalam-o-Alaikum%20Abdus%20Salam%2C%0A%0AI%20want%20to%20support%20your%20work%20on%20Ramzan%20Prayer%20%26%20Hadees%20app%20from%20outside%20Pakistan.%0A%0A🌐%20My%20Country%3A%20%0A💵%20Amount%20(optional)%3A%20%0A📧%20My%20Email%3A%20%0A%0APlease%20guide%20me%20on%20how%20to%20send%20the%20donation%20(PayPal%2FWise%2Fetc.).%0A%0A🧡%20I%20appreciate%20your%20free%2C%20ad-free%20Islamic%20app.%0A%0AJazakAllah%20Khair." 
-                       class="email-btn">
-                        <i class="fas fa-paper-plane"></i> 
-                        absalamofficial@gmail.com
+                       class="big-email-btn">
+                        <i class="fas fa-paper-plane"></i> absalamofficial@gmail.com
                         <i class="fas fa-arrow-right"></i>
                     </a>
-                    
-                    <p style="color: #9ca3af; font-size: 0.95rem;">
-                        <i class="fas fa-clock"></i> میں 24 گھنٹوں میں جواب دوں گا۔
-                    </p>
-                    <p style="color: #b9f2ff; font-size: 0.95rem; margin-top: 15px;">
-                        <i class="fas fa-shield-alt"></i> پے پال · وائز · پسپورٹ
-                    </p>
+                    <p><i class="fas fa-clock" style="color:#b9f2ff;"></i> جواب 24 گھنٹوں میں</p>
+                    <p style="color:#d8b4fe;"><i class="fas fa-shield-alt"></i> PayPal · Wise · Paspor</p>
                 </div>
             </div>
-            
-            <!-- ===== FINAL REMINDER - FREE APP ===== -->
-            <div style="margin-top: 50px; padding: 25px; background: rgba(5, 150, 105, 0.1); border-radius: 24px; text-align: center; border: 1px solid #059669;">
-                <span class="free-badge">
-                    <i class="fas fa-check-circle"></i> 100% FREE FOREVER
-                </span>
-                <p style="color: #4ade80; font-size: 1.1rem; margin-top: 15px; font-weight: 600;">
-                    Ramzan Prayer & Hadees · No Ads · No Purchases
-                </p>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
-                    ڈونیشن مکمل طور پر رضاکارانہ ہے۔ ڈونیشن دینے یا نہ دینے سے ایپ میں کوئی فرق نہیں آتا۔
-                </p>
+
+            <!-- 100% free reminder -->
+            <div style="margin: 40px 0 20px; background: #1e4c3b; border-radius: 100px; padding: 16px 20px; text-align: center; border: 2px solid #86efac;">
+                <span class="free-forever"><i class="fas fa-check-circle"></i> 100% FREE FOREVER · NO ADS</span>
+                <p style="color:#bbf7d0; margin-top: 12px;">ڈونیشن مکمل رضاکارانہ · کوئی فیچر لاک نہیں</p>
             </div>
-            
-            <!-- ===== BACK TO HOME ===== -->
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i> واپس ہوم پیج پر
-                </a>
+
+            <!-- home button -->
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> واپس ہوم پیج پر</a>
             </div>
-            
-            <!-- Google Play Policy Compliance -->
-            <div style="margin-top: 30px; text-align: center; color: #6b7280; font-size: 0.75rem; border-top: 1px solid #1e293b; padding-top: 25px;">
-                <i class="fas fa-shield-alt"></i> Google Play Policy Compliant · External Donation Link · No in-app benefits · Developer Support Only
-            </div>
+
+            <!-- footer policy -->
+            <footer style="text-align: center; margin-top: 35px; color:#597f92; font-size:0.8rem; border-top: 1px solid #226688; padding-top: 25px;">
+                <i class="fas fa-shield"></i> Google Play policy compliant · Developer support only
+            </footer>
         </div>
     </div>
-    
+
     <script>
         function copyIBAN() {
             const iban = "PK35JCMA0207923005665195";
-            navigator.clipboard.writeText(iban).then(() => {
-                alert("✅ IBAN کاپی ہو گیا! (صرف پاکستان کے لیے)");
-            }).catch(() => {
-                alert("📋 براہ کرم خود کاپی کریں: " + iban);
-            });
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(iban).then(() => {
+                    alert("✅ IBAN کاپی ہو گیا! (صرف پاکستان)");
+                }).catch(() => {
+                    alert("📋 دستی کاپی کریں: " + iban);
+                });
+            } else {
+                alert("📋 IBAN: " + iban);
+            }
         }
     </script>
 </body>
