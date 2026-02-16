@@ -34,6 +34,10 @@
             --milling-purple: #8b5cf6;
             --milling-pink: #d946ef;
             
+            /* Toolbox Colors */
+            --toolbox-orange: #f97316;
+            --toolbox-red: #ef4444;
+            
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
         }
@@ -128,6 +132,17 @@
             color: var(--turning-blue);
         }
 
+        .floating-tools {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            font-size: 80px;
+            opacity: 0.1;
+            animation: float 7s ease-in-out infinite;
+            color: var(--toolbox-orange);
+            transform: translateY(-50%);
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -136,7 +151,7 @@
         .dev-name-3d {
             font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, #94a3b8, #60a5fa, #c084fc);
+            background: linear-gradient(135deg, #ffffff, #94a3b8, #60a5fa, #c084fc, #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -251,6 +266,12 @@
             border-color: rgba(139,92,246,0.3);
         }
 
+        /* Toolbox App Icon */
+        .icon-toolbox {
+            color: var(--toolbox-orange);
+            border-color: rgba(249,115,22,0.3);
+        }
+
         /* Pricing Badge - 3D */
         .pricing-badge-3d {
             display: inline-block;
@@ -287,6 +308,13 @@
             box-shadow: 0 0 20px rgba(139,92,246,0.2);
         }
 
+        .pro-badge {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            box-shadow: 0 0 20px rgba(249,115,22,0.2);
+        }
+
         .app-title-3d {
             font-size: 2rem;
             font-weight: 800;
@@ -308,20 +336,39 @@
             list-style: none;
             margin-bottom: 30px;
             transform: translateZ(25px);
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
         }
 
         .feature-list-3d li {
             margin-bottom: 12px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
             color: #e2e8f0;
+            font-size: 0.95rem;
         }
 
         .feature-list-3d i {
-            color: var(--islamic-gold);
+            color: var(--toolbox-orange);
             font-size: 1rem;
             width: 20px;
+            margin-top: 3px;
+        }
+
+        .feature-list-3d::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .feature-list-3d::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .feature-list-3d::-webkit-scrollbar-thumb {
+            background: rgba(249,115,22,0.3);
+            border-radius: 10px;
         }
 
         .app-buttons-3d {
@@ -379,6 +426,29 @@
             box-shadow: 0 15px 30px rgba(139,92,246,0.3);
         }
 
+        .pro-btn-3d {
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .pro-btn-3d:hover {
+            background: rgba(249, 115, 22, 0.25);
+            border-color: #fb923c;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(249,115,22,0.3);
+        }
+
         /* ===== STATS SECTION 3D ===== */
         .stats-3d {
             display: grid;
@@ -406,7 +476,7 @@
         .stat-number-3d {
             font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffb83b, #3b82f6, #8b5cf6);
+            background: linear-gradient(135deg, #ffb83b, #3b82f6, #8b5cf6, #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
@@ -465,7 +535,7 @@
                 padding: 30px 20px;
             }
             
-            .floating-mosque, .floating-gear {
+            .floating-mosque, .floating-gear, .floating-tools {
                 font-size: 60px;
                 opacity: 0.05;
             }
@@ -485,6 +555,9 @@
             </div>
             <div class="floating-gear">
                 <i class="fas fa-cogs"></i>
+            </div>
+            <div class="floating-tools">
+                <i class="fas fa-tools"></i>
             </div>
             
             <span class="dev-badge-3d">
@@ -507,7 +580,7 @@
                     <i class="fas fa-heart" style="color: #10b981;"></i> 1 Free Islamic App
                 </span>
                 <span style="background: rgba(59,130,246,0.1); padding: 10px 25px; border-radius: 60px; border: 1px solid rgba(59,130,246,0.2);">
-                    <i class="fas fa-crown" style="color: #fbbf24;"></i> 2 Engineering Apps
+                    <i class="fas fa-crown" style="color: #fbbf24;"></i> 3 Engineering Apps
                 </span>
             </div>
         </div>
@@ -555,7 +628,49 @@
                 </div>
             </div>
 
-            <!-- 2. CNC TURNING CALCULATOR PRO - FREE + PAID -->
+            <!-- 2. MACHINIST TOOLBOX PRO - NEW APP -->
+            <div class="app-card-3d">
+                <div class="app-icon-3d icon-toolbox">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                
+                <span class="pricing-badge-3d pro-badge">
+                    <i class="fas fa-crown"></i> ALL-IN-ONE PRO
+                </span>
+                
+                <h3 class="app-title-3d">Machinist Toolbox Pro</h3>
+                
+                <p class="app-description-3d">
+                    Complete workshop solution with 12+ advanced modules. From turning calculations to bearing database.
+                    <strong style="color: #fb923c;">Professional grade tools for machinists and engineers.</strong>
+                </p>
+                
+                <ul class="feature-list-3d">
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Turning Calculator:</strong> RPM, Cutting Speed, Feed Rate, MRR, Surface Finish, Insert Support (CNMG, WNMG)</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Milling Calculator:</strong> Multi-flute cutters, Table Feed, Feed per Tooth, Roughing/Finishing</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Threading & Tap Data:</strong> Metric (ISO), Imperial (UNC/UNF), BSW, Tap Drill Sizes, Minor Diameter</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Gear Calculation:</strong> Spur Gears, Module, PCD, Outside Diameter, Addendum/Dedendum</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Taper/Cone Calculation:</strong> Taper per foot/inch, Included Angle, Tailstock Offset</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>PCD Calculation:</strong> Hole Patterns, X/Y Coordinates for CNC, Chord Length</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>QC & Hardness:</strong> HRC, HB, HV Conversion, Ra/Rz Standards, H7/g6 Tolerances</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Weights & Volume:</strong> Steel, Aluminum, Brass, Copper, Cast Iron - Round/Hex/Flat/Tube</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>ISO Tolerance:</strong> Clearance/Transition/Interference Fits, H7/h6 Limits</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Unit Conversions:</strong> Inch to MM, SFM to m/min, °C to °F</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Bearing Database:</strong> 6000/6200 Series, Bore/OD/Width specs</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Trig/Geometry:</strong> Right-angle triangles, Sine Bar Height Calculations</li>
+                </ul>
+                
+                <div class="app-buttons-3d">
+                    <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox.pro" class="pro-btn-3d" target="_blank">
+                        <i class="fab fa-google-play"></i> Install Now
+                    </a>
+                    <a href="privacy-policy.html" class="play-btn-3d">
+                        <i class="fas fa-shield-alt"></i> Privacy
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. CNC TURNING CALCULATOR PRO - FREE + PAID -->
             <div class="app-card-3d">
                 <div class="app-icon-3d icon-turning">
                     <i class="fas fa-cogs"></i>
@@ -590,7 +705,7 @@
                 </div>
             </div>
 
-            <!-- 3. CNC MILLING CALCULATOR - BETA (FREE) -->
+            <!-- 4. CNC MILLING CALCULATOR - BETA (FREE) -->
             <div class="app-card-3d">
                 <div class="app-icon-3d icon-milling">
                     <i class="fas fa-industry"></i>
@@ -629,11 +744,11 @@
         <!-- ===== STATS SECTION - 3D ===== -->
         <div class="stats-3d">
             <div class="stat-item-3d">
-                <div class="stat-number-3d">3</div>
+                <div class="stat-number-3d">4</div>
                 <div style="color: var(--text-secondary); font-size: 1.1rem;">Professional Apps</div>
             </div>
             <div class="stat-item-3d">
-                <div class="stat-number-3d">25+</div>
+                <div class="stat-number-3d">50+</div>
                 <div style="color: var(--text-secondary); font-size: 1.1rem;">Materials DB</div>
             </div>
             <div class="stat-item-3d">
@@ -670,9 +785,10 @@
                 <div style="text-align: center; margin-top: 40px; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; width: 100%; transform: translateZ(20px);">
                     <p style="margin-bottom: 15px;">© 2026 Abdus Salam · All rights reserved.</p>
                     <p style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 0.95rem;">
-                        <span style="color: #34d399;"><i class="fas fa-heart"></i> Ramzan Prayer & Hadees (Free)</span>
-                        <span style="color: #60a5fa;"><i class="fas fa-star"></i> CNC Turning Calculator (Free + Premium)</span>
-                        <span style="color: #c084fc;"><i class="fas fa-flask"></i> CNC Milling Calculator (Beta · Free)</span>
+                        <span style="color: #34d399;"><i class="fas fa-heart"></i> Ramzan Prayer (Free)</span>
+                        <span style="color: #fb923c;"><i class="fas fa-toolbox"></i> Machinist Toolbox Pro</span>
+                        <span style="color: #60a5fa;"><i class="fas fa-star"></i> CNC Turning (Free + Premium)</span>
+                        <span style="color: #c084fc;"><i class="fas fa-flask"></i> CNC Milling (Beta)</span>
                     </p>
                     <p style="margin-top: 25px; font-size: 0.85rem;">
                         <i class="fas fa-code"></i> Developed with <i class="fas fa-heart" style="color: #ef4444;"></i> in Timergara, Pakistan
@@ -707,11 +823,12 @@
             posArray[i+1] = (Math.random() - 0.5) * 100;
             posArray[i+2] = (Math.random() - 0.5) * 100;
             
-            // Colors - Gold, Blue, Purple
+            // Colors - Gold, Blue, Purple, Orange
             const color = new THREE.Color();
-            if(i % 3 === 0) color.setHSL(0.1, 0.8, 0.5); // Gold
-            else if(i % 3 === 1) color.setHSL(0.6, 0.8, 0.5); // Blue
-            else color.setHSL(0.8, 0.8, 0.6); // Purple
+            if(i % 4 === 0) color.setHSL(0.1, 0.8, 0.5); // Gold
+            else if(i % 4 === 1) color.setHSL(0.6, 0.8, 0.5); // Blue
+            else if(i % 4 === 2) color.setHSL(0.8, 0.8, 0.6); // Purple
+            else color.setHSL(0.05, 0.9, 0.5); // Orange
             
             colorArray[i] = color.r;
             colorArray[i+1] = color.g;
