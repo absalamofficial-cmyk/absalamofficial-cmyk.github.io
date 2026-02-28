@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Machinist Nexus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box h3 {
+            color: #dc3545;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-box p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .data-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .data-list h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .data-list ul {
+            list-style: none;
+        }
+        
+        .data-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        
+        .data-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .data-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .steps {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .steps h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step-text {
+            color: #555;
+            flex: 1;
+        }
+        
+        .email-box {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .email-box p {
+            color: #1976d2;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .email-button {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .email-button:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(25,118,210,0.3);
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .email-button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Machinist Nexus</h1>
+            <p>Account Deletion Request</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-box">
+                <h3>⚠️ Important Information</h3>
+                <p>Before proceeding with account deletion, please understand:</p>
+                <p>• This action is permanent and cannot be undone</p>
+                <p>• All your chat messages will be permanently deleted</p>
+                <p>• Your account data will be removed from our systems</p>
+                <p>• This process typically takes 7-10 business days</p>
+            </div>
+            
+            <div class="data-list">
+                <h3>📊 Data That Will Be Deleted</h3>
+                <ul>
+                    <li>Your public chat messages</li>
+                    <li>Your Google account information (name, email)</li>
+                    <li>Your chat history and preferences</li>
+                    <li>Any stored user settings</li>
+                </ul>
+            </div>
+            
+            <div class="steps">
+                <h3>📋 Steps to Delete Your Account</h3>
+                
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Send an email from the Google account you used in the app</div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Include your Google account email address in the email</div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Subject line: "Account Deletion Request - [Your Google Email]"</div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-text">We will confirm receipt within 48 hours</div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-text">Account deletion will be completed within 7-10 business days</div>
+                </div>
+            </div>
+            
+            <div class="email-box">
+                <p>✉️ Send Deletion Request To:</p>
+                <a href="mailto:absalamofficial@gmail.com?subject=Account%20Deletion%20Request%20-%20Machinist%20Nexus&body=Please%20delete%20my%20account%20associated%20with%20this%20email%20from%20Machinist%20Nexus%20app.%0A%0AGoogle%20Account%20Email%3A%20[Enter%20your%20Google%20email%20here]%0A%0AReason%20for%20deletion%20(optional)%3A%20" class="email-button">
+                    📧 Send Deletion Email
+                </a>
+            </div>
+            
+            <div class="note">
+                <strong>Note:</strong> After deletion, you will need to sign in again if you wish to use the app in the future. A new account will be created automatically.
+            </div>
+            
+            <div class="data-list" style="margin-top: 20px;">
+                <h3>🔒 Data Retention Policy</h3>
+                <ul>
+                    <li>Backup copies may take up to 30 days to be completely purged</li>
+                    <li>Anonymous usage statistics (not linked to you) may be retained</li>
+                    <li>Legal requirements may require us to retain certain data</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 Machinist Nexus. All rights reserved.</p>
+            <p><a href="https://absalamofficial-cmyk.github.io/privacy-policy-machinist-nexus.html">Privacy Policy</a> | <a href="mailto:absalamofficial@gmail.com">Contact Support</a></p>
+        </div>
+    </div>
+</body>
+</html>
