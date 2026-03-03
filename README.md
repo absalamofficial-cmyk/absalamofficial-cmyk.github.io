@@ -228,7 +228,7 @@ body {
 }
 
 .header h1::after {
-    content: 'Terms & Conditions';
+    content: 'Machinist Nexus';
     position: absolute;
     left: 0;
     top: 0;
@@ -853,4 +853,40 @@ body {
     border-radius: 50%;
     pointer-events: none;
     animation: particleBurst 1s ease-out forwards;
+}
+
+/* Machinist Nexus Logo Style */
+.machinist-logo {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--orange), var(--hot-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 0 10px var(--orange)); }
+    50% { filter: drop-shadow(0 0 30px var(--hot-pink)); }
+}
+
+/* Nexus Badge */
+.nexus-badge {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    padding: 5px 15px;
+    border-radius: 50px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
 }
