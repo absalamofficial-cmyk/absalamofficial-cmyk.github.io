@@ -34,7 +34,12 @@
             --milling-purple: #8b5cf6;
             --milling-pink: #d946ef;
             
-            /* Toolbox Colors */
+            /* Machinist Nexus Colors */
+            --nexus-orange: #f97316;
+            --nexus-red: #ef4444;
+            --nexus-gold: #fbbf24;
+            
+            /* Toolbox Colors (Legacy) */
             --toolbox-orange: #f97316;
             --toolbox-red: #ef4444;
             
@@ -139,7 +144,7 @@
             font-size: 80px;
             opacity: 0.1;
             animation: float 7s ease-in-out infinite;
-            color: var(--toolbox-orange);
+            color: var(--nexus-orange);
             transform: translateY(-50%);
         }
 
@@ -266,10 +271,16 @@
             border-color: rgba(139,92,246,0.3);
         }
 
-        /* Toolbox App Icon */
-        .icon-toolbox {
-            color: var(--toolbox-orange);
+        /* Nexus App Icon */
+        .icon-nexus {
+            color: var(--nexus-orange);
             border-color: rgba(249,115,22,0.3);
+            animation: nexusPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes nexusPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(249,115,22,0.3); }
+            50% { box-shadow: 0 0 40px rgba(249,115,22,0.6); }
         }
 
         /* Pricing Badge - 3D */
@@ -315,6 +326,19 @@
             box-shadow: 0 0 20px rgba(249,115,22,0.2);
         }
 
+        .nexus-badge {
+            background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(239,68,68,0.2));
+            color: #fbbf24;
+            border: 1px solid rgba(249,115,22,0.5);
+            box-shadow: 0 0 30px rgba(249,115,22,0.3);
+            animation: nexusBadgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nexusBadgePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(249,115,22,0.3); }
+            50% { box-shadow: 0 0 40px rgba(249,115,22,0.6); }
+        }
+
         .app-title-3d {
             font-size: 2rem;
             font-weight: 800;
@@ -351,7 +375,7 @@
         }
 
         .feature-list-3d i {
-            color: var(--toolbox-orange);
+            color: var(--nexus-orange);
             font-size: 1rem;
             width: 20px;
             margin-top: 3px;
@@ -447,6 +471,34 @@
             border-color: #fb923c;
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(249,115,22,0.3);
+        }
+
+        .nexus-btn-3d {
+            background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(239,68,68,0.2));
+            border: 1px solid rgba(249,115,22,0.4);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: nexusBtnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nexusBtnPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(249,115,22,0.3); }
+            50% { box-shadow: 0 0 30px rgba(249,115,22,0.6); }
+        }
+
+        .nexus-btn-3d:hover {
+            background: rgba(249,115,22,0.3);
+            border-color: #fbbf24;
+            transform: translateY(-3px) scale(1.02);
         }
 
         /* ===== STATS SECTION 3D ===== */
@@ -579,7 +631,7 @@
                 <span style="background: rgba(255,184,59,0.1); padding: 10px 25px; border-radius: 60px; border: 1px solid rgba(255,184,59,0.2);">
                     <i class="fas fa-heart" style="color: #10b981;"></i> 1 Free Islamic App
                 </span>
-                <span style="background: rgba(59,130,246,0.1); padding: 10px 25px; border-radius: 60px; border: 1px solid rgba(59,130,246,0.2);">
+                <span style="background: rgba(249,115,22,0.1); padding: 10px 25px; border-radius: 60px; border: 1px solid rgba(249,115,22,0.2);">
                     <i class="fas fa-crown" style="color: #fbbf24;"></i> 3 Engineering Apps
                 </span>
             </div>
@@ -593,7 +645,50 @@
 
         <div class="apps-grid">
             
-            <!-- 1. RAMZAN PRAYER & HADEES - 100% FREE -->
+            <!-- 1. MACHINIST NEXUS - NEW FLAGSHIP APP -->
+            <div class="app-card-3d">
+                <div class="app-icon-3d icon-nexus">
+                    <i class="fas fa-toolbox"></i>
+                </div>
+                
+                <span class="pricing-badge-3d nexus-badge">
+                    <i class="fas fa-crown"></i> MACHINIST NEXUS · FLAGSHIP
+                </span>
+                
+                <h3 class="app-title-3d">Machinist Nexus</h3>
+                
+                <p class="app-description-3d">
+                    Complete mechanical engineering suite with AI Assistant, machining calculators, and global community chat. 
+                    <strong style="color: #fbbf24;">The ultimate toolkit for modern machinists and engineers.</strong>
+                </p>
+                
+                <ul class="feature-list-3d">
+                    <li><i class="fas fa-robot" style="color: #f97316;"></i> <strong>AI Assistant:</strong> Multi-lingual (English/Urdu/Pashto) technical support</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Milling Calculator:</strong> Speeds & Feeds, RPM, Table Feed, MRR, Power calculations</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Turning Calculator:</strong> Lathe parameters, RPM, Feed/Rev, Surface Finish (Ra)</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Thread Database:</strong> ISO Metric & UNC/UNF with tap drill sizes</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Gear Engineering:</strong> Spur gear calculations (Module, PCD, OD)</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Bolt Circle (PCD):</strong> XY coordinates for any hole pattern</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Taper Analysis:</strong> Angles, ratios, tailstock offsets</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Bearing Database:</strong> 6000/6200/6300 series specs</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Quality Control:</strong> Ra roughness, Hardness conversion, ISO Limits</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Utilities:</strong> Unit converter, Triangle solver, Weight calculator</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Tool Inventory:</strong> Track tools with life indicators</li>
+                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Project Manager:</strong> Organize jobs with due dates</li>
+                    <li><i class="fas fa-globe" style="color: #f97316;"></i> <strong>Global Chat:</strong> Connect with machinists worldwide</li>
+                </ul>
+                
+                <div class="app-buttons-3d">
+                    <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" class="nexus-btn-3d" target="_blank">
+                        <i class="fab fa-google-play"></i> Install Nexus
+                    </a>
+                    <a href="privacy-policy.html" class="play-btn-3d">
+                        <i class="fas fa-shield-alt"></i> Privacy
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. RAMZAN PRAYER & HADEES - 100% FREE -->
             <div class="app-card-3d">
                 <div class="app-icon-3d icon-islamic">
                     <i class="fas fa-mosque"></i>
@@ -621,48 +716,6 @@
                 <div class="app-buttons-3d">
                     <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="play-btn-3d" target="_blank">
                         <i class="fab fa-google-play" style="color: #34d399;"></i> Google Play
-                    </a>
-                    <a href="privacy-policy.html" class="play-btn-3d">
-                        <i class="fas fa-shield-alt"></i> Privacy
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. MACHINIST TOOLBOX PRO - NEW APP -->
-            <div class="app-card-3d">
-                <div class="app-icon-3d icon-toolbox">
-                    <i class="fas fa-toolbox"></i>
-                </div>
-                
-                <span class="pricing-badge-3d pro-badge">
-                    <i class="fas fa-crown"></i> ALL-IN-ONE PRO
-                </span>
-                
-                <h3 class="app-title-3d">Machinist Toolbox Pro</h3>
-                
-                <p class="app-description-3d">
-                    Complete workshop solution with 12+ advanced modules. From turning calculations to bearing database.
-                    <strong style="color: #fb923c;">Professional grade tools for machinists and engineers.</strong>
-                </p>
-                
-                <ul class="feature-list-3d">
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Turning Calculator:</strong> RPM, Cutting Speed, Feed Rate, MRR, Surface Finish, Insert Support (CNMG, WNMG)</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Milling Calculator:</strong> Multi-flute cutters, Table Feed, Feed per Tooth, Roughing/Finishing</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Threading & Tap Data:</strong> Metric (ISO), Imperial (UNC/UNF), BSW, Tap Drill Sizes, Minor Diameter</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Gear Calculation:</strong> Spur Gears, Module, PCD, Outside Diameter, Addendum/Dedendum</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Taper/Cone Calculation:</strong> Taper per foot/inch, Included Angle, Tailstock Offset</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>PCD Calculation:</strong> Hole Patterns, X/Y Coordinates for CNC, Chord Length</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>QC & Hardness:</strong> HRC, HB, HV Conversion, Ra/Rz Standards, H7/g6 Tolerances</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Weights & Volume:</strong> Steel, Aluminum, Brass, Copper, Cast Iron - Round/Hex/Flat/Tube</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>ISO Tolerance:</strong> Clearance/Transition/Interference Fits, H7/h6 Limits</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Unit Conversions:</strong> Inch to MM, SFM to m/min, °C to °F</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Bearing Database:</strong> 6000/6200 Series, Bore/OD/Width specs</li>
-                    <li><i class="fas fa-cog" style="color: #f97316;"></i> <strong>Trig/Geometry:</strong> Right-angle triangles, Sine Bar Height Calculations</li>
-                </ul>
-                
-                <div class="app-buttons-3d">
-                    <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox.pro" class="pro-btn-3d" target="_blank">
-                        <i class="fab fa-google-play"></i> Install Now
                     </a>
                     <a href="privacy-policy.html" class="play-btn-3d">
                         <i class="fas fa-shield-alt"></i> Privacy
@@ -752,7 +805,7 @@
                 <div style="color: var(--text-secondary); font-size: 1.1rem;">Materials DB</div>
             </div>
             <div class="stat-item-3d">
-                <div class="stat-number-3d">10+</div>
+                <div class="stat-number-3d">4+</div>
                 <div style="color: var(--text-secondary); font-size: 1.1rem;">Years Exp</div>
             </div>
             <div class="stat-item-3d">
@@ -785,8 +838,8 @@
                 <div style="text-align: center; margin-top: 40px; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; width: 100%; transform: translateZ(20px);">
                     <p style="margin-bottom: 15px;">© 2026 Abdus Salam · All rights reserved.</p>
                     <p style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 0.95rem;">
+                        <span style="color: #f97316;"><i class="fas fa-toolbox"></i> Machinist Nexus</span>
                         <span style="color: #34d399;"><i class="fas fa-heart"></i> Ramzan Prayer (Free)</span>
-                        <span style="color: #fb923c;"><i class="fas fa-toolbox"></i> Machinist Toolbox Pro</span>
                         <span style="color: #60a5fa;"><i class="fas fa-star"></i> CNC Turning (Free + Premium)</span>
                         <span style="color: #c084fc;"><i class="fas fa-flask"></i> CNC Milling (Beta)</span>
                     </p>
@@ -828,7 +881,7 @@
             if(i % 4 === 0) color.setHSL(0.1, 0.8, 0.5); // Gold
             else if(i % 4 === 1) color.setHSL(0.6, 0.8, 0.5); // Blue
             else if(i % 4 === 2) color.setHSL(0.8, 0.8, 0.6); // Purple
-            else color.setHSL(0.05, 0.9, 0.5); // Orange
+            else color.setHSL(0.05, 0.9, 0.5); // Orange (Nexus)
             
             colorArray[i] = color.r;
             colorArray[i+1] = color.g;
