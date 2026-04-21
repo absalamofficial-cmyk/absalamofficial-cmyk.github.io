@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Terms & Conditions · Ramzan Prayer & Hadees</title>
+    <title>Terms & Conditions · Deenly: Prayer, Hadith & Tilawat</title>
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ===== CLEAN PROFESSIONAL THEME ===== */
+        /* ===== DEENLY PREMIUM THEME - Midnight Blue & Gold ===== */
         * {
             margin: 0;
             padding: 0;
@@ -27,6 +27,7 @@
             --accent-blue: #3b82f6;
             --accent-gold: #f59e0b;
             --important-red: #ef4444;
+            --deenly-gold: #d4af37;
         }
 
         body {
@@ -43,42 +44,61 @@
             margin: 0 auto;
         }
 
-        /* ===== MAIN CARD - MINIMAL GLASS ===== */
         .terms-card {
             background: var(--secondary-bg);
             border-radius: 32px;
             border: 1px solid var(--border-light);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            position: relative;
         }
 
-        /* ===== HEADER - CLEAN ===== */
         .terms-header {
             background: linear-gradient(145deg, #0f1520, #0a0f14);
             padding: 60px 50px;
             border-bottom: 1px solid var(--border-light);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terms-header::before {
+            content: "🕌";
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.03;
+            bottom: -20px;
+            right: -20px;
+            pointer-events: none;
         }
 
         .terms-header h1 {
             font-size: 2.8rem;
             font-weight: 700;
-            color: white;
+            background: linear-gradient(135deg, #fff, var(--deenly-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 15px;
             letter-spacing: -0.5px;
         }
 
         .app-badge {
             display: inline-block;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent-blue);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(59, 130, 246, 0.1));
+            color: var(--deenly-gold);
             padding: 8px 22px;
             border-radius: 60px;
             font-size: 0.9rem;
             font-weight: 600;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             margin-bottom: 20px;
+        }
+
+        .app-name-large {
+            font-size: 1.2rem;
+            color: var(--deenly-gold);
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
         .last-updated {
@@ -91,13 +111,11 @@
             border-radius: 60px;
         }
 
-        /* ===== CONTENT AREA ===== */
         .terms-content {
             padding: 50px;
             background: var(--secondary-bg);
         }
 
-        /* ===== SECTIONS - CLEAN CARDS ===== */
         .section {
             background: var(--card-bg);
             border: 1px solid var(--border-light);
@@ -108,7 +126,7 @@
         }
 
         .section:hover {
-            border-color: var(--accent-blue);
+            border-color: var(--deenly-gold);
             background: #1e2533;
         }
 
@@ -118,14 +136,14 @@
             color: white;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .section h2 i {
-            color: var(--accent-blue);
+            color: var(--deenly-gold);
             font-size: 1.2rem;
             width: 28px;
         }
@@ -151,24 +169,19 @@
 
         .section li:before {
             content: "•";
-            color: var(--accent-blue);
+            color: var(--deenly-gold);
             font-size: 1.4rem;
             position: absolute;
             left: 8px;
             top: -4px;
         }
 
-        /* ===== HIGHLIGHT BOXES ===== */
         .important-note {
             background: rgba(239, 68, 68, 0.05);
             border-left: 6px solid var(--important-red);
             border-radius: 16px;
             padding: 25px;
             margin: 25px 0 15px 0;
-        }
-
-        .important-note strong {
-            color: #fca5a5;
         }
 
         .warning-box {
@@ -179,10 +192,6 @@
             margin: 25px 0 15px 0;
         }
 
-        .warning-box strong {
-            color: #fcd34d;
-        }
-
         .info-box {
             background: rgba(59, 130, 246, 0.05);
             border-left: 6px solid var(--accent-blue);
@@ -191,7 +200,14 @@
             margin: 25px 0 15px 0;
         }
 
-        /* ===== CONTACT INFO ===== */
+        .gold-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
+            border-left: 6px solid var(--deenly-gold);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0 15px 0;
+        }
+
         .contact-card {
             background: linear-gradient(145deg, #1a1f2c, #151a26);
             border: 1px solid var(--border-light);
@@ -203,24 +219,21 @@
 
         .contact-email {
             display: inline-block;
-            background: var(--accent-blue);
-            color: white;
+            background: linear-gradient(135deg, var(--deenly-gold), #b8960c);
+            color: #0a0f1c;
             padding: 14px 35px;
             border-radius: 60px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             margin-top: 20px;
             transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .contact-email:hover {
-            background: #2563eb;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
-        /* ===== FOOTER ===== */
         .terms-footer {
             background: #0a0f14;
             padding: 40px 50px;
@@ -245,12 +258,12 @@
 
         .copy-btn:hover {
             background: var(--card-bg);
-            border-color: var(--accent-blue);
-            color: white;
+            border-color: var(--deenly-gold);
+            color: var(--deenly-gold);
         }
 
-        .copy-btn i {
-            color: var(--accent-blue);
+        .copy-btn:hover i {
+            color: var(--deenly-gold);
         }
 
         .copied-message {
@@ -271,52 +284,18 @@
         }
 
         .footer-link:hover {
-            color: var(--accent-blue);
-            border-bottom-color: var(--accent-blue);
+            color: var(--deenly-gold);
+            border-bottom-color: var(--deenly-gold);
         }
 
-        /* ===== SCROLLBAR - CLEAN ===== */
-        .terms-content::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .terms-content::-webkit-scrollbar-track {
-            background: var(--secondary-bg);
-        }
-
-        .terms-content::-webkit-scrollbar-thumb {
-            background: var(--border-light);
-            border-radius: 10px;
-        }
-
-        .terms-content::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
-        }
-
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .terms-header {
-                padding: 40px 25px;
-            }
-            
-            .terms-header h1 {
-                font-size: 2rem;
-            }
-            
-            .terms-content {
-                padding: 30px 20px;
-            }
-            
-            .section {
-                padding: 25px 20px;
-            }
-            
-            .terms-footer {
-                padding: 30px 25px;
-            }
+            .terms-header { padding: 40px 25px; }
+            .terms-header h1 { font-size: 2rem; }
+            .terms-content { padding: 30px 20px; }
+            .section { padding: 25px 20px; }
+            .terms-footer { padding: 30px 25px; }
         }
 
-        /* ===== MINIMAL LOADER ===== */
         .loader {
             position: fixed;
             top: 0;
@@ -339,8 +318,8 @@
         .loader-circle {
             width: 50px;
             height: 50px;
-            border: 3px solid rgba(59,130,246,0.1);
-            border-top-color: var(--accent-blue);
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-top-color: var(--deenly-gold);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -351,7 +330,6 @@
     </style>
 </head>
 <body>
-    <!-- Minimal Loader -->
     <div class="loader" id="loader">
         <div class="loader-circle"></div>
     </div>
@@ -359,37 +337,32 @@
     <div class="page-wrapper">
         <div class="terms-card">
             
-            <!-- HEADER - CLEAN -->
             <div class="terms-header">
                 <span class="app-badge">
                     <i class="fas fa-file-contract"></i> Legal Document
                 </span>
                 <h1>Terms & Conditions</h1>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-                    Ramzan Prayer & Hadees Mobile Application
-                </p>
+                <div class="app-name-large">
+                    <i class="fas fa-mosque"></i> Deenly: Prayer, Hadith & Tilawat
+                </div>
                 <span class="last-updated">
-                    <i class="far fa-calendar-alt"></i> Last Updated: January 31, 2026
+                    <i class="far fa-calendar-alt"></i> Last Updated: April 21, 2026
                 </span>
             </div>
 
-            <!-- CONTENT - CLEAN READABLE SECTIONS -->
             <div class="terms-content" id="termsContent">
                 
-                <!-- 1. ACCEPTANCE -->
                 <div class="section">
                     <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
-                    <p>By downloading, installing, or using the Ramzan Prayer & Hadees mobile application ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the App.</p>
+                    <p>By downloading, installing, or using <strong style="color: var(--deenly-gold);">Deenly: Prayer, Hadith & Tilawat</strong> ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the App.</p>
                 </div>
 
-                <!-- 2. ELIGIBILITY -->
                 <div class="section">
                     <h2><i class="fas fa-user-check"></i> 2. Eligibility</h2>
                     <p><strong style="color: white;">2.1</strong> You must be at least 13 years old to use this App.</p>
                     <p><strong style="color: white;">2.2</strong> By using the App, you represent that you have the legal capacity to enter into this agreement.</p>
                 </div>
 
-                <!-- 3. APP LICENSE -->
                 <div class="section">
                     <h2><i class="fas fa-key"></i> 3. App License</h2>
                     <p><strong style="color: white;">3.1</strong> We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes.</p>
@@ -404,12 +377,24 @@
                     </ul>
                 </div>
 
-                <!-- 4. USER RESPONSIBILITIES -->
+                <!-- NEW SECTION: TILAWAT (QURAN RECITATION) -->
                 <div class="section">
-                    <h2><i class="fas fa-shield-alt"></i> 4. User Responsibilities</h2>
-                    <p><strong style="color: white;">4.1</strong> <span style="color: var(--accent-gold);">Accurate Information:</span> You must provide accurate location information for prayer time calculations.</p>
-                    <p><strong style="color: white;">4.2</strong> <span style="color: var(--accent-gold);">Device Security:</span> You are responsible for maintaining the security of your device.</p>
-                    <p><strong style="color: white;">4.3</strong> <span style="color: var(--accent-gold);">Prohibited Activities:</span></p>
+                    <h2><i class="fas fa-headphones"></i> 4. Tilawat (Quran Recitation) Terms</h2>
+                    <div class="gold-box">
+                        <p><strong style="color: var(--deenly-gold);">🎧 IMPORTANT: Tilawat Feature</strong></p>
+                        <p style="margin-top: 10px;"><strong style="color: white;">4.1</strong> The App provides Quranic audio recitations for spiritual and educational purposes.</p>
+                        <p style="margin-top: 10px;"><strong style="color: white;">4.2</strong> All recitations are sourced from authorized Qaris (reciters).</p>
+                        <p style="margin-top: 10px;"><strong style="color: white;">4.3</strong> You may NOT redistribute, download permanently, or use recitations for commercial purposes.</p>
+                        <p style="margin-top: 10px;"><strong style="color: white;">4.4</strong> Streaming recitations requires internet connection for best quality.</p>
+                        <p style="margin-top: 10px; color: #fcd34d;">⚠️ The Holy Quran is the literal word of Allah. Please treat recitations with utmost respect. Do not play in inappropriate places.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-shield-alt"></i> 5. User Responsibilities</h2>
+                    <p><strong style="color: white;">5.1</strong> <span style="color: var(--deenly-gold);">Accurate Information:</span> You must provide accurate location information for prayer time calculations.</p>
+                    <p><strong style="color: white;">5.2</strong> <span style="color: var(--deenly-gold);">Device Security:</span> You are responsible for maintaining the security of your device.</p>
+                    <p><strong style="color: white;">5.3</strong> <span style="color: var(--deenly-gold);">Prohibited Activities:</span></p>
                     <ul>
                         <li>Attempting to disrupt App functionality</li>
                         <li>Using automated systems to access the App</li>
@@ -417,88 +402,81 @@
                     </ul>
                 </div>
 
-                <!-- 5. PRAYER TIME DISCLAIMER -->
                 <div class="section">
-                    <h2><i class="fas fa-clock"></i> 5. Prayer Time Accuracy</h2>
+                    <h2><i class="fas fa-clock"></i> 6. Prayer Time Accuracy</h2>
                     <div class="warning-box">
                         <p><strong style="color: #fcd34d;">⚠️ IMPORTANT DISCLAIMER:</strong></p>
-                        <p style="margin-top: 10px;">5.1 The App provides prayer time calculations based on established Islamic methodologies. These are calculated times and may differ from local mosque announcements.</p>
+                        <p style="margin-top: 10px;">6.1 The App provides prayer time calculations based on established Islamic methodologies. These are calculated times and may differ from local mosque announcements.</p>
                         <p style="margin-top: 15px;"><strong style="color: white;">You are responsible for:</strong></p>
                         <ul style="margin-top: 10px;">
                             <li>Verifying prayer times with local Islamic authorities</li>
                             <li>Following moon sighting announcements for Ramadan/Eid</li>
                             <li>Adjusting times based on local customs</li>
                         </ul>
-                        <p style="margin-top: 15px; color: #f87171;">5.4 We are not liable for any missed prayers due to time discrepancies.</p>
+                        <p style="margin-top: 15px; color: #f87171;">6.4 We are not liable for any missed prayers due to time discrepancies.</p>
                     </div>
                 </div>
 
-                <!-- 6. QIBLA DIRECTION -->
                 <div class="section">
-                    <h2><i class="fas fa-compass"></i> 6. Qibla Direction</h2>
+                    <h2><i class="fas fa-compass"></i> 7. Qibla Direction</h2>
                     <div class="info-box">
                         <p><strong style="color: #93c5fd;">🕋 QIBLA DISCLAIMER:</strong></p>
-                        <p style="margin-top: 10px;">6.1 Qibla direction is calculated using mathematical formulas. Accuracy may vary due to device sensor calibration, magnetic interference, building structures, and geographical location.</p>
-                        <p style="margin-top: 15px;">6.2 For precise Qibla direction, consult with local Islamic centers. The 3D visualization is for guidance only.</p>
+                        <p style="margin-top: 10px;">7.1 Qibla direction is calculated using mathematical formulas. Accuracy may vary due to device sensor calibration, magnetic interference, building structures, and geographical location.</p>
+                        <p style="margin-top: 15px;">7.2 For precise Qibla direction, consult with local Islamic centers. The 3D visualization is for guidance only.</p>
                     </div>
                 </div>
 
-                <!-- 7. HADITH CONTENT - CRITICAL -->
                 <div class="section">
-                    <h2><i class="fas fa-book"></i> 7. Hadith Content Disclaimer</h2>
+                    <h2><i class="fas fa-book"></i> 8. Hadith Content Disclaimer</h2>
                     <div class="important-note">
                         <p><strong style="color: #fca5a5;">📜 CRITICAL LEGAL NOTICE:</strong></p>
-                        <p style="margin-top: 15px;"><strong style="color: white;">7.1</strong> All Hadith texts are sourced from widely accepted Islamic collections. Translations may contain errors or limitations - Arabic text is primary.</p>
-                        <p style="margin-top: 15px;"><strong style="color: white; font-size: 1.1rem;">7.3 This App is NOT a religious authority.</strong> Consult qualified Islamic scholars for religious rulings.</p>
-                        <p style="margin-top: 15px;"><strong style="color: white;">7.4</strong> The developer is a software engineer, NOT an Islamic scholar.</p>
-                        <p style="margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px;"><strong style="color: #fca5a5;">7.5 Any errors in text or translation are UNINTENTIONAL technical errors.</strong></p>
-                        <p style="margin-top: 15px;">7.6 You must verify important religious content with authentic sources.</p>
-                        <p style="margin-top: 15px;">7.7 Report any content errors to: <strong style="color: #60a5fa;">absalamofficial@gmail.com</strong></p>
+                        <p style="margin-top: 15px;"><strong style="color: white;">8.1</strong> All Hadith texts are sourced from widely accepted Islamic collections. Translations may contain errors or limitations - Arabic text is primary.</p>
+                        <p style="margin-top: 15px;"><strong style="color: white; font-size: 1.1rem;">8.2 This App is NOT a religious authority.</strong> Consult qualified Islamic scholars for religious rulings.</p>
+                        <p style="margin-top: 15px;"><strong style="color: white;">8.3</strong> The developer is a software engineer, NOT an Islamic scholar.</p>
+                        <p style="margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px;"><strong style="color: #fca5a5;">8.4 Any errors in text or translation are UNINTENTIONAL technical errors.</strong></p>
+                        <p style="margin-top: 15px;">8.5 You must verify important religious content with authentic sources.</p>
+                        <p style="margin-top: 15px;">8.6 Report any content errors to: <strong style="color: #60a5fa;">absalamofficial@gmail.com</strong></p>
                     </div>
                 </div>
 
-                <!-- 8. RAMADAN FEATURES -->
                 <div class="section">
-                    <h2><i class="fas fa-moon"></i> 8. Ramadan Features</h2>
-                    <p><strong style="color: white;">8.1</strong> Sehri/Iftar times are calculated, not confirmed by moon sighting.</p>
-                    <p><strong style="color: white;">8.2</strong> You must verify Ramadan start/end dates with local moon sighting committees.</p>
-                    <p><strong style="color: white;">8.3</strong> Taraweeh calculations are approximate.</p>
-                    <p><strong style="color: white;">8.4</strong> Fasting is a religious obligation; the App only provides assistance.</p>
+                    <h2><i class="fas fa-moon"></i> 9. Ramadan Features</h2>
+                    <p><strong style="color: white;">9.1</strong> Sehri/Iftar times are calculated, not confirmed by moon sighting.</p>
+                    <p><strong style="color: white;">9.2</strong> You must verify Ramadan start/end dates with local moon sighting committees.</p>
+                    <p><strong style="color: white;">9.3</strong> Taraweeh calculations are approximate.</p>
+                    <p><strong style="color: white;">9.4</strong> Fasting is a religious obligation; the App only provides assistance.</p>
                 </div>
 
-                <!-- 9. INTELLECTUAL PROPERTY -->
                 <div class="section">
-                    <h2><i class="fas fa-copyright"></i> 9. Intellectual Property</h2>
-                    <p><strong style="color: white;">9.1</strong> All App content including code, design, and graphics are property of Abdus Salam (developer).</p>
-                    <p><strong style="color: white;">9.2</strong> Hadith texts are Islamic heritage; arrangement is proprietary.</p>
-                    <p><strong style="color: white;">9.3</strong> "Ramzan Prayer & Hadees" is a trademark.</p>
+                    <h2><i class="fas fa-copyright"></i> 10. Intellectual Property</h2>
+                    <p><strong style="color: white;">10.1</strong> All App content including code, design, and graphics are property of Abdus Salam (developer).</p>
+                    <p><strong style="color: white;">10.2</strong> Hadith texts and Quranic recitations are Islamic heritage; arrangement and streaming rights are proprietary.</p>
+                    <p><strong style="color: white;">10.3</strong> "Deenly" is a registered trademark.</p>
                 </div>
 
-                <!-- 10. PRIVACY -->
                 <div class="section">
-                    <h2><i class="fas fa-lock"></i> 10. Privacy</h2>
-                    <p><strong style="color: white;">10.1</strong> Our Privacy Policy is incorporated into these Terms.</p>
-                    <p><strong style="color: white;">10.2</strong> Location data is processed locally only.</p>
-                    <p><strong style="color: white;">10.3</strong> No personal data is collected or shared.</p>
+                    <h2><i class="fas fa-lock"></i> 11. Privacy</h2>
+                    <p><strong style="color: white;">11.1</strong> Our Privacy Policy is incorporated into these Terms.</p>
+                    <p><strong style="color: white;">11.2</strong> Location data is processed locally only.</p>
+                    <p><strong style="color: white;">11.3</strong> No personal data is collected or shared with third parties.</p>
+                    <p><strong style="color: white;">11.4</strong> Tilawat streaming may use network connection but no data is stored.</p>
                 </div>
 
-                <!-- 11-16. COMPACT SECTIONS -->
                 <div class="section">
-                    <h2><i class="fas fa-exclamation-triangle"></i> 11-16. Legal Provisions</h2>
-                    <p><strong style="color: white;">11. DISCLAIMER OF WARRANTIES:</strong> THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE." WE MAKE NO WARRANTIES about accuracy or uninterrupted access.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">12. LIMITATION OF LIABILITY:</strong> We are not liable for any indirect, incidental damages. Total liability limited to amount you paid for App (currently $0).</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">13. INDEMNIFICATION:</strong> You agree to indemnify and hold harmless the developer from any claims arising from your violation of these Terms.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">14. TERMINATION:</strong> We may terminate your access if you violate these Terms.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">15. MODIFICATIONS:</strong> We may modify these Terms at any time. Continued use constitutes acceptance.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">16. GOVERNING LAW:</strong> These Terms are governed by laws of Pakistan. Disputes shall be resolved in courts of Pakistan.</p>
+                    <h2><i class="fas fa-exclamation-triangle"></i> 12-16. Legal Provisions</h2>
+                    <p><strong style="color: white;">12. DISCLAIMER OF WARRANTIES:</strong> THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE." WE MAKE NO WARRANTIES about accuracy or uninterrupted access.</p>
+                    <p style="margin-top: 15px;"><strong style="color: white;">13. LIMITATION OF LIABILITY:</strong> We are not liable for any indirect, incidental damages. Total liability limited to amount you paid for App (currently $0).</p>
+                    <p style="margin-top: 15px;"><strong style="color: white;">14. INDEMNIFICATION:</strong> You agree to indemnify and hold harmless the developer from any claims arising from your violation of these Terms.</p>
+                    <p style="margin-top: 15px;"><strong style="color: white;">15. TERMINATION:</strong> We may terminate your access if you violate these Terms.</p>
+                    <p style="margin-top: 15px;"><strong style="color: white;">16. MODIFICATIONS:</strong> We may modify these Terms at any time. Continued use constitutes acceptance.</p>
+                    <p style="margin-top: 15px;"><strong style="color: white;">17. GOVERNING LAW:</strong> These Terms are governed by laws of Pakistan. Disputes shall be resolved in courts of Pakistan.</p>
                 </div>
 
-                <!-- 17. CONTACT INFORMATION -->
                 <div class="contact-card">
-                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--deenly-gold); margin-bottom: 15px;"></i>
                     <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Abdus Salam</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 5px;">Developer & Software Engineer</p>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Timergara, Lower Dir, Pakistan</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 5px;">Software Engineer & Developer</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
                     
                     <a href="mailto:absalamofficial@gmail.com" class="contact-email">
                         <i class="fas fa-envelope"></i> absalamofficial@gmail.com
@@ -508,21 +486,20 @@
                     </p>
                 </div>
 
-                <!-- 18. USER ACKNOWLEDGEMENTS -->
                 <div class="section" style="margin-bottom: 0;">
-                    <h2><i class="fas fa-check-double"></i> 18. User Acknowledgements</h2>
-                    <p>By using the App, you acknowledge that:</p>
+                    <h2><i class="fas fa-check-double"></i> 17. User Acknowledgements</h2>
+                    <p>By using Deenly, you acknowledge that:</p>
                     <ul style="margin-top: 15px;">
                         <li>This is a tool, not a religious authority</li>
                         <li>Final religious decisions rest with you</li>
                         <li>Technology has limitations in religious matters</li>
                         <li>You use the App at your own discretion</li>
                         <li>You will verify important matters with Islamic scholars</li>
+                        <li>Tilawat (Quran recitation) is for personal spiritual use only</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- FOOTER WITH COPY BUTTON -->
             <div class="terms-footer">
                 <button class="copy-btn" onclick="copyTerms()">
                     <i class="fas fa-copy"></i> Copy Terms & Conditions
@@ -536,21 +513,21 @@
                 </a>
                 
                 <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 30px;">
-                    © 2026 Abdus Salam · Ramzan Prayer & Hadees · All rights reserved.
+                    © 2026 Abdus Salam · Deenly: Prayer, Hadith & Tilawat · All rights reserved.
+                    <br>
+                    <span style="font-size: 0.75rem;">Formerly known as Ramzan Prayer & Hadees</span>
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        // Hide loader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
             }, 500);
         });
 
-        // Copy Terms Function
         function copyTerms() {
             const termsContent = document.getElementById('termsContent');
             const range = document.createRange();
@@ -574,7 +551,6 @@
             window.getSelection().removeAllRanges();
         }
 
-        // Smooth scroll animation (minimal)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -20px 0px'
