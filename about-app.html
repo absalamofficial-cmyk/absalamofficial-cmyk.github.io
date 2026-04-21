@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Deenly · Prayer, Hadith & Tilawat | Official Website</title>
-    <meta name="description" content="Deenly - Prayer times, 3D Qibla, Hadith collection, and Al Sudais Quran Tilawat. 100+ downloads on Google Play.">
-    <meta name="author" content="Abdus Salam">
+    <title>Deenly · Prayer, Hadith & Tilawat | Complete Islamic App</title>
+    <meta name="description" content="Deenly - Prayer times, 3D Qibla, Hadith, and Al Sudais Tilawat. Available on Google Play.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         * {
@@ -22,12 +20,10 @@
             --primary-dark: #0a0f1c;
             --primary-mid: #111827;
             --primary-light: #1a1f2c;
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f5e6a3;
-            --accent-blue: #3b82f6;
+            --gold: #d4af37;
+            --gold-dark: #b8960c;
             --text-white: #ffffff;
             --text-gray: #9ca3af;
-            --text-light: #e5e7eb;
             --border-dim: #2a2f3c;
         }
 
@@ -35,65 +31,48 @@
             font-family: 'Inter', sans-serif;
             background: var(--primary-dark);
             color: var(--text-white);
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--primary-mid);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-gold);
-            border-radius: 10px;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--primary-mid); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: radial-gradient(ellipse at top, #1a1f2c, #0a0f1c);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "🕌";
-            position: absolute;
-            font-size: 20rem;
-            opacity: 0.03;
-            bottom: -50px;
-            right: -50px;
-            pointer-events: none;
-        }
-
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-gold), #fff);
+            background: linear-gradient(135deg, var(--gold), #fff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .logo small {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: var(--text-gray);
             display: block;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
         }
 
@@ -101,19 +80,22 @@
             color: var(--text-gray);
             text-decoration: none;
             transition: 0.3s;
+            font-size: 0.9rem;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-gold);
-        }
+        .nav-links a:hover { color: var(--gold); }
 
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        /* Hero Section */
+        .hero {
             padding: 60px 40px;
+            background: radial-gradient(ellipse at 30% 40%, #1a1f2c, #0a0f1c);
+        }
+
+        .hero-container {
             max-width: 1300px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
             gap: 50px;
             flex-wrap: wrap;
         }
@@ -122,14 +104,14 @@
             flex: 1;
         }
 
-        .hero-badge {
+        .badge {
             display: inline-block;
             background: rgba(212, 175, 55, 0.1);
-            color: var(--accent-gold);
-            padding: 6px 18px;
+            color: var(--gold);
+            padding: 5px 15px;
             border-radius: 60px;
             font-size: 0.8rem;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
@@ -140,20 +122,19 @@
             margin-bottom: 20px;
         }
 
-        .hero-text h1 .gold {
-            color: var(--accent-gold);
-        }
+        .hero-text h1 .gold { color: var(--gold); }
 
         .hero-text p {
             color: var(--text-gray);
             margin-bottom: 30px;
+            font-size: 1.1rem;
             max-width: 500px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-gold), #b8960c);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
             color: #0a0f1c;
-            padding: 14px 32px;
+            padding: 14px 30px;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
@@ -165,14 +146,14 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            border: 2px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 14px 32px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 14px 30px;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
@@ -194,14 +175,10 @@
             flex-wrap: wrap;
         }
 
-        .stat-item {
-            text-align: left;
-        }
-
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            color: var(--accent-gold);
+            color: var(--gold);
         }
 
         .stat-label {
@@ -214,39 +191,44 @@
             text-align: center;
         }
 
-        .mockup-phone {
+        .phone-mockup {
             width: 260px;
-            height: 520px;
+            height: 500px;
             background: linear-gradient(145deg, #2a2f3c, #1a1f2c);
             border-radius: 35px;
             margin: 0 auto;
-            border: 1px solid var(--accent-gold);
+            border: 1px solid var(--gold);
+            padding: 15px;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
         }
 
         .mockup-screen {
-            padding: 20px;
+            background: var(--primary-dark);
+            border-radius: 25px;
+            height: 100%;
+            padding: 15px;
             text-align: center;
         }
 
-        .prayer-time-demo {
+        .prayer-demo {
             background: rgba(212, 175, 55, 0.1);
             border-radius: 15px;
-            padding: 15px;
+            padding: 10px;
             margin: 10px 0;
         }
 
-        /* Features */
-        .features {
+        /* Section Common */
+        .section {
             padding: 80px 40px;
+        }
+
+        .section-dark {
             background: var(--primary-mid);
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
         }
 
@@ -256,6 +238,7 @@
             margin-bottom: 50px;
         }
 
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -273,7 +256,7 @@
         }
 
         .feature-card:hover {
-            border-color: var(--accent-gold);
+            border-color: var(--gold);
             transform: translateY(-5px);
         }
 
@@ -290,39 +273,34 @@
 
         .feature-icon i {
             font-size: 1.8rem;
-            color: var(--accent-gold);
+            color: var(--gold);
         }
 
         .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
         .feature-card p {
             color: var(--text-gray);
-            margin-bottom: 15px;
             font-size: 0.9rem;
+            margin-bottom: 15px;
         }
 
         .feature-tag {
             display: inline-block;
             background: rgba(212, 175, 55, 0.15);
-            color: var(--accent-gold);
+            color: var(--gold);
             padding: 4px 12px;
             border-radius: 60px;
             font-size: 0.7rem;
         }
 
-        /* Tilawat Section - REAL DATA */
-        .tilawat-section {
-            padding: 80px 40px;
-            background: linear-gradient(135deg, #0a0f1c, #111827);
-        }
-
+        /* Tilawat Section - Al Sudais Only */
         .tilawat-container {
             display: flex;
             align-items: center;
-            gap: 60px;
+            gap: 50px;
             max-width: 1200px;
             margin: 0 auto;
             flex-wrap: wrap;
@@ -337,26 +315,24 @@
             border-radius: 24px;
             padding: 30px;
             text-align: center;
-            border: 1px solid var(--accent-gold);
-            max-width: 350px;
-            margin: 0 auto;
+            border: 1px solid var(--gold);
         }
 
-        .qari-image {
+        .qari-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--accent-gold), #b8960c);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 2.5rem;
+            color: #0a0f1c;
         }
 
         .qari-name {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.4rem;
             margin-bottom: 5px;
         }
 
@@ -369,18 +345,22 @@
             padding: 8px 0;
             color: var(--text-gray);
             border-bottom: 1px solid var(--border-dim);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Specs with REAL DATA */
-        .specs {
-            padding: 60px 40px;
-            background: var(--primary-mid);
+        .surah-list li i {
+            color: var(--gold);
+            font-size: 0.8rem;
         }
 
+        /* Specs */
         .specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
@@ -394,17 +374,12 @@
         }
 
         .spec-value {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--accent-gold);
+            color: var(--gold);
         }
 
         /* Screenshots */
-        .screenshots {
-            padding: 80px 40px;
-            background: var(--primary-dark);
-        }
-
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -419,15 +394,16 @@
             overflow: hidden;
             border: 1px solid var(--border-dim);
             transition: 0.3s;
+            text-align: center;
         }
 
         .screenshot-card:hover {
             transform: scale(1.03);
-            border-color: var(--accent-gold);
+            border-color: var(--gold);
         }
 
         .screenshot-img {
-            height: 350px;
+            height: 300px;
             background: linear-gradient(145deg, #2a2f3c, #1a1f2c);
             display: flex;
             align-items: center;
@@ -437,23 +413,17 @@
 
         .screenshot-card p {
             padding: 12px;
-            text-align: center;
             color: var(--text-gray);
             font-size: 0.85rem;
         }
 
         /* Developer */
-        .developer {
-            padding: 80px 40px;
-            background: var(--primary-mid);
-        }
-
         .developer-card {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
             background: var(--primary-light);
-            padding: 45px;
+            padding: 40px;
             border-radius: 30px;
             border: 1px solid var(--border-dim);
         }
@@ -480,38 +450,59 @@
         }
 
         .footer-links a:hover {
-            color: var(--accent-gold);
+            color: var(--gold);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; padding: 15px 20px; }
+            .hero { padding: 40px 20px; }
             .hero-text h1 { font-size: 2.2rem; }
-            .navbar { flex-direction: column; text-align: center; }
-            .hero-content { padding: 40px 20px; }
             .btn-secondary { margin-left: 0; margin-top: 15px; display: inline-block; }
+            .section { padding: 50px 20px; }
             .section-title { font-size: 1.8rem; }
-            .features, .tilawat-section, .specs, .screenshots, .developer { padding: 50px 20px; }
+            .stats-row { justify-content: center; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card, .screenshot-card, .spec-card, .qari-card, .developer-card {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
         }
     </style>
 </head>
 <body>
 
-<div class="hero">
-    <nav class="navbar">
-        <div class="logo">
-            DEENLY <small>Prayer · Hadith · Tilawat</small>
-        </div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#features">Features</a>
-            <a href="#tilawat">Tilawat</a>
-            <a href="terms-conditions.html">Terms</a>
-            <a href="#developer">Developer</a>
-        </div>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        DEENLY <small>Prayer · Hadith · Tilawat</small>
+    </div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#tilawat">Tilawat</a>
+        <a href="#specs">Specs</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#developer">Developer</a>
+        <a href="terms-conditions.html">Terms</a>
+    </div>
+</nav>
 
-    <div class="hero-content">
-        <div class="hero-text" data-aos="fade-right">
-            <span class="hero-badge"><i class="fas fa-check-circle"></i> Live on Google Play</span>
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-text">
+            <span class="badge"><i class="fas fa-check-circle"></i> Live on Google Play</span>
             <h1>Pray. Read. <span class="gold">Listen.</span></h1>
             <p>Deenly (formerly Ramzan Prayer & Hadees) - Your complete Islamic companion with prayer times, 3D Qibla, authentic Hadith, and Al Sudais Tilawat.</p>
             <div>
@@ -523,188 +514,177 @@
                 </a>
             </div>
             <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Downloads</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">New</div>
-                    <div class="stat-label">On Play Store</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Privacy Safe</div>
-                </div>
+                <div><span class="stat-number">100+</span><div class="stat-label">Downloads</div></div>
+                <div><span class="stat-number">New</span><div class="stat-label">On Play Store</div></div>
+                <div><span class="stat-number">100%</span><div class="stat-label">Privacy Safe</div></div>
             </div>
         </div>
-        <div class="hero-image" data-aos="fade-left">
-            <div class="mockup-phone">
+        <div class="hero-image">
+            <div class="phone-mockup">
                 <div class="mockup-screen">
-                    <div class="prayer-time-demo">
-                        <i class="fas fa-clock" style="color: var(--accent-gold);"></i>
-                        <p style="font-size: 0.7rem; margin-top: 5px;">Fajr: 04:30</p>
+                    <div class="prayer-demo">
+                        <i class="fas fa-clock" style="color: var(--gold);"></i>
+                        <p style="font-size: 0.7rem;">Fajr: 04:30</p>
                         <p style="font-size: 0.7rem;">Dhuhr: 12:15</p>
                         <p style="font-size: 0.7rem;">Asr: 15:45</p>
                     </div>
                     <div style="margin-top: 15px;">
-                        <i class="fas fa-compass fa-2x" style="color: var(--accent-gold);"></i>
+                        <i class="fas fa-compass fa-2x" style="color: var(--gold);"></i>
                         <p style="font-size: 0.6rem;">3D Qibla Finder</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Features -->
-<div class="features" id="features">
-    <h2 class="section-title" data-aos="fade-up">What's Inside Deenly?</h2>
-    <p class="section-subtitle" data-aos="fade-up">Everything you need in one app</p>
+<!-- Features Section -->
+<section class="section section-dark" id="features">
+    <h2 class="section-title">✨ What's Inside Deenly?</h2>
+    <p class="section-subtitle">Everything you need in one Islamic app</p>
     
     <div class="features-grid">
-        <div class="feature-card" data-aos="fade-up">
+        <div class="feature-card" style="animation-delay: 0s;">
             <div class="feature-icon"><i class="fas fa-clock"></i></div>
             <h3>Prayer Times</h3>
-            <p>GPS-based accurate prayer calculations with multiple calculation methods.</p>
-            <span class="feature-tag">Karachi · MWL · ISNA</span>
+            <p>GPS-based accurate prayer calculations with multiple methods (Karachi, MWL, ISNA).</p>
+            <span class="feature-tag">100% Accurate</span>
         </div>
         
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-card" style="animation-delay: 0.1s;">
             <div class="feature-icon"><i class="fas fa-compass"></i></div>
             <h3>3D Qibla Compass</h3>
-            <p>High-precision 3D compass to find Kaaba direction anywhere.</p>
-            <span class="feature-tag">Real-time · Vibration alert</span>
+            <p>High-precision 3D compass to find Kaaba direction anywhere in the world.</p>
+            <span class="feature-tag">Real-time · Vibration</span>
         </div>
         
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-card" style="animation-delay: 0.2s;">
             <div class="feature-icon"><i class="fas fa-book"></i></div>
             <h3>Hadith Library</h3>
-            <p>Thousands of authentic Hadith from Sahih Bukhari & more.</p>
+            <p>Thousands of authentic Hadith from Sahih Bukhari & other reliable sources.</p>
             <span class="feature-tag">Urdu · English · Pashto</span>
         </div>
         
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-card" style="animation-delay: 0.3s;">
             <div class="feature-icon"><i class="fas fa-moon"></i></div>
             <h3>Ramadan Tools</h3>
-            <p>Sehri & Iftar times with smart alarms.</p>
-            <span class="feature-tag">Countdown · Calendar</span>
+            <p>Sehri & Iftar times with smart alarms and countdown timers.</p>
+            <span class="feature-tag">Sehri · Iftar · Taraweeh</span>
         </div>
         
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="feature-card" style="animation-delay: 0.4s;">
             <div class="feature-icon"><i class="fas fa-bell"></i></div>
             <h3>Smart Alarms</h3>
             <p>100% reliable notification system even in deep sleep mode.</p>
             <span class="feature-tag">Azan · Sehri · Iftar</span>
         </div>
         
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="feature-card" style="animation-delay: 0.5s;">
             <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
             <h3>Privacy First</h3>
             <p>Zero data collection. Everything stays on your device.</p>
-            <span class="feature-tag">No tracking · Offline</span>
+            <span class="feature-tag">No Tracking · Offline</span>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Tilawat Section - REAL DATA (Only Al Sudais) -->
-<div class="tilawat-section" id="tilawat">
+<!-- Tilawat Section - Al Sudais Only (REAL DATA) -->
+<section class="section" id="tilawat">
+    <h2 class="section-title">🎧 Quran Tilawat</h2>
+    <p class="section-subtitle">Listen to beautiful recitations by Sheikh Al Sudais</p>
+    
     <div class="tilawat-container">
-        <div class="tilawat-info" data-aos="fade-right">
-            <span class="hero-badge" style="margin-bottom: 15px;"><i class="fas fa-headphones"></i> Tilawat Feature</span>
-            <h2 style="font-size: 2rem; margin-bottom: 20px;">Quran Recitations by <span class="gold">Sheikh Al Sudais</span></h2>
-            <p>Listen to beautiful Tilawat of the Holy Quran by the world-renowned Qari, Sheikh Abdul Rahman Al Sudais. High-quality audio streaming.</p>
+        <div class="tilawat-info">
+            <span class="badge" style="margin-bottom: 15px; display: inline-block;"><i class="fas fa-headphones"></i> Available Now</span>
+            <h2 style="font-size: 1.8rem; margin-bottom: 20px;">Sheikh <span class="gold">Al Sudais</span> Recitations</h2>
+            <p>Experience the soul-touching Tilawat of the Holy Quran by the world-renowned Qari and Imam of Grand Mosque, Makkah.</p>
             <div style="margin: 25px 0;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                    <i class="fas fa-check-circle" style="color: var(--accent-gold);"></i>
-                    <span>Complete Quran Tilawat</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                    <i class="fas fa-check-circle" style="color: var(--accent-gold);"></i>
-                    <span>High-quality audio</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <i class="fas fa-check-circle" style="color: var(--accent-gold);"></i>
-                    <span>Play in background</span>
-                </div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold);"></i> Complete Quran Tilawat</div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--gold);"></i> High-quality audio streaming</div>
+                <div style="display: flex; align-items: center; gap: 12px;"><i class="fas fa-check-circle" style="color: var(--gold);"></i> Play in background</div>
             </div>
             <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="btn-primary" target="_blank">
-                <i class="fas fa-play"></i> Listen Tilawat in App
+                <i class="fas fa-play"></i> Listen in App
             </a>
         </div>
-        <div class="tilawat-info" data-aos="fade-left">
+        <div class="tilawat-info">
             <div class="qari-card">
-                <div class="qari-image">
-                    <i class="fas fa-quran fa-2x"></i>
-                </div>
+                <div class="qari-icon"><i class="fas fa-quran"></i></div>
                 <h3 class="qari-name">Sheikh Al Sudais</h3>
-                <p style="color: var(--text-gray); font-size: 0.8rem;">Imam of Grand Mosque, Makkah</p>
+                <p style="color: var(--text-gray); font-size: 0.8rem;">Imam · Grand Mosque, Makkah</p>
                 <ul class="surah-list">
-                    <li><i class="fas fa-play-circle" style="color: var(--accent-gold); font-size: 0.8rem;"></i> Surah Al-Fatiha</li>
-                    <li><i class="fas fa-play-circle" style="color: var(--accent-gold); font-size: 0.8rem;"></i> Surah Yaseen</li>
-                    <li><i class="fas fa-play-circle" style="color: var(--accent-gold); font-size: 0.8rem;"></i> Surah Ar-Rahman</li>
-                    <li><i class="fas fa-play-circle" style="color: var(--accent-gold); font-size: 0.8rem;"></i> Surah Mulk</li>
-                    <li><i class="fas fa-play-circle" style="color: var(--accent-gold); font-size: 0.8rem;"></i> + All 114 Surahs</li>
+                    <li><i class="fas fa-play-circle"></i> Surah Al-Fatiha</li>
+                    <li><i class="fas fa-play-circle"></i> Surah Yaseen</li>
+                    <li><i class="fas fa-play-circle"></i> Surah Ar-Rahman</li>
+                    <li><i class="fas fa-play-circle"></i> Surah Mulk</li>
+                    <li><i class="fas fa-play-circle"></i> + All 114 Surahs</li>
                 </ul>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Technical Specs with REAL DATA -->
-<div class="specs">
-    <h2 class="section-title" data-aos="fade-up">App Specifications</h2>
-    <p class="section-subtitle" data-aos="fade-up">As listed on Google Play Store</p>
+<!-- Specifications -->
+<section class="section section-dark" id="specs">
+    <h2 class="section-title">📱 App Specifications</h2>
+    <p class="section-subtitle">As listed on Google Play Store</p>
     <div class="specs-grid">
-        <div class="spec-card"><div class="spec-value">50 MB</div><div class="spec-label">App Size</div></div>
-        <div class="spec-card"><div class="spec-value">7.0+</div><div class="spec-label">Android Required</div></div>
-        <div class="spec-card"><div class="spec-value">3+</div><div class="spec-label">Languages</div></div>
+        <div class="spec-card"><div class="spec-value">&lt;50 MB</div><div class="spec-label">App Size</div></div>
+        <div class="spec-card"><div class="spec-value">Android 7.0+</div><div class="spec-label">Requirement</div></div>
+        <div class="spec-card"><div class="spec-value">3</div><div class="spec-label">Languages</div></div>
         <div class="spec-card"><div class="spec-value">Free</div><div class="spec-label">Price</div></div>
         <div class="spec-card"><div class="spec-value">100%</div><div class="spec-label">Offline Core</div></div>
     </div>
-</div>
+</section>
 
 <!-- Screenshots -->
-<div class="screenshots">
-    <h2 class="section-title" data-aos="fade-up">App Preview</h2>
-    <p class="section-subtitle" data-aos="fade-up">See Deenly in action</p>
+<section class="section" id="screenshots">
+    <h2 class="section-title">📸 App Preview</h2>
+    <p class="section-subtitle">See Deenly in action</p>
     <div class="screenshot-grid">
         <div class="screenshot-card"><div class="screenshot-img"><i class="fas fa-clock fa-3x"></i></div><p>Prayer Times Screen</p></div>
         <div class="screenshot-card"><div class="screenshot-img"><i class="fas fa-compass fa-3x"></i></div><p>3D Qibla Compass</p></div>
         <div class="screenshot-card"><div class="screenshot-img"><i class="fas fa-book fa-3x"></i></div><p>Hadith Library</p></div>
         <div class="screenshot-card"><div class="screenshot-img"><i class="fas fa-headphones fa-3x"></i></div><p>Al Sudais Tilawat</p></div>
     </div>
-</div>
+</section>
 
 <!-- Developer -->
-<div class="developer" id="developer">
-    <div class="developer-card" data-aos="fade-up">
-        <i class="fas fa-user-tie" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px;"></i>
+<section class="section section-dark" id="developer">
+    <div class="developer-card">
+        <i class="fas fa-user-tie" style="font-size: 3rem; color: var(--gold); margin-bottom: 20px;"></i>
         <h2>Abdus Salam</h2>
-        <p style="color: var(--accent-gold); margin-bottom: 15px;">Android Developer</p>
-        <p style="color: var(--text-gray);">Based in Timergara, Lower Dir, Pakistan</p>
-        <div style="margin-top: 20px;">
-            <a href="mailto:absalamofficial@gmail.com" style="color: var(--accent-gold);">absalamofficial@gmail.com</a>
-        </div>
+        <p style="color: var(--gold); margin-bottom: 10px;">Android Developer</p>
+        <p style="color: var(--text-gray);">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
+        <p style="margin-top: 15px;"><i class="fas fa-envelope" style="color: var(--gold);"></i> <a href="mailto:absalamofficial@gmail.com" style="color: var(--text-gray);">absalamofficial@gmail.com</a></p>
     </div>
-</div>
+</section>
 
 <!-- Footer -->
 <footer class="footer">
-    <h3 style="color: var(--accent-gold);">DEENLY</h3>
-    <p style="color: var(--text-gray); font-size: 0.85rem;">Prayer · Hadith · Tilawat</p>
+    <h3 style="color: var(--gold);">DEENLY</h3>
+    <p style="color: var(--text-gray);">Prayer · Hadith · Tilawat</p>
     <div class="footer-links">
-        <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" target="_blank">Google Play</a>
-        <a href="mailto:absalamofficial@gmail.com">Email Support</a>
-        <a href="terms-conditions.html">Terms & Conditions</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" target="_blank"><i class="fab fa-google-play"></i> Play Store</a>
+        <a href="mailto:absalamofficial@gmail.com"><i class="fas fa-envelope"></i> Email Support</a>
+        <a href="terms-conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+        <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
     </div>
     <p style="color: var(--text-gray); font-size: 0.7rem; margin-top: 20px;">© 2026 Abdus Salam · Deenly (Formerly Ramzan Prayer & Hadees)</p>
     <p style="color: var(--text-gray); font-size: 0.7rem;">All rights reserved</p>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 600, once: true });
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
 </script>
 </body>
 </html>
