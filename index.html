@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Machinist Nexus | جدید مکمل حل</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Abdus Salam · 3D Portfolio · Android Developer</title>
     
-    <!-- Google Fonts - جدید اور خوبصورت فونٹس -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome 6 (مفت آئیکنز) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         * {
@@ -18,456 +16,917 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-dark: #0a0f1c;
+            --primary-mid: #111827;
+            --primary-light: #1a1f2c;
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.6);
+            --purple: #8b5cf6;
+            --blue: #3b82f6;
+            --cyan: #06b6d4;
+            --orange: #f97316;
+            --green: #10b981;
+            --pink: #ec4899;
+            --text-white: #ffffff;
+            --text-gray: #9ca3af;
+        }
+
         body {
-            font-family: 'Inter', 'Space Grotesk', sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            color: #fff;
+            font-family: 'Inter', sans-serif;
+            background: #0a0f1c;
+            color: var(--text-white);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* خوبصورت حسب ضرورت سکرول بار */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-            border-radius: 20px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #ff6a00, #ee0979);
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #ff8c00, #ff2e6e);
-            transform: scale(1.1);
+        /* Animated Background Gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #0a1a2a, #030712);
+            z-index: -2;
         }
 
-        /* کنٹینر */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08), transparent 60%);
+            z-index: -1;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* 3D Particles Canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .container {
-            max-width: 1300px;
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 30px 20px 80px 20px;
+            padding: 30px 20px;
         }
 
-        /* ہیڈر اینیمیشن */
-        .header {
+        /* Glass Morphism Card */
+        .glass-card {
+            background: rgba(15, 25, 35, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 40px;
+        }
+
+        /* Header - 3D Floating */
+        .developer-header {
+            background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 70px;
+            padding: 70px 50px;
             text-align: center;
             margin-bottom: 60px;
-            animation: fadeInDown 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            animation: floatHeader 6s ease-in-out infinite;
+            transform-style: preserve-3d;
         }
-        .header h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #ffb347, #ff6b6b);
-            background-size: 200% auto;
+
+        @keyframes floatHeader {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-8px) rotateX(1deg); }
+        }
+
+        .developer-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
+            animation: rotateGlow 20s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .developer-name {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--gold), var(--purple), var(--blue), var(--pink));
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: shine 3s linear infinite;
+            animation: gradientShift 5s ease infinite;
+            margin-bottom: 20px;
             letter-spacing: -0.02em;
         }
-        .header p {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-top: 15px;
-            font-weight: 300;
-            backdrop-filter: blur(5px);
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        /* کارڈز کا گرڈ */
-        .features-grid {
+        .developer-title {
+            font-size: 1.4rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .contact-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 35px 0;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 28px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+
+        .badge:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .badge i { color: var(--gold); font-size: 1.2rem; }
+
+        /* Stats Section - Animated Numbers */
+        .stats-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: rgba(20,30,40,0.5);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 35px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--purple), var(--cyan));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 60px 0 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title i {
+            color: var(--gold);
+            margin-right: 15px;
+            animation: iconSpin 3s ease-in-out infinite;
+        }
+
+        @keyframes iconSpin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--purple), var(--blue), transparent);
+            border-radius: 2px;
+        }
+
+        /* Apps Grid - 3D Cards */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 35px;
             margin-bottom: 60px;
         }
 
-        /* جدید گلاس مورفزم کارڈ */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
+        .app-card {
+            background: rgba(15,25,35,0.7);
             backdrop-filter: blur(12px);
-            border-radius: 32px;
-            padding: 30px 25px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            animation: fadeInUp 0.6s ease-out backwards;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-
-        .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 165, 0, 0.6);
-            box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 40px;
+            padding: 35px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
         }
 
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            background: linear-gradient(135deg, #ffb347, #ff6b6b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: transform 0.3s;
-        }
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.3px;
-        }
-        .card p {
-            color: #e0e0e0;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* خصوصی سیکشن: سکرول اینیمیشن والا ایریا */
-        .scroll-showcase {
-            margin: 70px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-align: center;
-            background: linear-gradient(120deg, #f3a683, #f7d794, #f8a5c2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .showcase-item {
-            background: linear-gradient(145deg, #1e1a3a, #16122b);
-            border-radius: 28px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.5s;
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1), transparent 70%);
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            border-bottom: 3px solid #ff6a00;
-        }
-        .showcase-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .showcase-item i {
-            font-size: 2.8rem;
-            color: #ffb347;
-            margin-bottom: 20px;
-        }
-        .showcase-item h4 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            transition: opacity 0.5s;
         }
 
-        /* بٹن اسٹائل */
-        .btn-glow {
-            display: inline-block;
-            padding: 14px 38px;
-            background: linear-gradient(95deg, #ff6a00, #ee0979);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            margin-top: 30px;
-            box-shadow: 0 0 15px rgba(238,9,121,0.5);
-            font-family: 'Inter', sans-serif;
+        .app-card:hover {
+            transform: translateY(-15px) rotateX(3deg) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 30px 50px -20px rgba(212, 175, 55, 0.3);
         }
-        .btn-glow:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(238,9,121,0.9);
+
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s;
+        }
+
+        .app-card:hover .app-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .app-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .app-category {
+            color: var(--gold);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
-        /* فوٹر */
-        .footer {
-            text-align: center;
-            padding: 40px 0 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 60px;
+        .status-live {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .app-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+
+        .feature-list li:hover {
+            transform: translateX(5px);
+            color: var(--text-white);
+        }
+
+        .feature-list li i {
+            color: var(--gold);
+            font-size: 0.8rem;
+            width: 18px;
+            margin-top: 2px;
+        }
+
+        .feature-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .feature-list::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .feature-list::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .app-stats {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .app-stat-value {
+            font-weight: 800;
+            color: var(--gold);
             font-size: 0.9rem;
-            color: #aaa;
         }
 
-        /* اینیمیشنز */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes shine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .app-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-gray);
         }
 
-        /* موبائل ریسپانسیو */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.3rem;
-            }
-            .card h3 {
-                font-size: 1.5rem;
-            }
-            .section-title {
-                font-size: 1.9rem;
-            }
-            .container {
-                padding: 20px 15px 60px 15px;
-            }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* سکرول بٹن (ٹاپ پر جانے کے لیے) */
-        .scroll-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #ff6a00;
-            width: 50px;
-            height: 50px;
+        .app-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .app-link:hover::before {
+            left: 100%;
+        }
+
+        .app-link:hover {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+            border-color: transparent;
+        }
+
+        /* Expertise Section */
+        .expertise-container {
+            background: rgba(15,25,35,0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            padding: 55px;
+            margin: 60px 0;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .expertise-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 30px;
+            padding: 35px;
+            transition: all 0.4s;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .expertise-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: 0.3s;
+        }
+
+        .expertise-card:hover .expertise-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .expertise-icon i {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .expertise-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .expertise-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Philosophy Section */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .philosophy-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 30px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: all 0.4s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .philosophy-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .philosophy-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+        }
+
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold), var(--purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: #0a0f1c;
+            transition: 0.3s;
+        }
+
+        .philosophy-card:hover .philosophy-icon {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .philosophy-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .philosophy-card p {
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(3,7,18,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 60px 60px 30px 30px;
+            padding: 60px 50px 40px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 99;
+            font-size: 1rem;
         }
-        .scroll-top.show {
+
+        .footer-link:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 35px;
+            margin-top: 35px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .developer-name { font-size: 2.5rem; }
+            .developer-title { font-size: 1rem; }
+            .developer-header { padding: 40px 25px; }
+            .stats-section { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .apps-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
+            .expertise-container { padding: 30px 20px; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-badges { flex-direction: column; align-items: center; }
+            .badge { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-section { grid-template-columns: 1fr; }
+            .philosophy-grid { grid-template-columns: 1fr; }
+            .developer-name { font-size: 2rem; }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
             opacity: 1;
-            visibility: visible;
-        }
-        .scroll-top i {
-            font-size: 1.5rem;
-            color: white;
-        }
-        .scroll-top:hover {
-            background: #ee0979;
-            transform: scale(1.1);
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
 
-<div class="container">
-    <!-- ہیڈر -->
-    <div class="header">
-        <h1>⚙️ Machinist Nexus</h1>
-        <p>مکمل کنٹرول | جدید فیچرز | ہموار سکرول اور شاندار اینیمیشنز</p>
-    </div>
-
-    <!-- مکمل فیچرز گرڈ - یہاں سکرول بالکل کام کرے گا -->
-    <div class="features-grid" id="featureScrollArea">
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-cogs"></i></div>
-            <h3>پریزیشن کنٹرول</h3>
-            <p>مشینوں پر مکمل گرفت، جدید پیرامیٹرز کے ساتھ ریئل ٹائم مانیٹرنگ۔</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>پیش گوئی تجزیہ</h3>
-            <p>AI سے چلنے والا تجزیہ جو آپ کو مستقبل کے رجحانات بتاتا ہے۔</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>اعلیٰ سیکیورٹی</h3>
-            <p>اینڈ ٹو اینڈ انکرپشن، آپ کا ڈیٹا مکمل محفوظ۔</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <h3>کلاؤڈ سنک</h3>
-            <p>کلاؤڈ پر فوری بیک اپ، کہیں سے بھی رسائی۔</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-robot"></i></div>
-            <h3>آٹومیشن</h3>
-            <p>مشین لرننگ سے خودکار عمل، وقت کی بچت۔</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
-            <h3>ریئل ٹائم ڈیش بورڈ</h3>
-            <p>انٹرایکٹو گرافس اور میٹرکس، فوری فیصلہ سازی۔</p>
-        </div>
-    </div>
-
-    <!-- سکرول پر ظاہر ہونے والا سیکشن (اسکرول اینیمیشن) -->
-    <div class="scroll-showcase">
-        <h2 class="section-title">✨ جب سکرول کریں گے تو یہ عناصر ظاہر ہوں گے ✨</h2>
-        <div class="showcase-grid" id="showcaseGrid">
-            <div class="showcase-item">
-                <i class="fas fa-tachometer-alt"></i>
-                <h4>تیز کارکردگی</h4>
-                <p>40% زیادہ بہتر کارکردگی</p>
-            </div>
-            <div class="showcase-item">
-                <i class="fas fa-users"></i>
-                <h4>ٹیم تعاون</h4>
-                <p>لائیو تعاون اور چیٹ</p>
-            </div>
-            <div class="showcase-item">
-                <i class="fas fa-mobile-alt"></i>
-                <p style="font-size:2rem; margin:0;">📱</p>
-                <h4>مکمل موبائل سپورٹ</h4>
-                <p>ہر ڈیوائس پر بہترین تجربہ</p>
-            </div>
-            <div class="showcase-item">
-                <i class="fas fa-chart-pie"></i>
-                <h4>ڈائنامک رپورٹس</h4>
-                <p>ایک کلک میں ڈیٹا اینالیسس</p>
-            </div>
-        </div>
-    </div>
-
-    <div style="text-align: center;">
-        <button class="btn-glow" id="demoBtn">
-            <i class="fas fa-magic"></i> مزید فیچرز دریافت کریں
-        </button>
-    </div>
-
-    <div class="footer">
-        <p>Machinist Nexus © 2026 | جدید ٹیکنالوجی | ہموار تجربہ</p>
-    </div>
-</div>
-
-<!-- سکرول ٹاپ بٹن -->
-<div class="scroll-top" id="scrollTopBtn">
-    <i class="fas fa-arrow-up"></i>
-</div>
-
-<script>
-    (function() {
-        // ---------- 1. سکرول پر عناصر ظاہر کرنا (Intersection Observer) ----------
-        const showcaseItems = document.querySelectorAll('.showcase-item');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // ایک بار ظاہر ہونے کے بعد اسے observe کرنا بند کیا جا سکتا ہے
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });  // جب 20% عنصر نظر آئے
-        
-        showcaseItems.forEach(item => {
-            observer.observe(item);
-        });
-        
-        // ---------- 2. ڈیمو بٹن پر شاندار الرٹ (مزید اینیمیشن) ----------
-        const demoBtn = document.getElementById('demoBtn');
-        demoBtn.addEventListener('click', function(e) {
-            // بٹن پر کلک کرنے پر شاندار ایفیکٹ
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
+    <div class="container">
+        <!-- Header -->
+        <header class="developer-header" data-aos="fade-down" data-aos-duration="1000">
+            <h1 class="developer-name">Abdus Salam</h1>
+            <p class="developer-title">Professional Android Application Developer</p>
+            <p style="color: var(--text-gray); max-width: 650px; margin: 0 auto;">Specializing in Islamic lifestyle applications and precision engineering tools for manufacturing professionals worldwide.</p>
             
-            // خوبصورت جدید notification (بغیر alert کے)
-            const notif = document.createElement('div');
-            notif.innerText = '🚀 مزید فیچرز جلد آرہے ہیں! ابھی Nexus کے ساتھ جڑیں۔';
-            notif.style.position = 'fixed';
-            notif.style.bottom = '100px';
-            notif.style.left = '50%';
-            notif.style.transform = 'translateX(-50%)';
-            notif.style.backgroundColor = '#1e1a3a';
-            notif.style.color = '#ffb347';
-            notif.style.padding = '12px 28px';
-            notif.style.borderRadius = '50px';
-            notif.style.fontWeight = 'bold';
-            notif.style.zIndex = '999';
-            notif.style.backdropFilter = 'blur(10px)';
-            notif.style.border = '1px solid #ff6a00';
-            notif.style.fontFamily = 'Inter, sans-serif';
-            notif.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
-            notif.style.animation = 'fadeInUp 0.4s ease';
-            document.body.appendChild(notif);
-            
-            setTimeout(() => {
-                notif.style.opacity = '0';
-                setTimeout(() => notif.remove(), 500);
-            }, 2800);
-        });
-        
-        // ---------- 3. سکرول ٹاپ بٹن (جیسے ہی سکرول کریں گے ظاہر) ----------
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', function() {
-            if(window.scrollY > 300) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
-        });
-        
-        scrollTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // ---------- 4. یقینی بنائیں کہ تمام کارڈز اور سکرول موبائل پر بھی مکمل کام کرے ----------
-        // کسی بھی overflow کو روکنے والی پراپرٹی نہیں ہے، سب محفوظ ہے۔
-        // اگر کہیں بھی سکرول رکاوٹ ہو تو ہم اسے ٹھیک کر دیں گے۔
-        console.log("Machinist Nexus فعال ہے — سکرول بالکل ہموار اور تمام اینیمیشنز آن ہیں۔");
-        
-        // مزید سٹائل: کارڈز پر کلک کرنے پر ایک اور انٹرایکشن (اختیاری)
-        const allCards = document.querySelectorAll('.card');
-        allCards.forEach(card => {
-            card.addEventListener('click', () => {
-                card.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 200);
-            });
-        });
-    })();
-</script>
+            <div class="contact-badges">
+                <div class="badge"><i class="fas fa-envelope"></i> absalamofficial@gmail.com</div>
+                <div class="badge"><i class="fas fa-map-marker-alt"></i> Timergara, Lower Dir, Pakistan</div>
+                <div class="badge"><i class="fas fa-certificate"></i> Mechanical Engineer</div>
+                <div class="badge"><i class="fas fa-calendar-alt"></i> 4+ Years Experience</div>
+            </div>
+        </header>
 
-<!-- یقینی بنانے کے لیے کہ کوئی بھی چیز سکرول نہ روکے (مثال کے طور پر body پر overflow:auto ہے) -->
+        <!-- Stats -->
+        <div class="stats-section">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="0"><div class="stat-number">4</div><div class="stat-label">Live Apps</div></div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="100"><div class="stat-number">500+</div><div class="stat-label">Total Downloads</div></div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="200"><div class="stat-number">4.6★</div><div class="stat-label">Average Rating</div></div>
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="300"><div class="stat-number">100%</div><div class="stat-label">Privacy First</div></div>
+        </div>
+
+        <!-- Apps Grid -->
+        <h2 class="section-title" data-aos="fade-right"><i class="fas fa-rocket"></i> Published Applications</h2>
+        <div class="apps-grid">
+            
+            <!-- App 1: Machinist Nexus -->
+            <div class="app-card" data-aos="flip-left" data-aos-delay="0">
+                <div class="app-icon" style="color: var(--orange);"><i class="fas fa-microchip"></i></div>
+                <h3 class="app-name">Machinist Nexus</h3>
+                <div class="app-category">Engineering Suite · CNC · AI Assistant</div>
+                <span class="status-live"><i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 6px;"></i> LIVE · 100+ Downloads</span>
+                <p class="app-description">Complete mechanical engineering suite with AI Assistant, machining calculators, and global community chat. The ultimate toolkit for modern machinists.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-robot"></i> <strong>AI Assistant:</strong> Multi-lingual (English/Urdu/Pashto/Hindi/Arabic) technical support</li>
+                    <li><i class="fas fa-cog"></i> <strong>Milling Calculator:</strong> Speeds & Feeds, RPM, Table Feed, MRR, Power</li>
+                    <li><i class="fas fa-cog"></i> <strong>Turning Calculator:</strong> Lathe parameters, RPM, Feed/Rev, Surface Finish (Ra)</li>
+                    <li><i class="fas fa-database"></i> <strong>Thread Database:</strong> ISO Metric & UNC/UNF with tap drill sizes</li>
+                    <li><i class="fas fa-cogs"></i> <strong>Gear Engineering:</strong> Spur gear (Module, PCD, OD, Root Diameter)</li>
+                    <li><i class="fas fa-chart-line"></i> <strong>Bolt Circle (PCD):</strong> XY coordinates for any hole pattern</li>
+                    <li><i class="fas fa-chart-simple"></i> <strong>Taper Analysis:</strong> Angles, ratios, tailstock offsets</li>
+                    <li><i class="fas fa-database"></i> <strong>Bearing Database:</strong> 6000/6200/6300 series with ID, OD, Width</li>
+                    <li><i class="fas fa-chart-bar"></i> <strong>Quality Control:</strong> Ra roughness, Hardness conversion (HRC/HB/HV)</li>
+                    <li><i class="fas fa-boxes"></i> <strong>Tool Inventory:</strong> Track tools with life indicators and locations</li>
+                    <li><i class="fas fa-tasks"></i> <strong>Project Manager:</strong> Organize jobs with due dates and status</li>
+                    <li><i class="fas fa-globe"></i> <strong>Global Chat:</strong> Real-time chat with machinists worldwide</li>
+                </ul>
+                <div class="app-stats">
+                    <div><span class="app-stat-value">100+</span><div class="app-stat-label">Downloads</div></div>
+                    <div><span class="app-stat-value">4.6★</span><div class="app-stat-label">Rating</div></div>
+                    <div><span class="app-stat-value">AI Ready</span><div class="app-stat-label">Assistant</div></div>
+                    <div><span class="app-stat-value">Multi</span><div class="app-stat-label">Language</div></div>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
+            </div>
+
+            <!-- App 2: Deenly -->
+            <div class="app-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="app-icon" style="color: var(--gold);"><i class="fas fa-mosque"></i></div>
+                <h3 class="app-name">Deenly</h3>
+                <div class="app-category">Prayer · Hadith · Tilawat</div>
+                <span class="status-live"><i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 6px;"></i> LIVE · 100+ Downloads</span>
+                <p class="app-description">Complete Islamic companion with accurate prayer times, 3D Qibla compass, authentic Hadith collection, and Al Sudais Quran Tilawat.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> GPS-based prayer times (Karachi, MWL, ISNA methods)</li>
+                    <li><i class="fas fa-check-circle"></i> 3D Qibla compass with real-time direction</li>
+                    <li><i class="fas fa-check-circle"></i> Authentic Hadith library (Urdu/English/Pashto)</li>
+                    <li><i class="fas fa-check-circle"></i> Al Sudais Quran Tilawat streaming</li>
+                    <li><i class="fas fa-check-circle"></i> Sehri/Iftar times with smart alarms</li>
+                    <li><i class="fas fa-check-circle"></i> 100% Free · No Ads · No In-App Purchases</li>
+                    <li><i class="fas fa-check-circle"></i> Zero data collection · Complete privacy</li>
+                </ul>
+                <div class="app-stats">
+                    <div><span class="app-stat-value">100+</span><div class="app-stat-label">Downloads</div></div>
+                    <div><span class="app-stat-value">Free</span><div class="app-stat-label">Forever</div></div>
+                    <div><span class="app-stat-value">3</span><div class="app-stat-label">Languages</div></div>
+                    <div><span class="app-stat-value">100%</span><div class="app-stat-label">Offline</div></div>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
+            </div>
+
+            <!-- App 3: SmartTurn - CNC Turning Calc -->
+            <div class="app-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="app-icon" style="color: var(--cyan);"><i class="fas fa-cogs"></i></div>
+                <h3 class="app-name">SmartTurn</h3>
+                <div class="app-category">CNC Turning Calculator · Pro</div>
+                <span class="status-live"><i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 6px;"></i> LIVE · 100+ Downloads</span>
+                <p class="app-description">Professional calculator for CNC machinists with advanced turning calculations, material database, and production optimization.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Cutting speed & RPM optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Feed rate (IPR/MMPR) calculations</li>
+                    <li><i class="fas fa-check-circle"></i> Material removal rate (MRR)</li>
+                    <li><i class="fas fa-check-circle"></i> Surface finish calculations (Ra/Rz)</li>
+                    <li><i class="fas fa-check-circle"></i> 25+ workpiece materials database</li>
+                    <li><i class="fas fa-check-circle"></i> 25+ insert geometries (CNMG, DNMG, VNMG)</li>
+                    <li><i class="fas fa-check-circle"></i> 9 blade radii options (0.2mm to 3.0mm)</li>
+                    <li><i class="fas fa-check-circle"></i> ISO standard machining parameters</li>
+                    <li><i class="fas fa-check-circle"></i> 100% offline · No data collection</li>
+                </ul>
+                <div class="app-stats">
+                    <div><span class="app-stat-value">100+</span><div class="app-stat-label">Downloads</div></div>
+                    <div><span class="app-stat-value">4.5★</span><div class="app-stat-label">Rating</div></div>
+                    <div><span class="app-stat-value">Pro</span><div class="app-stat-label">Features</div></div>
+                    <div><span class="app-stat-value">Offline</span><div class="app-stat-label">Support</div></div>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
+            </div>
+
+            <!-- App 4: SmartMill - CNC Milling Calc -->
+            <div class="app-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="app-icon" style="color: var(--purple);"><i class="fas fa-industry"></i></div>
+                <h3 class="app-name">SmartMill</h3>
+                <div class="app-category">CNC Milling Calculator · Pro</div>
+                <span class="status-live"><i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 6px;"></i> LIVE · 100+ Downloads</span>
+                <p class="app-description">Advanced milling calculations for CNC operators with comprehensive tool database and feed rate optimization.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Spindle speed (RPM) calculations</li>
+                    <li><i class="fas fa-check-circle"></i> Feed rate optimization (IPM/MMPM)</li>
+                    <li><i class="fas fa-check-circle"></i> Material removal rate (MRR)</li>
+                    <li><i class="fas fa-check-circle"></i> Power & torque calculations</li>
+                    <li><i class="fas fa-check-circle"></i> Tool database with multiple geometries</li>
+                    <li><i class="fas fa-check-circle"></i> Cutting time estimation</li>
+                    <li><i class="fas fa-check-circle"></i> 25+ material database</li>
+                    <li><i class="fas fa-check-circle"></i> 100% offline · Privacy focused</li>
+                </ul>
+                <div class="app-stats">
+                    <div><span class="app-stat-value">100+</span><div class="app-stat-label">Downloads</div></div>
+                    <div><span class="app-stat-value">New</span><div class="app-stat-label">Rating</div></div>
+                    <div><span class="app-stat-value">Pro</span><div class="app-stat-label">Version</div></div>
+                    <div><span class="app-stat-value">Offline</span><div class="app-stat-label">Support</div></div>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.cncmilling.calculator" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
+            </div>
+        </div>
+
+        <!-- Expertise Section -->
+        <div class="expertise-container" data-aos="fade-up">
+            <h2 class="section-title" style="margin-top: 0;"><i class="fas fa-brain"></i> Core Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-mosque"></i></div><h4>Islamic Applications</h4><p>Developing feature-rich Islamic lifestyle apps with prayer times, Qibla direction, Hadith libraries, and Quranic recitations.</p></div>
+                <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-microchip"></i></div><h4>Engineering Tools</h4><p>Creating precision calculators and databases for CNC machining, manufacturing, and mechanical engineering professionals.</p></div>
+                <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-shield-alt"></i></div><h4>Privacy First</h4><p>Building applications that respect user privacy with zero data collection and full offline functionality where possible.</p></div>
+                <div class="expertise-card"><div class="expertise-icon"><i class="fas fa-palette"></i></div><h4>Modern UI/UX</h4><p>Designing intuitive, accessible interfaces with Material Design principles and 3D visualizations for enhanced user experience.</p></div>
+            </div>
+        </div>
+
+        <!-- Philosophy -->
+        <h2 class="section-title" data-aos="fade-right"><i class="fas fa-heart"></i> Development Philosophy</h2>
+        <div class="philosophy-grid">
+            <div class="philosophy-card" data-aos="zoom-in" data-aos-delay="0"><div class="philosophy-icon"><i class="fas fa-star"></i></div><h4>Quality First</h4><p>Rigorous testing and quality assurance for every release</p></div>
+            <div class="philosophy-card" data-aos="zoom-in" data-aos-delay="100"><div class="philosophy-icon"><i class="fas fa-users"></i></div><h4>User Centric</h4><p>Intuitive interfaces designed for all experience levels</p></div>
+            <div class="philosophy-card" data-aos="zoom-in" data-aos-delay="200"><div class="philosophy-icon"><i class="fas fa-lock"></i></div><h4>Privacy Respect</h4><p>Minimal data collection with transparent policies</p></div>
+            <div class="philosophy-card" data-aos="zoom-in" data-aos-delay="300"><div class="philosophy-icon"><i class="fas fa-sync-alt"></i></div><h4>Continuous Growth</h4><p>Regular updates based on user feedback and needs</p></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer" data-aos="fade-up">
+            <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 15px;">Abdus Salam</h3>
+            <p style="color: var(--text-gray);">Professional Android Application Developer</p>
+            <div class="footer-links">
+                <a href="mailto:absalamofficial@gmail.com" class="footer-link"><i class="fas fa-envelope"></i> Email</a>
+                <a href="privacy-policy.html" class="footer-link"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                <a href="terms-conditions.html" class="footer-link"><i class="fas fa-file-contract"></i> Terms of Service</a>
+                <a href="support.html" class="footer-link"><i class="fas fa-heart"></i> Support Developer</a>
+            </div>
+            <div class="footer-bottom">
+                <p style="color: var(--text-gray);">© 2026 Abdus Salam · All rights reserved</p>
+                <p style="color: var(--text-gray); font-size: 0.8rem; margin-top: 12px;">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
+                <p style="color: var(--gold); font-size: 0.8rem; margin-top: 15px;">🚀 4 Live Apps · 500+ Downloads · 100% Privacy First</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+
+        // 3D Particles
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x030712);
+        
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 35;
+        
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particles-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 2500;
+        const posArray = new Float32Array(particlesCount * 3);
+        const colorArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i += 3) {
+            posArray[i] = (Math.random() - 0.5) * 120;
+            posArray[i+1] = (Math.random() - 0.5) * 80;
+            posArray[i+2] = (Math.random() - 0.5) * 80;
+            
+            const color = new THREE.Color();
+            const rand = Math.random();
+            if(rand < 0.25) color.setHSL(0.12, 0.9, 0.6);
+            else if(rand < 0.5) color.setHSL(0.6, 0.8, 0.6);
+            else if(rand < 0.75) color.setHSL(0.8, 0.8, 0.65);
+            else color.setHSL(0.05, 0.9, 0.55);
+            
+            colorArray[i] = color.r;
+            colorArray[i+1] = color.g;
+            colorArray[i+2] = color.b;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+        
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.x += 0.0003;
+            particlesMesh.rotation.y += 0.0004;
+            particlesMesh.rotation.x += mouseY * 0.0005;
+            particlesMesh.rotation.y += mouseX * 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
