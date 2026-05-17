@@ -5,46 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Al Ishaat</title>
     <style>
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background: #f9f9f9; }
-        .card { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        h2 { color: #34495e; margin-top: 30px; }
-        p { margin-bottom: 15px; }
-        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #7f8c8d; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        .container { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        h2 { color: #2980b9; margin-top: 25px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        p, li { margin-bottom: 15px; }
+        .footer { text-align: center; margin-top: 30px; font-size: 0.8em; color: #7f8c8d; }
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="container">
         <h1>Privacy Policy</h1>
-        <p>Last updated: June 15, 2024</p>
+        <p><strong>Last Updated:</strong> October 2023</p>
         
-        <p><strong>Al Ishaat: Islamic Audio Library</strong> (the "App") is a free service. This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information.</p>
+        <p>This privacy policy applies to the <strong>Al Ishaat: Islamic Audio Library</strong> app (herein referred to as "Application") for mobile devices that was created by <strong>Abdus Salam</strong> (herein referred to as "Service Provider") as a Free service.</p>
 
         <h2>1. Information Collection and Use</h2>
-        <p>We do not collect any personally identifiable information. The App uses third-party services that may collect information used to identify you. These include:</p>
+        <p>The Application does not collect any personally identifiable information. We do not require users to register or provide any personal details to use the App.</p>
+
+        <h2>2. Third Party Access</h2>
+        <p>The Application uses third-party services that may collect information used to identify you. Links to the privacy policy of third-party service providers used by the Application:</p>
         <ul>
-            <li>Google Play Services</li>
-            <li>Firebase Analytics</li>
+            <li><a href="https://www.google.com/policies/privacy/" target="_blank">Google Play Services</a></li>
+            <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Analytics</a></li>
         </ul>
 
-        <h2>2. Data Storage</h2>
-        <p>The App uses <strong>Room Database</strong> to save your offline preferences and downloaded content locally on your device. This data is not uploaded to any server.</p>
+        <h2>3. Permissions</h2>
+        <p>The Application may request the following permissions:</p>
+        <ul>
+            <li><strong>Internet:</strong> To stream audio content from our servers.</li>
+            <li><strong>Storage/Media:</strong> To download and save audio files for offline listening.</li>
+        </ul>
 
-        <h2>3. Media and Internet Access</h2>
-        <p>The App requires Internet access to stream audio content and uses <strong>Media3 ExoPlayer</strong> for playback. We do not track your listening history on our servers.</p>
+        <h2>4. Data Retention</h2>
+        <p>We do not store any user data on our servers. Any downloaded content or app settings are stored locally on your device and can be cleared by deleting the App's data or uninstalling the Application.</p>
 
-        <h2>4. Permissions</h2>
-        <p>The App may request <strong>Storage/Media</strong> permissions solely to save and play downloaded audio files for offline use.</p>
-
-        <h2>5. Changes to This Policy</h2>
-        <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes.</p>
+        <h2>5. Children’s Privacy</h2>
+        <p>The Application does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children.</p>
 
         <h2>6. Contact Us</h2>
-        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
-        <p><strong>Email:</strong> absalamofficial.cmyk@gmail.com</p>
+        <p>If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at:</p>
+        <p><strong>absalamofficial.cmyk@gmail.com</strong></p>
     </div>
     <div class="footer">
-        &copy; 2024 Al Ishaat Islamic Audio Library
+        &copy; 2023 Al Ishaat: Islamic Audio Library. All rights reserved.
     </div>
 </body>
 </html>
