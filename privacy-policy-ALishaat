@@ -2,53 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Al Ishaat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Privacy Policy · Al Ishaat: Islamic Audio Library</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        .container { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; text-align: center; }
-        h2 { color: #2980b9; margin-top: 25px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        p, li { margin-bottom: 15px; }
-        .footer { text-align: center; margin-top: 30px; font-size: 0.8em; color: #7f8c8d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-dark: #0a0f1c;
+            --gold: #d4af37;
+            --gold-dark: #b8960c;
+            --green: #10b981;
+            --text-white: #ffffff;
+            --text-gray: #9ca3af;
+            --border-dim: #2a2f3c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0a1a2a, #030712);
+            color: var(--text-white);
+            line-height: 1.7;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        .privacy-card {
+            background: rgba(15, 25, 35, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        /* Copy Button Styles */
+        .copy-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: var(--gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .copy-btn:hover { background: var(--text-white); transform: translateY(-2px); }
+        .copy-btn:active { transform: scale(0.95); }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--gold);
+            padding: 10px 25px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .last-updated {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 20px;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-dim);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section p, .section li { color: var(--text-gray); }
+        .section ul { list-style: none; padding-left: 5px; }
+        .section li::before { content: "•"; color: var(--gold); margin-right: 10px; }
+
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.06);
+            border-left: 5px solid var(--green);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-card { padding: 30px 20px; }
+            .copy-btn { position: static; margin-bottom: 20px; width: 100%; justify-content: center; }
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Privacy Policy</h1>
-        <p><strong>Last Updated:</strong> October 2023</p>
+
+<div class="container">
+    <div class="privacy-card" id="policyContent">
         
-        <p>This privacy policy applies to the <strong>Al Ishaat: Islamic Audio Library</strong> app (herein referred to as "Application") for mobile devices that was created by <strong>Abdus Salam</strong> (herein referred to as "Service Provider") as a Free service.</p>
+        <button class="copy-btn" onclick="copyPolicy()">
+            <i class="fas fa-copy"></i> Copy Policy Text
+        </button>
 
-        <h2>1. Information Collection and Use</h2>
-        <p>The Application does not collect any personally identifiable information. We do not require users to register or provide any personal details to use the App.</p>
+        <div class="app-badge">
+            <i class="fas fa-microphone-lines"></i> Al Ishaat · Islamic Audio Library
+        </div>
 
-        <h2>2. Third Party Access</h2>
-        <p>The Application uses third-party services that may collect information used to identify you. Links to the privacy policy of third-party service providers used by the Application:</p>
-        <ul>
-            <li><a href="https://www.google.com/policies/privacy/" target="_blank">Google Play Services</a></li>
-            <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Analytics</a></li>
-        </ul>
+        <h1>Privacy Policy</h1>
+        <div class="last-updated">
+            <i class="far fa-calendar-alt"></i> Last Updated: May 20, 2024
+        </div>
 
-        <h2>3. Permissions</h2>
-        <p>The Application may request the following permissions:</p>
-        <ul>
-            <li><strong>Internet:</strong> To stream audio content from our servers.</li>
-            <li><strong>Storage/Media:</strong> To download and save audio files for offline listening.</li>
-        </ul>
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+            <p><strong style="color: var(--gold);">Al Ishaat: Islamic Audio Library</strong> is a specialized application designed to provide access to Islamic lectures (Dars) and audio content. Developed by Abdus Salam, this app is committed to providing a secure and private experience for all users.</p>
+        </div>
 
-        <h2>4. Data Retention</h2>
-        <p>We do not store any user data on our servers. Any downloaded content or app settings are stored locally on your device and can be cleared by deleting the App's data or uninstalling the Application.</p>
+        <div class="highlight-box">
+            <p><strong>🛡️ ZERO DATA COLLECTION POLICY</strong></p>
+            <p>We do not collect, store, or share any personal identification information. No sign-up is required, and your usage patterns are not tracked.</p>
+        </div>
 
-        <h2>5. Children’s Privacy</h2>
-        <p>The Application does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children.</p>
+        <div class="section">
+            <h2><i class="fas fa-cloud-download-alt"></i> Audio Streaming & Downloads</h2>
+            <p>To provide you with Islamic content, the app requires an internet connection for:</p>
+            <ul>
+                <li>Streaming audio directly from our secure content servers.</li>
+                <li>Downloading audio files for offline listening (User-initiated).</li>
+            </ul>
+            <p>When you stream or download, standard server logs (IP address for connection) may be generated by the host, but these are not linked to your personal identity.</p>
+        </div>
 
-        <h2>6. Contact Us</h2>
-        <p>If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at:</p>
-        <p><strong>absalamofficial.cmyk@gmail.com</strong></p>
+        <div class="section">
+            <h2><i class="fas fa-folder-open"></i> Storage Access</h2>
+            <p>The app requests <strong>Storage/Media Permission</strong> solely to save downloaded audio files to your device. This allows you to listen to your favorite Dars without an internet connection. We do not access your personal photos, videos, or other files.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-database"></i> Local Data</h2>
+            <p>The app uses a local database (Room) to store content metadata, your bookmarks, and download status. This data remains strictly on your device and is deleted if you uninstall the app or clear its data.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-ad"></i> Advertisements</h2>
+            <p>Al Ishaat is designed to be a clean environment for spiritual learning. We do not include third-party advertisements that track your behavior or disrupt your experience.</p>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+            <p>If you have any queries regarding this policy, please reach out to:</p>
+            <p style="margin-top:10px; color: var(--gold);">
+                <strong>Developer:</strong> Abdus Salam<br>
+                <strong>Email:</strong> absalamofficial@gmail.com<br>
+                <strong>Location:</strong> Timergara, Lower Dir, Pakistan
+            </p>
+        </div>
+
+        <p style="text-align: center; color: var(--text-gray); font-size: 0.8rem; margin-top: 20px;">
+            © 2024 Al Ishaat · Built for the Ummah
+        </p>
     </div>
-    <div class="footer">
-        &copy; 2023 Al Ishaat: Islamic Audio Library. All rights reserved.
-    </div>
+</div>
+
+<script>
+    function copyPolicy() {
+        const text = document.getElementById('policyContent').innerText;
+        // Clean up the text (remove the button text)
+        const cleanText = text.replace("Copy Policy Text", "").trim();
+        
+        navigator.clipboard.writeText(cleanText).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            btn.style.background = '#10b981';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = '#d4af37';
+            }, 2000);
+        }).catch(err => {
+            alert('Failed to copy: ', err);
+        });
+    }
+</script>
+
 </body>
 </html>
