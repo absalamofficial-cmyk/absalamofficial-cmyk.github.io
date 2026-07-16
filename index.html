@@ -7,225 +7,401 @@
 <meta name="description" content="Abdus Salam · Mechanical Engineer & Android Developer. Precision engineering tools, Islamic digital products, and multiplayer games — built and shipped independently.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
-  --bg:#081020;
-  --bg-2:#0b1526;
-  --panel:#0e1a30;
-  --line:rgba(255,255,255,0.08);
-  --ink:#eef2fb;
-  --muted:#8fa0bd;
-  --muted-dim:#54627a;
-  --cyan:#38bdf8;
-  --cyan-2:#7dd8ff;
-  --amber:#fbbf24;
-  --mint:#34d399;
-  --coral:#fb7185;
-  --violet:#a78bfa;
-  --orange:#ff8c3c;
+  --bg:#02010a;
+  --bg2:#05021a;
+  --panel:rgba(12,14,34,.55);
+  --panel-2:rgba(8,10,26,.75);
+  --line:rgba(0,240,255,.14);
+  --ink:#eaf6ff;
+  --mut:#8b93b8;
+  --dim:#4a527a;
+  --cyan:#00f0ff;
+  --mag:#ff2ec4;
+  --vio:#8b5cf6;
+  --lime:#b6ff2e;
+  --amber:#ffb800;
+  --org:#ff9f1c;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'IBM Plex Sans',sans-serif;
+  font-family:'Rajdhani',sans-serif;
   background:var(--bg);
   color:var(--ink);
-  line-height:1.5;
+  line-height:1.55;
+  overflow-x:hidden;
+  cursor:none;
 }
 .mono{font-family:'JetBrains Mono',monospace;}
-::selection{background:var(--cyan); color:#04101c;}
+.orb{font-family:'Orbitron',sans-serif;}
+::selection{background:var(--mag);color:#fff;}
 a{color:inherit;}
-img,svg{display:block;}
+img,svg,canvas{display:block;}
+::-webkit-scrollbar{width:9px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--mag));border-radius:10px;}
 
-body::before{
-  content:'';
-  position:fixed; inset:0; z-index:-1;
+/* ---------- FIXED FX LAYERS ---------- */
+#bg3d{position:fixed;inset:0;z-index:-3;}
+.grid-fx{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(56,189,248,0.10), transparent 45%),
-    radial-gradient(ellipse at 90% 8%, rgba(251,191,36,0.06), transparent 40%),
-    radial-gradient(ellipse at 50% 100%, rgba(52,211,153,0.06), transparent 45%),
-    var(--bg);
+    linear-gradient(rgba(0,240,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,240,255,.045) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 78%);
 }
+.scan-fx{
+  position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+.vig-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(2,1,10,.85) 100%);}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--cyan),var(--vio),var(--mag));
+  box-shadow:0 0 14px var(--cyan),0 0 30px var(--mag);}
 
-.wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+/* ---------- CURSOR ---------- */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:999;border-radius:50%;}
+.cur-dot{width:7px;height:7px;background:var(--cyan);box-shadow:0 0 10px var(--cyan);transform:translate(-50%,-50%);}
+.cur-ring{width:36px;height:36px;border:1.5px solid rgba(0,240,255,.55);transform:translate(-50%,-50%);
+  transition:width .25s,height .25s,border-color .25s,background .25s;}
+.cur-ring.hot{width:58px;height:58px;border-color:var(--mag);background:rgba(255,46,196,.08);box-shadow:0 0 22px rgba(255,46,196,.35);}
+@media (hover:none){.cur-dot,.cur-ring{display:none;}body{cursor:auto;}}
+
+/* ---------- PRELOADER ---------- */
+#loader{position:fixed;inset:0;z-index:500;background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:26px;}
+.ld-hex{width:96px;height:96px;position:relative;display:flex;align-items:center;justify-content:center;}
+.ld-hex::before,.ld-hex::after{content:'';position:absolute;inset:0;border-radius:50%;}
+.ld-hex::before{border:2px solid transparent;border-top-color:var(--cyan);border-right-color:var(--cyan);
+  animation:spin 1.1s linear infinite;}
+.ld-hex::after{inset:14px;border:2px dashed rgba(255,46,196,.6);animation:spin 2.4s linear infinite reverse;}
+.ld-hex i{font-size:1.5rem;color:var(--lime);animation:corePulse 1s ease-in-out infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes corePulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(.72);opacity:.5;}}
+#ld-pct{font-family:'Orbitron',sans-serif;font-size:2.1rem;font-weight:900;
+  background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.ld-txt{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--mut);}
+.ld-bar{width:210px;height:2px;background:rgba(255,255,255,.08);overflow:hidden;}
+.ld-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--mag));
+  box-shadow:0 0 12px var(--cyan);}
 
 /* ---------- NAV ---------- */
-.nav{
-  position:sticky; top:0; z-index:50;
-  background:rgba(8,16,32,0.82); backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1180px; margin:0 auto;}
-.brand{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:9px;}
-.brand .dot{width:8px; height:8px; border-radius:50%; background:var(--mint); box-shadow:0 0 10px var(--mint); animation:blip 2.2s infinite;}
-@keyframes blip{0%,100%{opacity:1;}50%{opacity:0.35;}}
-.nav-links{display:flex; align-items:center; gap:30px;}
-.nav-links a{color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color .2s;}
-.nav-links a:hover{color:var(--ink);}
-.nav-cta{
-  padding:9px 18px; border-radius:8px; background:var(--cyan); color:#04101c; font-weight:600;
-  font-size:0.84rem; text-decoration:none; transition:all .25s;
-}
-.nav-cta:hover{background:var(--cyan-2);}
-@media (max-width:760px){ .nav-links a:not(.nav-cta){display:none;} }
-
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(2,1,10,.72);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);}
+.nav::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--mag),transparent);opacity:.7;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;
+  padding:15px 26px;max-width:1240px;margin:0 auto;}
+.brand{font-family:'Orbitron',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.06em;
+  display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand i{color:var(--cyan);font-size:1.15rem;animation:spin 7s linear infinite;
+  filter:drop-shadow(0 0 6px var(--cyan));}
+.brand b{background:linear-gradient(90deg,var(--cyan),var(--mag));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{position:relative;color:var(--mut);text-decoration:none;font-size:.86rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;transition:color .25s;}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--mag));transition:width .3s;box-shadow:0 0 8px var(--cyan);}
+.nav-links a:not(.nav-cta):hover{color:var(--ink);}
+.nav-links a:not(.nav-cta):hover::after{width:100%;}
+.nav-cta{padding:10px 20px;color:#02010a !important;font-weight:700;
+  background:linear-gradient(90deg,var(--cyan),#4de3ff);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  transition:all .25s;}
+.nav-cta:hover{filter:brightness(1.15);box-shadow:0 0 24px rgba(0,240,255,.5);}
+@media (max-width:760px){.nav-links a:not(.nav-cta){display:none;}}
+</style>
+<style>
 /* ---------- HERO ---------- */
-.hero{padding:96px 0 64px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
-.eyebrow{
-  display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:0.76rem;
-  color:var(--mint); letter-spacing:0.06em; padding:7px 14px; border:1px solid rgba(52,211,153,0.3);
-  border-radius:100px; background:rgba(52,211,153,0.06); margin-bottom:24px;
-}
-.eyebrow .p{width:6px; height:6px; border-radius:50%; background:var(--mint); animation:blip 2s infinite;}
-h1{
-  font-family:'Space Grotesk',sans-serif; font-size:clamp(2.3rem,4.6vw,3.6rem); font-weight:700;
-  line-height:1.12; letter-spacing:-0.01em; margin-bottom:22px;
-}
-h1 .hl{color:var(--cyan-2);}
-.hero-sub{color:var(--muted); font-size:1.05rem; line-height:1.75; max-width:520px; margin-bottom:32px;}
-.hero-sub strong{color:var(--ink); font-weight:600;}
-.hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
-.btn{
-  display:inline-flex; align-items:center; gap:9px; padding:14px 24px; border-radius:9px;
-  font-weight:600; font-size:0.88rem; text-decoration:none; transition:all .25s; border:1px solid transparent;
-}
-.btn-solid{background:var(--cyan); color:#04101c;}
-.btn-solid:hover{background:var(--cyan-2); transform:translateY(-2px); box-shadow:0 12px 26px rgba(56,189,248,0.28);}
-.btn-outline{border-color:var(--line); color:var(--ink);}
-.btn-outline:hover{border-color:var(--muted); background:rgba(255,255,255,0.03); transform:translateY(-2px);}
-.hero-chips{display:flex; flex-wrap:wrap; gap:10px;}
-.chip{
-  font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--muted);
-  border:1px solid var(--line); background:rgba(255,255,255,0.02); padding:8px 14px; border-radius:100px;
-  display:flex; align-items:center; gap:8px;
-}
+.wrap{max-width:1240px;margin:0 auto;padding:0 26px;}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;
+  padding:150px 0 70px;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;letter-spacing:.22em;color:var(--lime);padding:8px 16px;margin-bottom:26px;
+  border:1px solid rgba(182,255,46,.35);background:rgba(182,255,46,.05);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  text-shadow:0 0 10px rgba(182,255,46,.7);}
+.eyebrow .p{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);
+  animation:blip 1.6s infinite;}
+@keyframes blip{0%,100%{opacity:1;}50%{opacity:.25;}}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,4.4vw,3.5rem);font-weight:900;
+  line-height:1.14;letter-spacing:.01em;margin-bottom:22px;text-transform:uppercase;}
+h1 .grad{background:linear-gradient(90deg,var(--cyan) 0%,var(--vio) 50%,var(--mag) 100%);
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradShift 4s linear infinite;}
+@keyframes gradShift{to{background-position:200% 0;}}
+.glitch{position:relative;display:inline-block;}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;
+  background:linear-gradient(90deg,var(--cyan),var(--vio),var(--mag));background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.glitch::before{animation:gl1 3.2s infinite linear alternate-reverse;}
+.glitch::after{animation:gl2 2.7s infinite linear alternate-reverse;}
+@keyframes gl1{0%,86%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}
+  87%{clip-path:inset(12% 0 58% 0);transform:translate(-4px,-2px);opacity:.85;}
+  90%{clip-path:inset(60% 0 8% 0);transform:translate(4px,2px);opacity:.85;}
+  93%,100%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}}
+@keyframes gl2{0%,88%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}
+  89%{clip-path:inset(48% 0 32% 0);transform:translate(4px,1px);opacity:.85;}
+  92%{clip-path:inset(6% 0 74% 0);transform:translate(-4px,-1px);opacity:.85;}
+  95%,100%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}}
+.typeline{font-family:'JetBrains Mono',monospace;font-size:.92rem;color:var(--cyan);margin-bottom:18px;
+  min-height:1.5em;text-shadow:0 0 12px rgba(0,240,255,.5);}
+.typeline .caret{display:inline-block;width:9px;height:1.05em;background:var(--mag);
+  vertical-align:text-bottom;margin-left:3px;animation:blip .8s steps(1) infinite;box-shadow:0 0 8px var(--mag);}
+.hero-sub{color:var(--mut);font-size:1.08rem;line-height:1.75;max-width:540px;margin-bottom:34px;font-weight:500;}
+.hero-sub strong{color:var(--ink);font-weight:700;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 28px;
+  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;overflow:hidden;
+  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);}
+.btn-solid{background:linear-gradient(90deg,var(--cyan),#38b6ff);color:#02010a;
+  box-shadow:0 0 26px rgba(0,240,255,.35);}
+.btn-solid::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);
+  transform:skewX(-20deg);transition:left .5s;}
+.btn-solid:hover::before{left:130%;}
+.btn-solid:hover{transform:translateY(-3px);box-shadow:0 0 44px rgba(0,240,255,.65);}
+.btn-ghost{border:1px solid rgba(255,46,196,.5);color:var(--mag);background:rgba(255,46,196,.06);}
+.btn-ghost:hover{background:rgba(255,46,196,.16);transform:translateY(-3px);box-shadow:0 0 30px rgba(255,46,196,.4);}
+.hero-chips{display:flex;flex-wrap:wrap;gap:11px;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut);
+  border:1px solid var(--line);background:rgba(0,240,255,.03);padding:9px 15px;display:flex;align-items:center;gap:9px;
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:all .25s;}
+.chip:hover{color:var(--ink);border-color:rgba(0,240,255,.5);box-shadow:0 0 18px rgba(0,240,255,.2);}
 .chip i{color:var(--amber);}
 
-/* hero visual: schematic card */
-.hero-visual{
-  border-radius:18px; border:1px solid var(--line); background:var(--panel);
-  padding:26px; position:relative; overflow:hidden;
-}
-.hv-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
-.hv-title{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted-dim);}
-.hv-dots{display:flex; gap:6px;}
-.hv-dots span{width:9px; height:9px; border-radius:50%;}
-.hv-status{display:flex; flex-direction:column; gap:10px;}
-.hv-item{display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:0.78rem;}
-.hv-item .n{color:var(--muted);}
-.hv-item .s{color:var(--mint); display:flex; align-items:center; gap:6px;}
-.hv-item .s .d{width:6px; height:6px; border-radius:50%; background:var(--mint); box-shadow:0 0 6px var(--mint);}
-.hv-foot{margin-top:16px; padding-top:14px; border-top:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted-dim); display:flex; justify-content:space-between;}
+/* hero 3d panel */
+.hud{position:relative;border:1px solid var(--line);background:var(--panel);
+  backdrop-filter:blur(8px);padding:18px;overflow:hidden;}
+.hud::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 42%,rgba(0,240,255,.09),transparent 62%);}
+.hud-grid{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:linear-gradient(rgba(139,92,246,.08) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(139,92,246,.08) 1px,transparent 1px);
+  background-size:34px 34px;}
+.corner{position:absolute;width:22px;height:22px;z-index:3;}
+.corner.tl{top:8px;left:8px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);}
+.corner.tr{top:8px;right:8px;border-top:2px solid var(--mag);border-right:2px solid var(--mag);}
+.corner.bl{bottom:8px;left:8px;border-bottom:2px solid var(--mag);border-left:2px solid var(--mag);}
+.corner.br{bottom:8px;right:8px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);}
+.hv-row{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.hv-title{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--dim);}
+.hv-dots{display:flex;gap:6px;}
+.hv-dots span{width:9px;height:9px;border-radius:50%;}
+#hero3d{width:100%;height:380px;position:relative;z-index:1;}
+.hv-foot{position:relative;z-index:2;margin-top:10px;padding-top:12px;border-top:1px solid var(--line);
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);display:flex;justify-content:space-between;}
+.hv-foot b{color:var(--lime);font-weight:600;}
+.float-tag{position:absolute;z-index:4;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+  padding:6px 11px;border:1px solid var(--line);background:rgba(2,1,10,.8);color:var(--cyan);
+  animation:floaty 4.5s ease-in-out infinite;box-shadow:0 0 16px rgba(0,240,255,.18);}
+.float-tag.t1{top:16%;left:-14px;color:var(--lime);border-color:rgba(182,255,46,.35);}
+.float-tag.t2{bottom:22%;right:-10px;color:var(--mag);border-color:rgba(255,46,196,.35);animation-delay:-2.2s;}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(0,240,255,.03);overflow:hidden;padding:15px 0;position:relative;}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
+.mq-track{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;}
+.mq-track span{font-family:'Orbitron',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.22em;
+  color:var(--dim);white-space:nowrap;display:flex;align-items:center;gap:44px;}
+.mq-track span i{color:var(--mag);font-size:.6rem;text-shadow:0 0 8px var(--mag);}
+@keyframes mq{to{transform:translateX(-50%);}}
 
 /* ---------- STATS ---------- */
-.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:12px 0 88px;}
-.stat{padding:26px 16px; text-align:center; border-radius:14px; background:var(--panel); border:1px solid var(--line); transition:transform .3s, border-color .3s;}
-.stat:hover{transform:translateY(-5px); border-color:rgba(56,189,248,0.35);}
-.stat b{font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; display:block;}
-.stat span{font-family:'JetBrains Mono',monospace; font-size:0.66rem; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;}
-
-/* ---------- SECTION HEAD ---------- */
-.section-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:0 0 34px;}
-.section-head h2{font-family:'Space Grotesk',sans-serif; font-size:1.85rem; font-weight:700;}
-.section-head .tag{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);}
-.subhead{
-  font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:var(--amber); letter-spacing:0.08em;
-  display:flex; justify-content:space-between; margin:48px 0 22px; padding-bottom:12px; border-bottom:1px solid var(--line);
-}
-.subhead span:last-child{color:var(--muted-dim);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:70px 0 0;}
+.stat{position:relative;padding:30px 18px;text-align:center;background:var(--panel);border:1px solid var(--line);
+  overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;
+  clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--sc,var(--cyan)),transparent);opacity:.9;}
+.stat::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,var(--scg,rgba(0,240,255,.14)),transparent 65%);
+  opacity:0;transition:opacity .3s;}
+.stat:hover{transform:translateY(-6px);border-color:var(--sc,var(--cyan));box-shadow:0 18px 44px -14px var(--scg,rgba(0,240,255,.4));}
+.stat:hover::after{opacity:1;}
+.stat b{position:relative;font-family:'Orbitron',sans-serif;font-size:2.15rem;font-weight:900;display:block;
+  color:var(--sc,var(--cyan));text-shadow:0 0 22px var(--scg,rgba(0,240,255,.55));}
+.stat span{position:relative;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--mut);
+  letter-spacing:.22em;text-transform:uppercase;}
+</style>
+<style>
+/* ---------- SECTIONS ---------- */
+section{margin-top:110px;}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:38px;}
+.section-head h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;}
+.section-head h2 em{font-style:normal;color:var(--cyan);text-shadow:0 0 18px rgba(0,240,255,.6);}
+.section-head .tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--mag);letter-spacing:.18em;}
+.subhead{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.16em;color:var(--amber);
+  display:flex;justify-content:space-between;align-items:center;margin:52px 0 24px;padding-bottom:12px;
+  border-bottom:1px solid var(--line);text-shadow:0 0 10px rgba(255,184,0,.5);}
+.subhead span:last-child{color:var(--dim);}
+.subhead .sq{color:var(--mag);margin-right:8px;}
 
 /* ---------- APP CARDS ---------- */
-.apps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:22px;}
-.app-card{
-  border-radius:16px; padding:26px; background:var(--panel); border:1px solid var(--line);
-  transition:transform .25s, border-color .25s, box-shadow .25s;
-}
-.app-card:hover{transform:translateY(-5px); border-color:var(--card-c,var(--cyan)); box-shadow:0 20px 40px -16px rgba(0,0,0,0.5);}
-.app-top{display:flex; align-items:center; gap:13px; margin-bottom:16px;}
-.app-icon{width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; background:rgba(255,255,255,0.05); border:1px solid var(--line); flex:0 0 auto;}
-.app-name{font-family:'Space Grotesk',sans-serif; font-size:1.18rem; font-weight:700;}
-.app-tag{font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--cyan-2);}
-.status-row{display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;}
-.pill{font-family:'JetBrains Mono',monospace; font-size:0.66rem; padding:5px 11px; border-radius:100px; display:inline-flex; align-items:center; gap:6px;}
-.pill.live{color:var(--mint); border:1px solid rgba(52,211,153,0.3); background:rgba(52,211,153,0.07);}
-.pill.live .d{width:6px; height:6px; border-radius:50%; background:var(--mint);}
-.pill.plain{color:var(--muted); border:1px solid var(--line);}
-.app-desc{color:var(--muted); font-size:0.88rem; line-height:1.6; margin-bottom:16px;}
-.feat{list-style:none; max-height:190px; overflow-y:auto; margin-bottom:16px; padding-right:6px;}
-.feat li{display:flex; gap:9px; font-size:0.8rem; color:var(--muted); margin-bottom:9px;}
-.feat li i{color:var(--cyan-2); font-size:0.55rem; margin-top:5px;}
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(345px,1fr));gap:24px;perspective:1400px;}
+.app-card{position:relative;padding:28px;background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(8px);transform-style:preserve-3d;transition:border-color .3s,box-shadow .3s;
+  clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);overflow:hidden;}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;z-index:2;
+  background:linear-gradient(90deg,transparent,var(--ac,var(--cyan)),transparent);opacity:0;transition:opacity .3s;}
+.app-card::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),var(--acg,rgba(0,240,255,.13)),transparent 65%);}
+.app-card:hover{border-color:var(--ac,var(--cyan));box-shadow:0 24px 60px -18px var(--acg,rgba(0,240,255,.45));}
+.app-card:hover::before,.app-card:hover::after{opacity:1;}
+.app-top{display:flex;align-items:center;gap:14px;margin-bottom:17px;transform:translateZ(30px);}
+.app-icon{position:relative;width:52px;height:52px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;color:var(--ac,var(--cyan));background:rgba(255,255,255,.04);border:1px solid var(--line);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  filter:drop-shadow(0 0 10px var(--acg,rgba(0,240,255,.5)));}
+.app-icon i{animation:iconSpin 9s linear infinite;}
+.app-card:hover .app-icon i{animation-duration:2.4s;}
+@keyframes iconSpin{to{transform:rotate(360deg);}}
+.app-name{font-family:'Orbitron',sans-serif;font-size:1.12rem;font-weight:800;letter-spacing:.03em;}
+.app-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--ac,var(--cyan));opacity:.9;}
+.status-row{display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;}
+.pill{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;padding:5px 12px;
+  display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);color:var(--mut);
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);}
+.pill.live{color:var(--lime);border-color:rgba(182,255,46,.4);background:rgba(182,255,46,.06);
+  text-shadow:0 0 8px rgba(182,255,46,.6);}
+.pill.live .d{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:blip 1.6s infinite;}
+.app-desc{color:var(--mut);font-size:.94rem;line-height:1.65;margin-bottom:16px;font-weight:500;}
+.feat{list-style:none;max-height:172px;overflow-y:auto;margin-bottom:17px;padding-right:8px;}
+.feat li{display:flex;gap:10px;font-size:.86rem;color:var(--mut);margin-bottom:9px;font-weight:500;}
+.feat li i{color:var(--ac,var(--cyan));font-size:.6rem;margin-top:6px;filter:drop-shadow(0 0 5px var(--acg,rgba(0,240,255,.6)));}
 .feat::-webkit-scrollbar{width:4px;}
-.feat::-webkit-scrollbar-thumb{background:var(--cyan); border-radius:10px;}
-.stack{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
-.stack span{font-family:'JetBrains Mono',monospace; font-size:0.62rem; color:var(--violet); border:1px solid rgba(167,139,250,0.28); background:rgba(167,139,250,0.07); padding:4px 9px; border-radius:6px;}
-.app-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:13px; background:rgba(0,0,0,0.22); border-radius:10px; margin-bottom:18px;}
-.as-val{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--amber); font-size:0.86rem;}
-.as-lab{font-size:0.62rem; color:var(--muted-dim); text-transform:uppercase; letter-spacing:0.05em;}
-.app-link{
-  display:flex; align-items:center; justify-content:center; gap:9px; width:100%; padding:13px;
-  text-decoration:none; color:var(--ink); background:rgba(255,255,255,0.04); border:1px solid var(--line);
-  border-radius:9px; font-weight:600; font-size:0.85rem; transition:all .25s;
-}
-.app-link:hover{background:var(--cyan); border-color:var(--cyan); color:#04101c;}
+.feat::-webkit-scrollbar-track{background:transparent;}
+.feat::-webkit-scrollbar-thumb{background:var(--ac,var(--cyan));border-radius:10px;}
+.stack{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.stack span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:var(--vio);
+  border:1px solid rgba(139,92,246,.4);background:rgba(139,92,246,.08);padding:4px 10px;
+  clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px);}
+.app-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:14px;margin-bottom:18px;
+  background:rgba(0,0,0,.35);border:1px solid var(--line);}
+.as-val{font-family:'Orbitron',sans-serif;font-weight:800;color:var(--amber);font-size:.95rem;
+  text-shadow:0 0 12px rgba(255,184,0,.5);}
+.as-lab{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;}
+.app-link{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;
+  text-decoration:none;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);
+  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  transition:all .3s;overflow:hidden;
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);}
+.app-link:hover{background:var(--ac,var(--cyan));border-color:var(--ac,var(--cyan));color:#02010a;
+  box-shadow:0 0 30px var(--acg,rgba(0,240,255,.55));}
 
 /* ---------- EXPERTISE ---------- */
-.expertise{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--panel);}
-.exp-col{padding:34px 30px; border-right:1px solid var(--line);}
+.expertise{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--panel);
+  backdrop-filter:blur(8px);clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);}
+.exp-col{padding:38px 32px;border-right:1px solid var(--line);position:relative;overflow:hidden;transition:background .3s;}
 .exp-col:last-child{border-right:none;}
-.exp-col h3{font-family:'Space Grotesk',sans-serif; font-size:1.1rem; margin-bottom:20px; display:flex; align-items:center; gap:11px;}
-.exp-col h3 i{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(56,189,248,0.12); color:var(--cyan-2); font-size:0.92rem;}
-.exp-col:nth-child(2) h3 i{background:rgba(251,191,36,0.12); color:var(--amber);}
-.exp-col:nth-child(3) h3 i{background:rgba(167,139,250,0.12); color:var(--violet);}
-.exp-item{margin-bottom:16px; padding-left:14px; border-left:2px solid var(--line);}
-.exp-item h4{font-size:0.9rem; margin-bottom:4px; font-weight:600;}
-.exp-item p{font-size:0.8rem; color:var(--muted); line-height:1.6;}
+.exp-col::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,var(--ecg,rgba(0,240,255,.12)),transparent 70%);}
+.exp-col:hover::before{opacity:1;}
+.exp-col h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;
+  margin-bottom:24px;display:flex;align-items:center;gap:13px;text-transform:uppercase;}
+.exp-col h3 i{width:40px;height:40px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:1rem;
+  color:var(--ec,var(--cyan));border:1px solid var(--ec,var(--cyan));background:rgba(255,255,255,.03);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  filter:drop-shadow(0 0 9px var(--ecg,rgba(0,240,255,.55)));}
+.exp-item{margin-bottom:17px;padding-left:15px;border-left:2px solid var(--line);transition:border-color .3s;}
+.exp-col:hover .exp-item{border-left-color:var(--ec,var(--cyan));}
+.exp-item h4{font-size:.96rem;margin-bottom:4px;font-weight:700;letter-spacing:.03em;}
+.exp-item p{font-size:.85rem;color:var(--mut);line-height:1.6;font-weight:500;}
 
 /* ---------- STANDARDS ---------- */
-.standards{border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--panel);}
-.std-item{display:grid; grid-template-columns:100px 1fr; gap:20px; padding:22px 26px; border-bottom:1px solid var(--line); align-items:center;}
+.standards{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);
+  clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);}
+.std-item{display:grid;grid-template-columns:110px 1fr;gap:22px;padding:23px 28px;border-bottom:1px solid var(--line);
+  align-items:center;transition:background .3s,padding-left .3s;}
 .std-item:last-child{border-bottom:none;}
-.std-code{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.78rem; color:var(--cyan-2);}
-.std-item h4{font-size:0.98rem; margin-bottom:3px; font-weight:700;}
-.std-item p{font-size:0.84rem; color:var(--muted);}
+.std-item:hover{background:rgba(0,240,255,.04);padding-left:38px;}
+.std-code{font-family:'Orbitron',sans-serif;font-weight:800;font-size:.8rem;color:var(--cyan);
+  text-shadow:0 0 12px rgba(0,240,255,.55);}
+.std-item:nth-child(2) .std-code{color:var(--mag);text-shadow:0 0 12px rgba(255,46,196,.55);}
+.std-item:nth-child(3) .std-code{color:var(--lime);text-shadow:0 0 12px rgba(182,255,46,.55);}
+.std-item:nth-child(4) .std-code{color:var(--amber);text-shadow:0 0 12px rgba(255,184,0,.55);}
+.std-item h4{font-size:1.02rem;margin-bottom:3px;font-weight:700;letter-spacing:.03em;}
+.std-item p{font-size:.88rem;color:var(--mut);font-weight:500;}
 
 /* ---------- FOOTER ---------- */
-.footer{border-radius:20px; padding:56px 40px 34px; margin:60px 0 30px; text-align:center; background:var(--panel); border:1px solid var(--line);}
-.footer h3{font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:8px;}
-.footer p{color:var(--muted); font-size:0.9rem;}
-.footer-links{display:flex; justify-content:center; gap:28px; flex-wrap:wrap; margin:30px 0;}
-.footer-link{color:var(--muted); text-decoration:none; font-size:0.86rem; display:flex; align-items:center; gap:8px; transition:color .25s;}
-.footer-link:hover{color:var(--cyan-2);}
-.footer-bottom{border-top:1px solid var(--line); padding-top:22px; margin-top:22px;}
-.footer-bottom .mono{color:var(--muted-dim); font-size:0.72rem;}
+.footer{position:relative;margin:110px 0 34px;padding:64px 42px 36px;text-align:center;overflow:hidden;
+  background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
+  clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);}
+.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--mag),transparent);}
+.footer h3{font-family:'Orbitron',sans-serif;font-size:1.7rem;font-weight:900;letter-spacing:.05em;margin-bottom:8px;
+  background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.footer>p{color:var(--mut);font-size:.95rem;font-weight:500;letter-spacing:.06em;}
+.footer-links{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:32px 0;}
+.footer-link{color:var(--mut);text-decoration:none;font-size:.88rem;font-weight:600;letter-spacing:.08em;
+  display:flex;align-items:center;gap:9px;transition:all .25s;}
+.footer-link i{color:var(--cyan);transition:all .25s;}
+.footer-link:hover{color:var(--ink);text-shadow:0 0 12px rgba(0,240,255,.6);}
+.footer-link:hover i{color:var(--mag);filter:drop-shadow(0 0 6px var(--mag));}
+.footer-bottom{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;}
+.footer-bottom .mono{color:var(--dim);font-size:.68rem;letter-spacing:.18em;}
+.footer-bottom .glow{color:var(--lime);text-shadow:0 0 10px rgba(182,255,46,.55);}
 
-.reveal{opacity:0; transform:translateY(20px); transition:all .6s ease;}
-.reveal.active{opacity:1; transform:translateY(0);}
-
-section{margin-top:88px;}
-
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr; padding-top:60px;}
+[data-reveal]{opacity:0;}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;}
+}
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr;padding-top:130px;gap:44px;}
   .stats{grid-template-columns:repeat(2,1fr);}
   .expertise{grid-template-columns:1fr;}
-  .exp-col{border-right:none; border-bottom:1px solid var(--line);}
+  .exp-col{border-right:none;border-bottom:1px solid var(--line);}
   .exp-col:last-child{border-bottom:none;}
-  .std-item{grid-template-columns:70px 1fr; padding:18px 20px;}
+  .std-item{grid-template-columns:82px 1fr;padding:19px 20px;}
+  #hero3d{height:320px;}
+  .float-tag{display:none;}
 }
 @media (max-width:520px){
   .stats{grid-template-columns:1fr 1fr;}
-  h1{font-size:2rem;}
-  .footer{padding:40px 20px 26px;}
+  h1{font-size:1.7rem;}
+  .footer{padding:44px 20px 28px;}
+  .apps-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
 
+<!-- PRELOADER -->
+<div id="loader">
+  <div class="ld-hex"><i class="fas fa-microchip"></i></div>
+  <div id="ld-pct">0%</div>
+  <div class="ld-bar"><i id="ld-fill"></i></div>
+  <div class="ld-txt">INITIALIZING CYBER CORE</div>
+</div>
+
+<!-- CURSOR / FX -->
+<div class="cur-dot"></div>
+<div class="cur-ring"></div>
+<canvas id="bg3d"></canvas>
+<div class="grid-fx"></div>
+<div class="vig-fx"></div>
+<div class="scan-fx"></div>
+<div id="progress"></div>
+
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span> Abdus Salam</div>
+    <a href="#top" class="brand"><i class="fas fa-gear"></i> ABDUS<b>.SALAM</b></a>
     <div class="nav-links">
       <a href="#apps">Apps</a>
       <a href="#expertise">Expertise</a>
@@ -235,229 +411,243 @@ section{margin-top:88px;}
   </div>
 </nav>
 
-<div class="wrap">
+<div class="wrap" id="top">
 
+  <!-- HERO -->
   <section class="hero">
     <div>
-      <div class="eyebrow"><span class="p"></span> ALL SYSTEMS OPERATIONAL</div>
-      <h1>Engineering-grade thinking, <span class="hl">shipped as software.</span></h1>
-      <p class="hero-sub">I'm <strong>Abdus Salam</strong>, a mechanical engineer and independent Android developer based in Timergara, Lower Dir, Pakistan. I design and ship production apps end-to-end — CNC calculators built to ISO tolerances, privacy-first Islamic products, and real-time multiplayer games.</p>
-      <div class="hero-actions">
+      <div class="eyebrow" data-hero><span class="p"></span> ALL SYSTEMS OPERATIONAL</div>
+      <h1 data-hero>Engineering-grade thinking,<br>
+        <span class="glitch grad" data-text="shipped as software.">shipped as software.</span></h1>
+      <div class="typeline" data-hero><span id="typer"></span><span class="caret"></span></div>
+      <p class="hero-sub" data-hero>I'm <strong>Abdus Salam</strong>, a mechanical engineer and independent Android developer based in Timergara, Lower Dir, Pakistan. I design and ship production apps end-to-end — CNC calculators built to ISO tolerances, privacy-first Islamic products, and real-time multiplayer games.</p>
+      <div class="hero-actions" data-hero>
         <a href="#apps" class="btn btn-solid"><i class="fas fa-arrow-down"></i> View apps</a>
-        <a href="mailto:absalamofficial@gmail.com" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="mailto:absalamofficial@gmail.com" class="btn btn-ghost"><i class="fas fa-envelope"></i> Contact</a>
       </div>
-      <div class="hero-chips">
+      <div class="hero-chips" data-hero>
         <div class="chip"><i class="fas fa-location-dot"></i> Timergara, Lower Dir, PK</div>
         <div class="chip"><i class="fas fa-drafting-compass"></i> Mechanical Engineer</div>
         <div class="chip"><i class="fas fa-code-branch"></i> 4+ Years Building</div>
       </div>
     </div>
 
-    <div class="hero-visual reveal">
+    <div class="hud" data-hero>
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="hud-grid"></div>
       <div class="hv-row">
-        <span class="hv-title">status --services</span>
+        <span class="hv-title">core://reactor.online — 6 SERVICES SYNCED</span>
         <div class="hv-dots"><span style="background:#ff5f57;"></span><span style="background:#febc2e;"></span><span style="background:#28c840;"></span></div>
       </div>
-      <div class="hv-status">
-        <div class="hv-item"><span class="n">machinist-nexus</span><span class="s"><span class="d"></span>LIVE</span></div>
-        <div class="hv-item"><span class="n">smartturn</span><span class="s"><span class="d"></span>LIVE</span></div>
-        <div class="hv-item"><span class="n">smartmill</span><span class="s"><span class="d"></span>LIVE</span></div>
-        <div class="hv-item"><span class="n">deenly</span><span class="s"><span class="d"></span>LIVE</span></div>
-        <div class="hv-item"><span class="n">al-ishaat</span><span class="s"><span class="d"></span>LIVE</span></div>
-        <div class="hv-item"><span class="n">ludomaster</span><span class="s"><span class="d"></span>LIVE</span></div>
-      </div>
-      <div class="hv-foot"><span>0 data points sold</span><span>0 incidents</span></div>
+      <canvas id="hero3d"></canvas>
+      <div class="float-tag t1">◈ ROTATION: 0.42 RAD/S</div>
+      <div class="float-tag t2">◈ UPTIME: 99.99%</div>
+      <div class="hv-foot"><span><b>0</b> data points sold</span><span><b>0</b> incidents</span><span><b>6</b> apps live</span></div>
     </div>
   </section>
+</div>
 
-  <div class="stats reveal">
-    <div class="stat"><b class="mono">6</b><span>Live Apps</span></div>
-    <div class="stat"><b class="mono">460+</b><span>Total Downloads</span></div>
-    <div class="stat"><b class="mono">4.5★</b><span>Avg. Rating</span></div>
-    <div class="stat"><b class="mono">0</b><span>Data Sold</span></div>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mq-track" id="mq">
+    <span>CNC CALCULATORS <i class="fas fa-diamond"></i> KOTLIN <i class="fas fa-diamond"></i> FIREBASE REALTIME <i class="fas fa-diamond"></i> 3D QIBLA COMPASS <i class="fas fa-diamond"></i> ON-DEVICE AI <i class="fas fa-diamond"></i> ISO TOLERANCES <i class="fas fa-diamond"></i> MEDIA3 EXOPLAYER <i class="fas fa-diamond"></i> GLASSMORPHISM <i class="fas fa-diamond"></i> ONLINE MULTIPLAYER <i class="fas fa-diamond"></i> ZERO ADS · ZERO TRACKING <i class="fas fa-diamond"></i></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat" data-reveal style="--sc:var(--cyan);--scg:rgba(0,240,255,.5);"><b data-count="6" data-suffix="">0</b><span>Live Apps</span></div>
+    <div class="stat" data-reveal style="--sc:var(--mag);--scg:rgba(255,46,196,.5);"><b data-count="460" data-suffix="+">0</b><span>Total Downloads</span></div>
+    <div class="stat" data-reveal style="--sc:var(--amber);--scg:rgba(255,184,0,.5);"><b data-count="4.5" data-suffix="★" data-dec="1">0</b><span>Avg. Rating</span></div>
+    <div class="stat" data-reveal style="--sc:var(--lime);--scg:rgba(182,255,46,.5);"><b data-count="0" data-suffix="">0</b><span>Data Sold</span></div>
   </div>
 
+  <!-- APPS -->
   <section id="apps">
-    <div class="section-head reveal">
-      <h2>Published Applications</h2>
-      <span class="tag mono">// 6 APPS · 3 DOMAINS</span>
+    <div class="section-head" data-reveal>
+      <h2>Published <em>Applications</em></h2>
+      <span class="tag">// 6 APPS · 3 DOMAINS</span>
     </div>
 
-    <div class="subhead reveal"><span>Engineering Systems</span><span>03 tools</span></div>
+    <div class="subhead" data-reveal><span><span class="sq">▸</span>Engineering Systems</span><span>03 tools</span></div>
     <div class="apps-grid">
 
-      <div class="app-card reveal" style="--card-c:var(--orange);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--org);--acg:rgba(255,159,28,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--orange);"><i class="fas fa-microchip"></i></div>
-          <div><div class="app-name">Machinist Nexus</div><div class="app-tag mono">ENGINEERING SUITE · CNC · AI ASSISTANT</div></div>
+          <div class="app-icon"><i class="fas fa-microchip"></i></div>
+          <div><div class="app-name">Machinist Nexus</div><div class="app-tag">ENGINEERING SUITE · CNC · AI ASSISTANT</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.machinist.toolbox</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.machinist.toolbox</span></div>
         <p class="app-desc">A complete mechanical engineering suite with a multilingual AI assistant, machining calculators, and a global machinist chat.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>AI Assistant — English / Urdu / Pashto / Hindi / Arabic support</li>
-          <li><i class="fas fa-circle"></i>Milling Calculator — Speeds & Feeds, RPM, Table Feed, MRR, Power</li>
-          <li><i class="fas fa-circle"></i>Turning Calculator — Lathe parameters, RPM, Feed/Rev, Ra</li>
-          <li><i class="fas fa-circle"></i>Thread Database — ISO Metric & UNC/UNF with tap drill sizes</li>
-          <li><i class="fas fa-circle"></i>Gear Engineering — Module, PCD, OD, Root Diameter</li>
-          <li><i class="fas fa-circle"></i>Bolt Circle (PCD) — XY coordinates for any hole pattern</li>
-          <li><i class="fas fa-circle"></i>Bearing Database — 6000/6200/6300 series</li>
+          <li><i class="fas fa-angles-right"></i>AI Assistant — English / Urdu / Pashto / Hindi / Arabic support</li>
+          <li><i class="fas fa-angles-right"></i>Milling Calculator — Speeds &amp; Feeds, RPM, Table Feed, MRR, Power</li>
+          <li><i class="fas fa-angles-right"></i>Turning Calculator — Lathe parameters, RPM, Feed/Rev, Ra</li>
+          <li><i class="fas fa-angles-right"></i>Thread Database — ISO Metric &amp; UNC/UNF with tap drill sizes</li>
+          <li><i class="fas fa-angles-right"></i>Gear Engineering — Module, PCD, OD, Root Diameter</li>
+          <li><i class="fas fa-angles-right"></i>Bolt Circle (PCD) — XY coordinates for any hole pattern</li>
+          <li><i class="fas fa-angles-right"></i>Bearing Database — 6000/6200/6300 series</li>
         </ul>
         <div class="stack"><span>Kotlin</span><span>On-device AI</span><span>Offline-first</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">4.6★</span><div class="as-lab">Rating</div></div>
+          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">4.6★</span><div class="as-lab">Rating</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
 
-      <div class="app-card reveal" style="--card-c:var(--cyan);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--cyan);--acg:rgba(0,240,255,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--cyan);"><i class="fas fa-cogs"></i></div>
-          <div><div class="app-name">SmartTurn</div><div class="app-tag mono">CNC TURNING CALCULATOR · PRO</div></div>
+          <div class="app-icon"><i class="fas fa-cogs"></i></div>
+          <div><div class="app-name">SmartTurn</div><div class="app-tag">CNC TURNING CALCULATOR · PRO</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.turningcalculator.pro</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.turningcalculator.pro</span></div>
         <p class="app-desc">A professional calculator for CNC machinists with advanced turning calculations, a material database, and production optimization.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>Cutting speed & RPM optimization</li>
-          <li><i class="fas fa-circle"></i>Feed rate (IPR/MMPR) calculations</li>
-          <li><i class="fas fa-circle"></i>Material removal rate (MRR)</li>
-          <li><i class="fas fa-circle"></i>Surface finish calculations (Ra/Rz)</li>
-          <li><i class="fas fa-circle"></i>25+ workpiece materials database</li>
-          <li><i class="fas fa-circle"></i>25+ insert geometries (CNMG, DNMG, VNMG)</li>
-          <li><i class="fas fa-circle"></i>100% offline · no data collection</li>
+          <li><i class="fas fa-angles-right"></i>Cutting speed &amp; RPM optimization</li>
+          <li><i class="fas fa-angles-right"></i>Feed rate (IPR/MMPR) calculations</li>
+          <li><i class="fas fa-angles-right"></i>Material removal rate (MRR)</li>
+          <li><i class="fas fa-angles-right"></i>Surface finish calculations (Ra/Rz)</li>
+          <li><i class="fas fa-angles-right"></i>25+ workpiece materials database</li>
+          <li><i class="fas fa-angles-right"></i>25+ insert geometries (CNMG, DNMG, VNMG)</li>
+          <li><i class="fas fa-angles-right"></i>100% offline · no data collection</li>
         </ul>
         <div class="stack"><span>Kotlin</span><span>Offline-first</span><span>Material DB</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">4.5★</span><div class="as-lab">Rating</div></div>
+          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">4.5★</span><div class="as-lab">Rating</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
 
-      <div class="app-card reveal" style="--card-c:var(--violet);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--vio);--acg:rgba(139,92,246,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--violet);"><i class="fas fa-industry"></i></div>
-          <div><div class="app-name">SmartMill</div><div class="app-tag mono">CNC MILLING CALCULATOR · PRO</div></div>
+          <div class="app-icon"><i class="fas fa-industry"></i></div>
+          <div><div class="app-name">SmartMill</div><div class="app-tag">CNC MILLING CALCULATOR · PRO</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.cncmilling.calculator</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.cncmilling.calculator</span></div>
         <p class="app-desc">Advanced milling calculations for CNC operators with a comprehensive tool database and feed rate optimization.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>Spindle speed (RPM) calculations</li>
-          <li><i class="fas fa-circle"></i>Feed rate optimization (IPM/MMPM)</li>
-          <li><i class="fas fa-circle"></i>Material removal rate (MRR)</li>
-          <li><i class="fas fa-circle"></i>Power & torque calculations</li>
-          <li><i class="fas fa-circle"></i>Tool database with multiple geometries</li>
-          <li><i class="fas fa-circle"></i>Cutting time estimation</li>
-          <li><i class="fas fa-circle"></i>100% offline · privacy-focused</li>
+          <li><i class="fas fa-angles-right"></i>Spindle speed (RPM) calculations</li>
+          <li><i class="fas fa-angles-right"></i>Feed rate optimization (IPM/MMPM)</li>
+          <li><i class="fas fa-angles-right"></i>Material removal rate (MRR)</li>
+          <li><i class="fas fa-angles-right"></i>Power &amp; torque calculations</li>
+          <li><i class="fas fa-angles-right"></i>Tool database with multiple geometries</li>
+          <li><i class="fas fa-angles-right"></i>Cutting time estimation</li>
+          <li><i class="fas fa-angles-right"></i>100% offline · privacy-focused</li>
         </ul>
         <div class="stack"><span>Kotlin</span><span>Offline-first</span><span>Tool DB</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">New</span><div class="as-lab">Rating</div></div>
+          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">New</span><div class="as-lab">Rating</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.cncmilling.calculator" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
     </div>
 
-    <div class="subhead reveal"><span>Islamic Digital Products</span><span>02 apps</span></div>
+    <div class="subhead" data-reveal><span><span class="sq">▸</span>Islamic Digital Products</span><span>02 apps</span></div>
     <div class="apps-grid">
 
-      <div class="app-card reveal" style="--card-c:var(--amber);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--amber);--acg:rgba(255,184,0,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--amber);"><i class="fas fa-mosque"></i></div>
-          <div><div class="app-name">Deenly</div><div class="app-tag mono">PRAYER · HADITH · TILAWAT</div></div>
+          <div class="app-icon"><i class="fas fa-mosque"></i></div>
+          <div><div class="app-name">Deenly</div><div class="app-tag">PRAYER · HADITH · TILAWAT</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.ramzan.prayer.hadees</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.ramzan.prayer.hadees</span></div>
         <p class="app-desc">A complete Islamic companion with accurate prayer times, a 3D Qibla compass, an authentic Hadith collection, and Al-Sudais Quran Tilawat.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>GPS-based prayer times (Karachi, MWL, ISNA methods)</li>
-          <li><i class="fas fa-circle"></i>3D Qibla compass with real-time direction</li>
-          <li><i class="fas fa-circle"></i>Authentic Hadith library — Urdu / English / Pashto</li>
-          <li><i class="fas fa-circle"></i>Al-Sudais Quran Tilawat streaming</li>
-          <li><i class="fas fa-circle"></i>Sehri / Iftar times with smart alarms</li>
-          <li><i class="fas fa-circle"></i>100% free · no ads · zero data collection</li>
+          <li><i class="fas fa-angles-right"></i>GPS-based prayer times (Karachi, MWL, ISNA methods)</li>
+          <li><i class="fas fa-angles-right"></i>3D Qibla compass with real-time direction</li>
+          <li><i class="fas fa-angles-right"></i>Authentic Hadith library — Urdu / English / Pashto</li>
+          <li><i class="fas fa-angles-right"></i>Al-Sudais Quran Tilawat streaming</li>
+          <li><i class="fas fa-angles-right"></i>Sehri / Iftar times with smart alarms</li>
+          <li><i class="fas fa-angles-right"></i>100% free · no ads · zero data collection</li>
         </ul>
         <div class="stack"><span>Kotlin</span><span>GPS</span><span>Zero-ads</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">Free</span><div class="as-lab">Forever</div></div>
+          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">Free</span><div class="as-lab">Forever</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
 
-      <div class="app-card reveal" style="--card-c:var(--mint);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--lime);--acg:rgba(182,255,46,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--mint);"><i class="fas fa-headphones-simple"></i></div>
-          <div><div class="app-name">Al Ishaat</div><div class="app-tag mono">ISLAMIC AUDIO LIBRARY · TAFSEER</div></div>
+          <div class="app-icon"><i class="fas fa-headphones-simple"></i></div>
+          <div><div class="app-name">Al Ishaat</div><div class="app-tag">ISLAMIC AUDIO LIBRARY · TAFSEER</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.al.alishaat</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.al.alishaat</span></div>
         <p class="app-desc">An Islamic audio library with authentic Tafseer-ul-Quran, Dars-e-Hadith, and Bayanat — built as a Sadaqah Jariyah, entirely free and ad-free.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>Comprehensive Tafseer-ul-Quran series</li>
-          <li><i class="fas fa-circle"></i>Dars-e-Hadith and Fiqh & Masail lessons</li>
-          <li><i class="fas fa-circle"></i>Spiritual Bayanat and Seerah-un-Nabi content</li>
-          <li><i class="fas fa-circle"></i>Professional playback via Media3 ExoPlayer</li>
-          <li><i class="fas fa-circle"></i>Offline downloads for travel and low connectivity</li>
-          <li><i class="fas fa-circle"></i>Urdu and Pashto language support</li>
-          <li><i class="fas fa-circle"></i>Zero ads · no registration · no data collected</li>
+          <li><i class="fas fa-angles-right"></i>Comprehensive Tafseer-ul-Quran series</li>
+          <li><i class="fas fa-angles-right"></i>Dars-e-Hadith and Fiqh &amp; Masail lessons</li>
+          <li><i class="fas fa-angles-right"></i>Spiritual Bayanat and Seerah-un-Nabi content</li>
+          <li><i class="fas fa-angles-right"></i>Professional playback via Media3 ExoPlayer</li>
+          <li><i class="fas fa-angles-right"></i>Offline downloads for travel and low connectivity</li>
+          <li><i class="fas fa-angles-right"></i>Urdu and Pashto language support</li>
+          <li><i class="fas fa-angles-right"></i>Zero ads · no registration · no data collected</li>
         </ul>
         <div class="stack"><span>Media3 ExoPlayer</span><span>Offline sync</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">10+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">3+</span><div class="as-lab">Content Rating</div></div>
+          <div><span class="as-val">10+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">3+</span><div class="as-lab">Content Rating</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.al.alishaat&pcampaignid=web_share" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
     </div>
 
-    <div class="subhead reveal"><span>Games & Social</span><span>01 app</span></div>
+    <div class="subhead" data-reveal><span><span class="sq">▸</span>Games &amp; Social</span><span>01 app</span></div>
     <div class="apps-grid">
 
-      <div class="app-card reveal" style="--card-c:var(--coral);">
+      <div class="app-card tilt" data-reveal style="--ac:var(--mag);--acg:rgba(255,46,196,.45);">
         <div class="app-top">
-          <div class="app-icon" style="color:var(--coral);"><i class="fas fa-dice"></i></div>
-          <div><div class="app-name">LudoMaster</div><div class="app-tag mono">ONLINE MULTIPLAYER · REAL-TIME · SOCIAL</div></div>
+          <div class="app-icon"><i class="fas fa-dice"></i></div>
+          <div><div class="app-name">LudoMaster</div><div class="app-tag">ONLINE MULTIPLAYER · REAL-TIME · SOCIAL</div></div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill plain mono">com.ludomaster.pk</span></div>
+        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.ludomaster.pk</span></div>
         <p class="app-desc">A cinematic, glass-morphic Ludo experience with real-time online multiplayer, private rooms, and a full social hub — built on Firebase for near-zero lag.</p>
         <ul class="feat">
-          <li><i class="fas fa-circle"></i>Online multiplayer — real-time 2 or 4 player matches worldwide</li>
-          <li><i class="fas fa-circle"></i>Private Rooms — 6-digit codes for friends & family</li>
-          <li><i class="fas fa-circle"></i>Local Pass & Play — up to 4 players, one device</li>
-          <li><i class="fas fa-circle"></i>Legendary Leaderboard — 3D podium, wins/coins/level rankings</li>
-          <li><i class="fas fa-circle"></i>Social Hub — friend requests, live online status, invites</li>
-          <li><i class="fas fa-circle"></i>Certified fair dice logic, skill-based matchmaking</li>
-          <li><i class="fas fa-circle"></i>Parental gates & chat toggle for child safety</li>
+          <li><i class="fas fa-angles-right"></i>Online multiplayer — real-time 2 or 4 player matches worldwide</li>
+          <li><i class="fas fa-angles-right"></i>Private Rooms — 6-digit codes for friends &amp; family</li>
+          <li><i class="fas fa-angles-right"></i>Local Pass &amp; Play — up to 4 players, one device</li>
+          <li><i class="fas fa-angles-right"></i>Legendary Leaderboard — 3D podium, wins/coins/level rankings</li>
+          <li><i class="fas fa-angles-right"></i>Social Hub — friend requests, live online status, invites</li>
+          <li><i class="fas fa-angles-right"></i>Certified fair dice logic, skill-based matchmaking</li>
+          <li><i class="fas fa-angles-right"></i>Parental gates &amp; chat toggle for child safety</li>
         </ul>
         <div class="stack"><span>Firebase Realtime</span><span>Glassmorphism</span><span>Play Billing v7.1</span></div>
         <div class="app-stats">
-          <div><span class="as-val mono">50+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val mono">3+</span><div class="as-lab">Content Rating</div></div>
+          <div><span class="as-val">50+</span><div class="as-lab">Downloads</div></div>
+          <div><span class="as-val">3+</span><div class="as-lab">Content Rating</div></div>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.ludomaster.pk&pcampaignid=web_share" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
     </div>
   </section>
 
+  <!-- EXPERTISE -->
   <section id="expertise">
-    <div class="section-head reveal">
-      <h2>Core Expertise</h2>
-      <span class="tag mono">// THREE DOMAINS</span>
+    <div class="section-head" data-reveal>
+      <h2>Core <em>Expertise</em></h2>
+      <span class="tag">// THREE DOMAINS</span>
     </div>
-    <div class="expertise reveal">
-      <div class="exp-col">
+    <div class="expertise" data-reveal>
+      <div class="exp-col" style="--ec:var(--cyan);--ecg:rgba(0,240,255,.5);">
         <h3><i class="fas fa-drafting-compass"></i> Engineering Tools</h3>
         <div class="exp-item"><h4>Precision Calculators</h4><p>Milling, turning, threading, and gear calculations built to real ISO and shop-floor standards.</p></div>
         <div class="exp-item"><h4>Reference Databases</h4><p>Bearing, thread, and material databases machinists can trust on the shop floor.</p></div>
         <div class="exp-item"><h4>AI-Assisted Support</h4><p>A multilingual assistant that answers technical questions in the operator's own language.</p></div>
       </div>
-      <div class="exp-col">
+      <div class="exp-col" style="--ec:var(--amber);--ecg:rgba(255,184,0,.5);">
         <h3><i class="fas fa-mosque"></i> Islamic Products</h3>
         <div class="exp-item"><h4>Authentic Content</h4><p>Prayer times, Qibla direction, Hadith, and Tafseer sourced from verified scholars.</p></div>
         <div class="exp-item"><h4>Privacy By Design</h4><p>No registration, no ads, and no personal data collection across any Islamic app.</p></div>
         <div class="exp-item"><h4>Built As Sadaqah Jariyah</h4><p>Free and open access to Islamic knowledge for the widest possible audience.</p></div>
       </div>
-      <div class="exp-col">
+      <div class="exp-col" style="--ec:var(--mag);--ecg:rgba(255,46,196,.5);">
         <h3><i class="fas fa-dice"></i> Real-Time Games</h3>
         <div class="exp-item"><h4>Live Multiplayer</h4><p>Firebase-backed sync for real-time matches, private rooms, and cross-device play.</p></div>
         <div class="exp-item"><h4>Cinematic UI</h4><p>Glassmorphic interfaces, fluid animations, and a fully custom 3D leaderboard.</p></div>
@@ -466,21 +656,23 @@ section{margin-top:88px;}
     </div>
   </section>
 
+  <!-- STANDARDS -->
   <section>
-    <div class="section-head reveal">
-      <h2>Build Standards</h2>
-      <span class="tag mono">// HOW EVERY RELEASE IS SHIPPED</span>
+    <div class="section-head" data-reveal>
+      <h2>Build <em>Standards</em></h2>
+      <span class="tag">// HOW EVERY RELEASE IS SHIPPED</span>
     </div>
-    <div class="standards reveal">
-      <div class="std-item"><span class="std-code mono">01 / QA</span><div><h4>Quality First</h4><p>Rigorous testing before every release, no exceptions.</p></div></div>
-      <div class="std-item"><span class="std-code mono">02 / UX</span><div><h4>User Centric</h4><p>Interfaces designed for operators, worshippers, and players alike, regardless of experience level.</p></div></div>
-      <div class="std-item"><span class="std-code mono">03 / SEC</span><div><h4>Privacy Respect</h4><p>Minimal data collection with transparent, published policies across every app.</p></div></div>
-      <div class="std-item"><span class="std-code mono">04 / ITR</span><div><h4>Continuous Growth</h4><p>Regular updates driven directly by user feedback and real-world use.</p></div></div>
+    <div class="standards" data-reveal>
+      <div class="std-item"><span class="std-code">01 / QA</span><div><h4>Quality First</h4><p>Rigorous testing before every release, no exceptions.</p></div></div>
+      <div class="std-item"><span class="std-code">02 / UX</span><div><h4>User Centric</h4><p>Interfaces designed for operators, worshippers, and players alike, regardless of experience level.</p></div></div>
+      <div class="std-item"><span class="std-code">03 / SEC</span><div><h4>Privacy Respect</h4><p>Minimal data collection with transparent, published policies across every app.</p></div></div>
+      <div class="std-item"><span class="std-code">04 / ITR</span><div><h4>Continuous Growth</h4><p>Regular updates driven directly by user feedback and real-world use.</p></div></div>
     </div>
   </section>
 
-  <footer class="footer reveal" id="contact">
-    <h3>Abdus Salam</h3>
+  <!-- FOOTER -->
+  <footer class="footer" id="contact" data-reveal>
+    <h3>ABDUS SALAM</h3>
     <p>Mechanical Engineer &amp; Android Application Developer</p>
     <div class="footer-links">
       <a href="mailto:absalamofficial@gmail.com" class="footer-link"><i class="fas fa-envelope"></i> Email</a>
@@ -491,16 +683,173 @@ section{margin-top:88px;}
     <div class="footer-bottom">
       <p class="mono">© 2026 ABDUS SALAM · ALL RIGHTS RESERVED</p>
       <p class="mono" style="margin-top:8px;">TIMERGARA · LOWER DIR · KHYBER PAKHTUNKHWA · PAKISTAN</p>
-      <p class="mono" style="margin-top:12px; color:var(--mint);">6 LIVE APPS · 460+ DOWNLOADS · 0 DATA SOLD</p>
+      <p class="mono glow" style="margin-top:12px;">6 LIVE APPS · 460+ DOWNLOADS · 0 DATA SOLD</p>
     </div>
   </footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target); } });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- MARQUEE: duplicate for seamless loop ---------- */
+const mq=document.getElementById('mq'); mq.innerHTML+=mq.innerHTML;
+
+/* ---------- CUSTOM CURSOR ---------- */
+const dot=document.querySelector('.cur-dot'), ring=document.querySelector('.cur-ring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function curLoop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(curLoop);})();
+document.querySelectorAll('a,button,.tilt,.stat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
+});
+
+/* ---------- SCROLL PROGRESS ---------- */
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+
+/* ---------- TYPING EFFECT ---------- */
+const phrases=['> CNC precision tools · ISO tolerances','> privacy-first Islamic products','> real-time multiplayer games','> Kotlin · Firebase · on-device AI'];
+const typer=document.getElementById('typer');
+let pi=0,ci=0,del=false;
+(function typeLoop(){
+  const p=phrases[pi];
+  typer.textContent=p.slice(0,ci);
+  if(!del){ci++;if(ci>p.length){del=true;setTimeout(typeLoop,1700);return;}}
+  else{ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(typeLoop,del?26:52);
+})();
+
+/* ---------- BACKGROUND 3D: particle field + drifting wireframes ---------- */
+const bgCv=document.getElementById('bg3d');
+const bgRen=new THREE.WebGLRenderer({canvas:bgCv,alpha:true,antialias:true});
+bgRen.setPixelRatio(Math.min(devicePixelRatio,2));
+const bgScene=new THREE.Scene();
+const bgCam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);
+bgCam.position.z=9;
+function sizeBG(){bgRen.setSize(innerWidth,innerHeight);bgCam.aspect=innerWidth/innerHeight;bgCam.updateProjectionMatrix();}
+sizeBG();addEventListener('resize',sizeBG);
+
+const pCount=1100,pos=new Float32Array(pCount*3),col=new Float32Array(pCount*3);
+const palette=[new THREE.Color(0x00f0ff),new THREE.Color(0xff2ec4),new THREE.Color(0x8b5cf6),new THREE.Color(0xb6ff2e)];
+for(let i=0;i<pCount;i++){
+  const r=6+Math.random()*14,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
+  pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);pos[i*3+2]=r*Math.cos(ph);
+  const c=palette[Math.floor(Math.random()*palette.length)];
+  col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b;
+}
+const pGeo=new THREE.BufferGeometry();
+pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+pGeo.setAttribute('color',new THREE.BufferAttribute(col,3));
+const stars=new THREE.Points(pGeo,new THREE.PointsMaterial({size:.055,vertexColors:true,transparent:true,opacity:.85,depthWrite:false}));
+bgScene.add(stars);
+const ico1=new THREE.Mesh(new THREE.IcosahedronGeometry(3.2,1),new THREE.MeshBasicMaterial({color:0x00f0ff,wireframe:true,transparent:true,opacity:.10}));
+ico1.position.set(-7,2.4,-4);bgScene.add(ico1);
+const ico2=new THREE.Mesh(new THREE.IcosahedronGeometry(2.4,0),new THREE.MeshBasicMaterial({color:0xff2ec4,wireframe:true,transparent:true,opacity:.10}));
+ico2.position.set(7.5,-3,-3);bgScene.add(ico2);
+let bgTX=0,bgTY=0;
+addEventListener('mousemove',e=>{bgTX=(e.clientX/innerWidth-.5);bgTY=(e.clientY/innerHeight-.5);});
+(function bgLoop(){
+  requestAnimationFrame(bgLoop);
+  stars.rotation.y+=.00045;stars.rotation.x+=.00018;
+  ico1.rotation.x+=.0016;ico1.rotation.y+=.0011;
+  ico2.rotation.x-=.0012;ico2.rotation.y+=.0018;
+  bgCam.position.x+=(bgTX*1.4-bgCam.position.x)*.03;
+  bgCam.position.y+=(-bgTY*1.0-bgCam.position.y)*.03;
+  bgCam.lookAt(0,0,0);
+  bgRen.render(bgScene,bgCam);
+})();
+
+/* ---------- HERO 3D: rotating cyber reactor ---------- */
+const hCv=document.getElementById('hero3d');
+const hRen=new THREE.WebGLRenderer({canvas:hCv,alpha:true,antialias:true});
+hRen.setPixelRatio(Math.min(devicePixelRatio,2));
+const hScene=new THREE.Scene();
+const hCam=new THREE.PerspectiveCamera(55,1,.1,100);hCam.position.z=8;
+function sizeH(){const w=hCv.clientWidth,h=hCv.clientHeight;hRen.setSize(w,h,false);hCam.aspect=w/h;hCam.updateProjectionMatrix();}
+sizeH();addEventListener('resize',sizeH);
+const grp=new THREE.Group();hScene.add(grp);
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(2.05,.5,160,18),
+  new THREE.MeshBasicMaterial({color:0x00f0ff,wireframe:true,transparent:true,opacity:.5}));
+grp.add(knot);
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,0),
+  new THREE.MeshBasicMaterial({color:0xff2ec4,wireframe:true,transparent:true,opacity:.9}));
+grp.add(core);
+const coreIn=new THREE.Mesh(new THREE.IcosahedronGeometry(.55,0),
+  new THREE.MeshBasicMaterial({color:0xb6ff2e,wireframe:true,transparent:true,opacity:.95}));
+grp.add(coreIn);
+const ring1=new THREE.Mesh(new THREE.TorusGeometry(3.15,.02,8,90),
+  new THREE.MeshBasicMaterial({color:0xb6ff2e,transparent:true,opacity:.65}));
+ring1.rotation.x=Math.PI/2.4;grp.add(ring1);
+const ring2=new THREE.Mesh(new THREE.TorusGeometry(3.55,.02,8,90),
+  new THREE.MeshBasicMaterial({color:0x8b5cf6,transparent:true,opacity:.6}));
+ring2.rotation.x=Math.PI/1.7;ring2.rotation.y=.6;grp.add(ring2);
+/* orbiting satellites on rings */
+const sat1=new THREE.Mesh(new THREE.OctahedronGeometry(.16,0),new THREE.MeshBasicMaterial({color:0xb6ff2e}));
+const sat2=new THREE.Mesh(new THREE.OctahedronGeometry(.14,0),new THREE.MeshBasicMaterial({color:0xff2ec4}));
+grp.add(sat1,sat2);
+let hTX=0,hTY=0;
+document.querySelector('.hud').addEventListener('mousemove',e=>{
+  const r=hCv.getBoundingClientRect();
+  hTX=((e.clientX-r.left)/r.width-.5);hTY=((e.clientY-r.top)/r.height-.5);
+});
+let t0=0;
+(function hLoop(t){
+  requestAnimationFrame(hLoop);
+  const s=(t||0)*.001;
+  knot.rotation.x=s*.28;knot.rotation.y=s*.42;
+  core.rotation.x=-s*.5;core.rotation.y=s*.65;
+  coreIn.rotation.x=s*.9;coreIn.rotation.z=-s*.7;
+  ring1.rotation.z=s*.35;ring2.rotation.z=-s*.28;
+  sat1.position.set(Math.cos(s*.9)*3.15,Math.sin(s*.9)*3.15*Math.sin(Math.PI/2.4),Math.sin(s*.9)*3.15*Math.cos(Math.PI/2.4));
+  sat2.position.set(Math.cos(-s*.7)*3.55,Math.sin(-s*.7)*3.55*Math.sin(Math.PI/1.7),Math.sin(-s*.7)*3.55*Math.cos(Math.PI/1.7));
+  sat1.rotation.y=s*2;sat2.rotation.x=s*2.4;
+  grp.rotation.y+=(hTX*.7-grp.rotation.y)*.05;
+  grp.rotation.x+=(hTY*.5-grp.rotation.x)*.05;
+  hRen.render(hScene,hCam);
+})();
+
+/* ---------- TILT CARDS ---------- */
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+    card.style.setProperty('--mx',px*100+'%');
+    card.style.setProperty('--my',py*100+'%');
+    gsap.to(card,{rotateY:(px-.5)*10,rotateX:(0.5-py)*8,duration:.4,ease:'power2.out',transformPerspective:900});
+  });
+  card.addEventListener('mouseleave',()=>gsap.to(card,{rotateX:0,rotateY:0,duration:.7,ease:'elastic.out(1,.55)'}));
+});
+
+/* ---------- SCROLL REVEALS + COUNTERS ---------- */
+gsap.utils.toArray('[data-reveal]').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+});
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const end=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||0),suf=el.dataset.suffix||'';
+  const obj={v:0};
+  ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{
+    gsap.to(obj,{v:end,duration:1.8,ease:'power2.out',onUpdate:()=>{el.textContent=obj.v.toFixed(dec)+suf;}});
+  }});
+});
+
+/* ---------- PRELOADER + HERO INTRO ---------- */
+gsap.set('[data-hero]',{opacity:0,y:34});
+const pct=document.getElementById('ld-pct'),fill=document.getElementById('ld-fill'),load={v:0};
+gsap.to(load,{v:100,duration:1.7,ease:'power2.inOut',
+  onUpdate:()=>{const p=Math.round(load.v);pct.textContent=p+'%';fill.style.width=p+'%';},
+  onComplete:()=>{
+    gsap.to('#loader',{yPercent:-100,duration:.8,ease:'power4.inOut',
+      onComplete:()=>document.getElementById('loader').style.display='none'});
+    gsap.to('[data-hero]',{opacity:1,y:0,duration:1,stagger:.12,ease:'power3.out',delay:.45});
+  }});
 </script>
 </body>
 </html>
