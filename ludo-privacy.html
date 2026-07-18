@@ -6,73 +6,88 @@
     <title>Privacy Policy - Ludo Master Elite 2026</title>
     <style>
         :root { --gold: #ffcc00; --cyan: #00f2ff; --bg: #05070a; --card: rgba(255, 255, 255, 0.05); }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #fff; margin: 0; line-height: 1.7; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #fff; margin: 0; line-height: 1.7; }
         .bg-animate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #0c121d 0%, #05070a 100%); }
         .container { max-width: 900px; margin: 50px auto; padding: 40px; background: var(--card); backdrop-filter: blur(20px); border: 1px solid rgba(0, 242, 255, 0.2); border-radius: 30px; animation: fadeIn 1.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        h1 { color: var(--cyan); text-align: center; font-size: 2.5em; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0,242,255,0.5); }
-        h2 { color: var(--gold); margin-top: 35px; border-bottom: 1px dashed var(--gold); padding-bottom: 5px; }
-        p, li { color: rgba(255,255,255,0.85); }
-        .section { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px; margin-bottom: 20px; }
-        .footer { text-align: center; margin-top: 60px; color: var(--cyan); opacity: 0.6; font-weight: bold; }
+        h1 { color: var(--cyan); text-align: center; font-size: 2.5em; letter-spacing: 2px; text-shadow: 0 0 15px rgba(0,242,255,0.5); margin-bottom: 10px; }
+        h2 { color: var(--gold); margin-top: 35px; border-bottom: 1px dashed var(--gold); padding-bottom: 5px; font-size: 1.4em; }
+        p, li { color: rgba(255,255,255,0.85); font-size: 0.95em; }
+        .section { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 4px solid var(--cyan); }
+        .footer { text-align: center; margin-top: 60px; color: var(--cyan); opacity: 0.6; font-weight: bold; border-top: 1px solid rgba(0, 242, 255, 0.1); padding-top: 20px; }
+        b { color: var(--cyan); }
     </style>
 </head>
 <body>
     <div class="bg-animate"></div>
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p>Last Updated: 2026</p>
-        <p>Your privacy is our top priority. This Privacy Policy describes how <span style="color:var(--cyan)">Ludo Master Elite</span> collects, uses, and shares your personal information.</p>
+        <p style="text-align: center;">Effective Date: January 1, 2026</p>
+        <p>Your privacy is our top priority. This Privacy Policy describes how <b>Ludo Master Elite</b> ("we", "us", or "our") collects, uses, and shares your personal information when you use our mobile application.</p>
 
         <div class="section">
             <h2>1. Information We Collect</h2>
-            <p>When you use Ludo Master Elite, we collect:</p>
+            <p>To provide a competitive gaming experience, we collect the following types of data:</p>
             <ul>
-                <li><b>Personal Identifiers:</b> Google Display Name, Email Address, and Profile Picture.</li>
-                <li><b>Device Information:</b> Hardware model, Operating system version, and unique device identifiers.</li>
-                <li><b>Gameplay Data:</b> Match history, Coin balance, XP, and Level progress.</li>
+                <li><b>Account Information:</b> Google Display Name, Email Address, and Profile Picture (via Google Sign-In).</li>
+                <li><b>Device & Technical Data:</b> IP Address, Hardware model, OS version, unique device identifiers (Android ID/AD-ID), and crash logs.</li>
+                <li><b>Gameplay Records:</b> Match wins/losses, coin balances, level progress, and global leaderboard rankings.</li>
+                <li><b>Age Data:</b> We collect your self-reported age to ensure compliance with global child safety regulations.</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>2. How We Use Your Data</h2>
-            <p>We use the collected data for the following purposes:</p>
+            <h2>2. Children's Privacy (COPPA Compliance)</h2>
+            <p>We take children's safety seriously. <b>Ludo Master Elite</b> implements an Age Gate:</p>
             <ul>
-                <li>To provide and maintain our Service (Leaderboards & Matchmaking).</li>
-                <li>To prevent fraud, cheating, and unauthorized access.</li>
-                <li>To synchronize your game progress across multiple devices.</li>
-                <li>To provide customer support and respond to inquiries.</li>
+                <li>Users <b>under the age of 13</b> (or the relevant age in your jurisdiction) will have social features, custom chat, and personalized advertising automatically disabled.</li>
+                <li>We do not knowingly collect personal identifiers from children under 13 without verifiable parental consent.</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>3. Data Storage & Security</h2>
-            <p>We use <span style="color:var(--cyan)">Firebase (Google Cloud)</span> for high-level encrypted data storage. We implement industry-standard security measures to protect your data from unauthorized access, alteration, or destruction.</p>
-        </div>
-
-        <div class="section">
-            <h2>4. Third-Party Services</h2>
-            <p>We integrate with trusted third-party services:</p>
+            <h2>3. How We Use Your Data</h2>
             <ul>
-                <li><b>Google Play Games:</b> For authentication and achievements.</li>
-                <li><b>Firebase Analytics:</b> To improve gameplay experience.</li>
-                <li><b>AdMob:</b> For providing rewarded content (if applicable).</li>
+                <li><b>Matchmaking:</b> To pair you with opponents of similar skill levels.</li>
+                <li><b>Leaderboards:</b> To display your ranking among global players.</li>
+                <li><b>Cloud Sync:</b> Using Firebase to ensure your progress is saved across devices.</li>
+                <li><b>Security:</b> To detect and ban hackers or players using unauthorized scripts/mods.</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>5. Your Rights</h2>
-            <p>You have the right to request the deletion of your account and all associated data. You can do this via the "Profile" section in the app or by emailing our support team.</p>
+            <h2>4. Third-Party Services & Integration</h2>
+            <p>We use industry-standard services that may collect data independently:</p>
+            <ul>
+                <li><b>Google Play Games:</b> Handles authentication and cloud saves.</li>
+                <li><b>Firebase (Google):</b> Real-time database, Analytics, and Crashlytics.</li>
+                <li><b>AdMob:</b> Serves advertisements. You can reset your Advertising ID in your Android device settings.</li>
+            </ul>
         </div>
 
         <div class="section">
-            <h2>6. Contact For Legal Inquiries</h2>
-            <p>For any legal or privacy concerns, please contact the developer at:</p>
-            <p style="color:var(--cyan)">Email: support@ludomaster.pk</p>
+            <h2>5. Data Retention & Deletion</h2>
+            <p>We retain your data as long as your account is active. You have the <b>Right to be Forgotten</b>:</p>
+            <ul>
+                <li>You can request account deletion via the in-game settings.</li>
+                <li>Once requested, all personal records, match history, and email links will be permanently wiped from our Firebase servers within 30 days.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>6. Data Security</h2>
+            <p>All data is transmitted via <b>SSL/TLS encryption</b>. While we implement robust security measures provided by Google Cloud Infrastructure, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Contact & Legal</h2>
+            <p>For any inquiries regarding your data, GDPR, or CCPA rights, please contact:</p>
+            <p style="color:var(--cyan); font-weight: bold;">Official Developer Support: support@ludomaster.pk</p>
         </div>
 
         <div class="footer">
             <p>© 2026 Ludo Master Elite | Secure Galactic Gaming Experience</p>
+            <p style="font-size: 0.8em;">Designed for Ludo Master PK Ecosystem</p>
         </div>
     </div>
 </body>
