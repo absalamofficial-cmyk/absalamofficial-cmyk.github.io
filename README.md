@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdus Salam — Engineer & Android Developer</title>
-  <meta name="description" content="Abdus Salam — mechanical engineer and Android developer building precision CNC tools, Islamic apps, and games from Maidan Dir Lower, Pakistan." />
+  <title>Abdus Salam — Advanced Engineering & Android</title>
+  <meta name="description" content="Abdus Salam — mechanical engineer and Android developer from Maidan Dir Lower, building CNC tools and apps." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ----- reset & base ----- */
+    /* ----- Reset & Base ----- */
     * {
       margin: 0;
       padding: 0;
@@ -17,20 +17,20 @@
     }
 
     :root {
-      --bg: #f8faff;
-      --bg-card: #ffffff;
-      --bg-nav: rgba(255, 255, 255, 0.72);
-      --text: #0b1120;
-      --text-secondary: #334155;
-      --text-muted: #64748b;
-      --border: #e9edf5;
-      --primary: #1a4b8c;
-      --primary-light: #2a6bb0;
-      --accent: #d4a853;
+      --bg-primary: #070b14;
+      --bg-secondary: #0f1629;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f0f4ff;
+      --text-secondary: #a8b8d8;
+      --text-muted: #6b7fa0;
+      --cyan: #00e5ff;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --gold: #facc15;
       --radius: 20px;
-      --shadow: 0 12px 32px rgba(0, 20, 50, 0.06);
-      --shadow-hover: 0 20px 40px rgba(0, 20, 50, 0.10);
-      --transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --shadow-glow: 0 8px 32px rgba(0, 229, 255, 0.15);
     }
 
     html {
@@ -38,112 +38,221 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    /* ----- Advanced Animated Background (Orbs & Grid) ----- */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
 
-    /* ----- container ----- */
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+
+    .bg-orb.orb1 {
+      width: 500px;
+      height: 500px;
+      background: var(--purple);
+      top: -10%;
+      right: -10%;
+      opacity: 0.25;
+    }
+
+    .bg-orb.orb2 {
+      width: 600px;
+      height: 600px;
+      background: var(--cyan);
+      bottom: -20%;
+      left: -15%;
+      opacity: 0.15;
+      animation-duration: 25s;
+    }
+
+    .bg-orb.orb3 {
+      width: 400px;
+      height: 400px;
+      background: var(--pink);
+      top: 40%;
+      left: 40%;
+      opacity: 0.12;
+      animation-duration: 30s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(60px, -40px) scale(1.2);
+      }
+    }
+
+    /* Floating particles (fake tech dots) */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--cyan);
+      opacity: 0.3;
+      animation: particleMove linear infinite;
+    }
+
+    @keyframes particleMove {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* ----- Container ----- */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* ----- nav ----- */
+    /* ----- Glass Navbar ----- */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--bg-nav);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(7, 11, 20, 0.7);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border-glass);
     }
 
     nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 68px;
+      height: 72px;
     }
 
     .logo {
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.3px;
-      color: var(--text);
-    }
-
-    .logo span {
-      color: var(--primary);
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     nav ul {
       display: flex;
-      gap: 32px;
+      gap: 36px;
       list-style: none;
     }
 
     nav a {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-secondary);
-      transition: color var(--transition);
+      transition: all 0.3s ease;
       position: relative;
     }
 
-    nav a::after {
+    nav a::before {
       content: '';
       position: absolute;
       bottom: -4px;
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--primary);
-      transition: width var(--transition);
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      transition: width 0.4s ease;
+      border-radius: 4px;
+      box-shadow: 0 0 12px var(--cyan);
     }
 
     nav a:hover {
-      color: var(--text);
+      color: #fff;
     }
 
-    nav a:hover::after {
+    nav a:hover::before {
       width: 100%;
     }
 
-    /* ----- sections ----- */
+    /* ----- Section Headers ----- */
     section {
-      padding: 72px 0;
+      padding: 80px 0;
     }
 
     .section-label {
-      font-size: 0.75rem;
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 6px;
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.08);
+      padding: 4px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      margin-bottom: 12px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
     }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3rem);
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1.2;
+      line-height: 1.1;
       margin-bottom: 16px;
+    }
+
+    .section-title .gradient-text {
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .section-desc {
@@ -152,41 +261,46 @@
       max-width: 560px;
     }
 
-    .text-center {
-      text-align: center;
-    }
-
-    .mx-auto {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ----- hero ----- */
+    /* ----- Hero with 3D Tilt ----- */
     .hero {
-      padding: 60px 0 80px;
+      padding: 40px 0 80px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
       align-items: center;
     }
 
-    .hero-content .section-label {
-      margin-bottom: 12px;
-    }
-
     .hero-content h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
       font-weight: 700;
+      line-height: 1.05;
       letter-spacing: -0.04em;
-      line-height: 1.1;
       margin-bottom: 20px;
     }
 
     .hero-content h1 .highlight {
-      color: var(--primary);
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      background-size: 300% 100%;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     .hero-content p {
@@ -198,21 +312,25 @@
 
     .hero-stats {
       display: flex;
-      gap: 40px;
+      gap: 48px;
       margin-bottom: 36px;
       flex-wrap: wrap;
     }
 
-    .hero-stats .stat {
-      display: flex;
-      flex-direction: column;
+    .hero-stats .stat strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: block;
+      color: #fff;
+      letter-spacing: -0.02em;
     }
 
-    .hero-stats .stat strong {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
+    .hero-stats .stat strong .cyan {
+      color: var(--cyan);
+    }
+    .hero-stats .stat strong .gold {
+      color: var(--gold);
     }
 
     .hero-stats .stat span {
@@ -230,164 +348,287 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
+      gap: 10px;
+      padding: 14px 32px;
       border-radius: 100px;
       font-weight: 600;
       font-size: 0.9rem;
       border: none;
       cursor: pointer;
-      transition: all var(--transition);
-      background: transparent;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
     }
 
     .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(26, 75, 140, 0.25);
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #070b14;
+      box-shadow: 0 4px 24px rgba(0, 229, 255, 0.3);
     }
 
     .btn-primary:hover {
-      background: var(--primary-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(26, 75, 140, 0.30);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.4);
     }
 
     .btn-outline {
-      border: 1.5px solid var(--border);
-      color: var(--text);
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      backdrop-filter: blur(8px);
     }
 
     .btn-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-2px);
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, 0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
     }
 
-    /* hero image */
-    .hero-image {
+    /* Hero Visual */
+    .hero-visual {
       display: flex;
       justify-content: center;
       align-items: center;
+      perspective: 800px;
     }
 
-    .hero-image .frame {
+    .tilt-frame {
       position: relative;
       width: 100%;
-      max-width: 400px;
-      aspect-ratio: 1 / 1;
+      max-width: 380px;
+      aspect-ratio: 1/1;
       border-radius: var(--radius);
-      overflow: hidden;
-      background: #eef3fa;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+      padding: 3px;
+      background: conic-gradient(from 0deg, var(--cyan), var(--blue), var(--purple), var(--pink), var(--cyan));
+      animation: spinBorder 8s linear infinite;
+      box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
+      transition: transform 0.1s ease;
+      transform-style: preserve-3d;
     }
 
-    .hero-image .frame img {
+    @keyframes spinBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .tilt-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tilt-inner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .hero-image .badge {
+    .badge-location {
       position: absolute;
-      bottom: -12px;
+      bottom: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: #fff;
-      border: 1px solid var(--border);
-      padding: 8px 20px;
+      background: rgba(7, 11, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      padding: 10px 24px;
       border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-secondary);
       white-space: nowrap;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-glow);
+      width: max-content;
     }
 
-    .hero-image .badge strong {
-      color: var(--text);
+    .badge-location strong {
+      color: #fff;
+      font-weight: 600;
     }
 
-    /* ----- apps grid ----- */
+    .badge-location .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 16px var(--cyan);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    /* Floating tech shapes around hero */
+    .float-shape {
+      position: absolute;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 6px;
+      background: rgba(0, 229, 255, 0.02);
+      backdrop-filter: blur(4px);
+      animation: floatY 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .float-shape.s1 {
+      width: 40px;
+      height: 40px;
+      top: -10%;
+      right: -8%;
+      border-radius: 50%;
+      border-color: var(--purple);
+    }
+    .float-shape.s2 {
+      width: 60px;
+      height: 60px;
+      bottom: -6%;
+      left: -10%;
+      border-radius: 12px;
+      border-color: var(--pink);
+      animation-delay: 1s;
+    }
+    .float-shape.s3 {
+      width: 30px;
+      height: 30px;
+      top: 30%;
+      right: -15%;
+      border-color: var(--cyan);
+      animation-delay: 2s;
+      border-radius: 4px;
+    }
+
+    @keyframes floatY {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* ----- Apps Grid (Glass Cards) ----- */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      gap: 28px;
       margin-top: 40px;
     }
 
     .app-card {
       background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
       border-radius: var(--radius);
       padding: 24px;
-      border: 1px solid var(--border);
-      transition: all var(--transition);
-      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius);
+      padding: 1px;
+      background: linear-gradient(135deg, var(--cyan), transparent 40%, var(--purple));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     .app-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--primary-light);
+      transform: translateY(-8px) scale(1.01);
+      border-color: transparent;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+    }
+
+    .app-card:hover::before {
+      opacity: 1;
     }
 
     .app-card-top {
       display: flex;
       gap: 16px;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .app-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
       object-fit: cover;
-      border: 1px solid var(--border);
-      background: #f1f5f9;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-secondary);
       flex-shrink: 0;
     }
 
     .app-meta h3 {
-      font-size: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
-      margin-bottom: 2px;
+      font-size: 1.05rem;
+      color: #fff;
     }
 
     .app-meta .app-id {
       font-size: 0.7rem;
       font-weight: 400;
       color: var(--text-muted);
-      letter-spacing: 0.02em;
+      font-family: 'Space Grotesk', monospace;
     }
 
     .app-tag {
       display: inline-block;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--primary);
-      background: rgba(26, 75, 140, 0.08);
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.1);
       padding: 2px 12px;
       border-radius: 100px;
-      margin-bottom: 10px;
+      border: 1px solid rgba(0, 229, 255, 0.1);
+      margin-bottom: 12px;
     }
 
     .app-desc {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
       margin-bottom: 18px;
       line-height: 1.5;
+      min-height: 44px;
     }
 
     .app-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      border-top: 1px solid var(--border-glass);
     }
 
     .app-stats {
@@ -398,21 +639,26 @@
     }
 
     .app-stats .rating {
-      color: #d4a853;
+      color: var(--gold);
     }
 
     .app-link {
       font-weight: 600;
       font-size: 0.85rem;
-      color: var(--primary);
-      transition: color var(--transition);
+      color: var(--cyan);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .app-link:hover {
-      color: var(--primary-light);
+      color: #fff;
+      text-shadow: 0 0 20px var(--cyan);
     }
 
-    /* ----- about ----- */
+    /* ----- About (Glass skills) ----- */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -427,25 +673,32 @@
     }
 
     .about-text p strong {
-      color: var(--text);
+      color: #fff;
     }
 
     .skill-group {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
       border-radius: 16px;
-      padding: 20px 22px;
+      padding: 22px 24px;
       margin-bottom: 16px;
-      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .skill-group:hover {
+      border-color: rgba(0, 229, 255, 0.2);
+      box-shadow: var(--shadow-glow);
     }
 
     .skill-group h4 {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 10px;
+      color: var(--cyan);
+      margin-bottom: 12px;
     }
 
     .chip-row {
@@ -455,31 +708,45 @@
     }
 
     .chip {
-      font-size: 0.8rem;
-      padding: 4px 14px;
+      font-size: 0.78rem;
+      padding: 5px 16px;
       border-radius: 100px;
-      background: #f1f5f9;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
       color: var(--text-secondary);
-      border: 1px solid transparent;
-      transition: all var(--transition);
+      transition: all 0.3s ease;
     }
 
     .chip:hover {
-      border-color: var(--primary-light);
-      color: var(--text);
+      border-color: var(--cyan);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
     }
 
-    /* ----- timeline ----- */
+    /* ----- Timeline (Glowing) ----- */
     .timeline {
       position: relative;
-      padding-left: 28px;
-      border-left: 2px solid var(--border);
+      padding-left: 32px;
+      border-left: 2px solid rgba(0, 229, 255, 0.2);
       margin-top: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 30px var(--cyan);
+      animation: pulseDot 2s infinite;
     }
 
     .tl-item {
       position: relative;
-      padding-bottom: 40px;
+      padding-bottom: 44px;
     }
 
     .tl-item:last-child {
@@ -489,27 +756,31 @@
     .tl-item::before {
       content: '';
       position: absolute;
-      left: -33px;
-      top: 4px;
+      left: -37px;
+      top: 6px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--primary);
+      background: var(--bg-primary);
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 16px var(--cyan);
     }
 
     .tl-year {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--primary);
+      color: var(--cyan);
       margin-bottom: 4px;
     }
 
     .tl-title {
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
+      color: #fff;
       margin-bottom: 4px;
     }
 
@@ -519,33 +790,52 @@
       max-width: 520px;
     }
 
-    /* ----- contact ----- */
+    /* ----- Contact (Large Glass) ----- */
     .contact-panel {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
       border-radius: var(--radius);
-      padding: 56px 48px;
+      padding: 64px 48px;
       text-align: center;
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.05), transparent 60%);
+      pointer-events: none;
     }
 
     .contact-panel h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 3vw, 2.6rem);
       font-weight: 700;
       margin-bottom: 12px;
+      position: relative;
     }
 
     .contact-panel p {
       color: var(--text-secondary);
-      max-width: 480px;
-      margin: 0 auto 28px;
+      max-width: 500px;
+      margin: 0 auto 32px;
       font-size: 1rem;
+      position: relative;
     }
 
-    /* ----- footer ----- */
+    .contact-panel .btn-group {
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ----- Footer ----- */
     footer {
-      padding: 36px 0 48px;
-      border-top: 1px solid var(--border);
+      padding: 40px 0 48px;
+      border-top: 1px solid var(--border-glass);
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -554,25 +844,26 @@
     footer .foot-links {
       display: flex;
       justify-content: center;
-      gap: 28px;
+      gap: 32px;
       flex-wrap: wrap;
       margin-bottom: 12px;
     }
 
     footer a {
       color: var(--text-secondary);
-      transition: color var(--transition);
+      transition: color 0.3s ease;
+      text-decoration: none;
     }
 
     footer a:hover {
-      color: var(--text);
+      color: var(--cyan);
     }
 
-    /* ----- reveal animation ----- */
+    /* ----- Scroll Reveal Animation ----- */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .reveal.visible {
@@ -580,7 +871,11 @@
       transform: translateY(0);
     }
 
-    /* ----- responsive ----- */
+    .reveal-stagger {
+      transition-delay: 0.1s;
+    }
+
+    /* ----- Responsive ----- */
     @media (max-width: 900px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -600,7 +895,12 @@
         justify-content: center;
       }
 
-      .hero-image .frame {
+      .hero-visual {
+        order: -1;
+        margin-bottom: 20px;
+      }
+
+      .tilt-frame {
         max-width: 280px;
       }
 
@@ -613,11 +913,17 @@
       }
 
       section {
-        padding: 56px 0;
+        padding: 60px 0;
       }
 
       .contact-panel {
-        padding: 32px 20px;
+        padding: 36px 20px;
+      }
+
+      .badge-location {
+        font-size: 0.7rem;
+        padding: 6px 16px;
+        bottom: -10px;
       }
     }
 
@@ -638,10 +944,19 @@
 </head>
 <body>
 
+  <!-- ===== ADVANCED BACKGROUND ===== -->
+  <div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
   <!-- ===== NAV ===== -->
   <nav>
     <div class="container">
-      <div class="logo">Abdus <span>Salam</span></div>
+      <div class="logo">Abdus Salam</div>
       <ul>
         <li><a href="#apps">Apps</a></li>
         <li><a href="#about">About</a></li>
@@ -652,37 +967,68 @@
   </nav>
 
   <main>
-
     <!-- ===== HERO ===== -->
     <section class="hero" id="top">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
-            <div class="section-label">Mechanical Engineer / Android Developer</div>
-            <h1>Precision tools, <br /><span class="highlight">shipped as apps.</span></h1>
+            <span class="section-label">Mechanical Engineer / Android Developer</span>
+            <h1>Precision Engineering,<br /><span class="highlight">Shipped as Apps.</span></h1>
             <p>
-              I'm Abdus Salam — a mechanical engineer and Android developer from Maidan Dir Lower.
-              I build CNC machining tools, Islamic digital products, and games — from UI to DSP audio and the engineering math underneath.
+              I'm Abdus Salam — a mechanical engineer and independent Android developer from Maidan Dir Lower. I build CNC machining tools, Islamic digital products, and games, end-to-end: UI, DSP audio, and the engineering math underneath.
             </p>
             <div class="hero-stats">
-              <div class="stat"><strong>6</strong><span>Apps published</span></div>
-              <div class="stat"><strong>5.0★</strong><span>SmartTurn rating</span></div>
-              <div class="stat"><strong>10+</strong><span>Years in CNC</span></div>
+              <div class="stat"><strong>6</strong><span>Apps Published</span></div>
+              <div class="stat"><strong class="gold">5.0★</strong><span>SmartTurn Rating</span></div>
+              <div class="stat"><strong class="cyan">10+</strong><span>Years CNC Experience</span></div>
             </div>
             <div class="btn-group">
-              <a href="#apps" class="btn btn-primary">View my apps</a>
-              <a href="#contact" class="btn btn-outline">Get in touch</a>
+              <a href="#apps" class="btn btn-primary">View My Apps</a>
+              <a href="#contact" class="btn btn-outline">Contact Me</a>
             </div>
           </div>
-          <div class="hero-image">
-            <div class="frame">
-              <!-- professional still photo placeholder (generated avatar-style) -->
-              <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23eef3fa'/%3E%3Ccircle cx='200' cy='160' r='70' fill='%23b3c9e0'/%3E%3Ccircle cx='175' cy='145' r='8' fill='%232b3f57'/%3E%3Ccircle cx='225' cy='145' r='8' fill='%232b3f57'/%3E%3Cpath d='M170 185 Q200 205 230 185' stroke='%232b3f57' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Crect x='140' y='245' width='120' height='80' rx='12' fill='%231a4b8c'/%3E%3Crect x='170' y='275' width='60' height='12' rx='6' fill='%23ffffff80'/%3E%3C/svg%3E"
-                alt="Abdus Salam — engineer and developer from Maidan Dir Lower"
-                style="width:100%;height:100%;object-fit:cover;"
-              />
-              <div class="badge"><strong>Maidan Dir Lower,</strong> Pakistan</div>
+          <div class="hero-visual" id="tiltContainer">
+            <div class="tilt-frame" id="tiltElement">
+              <div class="tilt-inner">
+                <!-- Advanced SVG Placeholder (Tech Avatar) -->
+                <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#0f172a" />
+                      <stop offset="100%" stop-color="#1e293b" />
+                    </linearGradient>
+                    <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00e5ff" />
+                      <stop offset="100%" stop-color="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="400" rx="18" fill="url(#avatarGrad)" />
+                  <!-- Tech grid lines -->
+                  <line x1="60" y1="280" x2="340" y2="280" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <line x1="60" y1="300" x2="340" y2="300" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <line x1="60" y1="320" x2="340" y2="320" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <circle cx="200" cy="160" r="70" fill="rgba(255,255,255,0.03)" stroke="rgba(0,229,255,0.2)" stroke-width="1" />
+                  <circle cx="200" cy="160" r="60" fill="rgba(59,130,246,0.1)" />
+                  <!-- Face silhouette -->
+                  <circle cx="175" cy="148" r="7" fill="#a8b8d8" />
+                  <circle cx="225" cy="148" r="7" fill="#a8b8d8" />
+                  <path d="M170 185 Q200 205 230 185" stroke="#a8b8d8" stroke-width="5" fill="none" stroke-linecap="round" />
+                  <!-- Tech visor / glasses effect -->
+                  <rect x="150" y="170" width="100" height="20" rx="10" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.3)" stroke-width="1" />
+                  <rect x="175" y="175" width="50" height="10" rx="5" fill="rgba(0,229,255,0.1)" />
+                  <!-- Code brackets -->
+                  <text x="60" y="260" font-family="monospace" font-size="14" fill="rgba(0,229,255,0.3)">{ .engineer }</text>
+                  <text x="60" y="340" font-family="monospace" font-size="14" fill="rgba(139,92,246,0.3)">{ .developer }</text>
+                  <circle cx="200" cy="330" r="16" fill="none" stroke="url(#circleGrad)" stroke-width="2" />
+                  <circle cx="200" cy="330" r="8" fill="rgba(0,229,255,0.2)" />
+                </svg>
+                <div class="float-shape s1"></div>
+                <div class="float-shape s2"></div>
+                <div class="float-shape s3"></div>
+              </div>
+              <div class="badge-location">
+                <span class="dot"></span><strong>Maidan Dir Lower,</strong> Pakistan
+              </div>
             </div>
           </div>
         </div>
@@ -692,107 +1038,107 @@
     <!-- ===== APPS ===== -->
     <section id="apps">
       <div class="container">
-        <div class="section-label">Published Work</div>
-        <h2 class="section-title">Apps on Google Play</h2>
-        <p class="section-desc">Each card shows live Play Store ratings and download tiers.</p>
+        <span class="section-label">Published Work</span>
+        <h2 class="section-title">Apps on <span class="gradient-text">Google Play</span></h2>
+        <p class="section-desc">Each card pulls live Play Store ratings and download tiers.</p>
 
         <div class="apps-grid">
-          <!-- Machinist Nexus -->
-          <div class="app-card reveal">
+          <!-- Card 1 -->
+          <div class="app-card reveal reveal-stagger">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256" alt="Machinist Nexus icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256" alt="Machinist Nexus" loading="lazy" />
               <div class="app-meta">
                 <h3>Machinist Nexus</h3>
                 <span class="app-id">com.machinist.toolbox</span>
               </div>
             </div>
             <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">AI-assisted machining calculators — milling, turning, threads, gears — with offline Mach-AI and a global chat.</p>
+            <p class="app-desc">AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.</p>
             <div class="app-footer">
               <div class="app-stats"><span>50+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" target="_blank" rel="noopener">Open ↗</a>
             </div>
           </div>
 
-          <!-- SmartTurn -->
-          <div class="app-card reveal">
+          <!-- Card 2 -->
+          <div class="app-card reveal reveal-stagger" style="transition-delay:0.1s;">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256" alt="SmartTurn icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256" alt="SmartTurn" loading="lazy" />
               <div class="app-meta">
                 <h3>SmartTurn</h3>
                 <span class="app-id">com.turningcalculator.pro</span>
               </div>
             </div>
             <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">CNC turning calculator — speeds, feeds, MRR, tool life across 25+ materials.</p>
+            <p class="app-desc">CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.</p>
             <div class="app-footer">
               <div class="app-stats"><span class="rating">★ 5.0</span><span>100+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" target="_blank" rel="noopener">Open ↗</a>
             </div>
           </div>
 
-          <!-- SmartMill -->
-          <div class="app-card reveal">
+          <!-- Card 3 -->
+          <div class="app-card reveal reveal-stagger" style="transition-delay:0.2s;">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256" alt="SmartMill icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256" alt="SmartMill" loading="lazy" />
               <div class="app-meta">
                 <h3>SmartMill</h3>
                 <span class="app-id">com.cncmilling.calculator</span>
               </div>
             </div>
             <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">CNC milling calculator with physical‑accuracy engine, offline library, and PDF reports.</p>
+            <p class="app-desc">CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.</p>
             <div class="app-footer">
               <div class="app-stats"><span>100+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.cncmilling.calculator" target="_blank" rel="noopener">Open ↗</a>
             </div>
           </div>
 
-          <!-- Deenly -->
-          <div class="app-card reveal">
+          <!-- Card 4 -->
+          <div class="app-card reveal reveal-stagger" style="transition-delay:0.3s;">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256" alt="Deenly icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256" alt="Deenly" loading="lazy" />
               <div class="app-meta">
                 <h3>Deenly</h3>
                 <span class="app-id">com.ramzan.prayer.hadees</span>
               </div>
             </div>
             <span class="app-tag">Islamic Lifestyle</span>
-            <p class="app-desc">Prayer times, smart Azan, Hadith library, Tilawat, and 3D Qibla compass.</p>
+            <p class="app-desc">Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.</p>
             <div class="app-footer">
               <div class="app-stats"><span>100+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" target="_blank" rel="noopener">Open ↗</a>
             </div>
           </div>
 
-          <!-- Al-Fajar -->
-          <div class="app-card reveal">
+          <!-- Card 5 -->
+          <div class="app-card reveal reveal-stagger" style="transition-delay:0.4s;">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/yvnWiqA8FUJdkPYzUTYQMMhZY3nEjlLF8s1UnEZersHNb_Q-A1__mXqIuEFatx8EvNxXm3mDTDDkRlHXJM4VE8g=s256" alt="Al-Fajar icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/yvnWiqA8FUJdkPYzUTYQMMhZY3nEjlLF8s1UnEZersHNb_Q-A1__mXqIuEFatx8EvNxXm3mDTDDkRlHXJM4VE8g=s256" alt="Al-Fajar" loading="lazy" />
               <div class="app-meta">
                 <h3>Al-Fajar</h3>
                 <span class="app-id">com.al.alishaat</span>
               </div>
             </div>
             <span class="app-tag">Islamic Audio Library</span>
-            <p class="app-desc">Free, ad‑free audio library of Tafseer, Dars‑e‑Hadith, Bayanat, and Tilawat with offline downloads.</p>
+            <p class="app-desc">Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.</p>
             <div class="app-footer">
               <div class="app-stats"><span>50+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.al.alishaat" target="_blank" rel="noopener">Open ↗</a>
             </div>
           </div>
 
-          <!-- LudoMaster -->
-          <div class="app-card reveal">
+          <!-- Card 6 -->
+          <div class="app-card reveal reveal-stagger" style="transition-delay:0.5s;">
             <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256" alt="LudoMaster icon" loading="lazy" />
+              <img class="app-icon" src="https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256" alt="LudoMaster" loading="lazy" />
               <div class="app-meta">
                 <h3>LudoMaster</h3>
                 <span class="app-id">com.ludomaster.pk</span>
               </div>
             </div>
             <span class="app-tag">Game</span>
-            <p class="app-desc">Real‑time multiplayer Ludo with private rooms, global leaderboard, and glass UI.</p>
+            <p class="app-desc">Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.</p>
             <div class="app-footer">
               <div class="app-stats"><span class="rating">★ 4.0</span><span>100+ downloads</span></div>
               <a class="app-link" href="https://play.google.com/store/apps/details?id=com.ludomaster.pk" target="_blank" rel="noopener">Open ↗</a>
@@ -805,18 +1151,18 @@
     <!-- ===== ABOUT ===== -->
     <section id="about">
       <div class="container">
-        <div class="section-label">About</div>
-        <h2 class="section-title">Engineer first, developer by necessity.</h2>
+        <span class="section-label">About</span>
+        <h2 class="section-title">Engineer first, <span class="gradient-text">developer by necessity.</span></h2>
         <div class="about-grid">
           <div class="about-text reveal">
             <p>
-              I'm a <strong>mechanical engineer</strong> with over a decade of hands‑on CNC experience — metal spinning, turning, milling, G‑code, and Sinumerik 828D. That process knowledge is the foundation for everything I build.
+              I'm a <strong>mechanical engineer</strong> with a background in CNC metal spinning, turning, and milling — mandrel profiles, feed rates, blank sizing, the sine law. That process knowledge is the foundation for everything I build.
             </p>
             <p>
-              When I couldn't find software that matched how machinists actually work, I started building it myself — first as calculators, then as full Android apps covering UI/UX, real‑time DSP audio, and the calculation engines underneath.
+              When I couldn't find software that matched how machinists actually work, I started building it myself — first as calculators, then as full Android applications covering UI/UX, real-time DSP audio, and the calculation engines underneath.
             </p>
             <p>
-              I work independently across the full Android stack and am currently building <strong>Smart Spin</strong> — a professional CNC metal‑spinning CAD/CAM application — alongside my published tools.
+              I currently work independently across the full stack of Android development, and I'm building <strong>Smart Spin</strong> — a professional CNC metal-spinning CAD/CAM application — alongside my published tools.
             </p>
           </div>
           <div class="reveal">
@@ -826,7 +1172,7 @@
                 <span class="chip">CNC Turning</span>
                 <span class="chip">CNC Milling</span>
                 <span class="chip">Metal Spinning</span>
-                <span class="chip">G‑Code</span>
+                <span class="chip">G-Code</span>
                 <span class="chip">Sinumerik 828D</span>
               </div>
             </div>
@@ -837,7 +1183,7 @@
                 <span class="chip">Jetpack Compose</span>
                 <span class="chip">Android SDK</span>
                 <span class="chip">Firebase</span>
-                <span class="chip">Real‑time DSP</span>
+                <span class="chip">Real-time DSP</span>
               </div>
             </div>
             <div class="skill-group">
@@ -856,33 +1202,33 @@
     <!-- ===== JOURNEY ===== -->
     <section id="journey">
       <div class="container">
-        <div class="section-label">Journey</div>
-        <h2 class="section-title">From workshop floor to Play Store.</h2>
+        <span class="section-label">Journey</span>
+        <h2 class="section-title">From workshop floor to <span class="gradient-text">Play Store.</span></h2>
         <div class="timeline">
           <div class="tl-item reveal">
             <div class="tl-year">Foundation</div>
             <div class="tl-title">10+ years in CNC machining</div>
-            <div class="tl-desc">Hands‑on experience in turning, milling, and metal spinning — the process knowledge behind every calculator I build.</div>
+            <div class="tl-desc">Hands-on engineering experience in turning, milling, and metal spinning — the process knowledge behind every calculator I've built.</div>
           </div>
           <div class="tl-item reveal">
             <div class="tl-year">Tools</div>
             <div class="tl-title">SmartTurn, SmartMill &amp; Machinist Nexus</div>
-            <div class="tl-desc">Professional‑grade CNC calculators with industry‑validated algorithms, reports, and an AI assistant for machinists.</div>
+            <div class="tl-desc">Professional-grade CNC calculators with industry-validated algorithms, exportable reports, and an AI assistant for machinists.</div>
           </div>
           <div class="tl-item reveal">
             <div class="tl-year">Faith</div>
-            <div class="tl-title">Deenly &amp; Al‑Fajar</div>
+            <div class="tl-title">Deenly &amp; Al-Fajar</div>
             <div class="tl-desc">Islamic digital products — prayer times, Hadith, Tilawat, and a free audio library of Tafseer and Bayanat, built as Sadaqah Jariyah.</div>
           </div>
           <div class="tl-item reveal">
             <div class="tl-year">Play</div>
             <div class="tl-title">LudoMaster</div>
-            <div class="tl-desc">Real‑time multiplayer Ludo with private rooms, global leaderboards, and a modern glass UI.</div>
+            <div class="tl-desc">A real-time multiplayer Ludo game with private rooms, global leaderboards, and a modern glass UI.</div>
           </div>
           <div class="tl-item reveal">
             <div class="tl-year">Now</div>
             <div class="tl-title">Building Smart Spin</div>
-            <div class="tl-desc">A professional CNC metal‑spinning CAD/CAM application — contour editing, 3D simulation, and multi‑controller G‑code generation.</div>
+            <div class="tl-desc">A professional CNC metal-spinning CAD/CAM application — contour editing, 3D simulation, and multi-controller G-code generation.</div>
           </div>
         </div>
       </div>
@@ -892,16 +1238,15 @@
     <section id="contact">
       <div class="container">
         <div class="contact-panel reveal">
-          <h2>Let's build something precise.</h2>
-          <p>Open to engineering‑software collaborations, custom app development, and conversations about CNC process automation.</p>
-          <div class="btn-group" style="justify-content:center;">
-            <a href="mailto:absalamofficial@gmail.com" class="btn btn-primary">Email me</a>
-            <a href="https://play.google.com/store/apps/dev?id=7303471421479319477" target="_blank" rel="noopener" class="btn btn-outline">All apps on Play Store ↗</a>
+          <h2>Let's build something <span class="gradient-text">precise.</span></h2>
+          <p>Open to engineering-software collaborations, custom app development, and conversations about CNC process automation.</p>
+          <div class="btn-group">
+            <a href="mailto:absalamofficial@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://play.google.com/store/apps/dev?id=7303471421479319477" target="_blank" rel="noopener" class="btn btn-outline">All Apps on Play Store ↗</a>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- ===== FOOTER ===== -->
@@ -910,25 +1255,62 @@
       <div class="foot-links">
         <a href="mailto:absalamofficial@gmail.com">absalamofficial@gmail.com</a>
         <a href="https://play.google.com/store/apps/dev?id=7303471421479319477" target="_blank" rel="noopener">Google Play</a>
-        <a href="#top">Back to top</a>
+        <a href="#top">Back to Top</a>
       </div>
       <div>© 2026 Abdus Salam · Maidan Dir Lower, Pakistan</div>
     </div>
   </footer>
 
+  <!-- ===== SCRIPTS ===== -->
   <script>
-    // scroll reveal
+    // 1. Scroll Reveal (with stagger)
     const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-  </script>
+    }, { threshold: 0.12, rootMargin: '0px 0px -20px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
 
+    // 2. 3D Tilt Effect on Hero Image
+    const tiltContainer = document.getElementById('tiltContainer');
+    const tiltElement = document.getElementById('tiltElement');
+
+    if (tiltContainer && tiltElement) {
+      tiltContainer.addEventListener('mousemove', (e) => {
+        const rect = tiltContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        tiltElement.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      tiltContainer.addEventListener('mouseleave', () => {
+        tiltElement.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    // 3. Generate Background Particles
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 20) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+  </script>
 </body>
 </html>
