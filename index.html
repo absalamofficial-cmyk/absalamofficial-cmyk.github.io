@@ -214,6 +214,7 @@
       color: var(--text-secondary);
       transition: all 0.3s ease;
       position: relative;
+      text-decoration: none;
     }
 
     nav a::before {
@@ -433,7 +434,7 @@
       box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
     }
 
-    /* Hero Visual */
+    /* Hero Visual — static, no rotation */
     .hero-visual {
       display: flex;
       justify-content: center;
@@ -448,17 +449,10 @@
       aspect-ratio: 1/1;
       border-radius: var(--radius);
       padding: 3px;
-      background: conic-gradient(from 0deg, var(--cyan), var(--blue), var(--purple), var(--pink), var(--cyan));
-      animation: spinBorder 8s linear infinite;
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple), var(--pink));
       box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
       transition: transform 0.1s ease;
       transform-style: preserve-3d;
-    }
-
-    @keyframes spinBorder {
-      to {
-        transform: rotate(360deg);
-      }
     }
 
     .tilt-inner {
@@ -478,6 +472,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      border-radius: calc(var(--radius) - 2px);
     }
 
     .badge-location {
@@ -535,6 +530,7 @@
       backdrop-filter: blur(4px);
       animation: floatY 6s ease-in-out infinite alternate;
       pointer-events: none;
+      z-index: 2;
     }
 
     .float-shape.s1 {
@@ -1058,34 +1054,8 @@
           <div class="hero-visual" id="tiltContainer">
             <div class="tilt-frame" id="tiltElement">
               <div class="tilt-inner">
-                <!-- Advanced SVG Placeholder (Tech Avatar) -->
-                <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#0f172a" />
-                      <stop offset="100%" stop-color="#1e293b" />
-                    </linearGradient>
-                    <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#00e5ff" />
-                      <stop offset="100%" stop-color="#8b5cf6" />
-                    </linearGradient>
-                  </defs>
-                  <rect width="400" height="400" rx="18" fill="url(#avatarGrad)" />
-                  <line x1="60" y1="280" x2="340" y2="280" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
-                  <line x1="60" y1="300" x2="340" y2="300" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
-                  <line x1="60" y1="320" x2="340" y2="320" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
-                  <circle cx="200" cy="160" r="70" fill="rgba(255,255,255,0.03)" stroke="rgba(0,229,255,0.2)" stroke-width="1" />
-                  <circle cx="200" cy="160" r="60" fill="rgba(59,130,246,0.1)" />
-                  <circle cx="175" cy="148" r="7" fill="#a8b8d8" />
-                  <circle cx="225" cy="148" r="7" fill="#a8b8d8" />
-                  <path d="M170 185 Q200 205 230 185" stroke="#a8b8d8" stroke-width="5" fill="none" stroke-linecap="round" />
-                  <rect x="150" y="170" width="100" height="20" rx="10" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.3)" stroke-width="1" />
-                  <rect x="175" y="175" width="50" height="10" rx="5" fill="rgba(0,229,255,0.1)" />
-                  <text x="60" y="260" font-family="monospace" font-size="14" fill="rgba(0,229,255,0.3)">{ .engineer }</text>
-                  <text x="60" y="340" font-family="monospace" font-size="14" fill="rgba(139,92,246,0.3)">{ .developer }</text>
-                  <circle cx="200" cy="330" r="16" fill="none" stroke="url(#circleGrad)" stroke-width="2" />
-                  <circle cx="200" cy="330" r="8" fill="rgba(0,229,255,0.2)" />
-                </svg>
+                <!-- Developer photo added here -->
+                <img src="ab_android_developer 512.png" alt="Abdus Salam — Android Developer" />
                 <div class="float-shape s1"></div>
                 <div class="float-shape s2"></div>
                 <div class="float-shape s3"></div>
@@ -1319,7 +1289,7 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -20px 0px' });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // 2. 3D Tilt Effect on Hero Image
+    // 2. 3D Tilt Effect on Hero Image (no rotation, just pointer-based tilt)
     const tiltContainer = document.getElementById('tiltContainer');
     const tiltElement = document.getElementById('tiltElement');
 
