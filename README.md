@@ -29,6 +29,7 @@
       --purple: #8b5cf6;
       --pink: #ec4899;
       --gold: #facc15;
+      --green: #22c55e;
       --radius: 20px;
       --shadow-glow: 0 8px 32px rgba(0, 229, 255, 0.15);
     }
@@ -44,6 +45,24 @@
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
+      cursor: default;
+    }
+
+    /* ----- Cursor glow (follows pointer, desktop only) ----- */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.06), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      will-change: transform;
     }
 
     /* ----- Advanced Animated Background (Orbs & Grid) ----- */
@@ -223,6 +242,14 @@
       padding: 80px 0;
     }
 
+    .section-label-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
     .section-label {
       display: inline-block;
       font-family: 'Space Grotesk', sans-serif;
@@ -235,8 +262,29 @@
       padding: 4px 16px;
       border-radius: 100px;
       border: 1px solid rgba(0, 229, 255, 0.15);
-      margin-bottom: 12px;
       box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: rgba(34, 197, 94, 0.06);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+
+    .live-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: pulseDot 2s infinite;
     }
 
     .section-title {
@@ -540,10 +588,12 @@
       border: 1px solid var(--border-glass);
       border-radius: var(--radius);
       padding: 24px;
-      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: transform 0.15s ease, box-shadow 0.4s ease, border-color 0.4s ease;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .app-card::before {
@@ -561,7 +611,6 @@
     }
 
     .app-card:hover {
-      transform: translateY(-8px) scale(1.01);
       border-color: transparent;
       box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), var(--shadow-glow);
     }
@@ -656,6 +705,14 @@
     .app-link:hover {
       color: #fff;
       text-shadow: 0 0 20px var(--cyan);
+    }
+
+    .apps-skeleton {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 40px 0;
     }
 
     /* ----- About (Glass skills) ----- */
@@ -925,6 +982,10 @@
         padding: 6px 16px;
         bottom: -10px;
       }
+
+      .section-label-row {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 600px) {
@@ -939,10 +1000,17 @@
       .apps-grid {
         grid-template-columns: 1fr;
       }
+
+      .cursor-glow {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Cursor ambient glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- ===== ADVANCED BACKGROUND ===== -->
   <div class="bg-layer">
@@ -978,8 +1046,8 @@
               I'm Abdus Salam — a mechanical engineer and independent Android developer from Maidan Dir Lower. I build CNC machining tools, Islamic digital products, and games, end-to-end: UI, DSP audio, and the engineering math underneath.
             </p>
             <div class="hero-stats">
-              <div class="stat"><strong>6</strong><span>Apps Published</span></div>
-              <div class="stat"><strong class="gold">5.0★</strong><span>SmartTurn Rating</span></div>
+              <div class="stat"><strong id="statApps">—</strong><span>Apps Published</span></div>
+              <div class="stat"><strong class="gold" id="statRating">—</strong><span id="statRatingLabel">Top Rating</span></div>
               <div class="stat"><strong class="cyan">10+</strong><span>Years CNC Experience</span></div>
             </div>
             <div class="btn-group">
@@ -1003,20 +1071,16 @@
                     </linearGradient>
                   </defs>
                   <rect width="400" height="400" rx="18" fill="url(#avatarGrad)" />
-                  <!-- Tech grid lines -->
                   <line x1="60" y1="280" x2="340" y2="280" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
                   <line x1="60" y1="300" x2="340" y2="300" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
                   <line x1="60" y1="320" x2="340" y2="320" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
                   <circle cx="200" cy="160" r="70" fill="rgba(255,255,255,0.03)" stroke="rgba(0,229,255,0.2)" stroke-width="1" />
                   <circle cx="200" cy="160" r="60" fill="rgba(59,130,246,0.1)" />
-                  <!-- Face silhouette -->
                   <circle cx="175" cy="148" r="7" fill="#a8b8d8" />
                   <circle cx="225" cy="148" r="7" fill="#a8b8d8" />
                   <path d="M170 185 Q200 205 230 185" stroke="#a8b8d8" stroke-width="5" fill="none" stroke-linecap="round" />
-                  <!-- Tech visor / glasses effect -->
                   <rect x="150" y="170" width="100" height="20" rx="10" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.3)" stroke-width="1" />
                   <rect x="175" y="175" width="50" height="10" rx="5" fill="rgba(0,229,255,0.1)" />
-                  <!-- Code brackets -->
                   <text x="60" y="260" font-family="monospace" font-size="14" fill="rgba(0,229,255,0.3)">{ .engineer }</text>
                   <text x="60" y="340" font-family="monospace" font-size="14" fill="rgba(139,92,246,0.3)">{ .developer }</text>
                   <circle cx="200" cy="330" r="16" fill="none" stroke="url(#circleGrad)" stroke-width="2" />
@@ -1038,112 +1102,15 @@
     <!-- ===== APPS ===== -->
     <section id="apps">
       <div class="container">
-        <span class="section-label">Published Work</span>
+        <div class="section-label-row">
+          <span class="section-label">Published Work</span>
+          <span class="live-badge"><span class="dot"></span><span id="liveText">Live from Google Play</span></span>
+        </div>
         <h2 class="section-title">Apps on <span class="gradient-text">Google Play</span></h2>
-        <p class="section-desc">Each card pulls live Play Store ratings and download tiers.</p>
+        <p class="section-desc">Ratings and download tiers below are pulled directly from each app's public Play Store listing — the same numbers Google shows shoppers, kept fresh automatically.</p>
 
-        <div class="apps-grid">
-          <!-- Card 1 -->
-          <div class="app-card reveal reveal-stagger">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256" alt="Machinist Nexus" loading="lazy" />
-              <div class="app-meta">
-                <h3>Machinist Nexus</h3>
-                <span class="app-id">com.machinist.toolbox</span>
-              </div>
-            </div>
-            <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span>50+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="app-card reveal reveal-stagger" style="transition-delay:0.1s;">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256" alt="SmartTurn" loading="lazy" />
-              <div class="app-meta">
-                <h3>SmartTurn</h3>
-                <span class="app-id">com.turningcalculator.pro</span>
-              </div>
-            </div>
-            <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span class="rating">★ 5.0</span><span>100+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="app-card reveal reveal-stagger" style="transition-delay:0.2s;">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256" alt="SmartMill" loading="lazy" />
-              <div class="app-meta">
-                <h3>SmartMill</h3>
-                <span class="app-id">com.cncmilling.calculator</span>
-              </div>
-            </div>
-            <span class="app-tag">Engineering Tools</span>
-            <p class="app-desc">CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span>100+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.cncmilling.calculator" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="app-card reveal reveal-stagger" style="transition-delay:0.3s;">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256" alt="Deenly" loading="lazy" />
-              <div class="app-meta">
-                <h3>Deenly</h3>
-                <span class="app-id">com.ramzan.prayer.hadees</span>
-              </div>
-            </div>
-            <span class="app-tag">Islamic Lifestyle</span>
-            <p class="app-desc">Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span>100+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="app-card reveal reveal-stagger" style="transition-delay:0.4s;">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/yvnWiqA8FUJdkPYzUTYQMMhZY3nEjlLF8s1UnEZersHNb_Q-A1__mXqIuEFatx8EvNxXm3mDTDDkRlHXJM4VE8g=s256" alt="Al-Fajar" loading="lazy" />
-              <div class="app-meta">
-                <h3>Al-Fajar</h3>
-                <span class="app-id">com.al.alishaat</span>
-              </div>
-            </div>
-            <span class="app-tag">Islamic Audio Library</span>
-            <p class="app-desc">Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span>50+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.al.alishaat" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="app-card reveal reveal-stagger" style="transition-delay:0.5s;">
-            <div class="app-card-top">
-              <img class="app-icon" src="https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256" alt="LudoMaster" loading="lazy" />
-              <div class="app-meta">
-                <h3>LudoMaster</h3>
-                <span class="app-id">com.ludomaster.pk</span>
-              </div>
-            </div>
-            <span class="app-tag">Game</span>
-            <p class="app-desc">Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.</p>
-            <div class="app-footer">
-              <div class="app-stats"><span class="rating">★ 4.0</span><span>100+ downloads</span></div>
-              <a class="app-link" href="https://play.google.com/store/apps/details?id=com.ludomaster.pk" target="_blank" rel="noopener">Open ↗</a>
-            </div>
-          </div>
+        <div class="apps-grid" id="appsGrid">
+          <div class="apps-skeleton">Loading live app data…</div>
         </div>
       </div>
     </section>
@@ -1227,8 +1194,8 @@
           </div>
           <div class="tl-item reveal">
             <div class="tl-year">Now</div>
-            <div class="tl-title">Building Smart Spin</div>
-            <div class="tl-desc">A professional CNC metal-spinning CAD/CAM application — contour editing, 3D simulation, and multi-controller G-code generation.</div>
+            <div class="tl-title">Smart Spin: Metal Forming Suite</div>
+            <div class="tl-desc">A professional CNC metal-spinning, shear-spinning &amp; flow-forming analysis suite — material database, mandrel geometry, and forming-force safety checks.</div>
           </div>
         </div>
       </div>
@@ -1263,6 +1230,83 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
+    // ---- Fallback data (used only if apps.json can't be fetched, e.g. opened as a local file) ----
+    const FALLBACK_DATA = {
+      "updated_at": null,
+      "apps": [
+        { id: "com.machinist.toolbox", name: "Machinist Nexus", tag: "Engineering Tools", description: "AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.", icon: "https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256", installs: "50+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.machinist.toolbox" },
+        { id: "com.turningcalculator.pro", name: "SmartTurn", tag: "Engineering Tools", description: "CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.", icon: "https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256", installs: "100+", score: 5.0, ratings: 7, url: "https://play.google.com/store/apps/details?id=com.turningcalculator.pro" },
+        { id: "com.cncmilling.calculator", name: "SmartMill", tag: "Engineering Tools", description: "CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.", icon: "https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.cncmilling.calculator" },
+        { id: "com.metalspinning.calculator", name: "Smart Spin", tag: "Engineering Tools", description: "Precision analysis for Metal Spinning, Shear Spinning & Flow Forming — materials, mandrel geometry, and forming forces.", icon: "https://play-lh.googleusercontent.com/sSi-k7LFO7PsFKIDGTUT7Ob7ZjxxqetvONJB9HlxUC4gLUfrdycSOJ4Fn0tkWyi59MC9p6Uay8Cc-mLipzc4BQ=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.metalspinning.calculator" },
+        { id: "com.ramzan.prayer.hadees", name: "Deenly", tag: "Islamic Lifestyle", description: "Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.", icon: "https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" },
+        { id: "com.al.alishaat", name: "Al-Fajar", tag: "Islamic Audio Library", description: "Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.", icon: "https://play-lh.googleusercontent.com/YN_UXRulxoQZLTW21LavjXwdU17v9ANDRxZg50Vm-lRoXEZBKQKXmBNB9TPdqW9h8ctDBmsdH5wjwi0lIhUwyg=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.al.alishaat" },
+        { id: "com.ludomaster.pk", name: "LudoMaster", tag: "Game", description: "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.", icon: "https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256", installs: "100+", score: 4.0, ratings: 10, url: "https://play.google.com/store/apps/details?id=com.ludomaster.pk" }
+      ]
+    };
+
+    function timeAgo(iso) {
+      if (!iso) return "just now";
+      const diffMs = Date.now() - new Date(iso).getTime();
+      const hrs = Math.round(diffMs / 3600000);
+      if (hrs < 1) return "just now";
+      if (hrs < 24) return `${hrs}h ago`;
+      return `${Math.round(hrs / 24)}d ago`;
+    }
+
+    function renderApps(data) {
+      const grid = document.getElementById('appsGrid');
+      grid.innerHTML = '';
+      data.apps.forEach((a, i) => {
+        const card = document.createElement('div');
+        card.className = 'app-card reveal reveal-stagger';
+        card.style.transitionDelay = `${i * 0.08}s`;
+        const statsHtml = [
+          a.score ? `<span class="rating">★ ${a.score.toFixed ? a.score.toFixed(1) : a.score}</span>` : '',
+          `<span>${a.installs} downloads</span>`
+        ].filter(Boolean).join('');
+        card.innerHTML = `
+          <div class="app-card-top">
+            <img class="app-icon" src="${a.icon}" alt="${a.name}" loading="lazy" />
+            <div class="app-meta">
+              <h3>${a.name}</h3>
+              <span class="app-id">${a.id}</span>
+            </div>
+          </div>
+          <span class="app-tag">${a.tag}</span>
+          <p class="app-desc">${a.description}</p>
+          <div class="app-footer">
+            <div class="app-stats">${statsHtml}</div>
+            <a class="app-link" href="${a.url}" target="_blank" rel="noopener">Open ↗</a>
+          </div>
+        `;
+        grid.appendChild(card);
+        revealObserver.observe(card);
+      });
+
+      // hero stats
+      const scored = data.apps.filter(a => a.score);
+      document.getElementById('statApps').textContent = data.apps.length;
+      if (scored.length) {
+        const top = Math.max(...scored.map(a => a.score));
+        document.getElementById('statRating').textContent = top.toFixed(1) + '★';
+      } else {
+        document.getElementById('statRating').textContent = '—';
+        document.getElementById('statRatingLabel').textContent = 'Not yet rated';
+      }
+
+      const liveText = document.getElementById('liveText');
+      liveText.textContent = data.updated_at
+        ? `Synced ${timeAgo(data.updated_at)}`
+        : 'Live from Google Play';
+    }
+
+    // Try live apps.json first (kept fresh by the GitHub Action scraper);
+    // fall back to the embedded snapshot if it can't be fetched.
+    fetch('./apps.json', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('no apps.json'); return r.json(); })
+      .then(renderApps)
+      .catch(() => renderApps(FALLBACK_DATA));
+
     // 1. Scroll Reveal (with stagger)
     const revealEls = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1296,7 +1340,41 @@
       });
     }
 
-    // 3. Generate Background Particles
+    // 3. Subtle tilt on every app card (delegated, since cards are rendered dynamically)
+    document.addEventListener('mousemove', (e) => {
+      const card = e.target.closest('.app-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateX = ((y - rect.height / 2) / rect.height) * -6;
+      const rotateY = ((x - rect.width / 2) / rect.width) * 6;
+      card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    document.addEventListener('mouseover', (e) => {
+      const card = e.target.closest('.app-card');
+      if (card) card.style.transition = 'none';
+    });
+    document.addEventListener('mouseout', (e) => {
+      const card = e.target.closest('.app-card');
+      const toCard = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.app-card');
+      if (card && card !== toCard) {
+        card.style.transition = 'transform 0.4s ease';
+        card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+      }
+    });
+
+    // 4. Cursor ambient glow
+    const glow = document.getElementById('cursorGlow');
+    if (glow && window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        glow.style.opacity = '1';
+        glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      });
+      window.addEventListener('mouseleave', () => glow.style.opacity = '0');
+    }
+
+    // 5. Generate Background Particles
     const particlesContainer = document.getElementById('particles');
     if (particlesContainer) {
       for (let i = 0; i < 30; i++) {
