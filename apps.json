@@ -1,0 +1,89 @@
+{
+  "updated_at": "2026-09-13T00:00:00Z",
+  "apps": [
+    {
+      "id": "com.machinist.toolbox",
+      "name": "Machinist Nexus",
+      "full_name": "Machinist Nexus: Calculators",
+      "tag": "Engineering Tools",
+      "description": "AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.",
+      "icon": "https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256",
+      "installs": "50+",
+      "score": null,
+      "ratings": 0,
+      "url": "https://play.google.com/store/apps/details?id=com.machinist.toolbox"
+    },
+    {
+      "id": "com.turningcalculator.pro",
+      "name": "SmartTurn",
+      "full_name": "SmartTurn: CNC Turning Calc",
+      "tag": "Engineering Tools",
+      "description": "CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.",
+      "icon": "https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256",
+      "installs": "100+",
+      "score": 5.0,
+      "ratings": 7,
+      "url": "https://play.google.com/store/apps/details?id=com.turningcalculator.pro"
+    },
+    {
+      "id": "com.cncmilling.calculator",
+      "name": "SmartMill",
+      "full_name": "SmartMill: CNC Milling Calc",
+      "tag": "Engineering Tools",
+      "description": "CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.",
+      "icon": "https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256",
+      "installs": "100+",
+      "score": null,
+      "ratings": 0,
+      "url": "https://play.google.com/store/apps/details?id=com.cncmilling.calculator"
+    },
+    {
+      "id": "com.metalspinning.calculator",
+      "name": "Smart Spin",
+      "full_name": "Smart Spin: Metal Forming Suite",
+      "tag": "Engineering Tools",
+      "description": "Precision analysis for Metal Spinning, Shear Spinning & Flow Forming — materials, mandrel geometry, and forming forces.",
+      "icon": "https://play-lh.googleusercontent.com/sSi-k7LFO7PsFKIDGTUT7Ob7ZjxxqetvONJB9HlxUC4gLUfrdycSOJ4Fn0tkWyi59MC9p6Uay8Cc-mLipzc4BQ=s256",
+      "installs": "10+",
+      "score": null,
+      "ratings": 0,
+      "url": "https://play.google.com/store/apps/details?id=com.metalspinning.calculator"
+    },
+    {
+      "id": "com.ramzan.prayer.hadees",
+      "name": "Deenly",
+      "full_name": "Deenly: Prayer, Hadith & Tilawat",
+      "tag": "Islamic Lifestyle",
+      "description": "Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.",
+      "icon": "https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256",
+      "installs": "100+",
+      "score": null,
+      "ratings": 0,
+      "url": "https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees"
+    },
+    {
+      "id": "com.al.alishaat",
+      "name": "Al-Fajar",
+      "full_name": "Al-Fajar: Islamic Audio Library",
+      "tag": "Islamic Audio Library",
+      "description": "Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.",
+      "icon": "https://play-lh.googleusercontent.com/YN_UXRulxoQZLTW21LavjXwdU17v9ANDRxZg50Vm-lRoXEZBKQKXmBNB9TPdqW9h8ctDBmsdH5wjwi0lIhUwyg=s256",
+      "installs": "10+",
+      "score": null,
+      "ratings": 0,
+      "url": "https://play.google.com/store/apps/details?id=com.al.alishaat"
+    },
+    {
+      "id": "com.ludomaster.pk",
+      "name": "LudoMaster",
+      "full_name": "LudoMaster: Online Multiplayer",
+      "tag": "Game",
+      "description": "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.",
+      "icon": "https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256",
+      "installs": "100+",
+      "score": 4.0,
+      "ratings": 10,
+      "url": "https://play.google.com/store/apps/details?id=com.ludomaster.pk"
+    }
+  ]
+}
