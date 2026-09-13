@@ -1,0 +1,53 @@
+# Setup — 5 minutes
+
+1. Copy these 5 items into your `absalamofficial-cmyk.github.io` repo root,
+   keeping the folder structure:
+   - `index.html`
+   - `apps.json`
+   - `scraper.py`
+   - `requirements.txt`
+   - `.github/workflows/update-apps.yml`
+
+2. Commit and push. GitHub Pages will serve `index.html` as before —
+   nothing else changes about hosting.
+
+3. On GitHub → your repo → **Actions** tab → you should see
+   "Update Play Store data". Click **Run workflow** once manually to do
+   the first refresh (after that it runs automatically every 6 hours).
+
+4. That's it. `apps.json` will now update itself every 6 hours with the
+   real name, icon, star rating, review count, and install tier straight
+   from each app's public Play Store page — no manual edits needed.
+
+## Adding a new app later
+
+Open `scraper.py`, add one line to the `PACKAGE_IDS` dictionary near the
+top with the new package id, its category tag, and a one-line description:
+
+```python
+"com.your.newapp": ("Category Tag", "One-line description.", "Display Name"),
+```
+
+Commit that one line. On the next scheduled run (or click **Run workflow**
+to do it immediately) the new app's real name/icon/rating/downloads get
+pulled in and it appears on the site in the exact same card format as the
+others — no HTML editing required.
+
+## Why this is the "real" data ceiling
+
+Google Play does not publish an exact install counter to anyone —
+not to visitors of your website, and not even to you in a public API.
+The only install figures Play Store shows publicly are rounded tiers
+(`10+`, `50+`, `100+`, `500+`, `1,000+` …), which is exactly what
+`scraper.py` reads and what the site displays. That's the same number a
+shopper sees on the actual Play Store page — nothing here is fake or
+estimated, but it also won't ever show an exact "1,247 installs" figure,
+because that number isn't public anywhere.
+
+If you eventually want your *exact* internal install/uninstall counts
+(the ones visible only inside Play Console) surfaced on the site, that
+needs the official Google Play Developer Reporting API with a service
+account key generated from your own Play Console — a bigger, separate
+setup involving Google Cloud credentials that only you (the account
+owner) can create. Happy to help wire that up too if you want to go that
+route later.
