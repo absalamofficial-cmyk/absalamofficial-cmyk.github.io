@@ -1,855 +1,1394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdus Salam — Mechanical Engineer & Android Developer</title>
-<meta name="description" content="Abdus Salam · Mechanical Engineer & Android Developer. Precision engineering tools, Islamic digital products, and multiplayer games — built and shipped independently.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdus Salam — Advanced Engineering & Android</title>
+  <meta name="description" content="Abdus Salam — mechanical engineer and Android developer from Maidan Dir Lower, building CNC tools and apps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- Reset & Base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0f1629;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f0f4ff;
+      --text-secondary: #a8b8d8;
+      --text-muted: #6b7fa0;
+      --cyan: #00e5ff;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --gold: #facc15;
+      --green: #22c55e;
+      --radius: 20px;
+      --shadow-glow: 0 8px 32px rgba(0, 229, 255, 0.15);
+    }
 
-<style>
-:root{
-  --bg:#02010a;
-  --bg2:#05021a;
-  --panel:rgba(12,14,34,.55);
-  --panel-2:rgba(8,10,26,.75);
-  --line:rgba(0,240,255,.14);
-  --ink:#eaf6ff;
-  --mut:#8b93b8;
-  --dim:#4a527a;
-  --cyan:#00f0ff;
-  --mag:#ff2ec4;
-  --vio:#8b5cf6;
-  --lime:#b6ff2e;
-  --amber:#ffb800;
-  --org:#ff9f1c;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Rajdhani',sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.55;
-  overflow-x:hidden;
-  cursor:none;
-}
-.mono{font-family:'JetBrains Mono',monospace;}
-.orb{font-family:'Orbitron',sans-serif;}
-::selection{background:var(--mag);color:#fff;}
-a{color:inherit;}
-img,svg,canvas{display:block;}
-::-webkit-scrollbar{width:9px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--mag));border-radius:10px;}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ---------- FIXED FX LAYERS ---------- */
-#bg3d{position:fixed;inset:0;z-index:-3;}
-.grid-fx{
-  position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-    linear-gradient(rgba(0,240,255,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,240,255,.045) 1px,transparent 1px);
-  background-size:52px 52px;
-  mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 78%);
-  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 78%);
-}
-.scan-fx{
-  position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px);
-  mix-blend-mode:overlay;
-}
-.vig-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(2,1,10,.85) 100%);}
-#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
-  background:linear-gradient(90deg,var(--cyan),var(--vio),var(--mag));
-  box-shadow:0 0 14px var(--cyan),0 0 30px var(--mag);}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      cursor: default;
+    }
 
-/* ---------- CURSOR ---------- */
-.cur-dot,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:999;border-radius:50%;}
-.cur-dot{width:7px;height:7px;background:var(--cyan);box-shadow:0 0 10px var(--cyan);transform:translate(-50%,-50%);}
-.cur-ring{width:36px;height:36px;border:1.5px solid rgba(0,240,255,.55);transform:translate(-50%,-50%);
-  transition:width .25s,height .25s,border-color .25s,background .25s;}
-.cur-ring.hot{width:58px;height:58px;border-color:var(--mag);background:rgba(255,46,196,.08);box-shadow:0 0 22px rgba(255,46,196,.35);}
-@media (hover:none){.cur-dot,.cur-ring{display:none;}body{cursor:auto;}}
+    /* ----- Cursor glow (follows pointer, desktop only) ----- */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.06), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      will-change: transform;
+    }
 
-/* ---------- PRELOADER ---------- */
-#loader{position:fixed;inset:0;z-index:500;background:var(--bg);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:26px;}
-.ld-hex{width:96px;height:96px;position:relative;display:flex;align-items:center;justify-content:center;}
-.ld-hex::before,.ld-hex::after{content:'';position:absolute;inset:0;border-radius:50%;}
-.ld-hex::before{border:2px solid transparent;border-top-color:var(--cyan);border-right-color:var(--cyan);
-  animation:spin 1.1s linear infinite;}
-.ld-hex::after{inset:14px;border:2px dashed rgba(255,46,196,.6);animation:spin 2.4s linear infinite reverse;}
-.ld-hex i{font-size:1.5rem;color:var(--lime);animation:corePulse 1s ease-in-out infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
-@keyframes corePulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(.72);opacity:.5;}}
-#ld-pct{font-family:'Orbitron',sans-serif;font-size:2.1rem;font-weight:900;
-  background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent;}
-.ld-txt{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.35em;color:var(--mut);}
-.ld-bar{width:210px;height:2px;background:rgba(255,255,255,.08);overflow:hidden;}
-.ld-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--mag));
-  box-shadow:0 0 12px var(--cyan);}
+    /* ----- Advanced Animated Background (Orbs & Grid) ----- */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-/* ---------- NAV ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(2,1,10,.72);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);}
-.nav::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),var(--mag),transparent);opacity:.7;}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;
-  padding:15px 26px;max-width:1240px;margin:0 auto;}
-.brand{font-family:'Orbitron',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.06em;
-  display:flex;align-items:center;gap:11px;text-decoration:none;}
-.brand i{color:var(--cyan);font-size:1.15rem;animation:spin 7s linear infinite;
-  filter:drop-shadow(0 0 6px var(--cyan));}
-.brand b{background:linear-gradient(90deg,var(--cyan),var(--mag));
-  -webkit-background-clip:text;background-clip:text;color:transparent;}
-.nav-links{display:flex;align-items:center;gap:32px;}
-.nav-links a{position:relative;color:var(--mut);text-decoration:none;font-size:.86rem;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;transition:color .25s;}
-.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;
-  background:linear-gradient(90deg,var(--cyan),var(--mag));transition:width .3s;box-shadow:0 0 8px var(--cyan);}
-.nav-links a:not(.nav-cta):hover{color:var(--ink);}
-.nav-links a:not(.nav-cta):hover::after{width:100%;}
-.nav-cta{padding:10px 20px;color:#02010a !important;font-weight:700;
-  background:linear-gradient(90deg,var(--cyan),#4de3ff);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
-  transition:all .25s;}
-.nav-cta:hover{filter:brightness(1.15);box-shadow:0 0 24px rgba(0,240,255,.5);}
-@media (max-width:760px){.nav-links a:not(.nav-cta){display:none;}}
-</style>
-<style>
-/* ---------- HERO ---------- */
-.wrap{max-width:1240px;margin:0 auto;padding:0 26px;}
-.hero{min-height:100vh;display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;
-  padding:150px 0 70px;}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;letter-spacing:.22em;color:var(--lime);padding:8px 16px;margin-bottom:26px;
-  border:1px solid rgba(182,255,46,.35);background:rgba(182,255,46,.05);
-  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
-  text-shadow:0 0 10px rgba(182,255,46,.7);}
-.eyebrow .p{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);
-  animation:blip 1.6s infinite;}
-@keyframes blip{0%,100%{opacity:1;}50%{opacity:.25;}}
-h1{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,4.4vw,3.5rem);font-weight:900;
-  line-height:1.14;letter-spacing:.01em;margin-bottom:22px;text-transform:uppercase;}
-h1 .grad{background:linear-gradient(90deg,var(--cyan) 0%,var(--vio) 50%,var(--mag) 100%);
-  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:gradShift 4s linear infinite;}
-@keyframes gradShift{to{background-position:200% 0;}}
-.glitch{position:relative;display:inline-block;}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;
-  background:linear-gradient(90deg,var(--cyan),var(--vio),var(--mag));background-size:200% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;}
-.glitch::before{animation:gl1 3.2s infinite linear alternate-reverse;}
-.glitch::after{animation:gl2 2.7s infinite linear alternate-reverse;}
-@keyframes gl1{0%,86%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}
-  87%{clip-path:inset(12% 0 58% 0);transform:translate(-4px,-2px);opacity:.85;}
-  90%{clip-path:inset(60% 0 8% 0);transform:translate(4px,2px);opacity:.85;}
-  93%,100%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}}
-@keyframes gl2{0%,88%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}
-  89%{clip-path:inset(48% 0 32% 0);transform:translate(4px,1px);opacity:.85;}
-  92%{clip-path:inset(6% 0 74% 0);transform:translate(-4px,-1px);opacity:.85;}
-  95%,100%{clip-path:inset(0 0 100% 0);transform:none;opacity:0;}}
-.typeline{font-family:'JetBrains Mono',monospace;font-size:.92rem;color:var(--cyan);margin-bottom:18px;
-  min-height:1.5em;text-shadow:0 0 12px rgba(0,240,255,.5);}
-.typeline .caret{display:inline-block;width:9px;height:1.05em;background:var(--mag);
-  vertical-align:text-bottom;margin-left:3px;animation:blip .8s steps(1) infinite;box-shadow:0 0 8px var(--mag);}
-.hero-sub{color:var(--mut);font-size:1.08rem;line-height:1.75;max-width:540px;margin-bottom:34px;font-weight:500;}
-.hero-sub strong{color:var(--ink);font-weight:700;}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
-.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 28px;
-  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
-  text-decoration:none;transition:all .3s;overflow:hidden;
-  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);}
-.btn-solid{background:linear-gradient(90deg,var(--cyan),#38b6ff);color:#02010a;
-  box-shadow:0 0 26px rgba(0,240,255,.35);}
-.btn-solid::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);
-  transform:skewX(-20deg);transition:left .5s;}
-.btn-solid:hover::before{left:130%;}
-.btn-solid:hover{transform:translateY(-3px);box-shadow:0 0 44px rgba(0,240,255,.65);}
-.btn-ghost{border:1px solid rgba(255,46,196,.5);color:var(--mag);background:rgba(255,46,196,.06);}
-.btn-ghost:hover{background:rgba(255,46,196,.16);transform:translateY(-3px);box-shadow:0 0 30px rgba(255,46,196,.4);}
-.hero-chips{display:flex;flex-wrap:wrap;gap:11px;}
-.chip{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut);
-  border:1px solid var(--line);background:rgba(0,240,255,.03);padding:9px 15px;display:flex;align-items:center;gap:9px;
-  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:all .25s;}
-.chip:hover{color:var(--ink);border-color:rgba(0,240,255,.5);box-shadow:0 0 18px rgba(0,240,255,.2);}
-.chip i{color:var(--amber);}
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
 
-/* hero 3d panel */
-.hud{position:relative;border:1px solid var(--line);background:var(--panel);
-  backdrop-filter:blur(8px);padding:18px;overflow:hidden;}
-.hud::before{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 50% 42%,rgba(0,240,255,.09),transparent 62%);}
-.hud-grid{position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:linear-gradient(rgba(139,92,246,.08) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(139,92,246,.08) 1px,transparent 1px);
-  background-size:34px 34px;}
-.corner{position:absolute;width:22px;height:22px;z-index:3;}
-.corner.tl{top:8px;left:8px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);}
-.corner.tr{top:8px;right:8px;border-top:2px solid var(--mag);border-right:2px solid var(--mag);}
-.corner.bl{bottom:8px;left:8px;border-bottom:2px solid var(--mag);border-left:2px solid var(--mag);}
-.corner.br{bottom:8px;right:8px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);}
-.hv-row{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.hv-title{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;color:var(--dim);}
-.hv-dots{display:flex;gap:6px;}
-.hv-dots span{width:9px;height:9px;border-radius:50%;}
-#hero3d{width:100%;height:380px;position:relative;z-index:1;}
-.hv-foot{position:relative;z-index:2;margin-top:10px;padding-top:12px;border-top:1px solid var(--line);
-  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);display:flex;justify-content:space-between;}
-.hv-foot b{color:var(--lime);font-weight:600;}
-.float-tag{position:absolute;z-index:4;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;
-  padding:6px 11px;border:1px solid var(--line);background:rgba(2,1,10,.8);color:var(--cyan);
-  animation:floaty 4.5s ease-in-out infinite;box-shadow:0 0 16px rgba(0,240,255,.18);}
-.float-tag.t1{top:16%;left:-14px;color:var(--lime);border-color:rgba(182,255,46,.35);}
-.float-tag.t2{bottom:22%;right:-10px;color:var(--mag);border-color:rgba(255,46,196,.35);animation-delay:-2.2s;}
-@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
 
-/* ---------- MARQUEE ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:rgba(0,240,255,.03);overflow:hidden;padding:15px 0;position:relative;}
-.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;}
-.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
-.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
-.mq-track{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;}
-.mq-track span{font-family:'Orbitron',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.22em;
-  color:var(--dim);white-space:nowrap;display:flex;align-items:center;gap:44px;}
-.mq-track span i{color:var(--mag);font-size:.6rem;text-shadow:0 0 8px var(--mag);}
-@keyframes mq{to{transform:translateX(-50%);}}
+    .bg-orb.orb1 {
+      width: 500px;
+      height: 500px;
+      background: var(--purple);
+      top: -10%;
+      right: -10%;
+      opacity: 0.25;
+    }
 
-/* ---------- STATS ---------- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:70px 0 0;}
-.stat{position:relative;padding:30px 18px;text-align:center;background:var(--panel);border:1px solid var(--line);
-  overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;
-  clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);}
-.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--sc,var(--cyan)),transparent);opacity:.9;}
-.stat::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,var(--scg,rgba(0,240,255,.14)),transparent 65%);
-  opacity:0;transition:opacity .3s;}
-.stat:hover{transform:translateY(-6px);border-color:var(--sc,var(--cyan));box-shadow:0 18px 44px -14px var(--scg,rgba(0,240,255,.4));}
-.stat:hover::after{opacity:1;}
-.stat b{position:relative;font-family:'Orbitron',sans-serif;font-size:2.15rem;font-weight:900;display:block;
-  color:var(--sc,var(--cyan));text-shadow:0 0 22px var(--scg,rgba(0,240,255,.55));}
-.stat span{position:relative;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--mut);
-  letter-spacing:.22em;text-transform:uppercase;}
-</style>
-<style>
-/* ---------- SECTIONS ---------- */
-section{margin-top:110px;}
-.section-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:38px;}
-.section-head h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;
-  text-transform:uppercase;letter-spacing:.04em;}
-.section-head h2 em{font-style:normal;color:var(--cyan);text-shadow:0 0 18px rgba(0,240,255,.6);}
-.section-head .tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--mag);letter-spacing:.18em;}
-.subhead{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.16em;color:var(--amber);
-  display:flex;justify-content:space-between;align-items:center;margin:52px 0 24px;padding-bottom:12px;
-  border-bottom:1px solid var(--line);text-shadow:0 0 10px rgba(255,184,0,.5);}
-.subhead span:last-child{color:var(--dim);}
-.subhead .sq{color:var(--mag);margin-right:8px;}
+    .bg-orb.orb2 {
+      width: 600px;
+      height: 600px;
+      background: var(--cyan);
+      bottom: -20%;
+      left: -15%;
+      opacity: 0.15;
+      animation-duration: 25s;
+    }
 
-/* ---------- APP CARDS ---------- */
-.apps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(345px,1fr));gap:24px;perspective:1400px;}
-.app-card{position:relative;padding:28px;background:var(--panel);border:1px solid var(--line);
-  backdrop-filter:blur(8px);transform-style:preserve-3d;transition:border-color .3s,box-shadow .3s;
-  clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);overflow:hidden;}
-.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;z-index:2;
-  background:linear-gradient(90deg,transparent,var(--ac,var(--cyan)),transparent);opacity:0;transition:opacity .3s;}
-.app-card::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
-  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),var(--acg,rgba(0,240,255,.13)),transparent 65%);}
-.app-card:hover{border-color:var(--ac,var(--cyan));box-shadow:0 24px 60px -18px var(--acg,rgba(0,240,255,.45));}
-.app-card:hover::before,.app-card:hover::after{opacity:1;}
-.app-top{display:flex;align-items:center;gap:14px;margin-bottom:17px;transform:translateZ(30px);}
-.app-icon{position:relative;width:52px;height:52px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;color:var(--ac,var(--cyan));background:rgba(255,255,255,.04);border:1px solid var(--line);
-  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
-  filter:drop-shadow(0 0 10px var(--acg,rgba(0,240,255,.5)));}
-.app-icon i{animation:iconSpin 9s linear infinite;}
-.app-card:hover .app-icon i{animation-duration:2.4s;}
-@keyframes iconSpin{to{transform:rotate(360deg);}}
-.app-name{font-family:'Orbitron',sans-serif;font-size:1.12rem;font-weight:800;letter-spacing:.03em;}
-.app-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--ac,var(--cyan));opacity:.9;}
-.status-row{display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;}
-.pill{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;padding:5px 12px;
-  display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);color:var(--mut);
-  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);}
-.pill.live{color:var(--lime);border-color:rgba(182,255,46,.4);background:rgba(182,255,46,.06);
-  text-shadow:0 0 8px rgba(182,255,46,.6);}
-.pill.live .d{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:blip 1.6s infinite;}
-.app-desc{color:var(--mut);font-size:.94rem;line-height:1.65;margin-bottom:16px;font-weight:500;}
-.feat{list-style:none;max-height:172px;overflow-y:auto;margin-bottom:17px;padding-right:8px;}
-.feat li{display:flex;gap:10px;font-size:.86rem;color:var(--mut);margin-bottom:9px;font-weight:500;}
-.feat li i{color:var(--ac,var(--cyan));font-size:.6rem;margin-top:6px;filter:drop-shadow(0 0 5px var(--acg,rgba(0,240,255,.6)));}
-.feat::-webkit-scrollbar{width:4px;}
-.feat::-webkit-scrollbar-track{background:transparent;}
-.feat::-webkit-scrollbar-thumb{background:var(--ac,var(--cyan));border-radius:10px;}
-.stack{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
-.stack span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:var(--vio);
-  border:1px solid rgba(139,92,246,.4);background:rgba(139,92,246,.08);padding:4px 10px;
-  clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px);}
-.app-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:14px;margin-bottom:18px;
-  background:rgba(0,0,0,.35);border:1px solid var(--line);}
-.as-val{font-family:'Orbitron',sans-serif;font-weight:800;color:var(--amber);font-size:.95rem;
-  text-shadow:0 0 12px rgba(255,184,0,.5);}
-.as-lab{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;}
-.app-link{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;
-  text-decoration:none;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);
-  font-family:'Orbitron',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-  transition:all .3s;overflow:hidden;
-  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);}
-.app-link:hover{background:var(--ac,var(--cyan));border-color:var(--ac,var(--cyan));color:#02010a;
-  box-shadow:0 0 30px var(--acg,rgba(0,240,255,.55));}
+    .bg-orb.orb3 {
+      width: 400px;
+      height: 400px;
+      background: var(--pink);
+      top: 40%;
+      left: 40%;
+      opacity: 0.12;
+      animation-duration: 30s;
+    }
 
-/* ---------- EXPERTISE ---------- */
-.expertise{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--panel);
-  backdrop-filter:blur(8px);clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);}
-.exp-col{padding:38px 32px;border-right:1px solid var(--line);position:relative;overflow:hidden;transition:background .3s;}
-.exp-col:last-child{border-right:none;}
-.exp-col::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
-  background:radial-gradient(circle at 50% 0%,var(--ecg,rgba(0,240,255,.12)),transparent 70%);}
-.exp-col:hover::before{opacity:1;}
-.exp-col h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;
-  margin-bottom:24px;display:flex;align-items:center;gap:13px;text-transform:uppercase;}
-.exp-col h3 i{width:40px;height:40px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:1rem;
-  color:var(--ec,var(--cyan));border:1px solid var(--ec,var(--cyan));background:rgba(255,255,255,.03);
-  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
-  filter:drop-shadow(0 0 9px var(--ecg,rgba(0,240,255,.55)));}
-.exp-item{margin-bottom:17px;padding-left:15px;border-left:2px solid var(--line);transition:border-color .3s;}
-.exp-col:hover .exp-item{border-left-color:var(--ec,var(--cyan));}
-.exp-item h4{font-size:.96rem;margin-bottom:4px;font-weight:700;letter-spacing:.03em;}
-.exp-item p{font-size:.85rem;color:var(--mut);line-height:1.6;font-weight:500;}
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(60px, -40px) scale(1.2);
+      }
+    }
 
-/* ---------- STANDARDS ---------- */
-.standards{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(8px);
-  clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);}
-.std-item{display:grid;grid-template-columns:110px 1fr;gap:22px;padding:23px 28px;border-bottom:1px solid var(--line);
-  align-items:center;transition:background .3s,padding-left .3s;}
-.std-item:last-child{border-bottom:none;}
-.std-item:hover{background:rgba(0,240,255,.04);padding-left:38px;}
-.std-code{font-family:'Orbitron',sans-serif;font-weight:800;font-size:.8rem;color:var(--cyan);
-  text-shadow:0 0 12px rgba(0,240,255,.55);}
-.std-item:nth-child(2) .std-code{color:var(--mag);text-shadow:0 0 12px rgba(255,46,196,.55);}
-.std-item:nth-child(3) .std-code{color:var(--lime);text-shadow:0 0 12px rgba(182,255,46,.55);}
-.std-item:nth-child(4) .std-code{color:var(--amber);text-shadow:0 0 12px rgba(255,184,0,.55);}
-.std-item h4{font-size:1.02rem;margin-bottom:3px;font-weight:700;letter-spacing:.03em;}
-.std-item p{font-size:.88rem;color:var(--mut);font-weight:500;}
+    /* Floating particles (fake tech dots) */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
 
-/* ---------- FOOTER ---------- */
-.footer{position:relative;margin:110px 0 34px;padding:64px 42px 36px;text-align:center;overflow:hidden;
-  background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
-  clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);}
-.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--cyan),var(--mag),transparent);}
-.footer h3{font-family:'Orbitron',sans-serif;font-size:1.7rem;font-weight:900;letter-spacing:.05em;margin-bottom:8px;
-  background:linear-gradient(90deg,var(--cyan),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent;}
-.footer>p{color:var(--mut);font-size:.95rem;font-weight:500;letter-spacing:.06em;}
-.footer-links{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:32px 0;}
-.footer-link{color:var(--mut);text-decoration:none;font-size:.88rem;font-weight:600;letter-spacing:.08em;
-  display:flex;align-items:center;gap:9px;transition:all .25s;}
-.footer-link i{color:var(--cyan);transition:all .25s;}
-.footer-link:hover{color:var(--ink);text-shadow:0 0 12px rgba(0,240,255,.6);}
-.footer-link:hover i{color:var(--mag);filter:drop-shadow(0 0 6px var(--mag));}
-.footer-bottom{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;}
-.footer-bottom .mono{color:var(--dim);font-size:.68rem;letter-spacing:.18em;}
-.footer-bottom .glow{color:var(--lime);text-shadow:0 0 10px rgba(182,255,46,.55);}
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--cyan);
+      opacity: 0.3;
+      animation: particleMove linear infinite;
+    }
 
-[data-reveal]{opacity:0;}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;}
-}
-@media (max-width:960px){
-  .hero{grid-template-columns:1fr;padding-top:130px;gap:44px;}
-  .stats{grid-template-columns:repeat(2,1fr);}
-  .expertise{grid-template-columns:1fr;}
-  .exp-col{border-right:none;border-bottom:1px solid var(--line);}
-  .exp-col:last-child{border-bottom:none;}
-  .std-item{grid-template-columns:82px 1fr;padding:19px 20px;}
-  #hero3d{height:320px;}
-  .float-tag{display:none;}
-}
-@media (max-width:520px){
-  .stats{grid-template-columns:1fr 1fr;}
-  h1{font-size:1.7rem;}
-  .footer{padding:44px 20px 28px;}
-  .apps-grid{grid-template-columns:1fr;}
-}
-</style>
+    @keyframes particleMove {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* ----- Container ----- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ----- Glass Navbar ----- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.7);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      transition: width 0.4s ease;
+      border-radius: 4px;
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    /* ----- Section Headers ----- */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-label-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.08);
+      padding: 4px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: rgba(34, 197, 94, 0.06);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+
+    .live-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: pulseDot 2s infinite;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-title .gradient-text {
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    /* ----- Hero with 3D Tilt ----- */
+    .hero {
+      padding: 40px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      background-size: 300% 100%;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats .stat strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: block;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stats .stat strong .cyan {
+      color: var(--cyan);
+    }
+    .hero-stats .stat strong .gold {
+      color: var(--gold);
+    }
+
+    .hero-stats .stat span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #070b14;
+      box-shadow: 0 4px 24px rgba(0, 229, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.4);
+    }
+
+    .btn-outline {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      color: var(--text-primary);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, 0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 800px;
+    }
+
+    .tilt-frame {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1/1;
+      border-radius: var(--radius);
+      padding: 3px;
+      background: conic-gradient(from 0deg, var(--cyan), var(--blue), var(--purple), var(--pink), var(--cyan));
+      animation: spinBorder 8s linear infinite;
+      box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
+      transition: transform 0.1s ease;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes spinBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .tilt-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: calc(var(--radius) - 2px);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tilt-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge-location {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7, 11, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      box-shadow: var(--shadow-glow);
+      width: max-content;
+    }
+
+    .badge-location strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .badge-location .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 16px var(--cyan);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    /* Floating tech shapes around hero */
+    .float-shape {
+      position: absolute;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 6px;
+      background: rgba(0, 229, 255, 0.02);
+      backdrop-filter: blur(4px);
+      animation: floatY 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .float-shape.s1 {
+      width: 40px;
+      height: 40px;
+      top: -10%;
+      right: -8%;
+      border-radius: 50%;
+      border-color: var(--purple);
+    }
+    .float-shape.s2 {
+      width: 60px;
+      height: 60px;
+      bottom: -6%;
+      left: -10%;
+      border-radius: 12px;
+      border-color: var(--pink);
+      animation-delay: 1s;
+    }
+    .float-shape.s3 {
+      width: 30px;
+      height: 30px;
+      top: 30%;
+      right: -15%;
+      border-color: var(--cyan);
+      animation-delay: 2s;
+      border-radius: 4px;
+    }
+
+    @keyframes floatY {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* ----- Apps Grid (Glass Cards) ----- */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform 0.15s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius);
+      padding: 1px;
+      background: linear-gradient(135deg, var(--cyan), transparent 40%, var(--purple));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .app-card:hover {
+      border-color: transparent;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+    }
+
+    .app-card:hover::before {
+      opacity: 1;
+    }
+
+    .app-card-top {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .app-meta h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .app-meta .app-id {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', monospace;
+    }
+
+    .app-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.1);
+      padding: 2px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 229, 255, 0.1);
+      margin-bottom: 12px;
+    }
+
+    .app-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.5;
+      min-height: 44px;
+    }
+
+    .app-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .app-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .app-stats .rating {
+      color: var(--gold);
+    }
+
+    .app-link {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--cyan);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .app-link:hover {
+      color: #fff;
+      text-shadow: 0 0 20px var(--cyan);
+    }
+
+    .apps-skeleton {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 40px 0;
+    }
+
+    /* ----- About (Glass skills) ----- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 24px;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .about-text p strong {
+      color: #fff;
+    }
+
+    .skill-group {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-group:hover {
+      border-color: rgba(0, 229, 255, 0.2);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .skill-group h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 5px 16px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--cyan);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+    }
+
+    /* ----- Timeline (Glowing) ----- */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      border-left: 2px solid rgba(0, 229, 255, 0.2);
+      margin-top: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 30px var(--cyan);
+      animation: pulseDot 2s infinite;
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 44px;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 16px var(--cyan);
+    }
+
+    .tl-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+
+    .tl-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .tl-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 520px;
+    }
+
+    /* ----- Contact (Large Glass) ----- */
+    .contact-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius);
+      padding: 64px 48px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-panel h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .contact-panel p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 32px;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .contact-panel .btn-group {
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ----- Footer ----- */
+    footer {
+      padding: 40px 0 48px;
+      border-top: 1px solid var(--border-glass);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer .foot-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--cyan);
+    }
+
+    /* ----- Scroll Reveal Animation ----- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger {
+      transition-delay: 0.1s;
+    }
+
+    /* ----- Responsive ----- */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        order: -1;
+        margin-bottom: 20px;
+      }
+
+      .tilt-frame {
+        max-width: 280px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .contact-panel {
+        padding: 36px 20px;
+      }
+
+      .badge-location {
+        font-size: 0.7rem;
+        padding: 6px 16px;
+        bottom: -10px;
+      }
+
+      .section-label-row {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-stats {
+        gap: 24px;
+      }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cursor-glow {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="loader">
-  <div class="ld-hex"><i class="fas fa-microchip"></i></div>
-  <div id="ld-pct">0%</div>
-  <div class="ld-bar"><i id="ld-fill"></i></div>
-  <div class="ld-txt">INITIALIZING CYBER CORE</div>
-</div>
+  <!-- Cursor ambient glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- CURSOR / FX -->
-<div class="cur-dot"></div>
-<div class="cur-ring"></div>
-<canvas id="bg3d"></canvas>
-<div class="grid-fx"></div>
-<div class="vig-fx"></div>
-<div class="scan-fx"></div>
-<div id="progress"></div>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand"><i class="fas fa-gear"></i> ABDUS<b>.SALAM</b></a>
-    <div class="nav-links">
-      <a href="#apps">Apps</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#contact">Contact</a>
-      <a href="mailto:absalamofficial@gmail.com" class="nav-cta">Get in touch</a>
-    </div>
-  </div>
-</nav>
-
-<div class="wrap" id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="eyebrow" data-hero><span class="p"></span> ALL SYSTEMS OPERATIONAL</div>
-      <h1 data-hero>Engineering-grade thinking,<br>
-        <span class="glitch grad" data-text="shipped as software.">shipped as software.</span></h1>
-      <div class="typeline" data-hero><span id="typer"></span><span class="caret"></span></div>
-      <p class="hero-sub" data-hero>I'm <strong>Abdus Salam</strong>, a mechanical engineer and independent Android developer based in Timergara, Lower Dir, Pakistan. I design and ship production apps end-to-end — CNC calculators built to ISO tolerances, privacy-first Islamic products, and real-time multiplayer games.</p>
-      <div class="hero-actions" data-hero>
-        <a href="#apps" class="btn btn-solid"><i class="fas fa-arrow-down"></i> View apps</a>
-        <a href="mailto:absalamofficial@gmail.com" class="btn btn-ghost"><i class="fas fa-envelope"></i> Contact</a>
-      </div>
-      <div class="hero-chips" data-hero>
-        <div class="chip"><i class="fas fa-location-dot"></i> Timergara, Lower Dir, PK</div>
-        <div class="chip"><i class="fas fa-drafting-compass"></i> Mechanical Engineer</div>
-        <div class="chip"><i class="fas fa-code-branch"></i> 4+ Years Building</div>
-      </div>
-    </div>
-
-    <div class="hud" data-hero>
-      <span class="corner tl"></span><span class="corner tr"></span>
-      <span class="corner bl"></span><span class="corner br"></span>
-      <div class="hud-grid"></div>
-      <div class="hv-row">
-        <span class="hv-title">core://reactor.online — 6 SERVICES SYNCED</span>
-        <div class="hv-dots"><span style="background:#ff5f57;"></span><span style="background:#febc2e;"></span><span style="background:#28c840;"></span></div>
-      </div>
-      <canvas id="hero3d"></canvas>
-      <div class="float-tag t1">◈ ROTATION: 0.42 RAD/S</div>
-      <div class="float-tag t2">◈ UPTIME: 99.99%</div>
-      <div class="hv-foot"><span><b>0</b> data points sold</span><span><b>0</b> incidents</span><span><b>6</b> apps live</span></div>
-    </div>
-  </section>
-</div>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="mq-track" id="mq">
-    <span>CNC CALCULATORS <i class="fas fa-diamond"></i> KOTLIN <i class="fas fa-diamond"></i> FIREBASE REALTIME <i class="fas fa-diamond"></i> 3D QIBLA COMPASS <i class="fas fa-diamond"></i> ON-DEVICE AI <i class="fas fa-diamond"></i> ISO TOLERANCES <i class="fas fa-diamond"></i> MEDIA3 EXOPLAYER <i class="fas fa-diamond"></i> GLASSMORPHISM <i class="fas fa-diamond"></i> ONLINE MULTIPLAYER <i class="fas fa-diamond"></i> ZERO ADS · ZERO TRACKING <i class="fas fa-diamond"></i></span>
-  </div>
-</div>
-
-<div class="wrap">
-
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat" data-reveal style="--sc:var(--cyan);--scg:rgba(0,240,255,.5);"><b data-count="6" data-suffix="">0</b><span>Live Apps</span></div>
-    <div class="stat" data-reveal style="--sc:var(--mag);--scg:rgba(255,46,196,.5);"><b data-count="460" data-suffix="+">0</b><span>Total Downloads</span></div>
-    <div class="stat" data-reveal style="--sc:var(--amber);--scg:rgba(255,184,0,.5);"><b data-count="4.5" data-suffix="★" data-dec="1">0</b><span>Avg. Rating</span></div>
-    <div class="stat" data-reveal style="--sc:var(--lime);--scg:rgba(182,255,46,.5);"><b data-count="0" data-suffix="">0</b><span>Data Sold</span></div>
+  <!-- ===== ADVANCED BACKGROUND ===== -->
+  <div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+    <div class="particles" id="particles"></div>
   </div>
 
-  <!-- APPS -->
-  <section id="apps">
-    <div class="section-head" data-reveal>
-      <h2>Published <em>Applications</em></h2>
-      <span class="tag">// 6 APPS · 3 DOMAINS</span>
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="container">
+      <div class="logo">Abdus Salam</div>
+      <ul>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="subhead" data-reveal><span><span class="sq">▸</span>Engineering Systems</span><span>03 tools</span></div>
-    <div class="apps-grid">
-
-      <div class="app-card tilt" data-reveal style="--ac:var(--org);--acg:rgba(255,159,28,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-microchip"></i></div>
-          <div><div class="app-name">Machinist Nexus</div><div class="app-tag">ENGINEERING SUITE · CNC · AI ASSISTANT</div></div>
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="section-label">Mechanical Engineer / Android Developer</span>
+            <h1>Precision Engineering,<br /><span class="highlight">Shipped as Apps.</span></h1>
+            <p>
+              I'm Abdus Salam — a mechanical engineer and independent Android developer from Maidan Dir Lower. I build CNC machining tools, Islamic digital products, and games, end-to-end: UI, DSP audio, and the engineering math underneath.
+            </p>
+            <div class="hero-stats">
+              <div class="stat"><strong id="statApps">—</strong><span>Apps Published</span></div>
+              <div class="stat"><strong class="gold" id="statRating">—</strong><span id="statRatingLabel">Top Rating</span></div>
+              <div class="stat"><strong class="cyan">10+</strong><span>Years CNC Experience</span></div>
+            </div>
+            <div class="btn-group">
+              <a href="#apps" class="btn btn-primary">View My Apps</a>
+              <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+          </div>
+          <div class="hero-visual" id="tiltContainer">
+            <div class="tilt-frame" id="tiltElement">
+              <div class="tilt-inner">
+                <!-- Advanced SVG Placeholder (Tech Avatar) -->
+                <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#0f172a" />
+                      <stop offset="100%" stop-color="#1e293b" />
+                    </linearGradient>
+                    <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00e5ff" />
+                      <stop offset="100%" stop-color="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="400" rx="18" fill="url(#avatarGrad)" />
+                  <line x1="60" y1="280" x2="340" y2="280" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <line x1="60" y1="300" x2="340" y2="300" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <line x1="60" y1="320" x2="340" y2="320" stroke="rgba(0,229,255,0.08)" stroke-width="2" />
+                  <circle cx="200" cy="160" r="70" fill="rgba(255,255,255,0.03)" stroke="rgba(0,229,255,0.2)" stroke-width="1" />
+                  <circle cx="200" cy="160" r="60" fill="rgba(59,130,246,0.1)" />
+                  <circle cx="175" cy="148" r="7" fill="#a8b8d8" />
+                  <circle cx="225" cy="148" r="7" fill="#a8b8d8" />
+                  <path d="M170 185 Q200 205 230 185" stroke="#a8b8d8" stroke-width="5" fill="none" stroke-linecap="round" />
+                  <rect x="150" y="170" width="100" height="20" rx="10" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.3)" stroke-width="1" />
+                  <rect x="175" y="175" width="50" height="10" rx="5" fill="rgba(0,229,255,0.1)" />
+                  <text x="60" y="260" font-family="monospace" font-size="14" fill="rgba(0,229,255,0.3)">{ .engineer }</text>
+                  <text x="60" y="340" font-family="monospace" font-size="14" fill="rgba(139,92,246,0.3)">{ .developer }</text>
+                  <circle cx="200" cy="330" r="16" fill="none" stroke="url(#circleGrad)" stroke-width="2" />
+                  <circle cx="200" cy="330" r="8" fill="rgba(0,229,255,0.2)" />
+                </svg>
+                <div class="float-shape s1"></div>
+                <div class="float-shape s2"></div>
+                <div class="float-shape s3"></div>
+              </div>
+              <div class="badge-location">
+                <span class="dot"></span><strong>Maidan Dir Lower,</strong> Pakistan
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.machinist.toolbox</span></div>
-        <p class="app-desc">A complete mechanical engineering suite with a multilingual AI assistant, machining calculators, and a global machinist chat.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>AI Assistant — English / Urdu / Pashto / Hindi / Arabic support</li>
-          <li><i class="fas fa-angles-right"></i>Milling Calculator — Speeds &amp; Feeds, RPM, Table Feed, MRR, Power</li>
-          <li><i class="fas fa-angles-right"></i>Turning Calculator — Lathe parameters, RPM, Feed/Rev, Ra</li>
-          <li><i class="fas fa-angles-right"></i>Thread Database — ISO Metric &amp; UNC/UNF with tap drill sizes</li>
-          <li><i class="fas fa-angles-right"></i>Gear Engineering — Module, PCD, OD, Root Diameter</li>
-          <li><i class="fas fa-angles-right"></i>Bolt Circle (PCD) — XY coordinates for any hole pattern</li>
-          <li><i class="fas fa-angles-right"></i>Bearing Database — 6000/6200/6300 series</li>
-        </ul>
-        <div class="stack"><span>Kotlin</span><span>On-device AI</span><span>Offline-first</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">4.6★</span><div class="as-lab">Rating</div></div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.machinist.toolbox" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
+    </section>
 
-      <div class="app-card tilt" data-reveal style="--ac:var(--cyan);--acg:rgba(0,240,255,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-cogs"></i></div>
-          <div><div class="app-name">SmartTurn</div><div class="app-tag">CNC TURNING CALCULATOR · PRO</div></div>
+    <!-- ===== APPS ===== -->
+    <section id="apps">
+      <div class="container">
+        <div class="section-label-row">
+          <span class="section-label">Published Work</span>
+          <span class="live-badge"><span class="dot"></span><span id="liveText">Live from Google Play</span></span>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.turningcalculator.pro</span></div>
-        <p class="app-desc">A professional calculator for CNC machinists with advanced turning calculations, a material database, and production optimization.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>Cutting speed &amp; RPM optimization</li>
-          <li><i class="fas fa-angles-right"></i>Feed rate (IPR/MMPR) calculations</li>
-          <li><i class="fas fa-angles-right"></i>Material removal rate (MRR)</li>
-          <li><i class="fas fa-angles-right"></i>Surface finish calculations (Ra/Rz)</li>
-          <li><i class="fas fa-angles-right"></i>25+ workpiece materials database</li>
-          <li><i class="fas fa-angles-right"></i>25+ insert geometries (CNMG, DNMG, VNMG)</li>
-          <li><i class="fas fa-angles-right"></i>100% offline · no data collection</li>
-        </ul>
-        <div class="stack"><span>Kotlin</span><span>Offline-first</span><span>Material DB</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">4.5★</span><div class="as-lab">Rating</div></div>
+        <h2 class="section-title">Apps on <span class="gradient-text">Google Play</span></h2>
+        <p class="section-desc">Ratings and download tiers below are pulled directly from each app's public Play Store listing — the same numbers Google shows shoppers, kept fresh automatically.</p>
+
+        <div class="apps-grid" id="appsGrid">
+          <div class="apps-skeleton">Loading live app data…</div>
         </div>
-        <a href="https://play.google.com/store/apps/details?id=com.turningcalculator.pro" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
+    </section>
 
-      <div class="app-card tilt" data-reveal style="--ac:var(--vio);--acg:rgba(139,92,246,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-industry"></i></div>
-          <div><div class="app-name">SmartMill</div><div class="app-tag">CNC MILLING CALCULATOR · PRO</div></div>
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <div class="container">
+        <span class="section-label">About</span>
+        <h2 class="section-title">Engineer first, <span class="gradient-text">developer by necessity.</span></h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a <strong>mechanical engineer</strong> with a background in CNC metal spinning, turning, and milling — mandrel profiles, feed rates, blank sizing, the sine law. That process knowledge is the foundation for everything I build.
+            </p>
+            <p>
+              When I couldn't find software that matched how machinists actually work, I started building it myself — first as calculators, then as full Android applications covering UI/UX, real-time DSP audio, and the calculation engines underneath.
+            </p>
+            <p>
+              I currently work independently across the full stack of Android development, and I'm building <strong>Smart Spin</strong> — a professional CNC metal-spinning CAD/CAM application — alongside my published tools.
+            </p>
+          </div>
+          <div class="reveal">
+            <div class="skill-group">
+              <h4>Engineering</h4>
+              <div class="chip-row">
+                <span class="chip">CNC Turning</span>
+                <span class="chip">CNC Milling</span>
+                <span class="chip">Metal Spinning</span>
+                <span class="chip">G-Code</span>
+                <span class="chip">Sinumerik 828D</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Development</h4>
+              <div class="chip-row">
+                <span class="chip">Kotlin</span>
+                <span class="chip">Jetpack Compose</span>
+                <span class="chip">Android SDK</span>
+                <span class="chip">Firebase</span>
+                <span class="chip">Real-time DSP</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Design</h4>
+              <div class="chip-row">
+                <span class="chip">Glassmorphism UI</span>
+                <span class="chip">3D Simulation</span>
+                <span class="chip">Material You</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.cncmilling.calculator</span></div>
-        <p class="app-desc">Advanced milling calculations for CNC operators with a comprehensive tool database and feed rate optimization.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>Spindle speed (RPM) calculations</li>
-          <li><i class="fas fa-angles-right"></i>Feed rate optimization (IPM/MMPM)</li>
-          <li><i class="fas fa-angles-right"></i>Material removal rate (MRR)</li>
-          <li><i class="fas fa-angles-right"></i>Power &amp; torque calculations</li>
-          <li><i class="fas fa-angles-right"></i>Tool database with multiple geometries</li>
-          <li><i class="fas fa-angles-right"></i>Cutting time estimation</li>
-          <li><i class="fas fa-angles-right"></i>100% offline · privacy-focused</li>
-        </ul>
-        <div class="stack"><span>Kotlin</span><span>Offline-first</span><span>Tool DB</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">New</span><div class="as-lab">Rating</div></div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.cncmilling.calculator" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
-    </div>
+    </section>
 
-    <div class="subhead" data-reveal><span><span class="sq">▸</span>Islamic Digital Products</span><span>02 apps</span></div>
-    <div class="apps-grid">
-
-      <div class="app-card tilt" data-reveal style="--ac:var(--amber);--acg:rgba(255,184,0,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-mosque"></i></div>
-          <div><div class="app-name">Deenly</div><div class="app-tag">PRAYER · HADITH · TILAWAT</div></div>
+    <!-- ===== JOURNEY ===== -->
+    <section id="journey">
+      <div class="container">
+        <span class="section-label">Journey</span>
+        <h2 class="section-title">From workshop floor to <span class="gradient-text">Play Store.</span></h2>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <div class="tl-year">Foundation</div>
+            <div class="tl-title">10+ years in CNC machining</div>
+            <div class="tl-desc">Hands-on engineering experience in turning, milling, and metal spinning — the process knowledge behind every calculator I've built.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">Tools</div>
+            <div class="tl-title">SmartTurn, SmartMill &amp; Machinist Nexus</div>
+            <div class="tl-desc">Professional-grade CNC calculators with industry-validated algorithms, exportable reports, and an AI assistant for machinists.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">Faith</div>
+            <div class="tl-title">Deenly &amp; Al-Fajar</div>
+            <div class="tl-desc">Islamic digital products — prayer times, Hadith, Tilawat, and a free audio library of Tafseer and Bayanat, built as Sadaqah Jariyah.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">Play</div>
+            <div class="tl-title">LudoMaster</div>
+            <div class="tl-desc">A real-time multiplayer Ludo game with private rooms, global leaderboards, and a modern glass UI.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">Now</div>
+            <div class="tl-title">Smart Spin: Metal Forming Suite</div>
+            <div class="tl-desc">A professional CNC metal-spinning, shear-spinning &amp; flow-forming analysis suite — material database, mandrel geometry, and forming-force safety checks.</div>
+          </div>
         </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.ramzan.prayer.hadees</span></div>
-        <p class="app-desc">A complete Islamic companion with accurate prayer times, a 3D Qibla compass, an authentic Hadith collection, and Al-Sudais Quran Tilawat.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>GPS-based prayer times (Karachi, MWL, ISNA methods)</li>
-          <li><i class="fas fa-angles-right"></i>3D Qibla compass with real-time direction</li>
-          <li><i class="fas fa-angles-right"></i>Authentic Hadith library — Urdu / English / Pashto</li>
-          <li><i class="fas fa-angles-right"></i>Al-Sudais Quran Tilawat streaming</li>
-          <li><i class="fas fa-angles-right"></i>Sehri / Iftar times with smart alarms</li>
-          <li><i class="fas fa-angles-right"></i>100% free · no ads · zero data collection</li>
-        </ul>
-        <div class="stack"><span>Kotlin</span><span>GPS</span><span>Zero-ads</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">100+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">Free</span><div class="as-lab">Forever</div></div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <h2>Let's build something <span class="gradient-text">precise.</span></h2>
+          <p>Open to engineering-software collaborations, custom app development, and conversations about CNC process automation.</p>
+          <div class="btn-group">
+            <a href="mailto:absalamofficial@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://play.google.com/store/apps/dev?id=7303471421479319477" target="_blank" rel="noopener" class="btn btn-outline">All Apps on Play Store ↗</a>
+          </div>
         </div>
-        <a href="https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
       </div>
+    </section>
+  </main>
 
-      <div class="app-card tilt" data-reveal style="--ac:var(--lime);--acg:rgba(182,255,46,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-headphones-simple"></i></div>
-          <div><div class="app-name">Al Ishaat</div><div class="app-tag">ISLAMIC AUDIO LIBRARY · TAFSEER</div></div>
-        </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.al.alishaat</span></div>
-        <p class="app-desc">An Islamic audio library with authentic Tafseer-ul-Quran, Dars-e-Hadith, and Bayanat — built as a Sadaqah Jariyah, entirely free and ad-free.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>Comprehensive Tafseer-ul-Quran series</li>
-          <li><i class="fas fa-angles-right"></i>Dars-e-Hadith and Fiqh &amp; Masail lessons</li>
-          <li><i class="fas fa-angles-right"></i>Spiritual Bayanat and Seerah-un-Nabi content</li>
-          <li><i class="fas fa-angles-right"></i>Professional playback via Media3 ExoPlayer</li>
-          <li><i class="fas fa-angles-right"></i>Offline downloads for travel and low connectivity</li>
-          <li><i class="fas fa-angles-right"></i>Urdu and Pashto language support</li>
-          <li><i class="fas fa-angles-right"></i>Zero ads · no registration · no data collected</li>
-        </ul>
-        <div class="stack"><span>Media3 ExoPlayer</span><span>Offline sync</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">10+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">3+</span><div class="as-lab">Content Rating</div></div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.al.alishaat&pcampaignid=web_share" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="foot-links">
+        <a href="mailto:absalamofficial@gmail.com">absalamofficial@gmail.com</a>
+        <a href="https://play.google.com/store/apps/dev?id=7303471421479319477" target="_blank" rel="noopener">Google Play</a>
+        <a href="#top">Back to Top</a>
       </div>
-    </div>
-
-    <div class="subhead" data-reveal><span><span class="sq">▸</span>Games &amp; Social</span><span>01 app</span></div>
-    <div class="apps-grid">
-
-      <div class="app-card tilt" data-reveal style="--ac:var(--mag);--acg:rgba(255,46,196,.45);">
-        <div class="app-top">
-          <div class="app-icon"><i class="fas fa-dice"></i></div>
-          <div><div class="app-name">LudoMaster</div><div class="app-tag">ONLINE MULTIPLAYER · REAL-TIME · SOCIAL</div></div>
-        </div>
-        <div class="status-row"><span class="pill live"><span class="d"></span> LIVE</span><span class="pill">com.ludomaster.pk</span></div>
-        <p class="app-desc">A cinematic, glass-morphic Ludo experience with real-time online multiplayer, private rooms, and a full social hub — built on Firebase for near-zero lag.</p>
-        <ul class="feat">
-          <li><i class="fas fa-angles-right"></i>Online multiplayer — real-time 2 or 4 player matches worldwide</li>
-          <li><i class="fas fa-angles-right"></i>Private Rooms — 6-digit codes for friends &amp; family</li>
-          <li><i class="fas fa-angles-right"></i>Local Pass &amp; Play — up to 4 players, one device</li>
-          <li><i class="fas fa-angles-right"></i>Legendary Leaderboard — 3D podium, wins/coins/level rankings</li>
-          <li><i class="fas fa-angles-right"></i>Social Hub — friend requests, live online status, invites</li>
-          <li><i class="fas fa-angles-right"></i>Certified fair dice logic, skill-based matchmaking</li>
-          <li><i class="fas fa-angles-right"></i>Parental gates &amp; chat toggle for child safety</li>
-        </ul>
-        <div class="stack"><span>Firebase Realtime</span><span>Glassmorphism</span><span>Play Billing v7.1</span></div>
-        <div class="app-stats">
-          <div><span class="as-val">50+</span><div class="as-lab">Downloads</div></div>
-          <div><span class="as-val">3+</span><div class="as-lab">Content Rating</div></div>
-        </div>
-        <a href="https://play.google.com/store/apps/details?id=com.ludomaster.pk&pcampaignid=web_share" class="app-link" target="_blank"><i class="fab fa-google-play"></i> View on Play Store</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTISE -->
-  <section id="expertise">
-    <div class="section-head" data-reveal>
-      <h2>Core <em>Expertise</em></h2>
-      <span class="tag">// THREE DOMAINS</span>
-    </div>
-    <div class="expertise" data-reveal>
-      <div class="exp-col" style="--ec:var(--cyan);--ecg:rgba(0,240,255,.5);">
-        <h3><i class="fas fa-drafting-compass"></i> Engineering Tools</h3>
-        <div class="exp-item"><h4>Precision Calculators</h4><p>Milling, turning, threading, and gear calculations built to real ISO and shop-floor standards.</p></div>
-        <div class="exp-item"><h4>Reference Databases</h4><p>Bearing, thread, and material databases machinists can trust on the shop floor.</p></div>
-        <div class="exp-item"><h4>AI-Assisted Support</h4><p>A multilingual assistant that answers technical questions in the operator's own language.</p></div>
-      </div>
-      <div class="exp-col" style="--ec:var(--amber);--ecg:rgba(255,184,0,.5);">
-        <h3><i class="fas fa-mosque"></i> Islamic Products</h3>
-        <div class="exp-item"><h4>Authentic Content</h4><p>Prayer times, Qibla direction, Hadith, and Tafseer sourced from verified scholars.</p></div>
-        <div class="exp-item"><h4>Privacy By Design</h4><p>No registration, no ads, and no personal data collection across any Islamic app.</p></div>
-        <div class="exp-item"><h4>Built As Sadaqah Jariyah</h4><p>Free and open access to Islamic knowledge for the widest possible audience.</p></div>
-      </div>
-      <div class="exp-col" style="--ec:var(--mag);--ecg:rgba(255,46,196,.5);">
-        <h3><i class="fas fa-dice"></i> Real-Time Games</h3>
-        <div class="exp-item"><h4>Live Multiplayer</h4><p>Firebase-backed sync for real-time matches, private rooms, and cross-device play.</p></div>
-        <div class="exp-item"><h4>Cinematic UI</h4><p>Glassmorphic interfaces, fluid animations, and a fully custom 3D leaderboard.</p></div>
-        <div class="exp-item"><h4>Safety By Default</h4><p>Parental gates, chat controls, and certified fair-play dice logic built in.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STANDARDS -->
-  <section>
-    <div class="section-head" data-reveal>
-      <h2>Build <em>Standards</em></h2>
-      <span class="tag">// HOW EVERY RELEASE IS SHIPPED</span>
-    </div>
-    <div class="standards" data-reveal>
-      <div class="std-item"><span class="std-code">01 / QA</span><div><h4>Quality First</h4><p>Rigorous testing before every release, no exceptions.</p></div></div>
-      <div class="std-item"><span class="std-code">02 / UX</span><div><h4>User Centric</h4><p>Interfaces designed for operators, worshippers, and players alike, regardless of experience level.</p></div></div>
-      <div class="std-item"><span class="std-code">03 / SEC</span><div><h4>Privacy Respect</h4><p>Minimal data collection with transparent, published policies across every app.</p></div></div>
-      <div class="std-item"><span class="std-code">04 / ITR</span><div><h4>Continuous Growth</h4><p>Regular updates driven directly by user feedback and real-world use.</p></div></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer" id="contact" data-reveal>
-    <h3>ABDUS SALAM</h3>
-    <p>Mechanical Engineer &amp; Android Application Developer</p>
-    <div class="footer-links">
-      <a href="mailto:absalamofficial@gmail.com" class="footer-link"><i class="fas fa-envelope"></i> Email</a>
-      <a href="privacy-policy.html" class="footer-link"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
-      <a href="terms-conditions.html" class="footer-link"><i class="fas fa-file-contract"></i> Terms of Service</a>
-      <a href="support.html" class="footer-link"><i class="fas fa-heart"></i> Support Developer</a>
-    </div>
-    <div class="footer-bottom">
-      <p class="mono">© 2026 ABDUS SALAM · ALL RIGHTS RESERVED</p>
-      <p class="mono" style="margin-top:8px;">TIMERGARA · LOWER DIR · KHYBER PAKHTUNKHWA · PAKISTAN</p>
-      <p class="mono glow" style="margin-top:12px;">6 LIVE APPS · 460+ DOWNLOADS · 0 DATA SOLD</p>
+      <div>© 2026 Abdus Salam · Maidan Dir Lower, Pakistan</div>
     </div>
   </footer>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-gsap.registerPlugin(ScrollTrigger);
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ---- Fallback data (used only if apps.json can't be fetched, e.g. opened as a local file) ----
+    const FALLBACK_DATA = {
+      "updated_at": null,
+      "apps": [
+        { id: "com.machinist.toolbox", name: "Machinist Nexus", tag: "Engineering Tools", description: "AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.", icon: "https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256", installs: "50+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.machinist.toolbox" },
+        { id: "com.turningcalculator.pro", name: "SmartTurn", tag: "Engineering Tools", description: "CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.", icon: "https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256", installs: "100+", score: 5.0, ratings: 7, url: "https://play.google.com/store/apps/details?id=com.turningcalculator.pro" },
+        { id: "com.cncmilling.calculator", name: "SmartMill", tag: "Engineering Tools", description: "CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.", icon: "https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.cncmilling.calculator" },
+        { id: "com.metalspinning.calculator", name: "Smart Spin", tag: "Engineering Tools", description: "Precision analysis for Metal Spinning, Shear Spinning & Flow Forming — materials, mandrel geometry, and forming forces.", icon: "https://play-lh.googleusercontent.com/sSi-k7LFO7PsFKIDGTUT7Ob7ZjxxqetvONJB9HlxUC4gLUfrdycSOJ4Fn0tkWyi59MC9p6Uay8Cc-mLipzc4BQ=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.metalspinning.calculator" },
+        { id: "com.ramzan.prayer.hadees", name: "Deenly", tag: "Islamic Lifestyle", description: "Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.", icon: "https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" },
+        { id: "com.al.alishaat", name: "Al-Fajar", tag: "Islamic Audio Library", description: "Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.", icon: "https://play-lh.googleusercontent.com/YN_UXRulxoQZLTW21LavjXwdU17v9ANDRxZg50Vm-lRoXEZBKQKXmBNB9TPdqW9h8ctDBmsdH5wjwi0lIhUwyg=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.al.alishaat" },
+        { id: "com.ludomaster.pk", name: "LudoMaster", tag: "Game", description: "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.", icon: "https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256", installs: "100+", score: 4.0, ratings: 10, url: "https://play.google.com/store/apps/details?id=com.ludomaster.pk" }
+      ]
+    };
 
-/* ---------- MARQUEE: duplicate for seamless loop ---------- */
-const mq=document.getElementById('mq'); mq.innerHTML+=mq.innerHTML;
+    function timeAgo(iso) {
+      if (!iso) return "just now";
+      const diffMs = Date.now() - new Date(iso).getTime();
+      const hrs = Math.round(diffMs / 3600000);
+      if (hrs < 1) return "just now";
+      if (hrs < 24) return `${hrs}h ago`;
+      return `${Math.round(hrs / 24)}d ago`;
+    }
 
-/* ---------- CUSTOM CURSOR ---------- */
-const dot=document.querySelector('.cur-dot'), ring=document.querySelector('.cur-ring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-(function curLoop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(curLoop);})();
-document.querySelectorAll('a,button,.tilt,.stat').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
-});
+    function renderApps(data) {
+      const grid = document.getElementById('appsGrid');
+      grid.innerHTML = '';
+      data.apps.forEach((a, i) => {
+        const card = document.createElement('div');
+        card.className = 'app-card reveal reveal-stagger';
+        card.style.transitionDelay = `${i * 0.08}s`;
+        const statsHtml = [
+          a.score ? `<span class="rating">★ ${a.score.toFixed ? a.score.toFixed(1) : a.score}</span>` : '',
+          `<span>${a.installs} downloads</span>`
+        ].filter(Boolean).join('');
+        card.innerHTML = `
+          <div class="app-card-top">
+            <img class="app-icon" src="${a.icon}" alt="${a.name}" loading="lazy" />
+            <div class="app-meta">
+              <h3>${a.name}</h3>
+              <span class="app-id">${a.id}</span>
+            </div>
+          </div>
+          <span class="app-tag">${a.tag}</span>
+          <p class="app-desc">${a.description}</p>
+          <div class="app-footer">
+            <div class="app-stats">${statsHtml}</div>
+            <a class="app-link" href="${a.url}" target="_blank" rel="noopener">Open ↗</a>
+          </div>
+        `;
+        grid.appendChild(card);
+        revealObserver.observe(card);
+      });
 
-/* ---------- SCROLL PROGRESS ---------- */
-const prog=document.getElementById('progress');
-addEventListener('scroll',()=>{
-  const h=document.documentElement;
-  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-},{passive:true});
+      // hero stats
+      const scored = data.apps.filter(a => a.score);
+      document.getElementById('statApps').textContent = data.apps.length;
+      if (scored.length) {
+        const top = Math.max(...scored.map(a => a.score));
+        document.getElementById('statRating').textContent = top.toFixed(1) + '★';
+      } else {
+        document.getElementById('statRating').textContent = '—';
+        document.getElementById('statRatingLabel').textContent = 'Not yet rated';
+      }
 
-/* ---------- TYPING EFFECT ---------- */
-const phrases=['> CNC precision tools · ISO tolerances','> privacy-first Islamic products','> real-time multiplayer games','> Kotlin · Firebase · on-device AI'];
-const typer=document.getElementById('typer');
-let pi=0,ci=0,del=false;
-(function typeLoop(){
-  const p=phrases[pi];
-  typer.textContent=p.slice(0,ci);
-  if(!del){ci++;if(ci>p.length){del=true;setTimeout(typeLoop,1700);return;}}
-  else{ci--;if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
-  setTimeout(typeLoop,del?26:52);
-})();
+      const liveText = document.getElementById('liveText');
+      liveText.textContent = data.updated_at
+        ? `Synced ${timeAgo(data.updated_at)}`
+        : 'Live from Google Play';
+    }
 
-/* ---------- BACKGROUND 3D: particle field + drifting wireframes ---------- */
-const bgCv=document.getElementById('bg3d');
-const bgRen=new THREE.WebGLRenderer({canvas:bgCv,alpha:true,antialias:true});
-bgRen.setPixelRatio(Math.min(devicePixelRatio,2));
-const bgScene=new THREE.Scene();
-const bgCam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);
-bgCam.position.z=9;
-function sizeBG(){bgRen.setSize(innerWidth,innerHeight);bgCam.aspect=innerWidth/innerHeight;bgCam.updateProjectionMatrix();}
-sizeBG();addEventListener('resize',sizeBG);
+    // Try live apps.json first (kept fresh by the GitHub Action scraper);
+    // fall back to the embedded snapshot if it can't be fetched.
+    fetch('./apps.json', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error('no apps.json'); return r.json(); })
+      .then(renderApps)
+      .catch(() => renderApps(FALLBACK_DATA));
 
-const pCount=1100,pos=new Float32Array(pCount*3),col=new Float32Array(pCount*3);
-const palette=[new THREE.Color(0x00f0ff),new THREE.Color(0xff2ec4),new THREE.Color(0x8b5cf6),new THREE.Color(0xb6ff2e)];
-for(let i=0;i<pCount;i++){
-  const r=6+Math.random()*14,th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
-  pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);pos[i*3+2]=r*Math.cos(ph);
-  const c=palette[Math.floor(Math.random()*palette.length)];
-  col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b;
-}
-const pGeo=new THREE.BufferGeometry();
-pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-pGeo.setAttribute('color',new THREE.BufferAttribute(col,3));
-const stars=new THREE.Points(pGeo,new THREE.PointsMaterial({size:.055,vertexColors:true,transparent:true,opacity:.85,depthWrite:false}));
-bgScene.add(stars);
-const ico1=new THREE.Mesh(new THREE.IcosahedronGeometry(3.2,1),new THREE.MeshBasicMaterial({color:0x00f0ff,wireframe:true,transparent:true,opacity:.10}));
-ico1.position.set(-7,2.4,-4);bgScene.add(ico1);
-const ico2=new THREE.Mesh(new THREE.IcosahedronGeometry(2.4,0),new THREE.MeshBasicMaterial({color:0xff2ec4,wireframe:true,transparent:true,opacity:.10}));
-ico2.position.set(7.5,-3,-3);bgScene.add(ico2);
-let bgTX=0,bgTY=0;
-addEventListener('mousemove',e=>{bgTX=(e.clientX/innerWidth-.5);bgTY=(e.clientY/innerHeight-.5);});
-(function bgLoop(){
-  requestAnimationFrame(bgLoop);
-  stars.rotation.y+=.00045;stars.rotation.x+=.00018;
-  ico1.rotation.x+=.0016;ico1.rotation.y+=.0011;
-  ico2.rotation.x-=.0012;ico2.rotation.y+=.0018;
-  bgCam.position.x+=(bgTX*1.4-bgCam.position.x)*.03;
-  bgCam.position.y+=(-bgTY*1.0-bgCam.position.y)*.03;
-  bgCam.lookAt(0,0,0);
-  bgRen.render(bgScene,bgCam);
-})();
+    // 1. Scroll Reveal (with stagger)
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -20px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
 
-/* ---------- HERO 3D: rotating cyber reactor ---------- */
-const hCv=document.getElementById('hero3d');
-const hRen=new THREE.WebGLRenderer({canvas:hCv,alpha:true,antialias:true});
-hRen.setPixelRatio(Math.min(devicePixelRatio,2));
-const hScene=new THREE.Scene();
-const hCam=new THREE.PerspectiveCamera(55,1,.1,100);hCam.position.z=8;
-function sizeH(){const w=hCv.clientWidth,h=hCv.clientHeight;hRen.setSize(w,h,false);hCam.aspect=w/h;hCam.updateProjectionMatrix();}
-sizeH();addEventListener('resize',sizeH);
-const grp=new THREE.Group();hScene.add(grp);
-const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(2.05,.5,160,18),
-  new THREE.MeshBasicMaterial({color:0x00f0ff,wireframe:true,transparent:true,opacity:.5}));
-grp.add(knot);
-const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,0),
-  new THREE.MeshBasicMaterial({color:0xff2ec4,wireframe:true,transparent:true,opacity:.9}));
-grp.add(core);
-const coreIn=new THREE.Mesh(new THREE.IcosahedronGeometry(.55,0),
-  new THREE.MeshBasicMaterial({color:0xb6ff2e,wireframe:true,transparent:true,opacity:.95}));
-grp.add(coreIn);
-const ring1=new THREE.Mesh(new THREE.TorusGeometry(3.15,.02,8,90),
-  new THREE.MeshBasicMaterial({color:0xb6ff2e,transparent:true,opacity:.65}));
-ring1.rotation.x=Math.PI/2.4;grp.add(ring1);
-const ring2=new THREE.Mesh(new THREE.TorusGeometry(3.55,.02,8,90),
-  new THREE.MeshBasicMaterial({color:0x8b5cf6,transparent:true,opacity:.6}));
-ring2.rotation.x=Math.PI/1.7;ring2.rotation.y=.6;grp.add(ring2);
-/* orbiting satellites on rings */
-const sat1=new THREE.Mesh(new THREE.OctahedronGeometry(.16,0),new THREE.MeshBasicMaterial({color:0xb6ff2e}));
-const sat2=new THREE.Mesh(new THREE.OctahedronGeometry(.14,0),new THREE.MeshBasicMaterial({color:0xff2ec4}));
-grp.add(sat1,sat2);
-let hTX=0,hTY=0;
-document.querySelector('.hud').addEventListener('mousemove',e=>{
-  const r=hCv.getBoundingClientRect();
-  hTX=((e.clientX-r.left)/r.width-.5);hTY=((e.clientY-r.top)/r.height-.5);
-});
-let t0=0;
-(function hLoop(t){
-  requestAnimationFrame(hLoop);
-  const s=(t||0)*.001;
-  knot.rotation.x=s*.28;knot.rotation.y=s*.42;
-  core.rotation.x=-s*.5;core.rotation.y=s*.65;
-  coreIn.rotation.x=s*.9;coreIn.rotation.z=-s*.7;
-  ring1.rotation.z=s*.35;ring2.rotation.z=-s*.28;
-  sat1.position.set(Math.cos(s*.9)*3.15,Math.sin(s*.9)*3.15*Math.sin(Math.PI/2.4),Math.sin(s*.9)*3.15*Math.cos(Math.PI/2.4));
-  sat2.position.set(Math.cos(-s*.7)*3.55,Math.sin(-s*.7)*3.55*Math.sin(Math.PI/1.7),Math.sin(-s*.7)*3.55*Math.cos(Math.PI/1.7));
-  sat1.rotation.y=s*2;sat2.rotation.x=s*2.4;
-  grp.rotation.y+=(hTX*.7-grp.rotation.y)*.05;
-  grp.rotation.x+=(hTY*.5-grp.rotation.x)*.05;
-  hRen.render(hScene,hCam);
-})();
+    // 2. 3D Tilt Effect on Hero Image
+    const tiltContainer = document.getElementById('tiltContainer');
+    const tiltElement = document.getElementById('tiltElement');
 
-/* ---------- TILT CARDS ---------- */
-document.querySelectorAll('.tilt').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
-    card.style.setProperty('--mx',px*100+'%');
-    card.style.setProperty('--my',py*100+'%');
-    gsap.to(card,{rotateY:(px-.5)*10,rotateX:(0.5-py)*8,duration:.4,ease:'power2.out',transformPerspective:900});
-  });
-  card.addEventListener('mouseleave',()=>gsap.to(card,{rotateX:0,rotateY:0,duration:.7,ease:'elastic.out(1,.55)'}));
-});
+    if (tiltContainer && tiltElement) {
+      tiltContainer.addEventListener('mousemove', (e) => {
+        const rect = tiltContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        tiltElement.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
 
-/* ---------- SCROLL REVEALS + COUNTERS ---------- */
-gsap.utils.toArray('[data-reveal]').forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:44},{opacity:1,y:0,duration:.9,ease:'power3.out',
-    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-});
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const end=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||0),suf=el.dataset.suffix||'';
-  const obj={v:0};
-  ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>{
-    gsap.to(obj,{v:end,duration:1.8,ease:'power2.out',onUpdate:()=>{el.textContent=obj.v.toFixed(dec)+suf;}});
-  }});
-});
+      tiltContainer.addEventListener('mouseleave', () => {
+        tiltElement.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
 
-/* ---------- PRELOADER + HERO INTRO ---------- */
-gsap.set('[data-hero]',{opacity:0,y:34});
-const pct=document.getElementById('ld-pct'),fill=document.getElementById('ld-fill'),load={v:0};
-gsap.to(load,{v:100,duration:1.7,ease:'power2.inOut',
-  onUpdate:()=>{const p=Math.round(load.v);pct.textContent=p+'%';fill.style.width=p+'%';},
-  onComplete:()=>{
-    gsap.to('#loader',{yPercent:-100,duration:.8,ease:'power4.inOut',
-      onComplete:()=>document.getElementById('loader').style.display='none'});
-    gsap.to('[data-hero]',{opacity:1,y:0,duration:1,stagger:.12,ease:'power3.out',delay:.45});
-  }});
-</script>
+    // 3. Subtle tilt on every app card (delegated, since cards are rendered dynamically)
+    document.addEventListener('mousemove', (e) => {
+      const card = e.target.closest('.app-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateX = ((y - rect.height / 2) / rect.height) * -6;
+      const rotateY = ((x - rect.width / 2) / rect.width) * 6;
+      card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    document.addEventListener('mouseover', (e) => {
+      const card = e.target.closest('.app-card');
+      if (card) card.style.transition = 'none';
+    });
+    document.addEventListener('mouseout', (e) => {
+      const card = e.target.closest('.app-card');
+      const toCard = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.app-card');
+      if (card && card !== toCard) {
+        card.style.transition = 'transform 0.4s ease';
+        card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+      }
+    });
+
+    // 4. Cursor ambient glow
+    const glow = document.getElementById('cursorGlow');
+    if (glow && window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        glow.style.opacity = '1';
+        glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      });
+      window.addEventListener('mouseleave', () => glow.style.opacity = '0');
+    }
+
+    // 5. Generate Background Particles
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 20) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+  </script>
 </body>
 </html>
