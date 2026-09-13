@@ -1,0 +1,34 @@
+name: Update Play Store data
+
+on:
+  schedule:
+    # Runs every 6 hours. Change the cron if you want faster/slower refresh.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}   # lets you click "Run workflow" manually on GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python scraper.py
+
+      - name: Commit updated apps.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apps.json
+          git diff --quiet --cached || git commit -m "chore: refresh live Play Store data"
+          git push
