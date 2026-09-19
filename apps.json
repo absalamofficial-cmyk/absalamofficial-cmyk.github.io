@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-19T15:47:36Z",
+  "updated_at": "2026-09-19T20:29:40Z",
   "apps": [
     {
       "id": "com.machinist.toolbox",
@@ -80,7 +80,7 @@
       "tag": "Game",
       "description": "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.",
       "icon": "https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs",
-      "installs": "500+",
+      "installs": "1,000+",
       "score": null,
       "ratings": null,
       "url": "https://play.google.com/store/apps/details?id=com.ludomaster.pk"
