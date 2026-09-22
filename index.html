@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ----- Core Variables & Modern Color Palette ----- */
     :root {
       --bg-dark: #050811;
       --bg-surface: rgba(13, 20, 38, 0.7);
@@ -51,11 +50,8 @@
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
-      selection-background-color: var(--neon-cyan);
-      selection-color: var(--bg-dark);
     }
 
-    /* Ambient Cursor Spotlight */
     .cursor-spotlight {
       position: fixed;
       top: 0;
@@ -72,7 +68,6 @@
       will-change: transform;
     }
 
-    /* Dynamic Cyberpunk Aurora Background */
     .aurora-bg {
       position: fixed;
       inset: 0;
@@ -132,7 +127,6 @@
       100% { transform: translate(80px, 60px) scale(1.15) rotate(45deg); }
     }
 
-    /* Container */
     .container {
       max-width: 1240px;
       margin: 0 auto;
@@ -141,7 +135,6 @@
       z-index: 2;
     }
 
-    /* Navbar */
     nav {
       position: sticky;
       top: 0;
@@ -218,7 +211,6 @@
       width: 100%;
     }
 
-    /* Headings & Badges */
     section {
       padding: 90px 0;
     }
@@ -290,7 +282,6 @@
       max-width: 620px;
     }
 
-    /* Hero Section */
     .hero-wrapper {
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
@@ -398,7 +389,6 @@
       box-shadow: var(--glow-shadow);
     }
 
-    /* Hero Tilt Card */
     .hero-avatar-area {
       display: flex;
       justify-content: center;
@@ -456,7 +446,6 @@
       color: #fff;
     }
 
-    /* Apps Grid Section */
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -517,7 +506,6 @@
       word-break: break-all;
     }
 
-    /* Category Tag Variants */
     .category-chip {
       display: inline-block;
       font-size: 0.68rem;
@@ -595,7 +583,6 @@
       transform: translateX(2px);
     }
 
-    /* Skills Grid */
     .skills-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -656,7 +643,6 @@
       color: var(--text-light);
     }
 
-    /* Timeline Section */
     .timeline {
       position: relative;
       border-left: 2px solid rgba(0, 242, 254, 0.25);
@@ -709,7 +695,6 @@
       max-width: 600px;
     }
 
-    /* Contact Banner */
     .contact-card {
       background: linear-gradient(135deg, rgba(13, 20, 38, 0.8), rgba(22, 34, 64, 0.6));
       border: 1px solid var(--border-glow);
@@ -748,7 +733,6 @@
       font-size: 1.05rem;
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid var(--border-subtle);
       padding: 40px 0;
@@ -776,7 +760,6 @@
       color: var(--neon-cyan);
     }
 
-    /* Responsive */
     @media (max-width: 960px) {
       .hero-wrapper, .skills-layout {
         grid-template-columns: 1fr;
@@ -813,10 +796,8 @@
 </head>
 <body>
 
-  <!-- Cursor Glow Overlay -->
   <div class="cursor-spotlight" id="cursorSpotlight"></div>
 
-  <!-- Background Layer -->
   <div class="aurora-bg">
     <div class="aurora-grid"></div>
     <div class="aurora-blob blob-1"></div>
@@ -824,7 +805,6 @@
     <div class="aurora-blob blob-3"></div>
   </div>
 
-  <!-- Navigation -->
   <nav>
     <div class="container">
       <div class="brand-logo">
@@ -840,7 +820,6 @@
   </nav>
 
   <main>
-    <!-- Hero Section -->
     <section class="hero" id="top">
       <div class="container">
         <div class="hero-wrapper">
@@ -889,7 +868,6 @@
       </div>
     </section>
 
-    <!-- Apps Catalog -->
     <section id="apps">
       <div class="container">
         <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">
@@ -902,7 +880,6 @@
         <p class="section-subtitle">Real-time statistics & download volumes pulled directly from the public Google Play Store catalog.</p>
 
         <div class="apps-grid" id="appsGrid">
-          <!-- Dynamic rendering via apps.json -->
           <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
             Connecting to Google Play registry...
           </div>
@@ -910,7 +887,6 @@
       </div>
     </section>
 
-    <!-- About & Skills -->
     <section id="about">
       <div class="container">
         <div class="badge-pill">Background</div>
@@ -919,23 +895,23 @@
         <div class="skills-layout">
           <div class="about-bio">
             <p>
-              With over a decade of hands-on expertise operating CNC Lathes, Vertical Machining Centers, and Metal Spinning equipment (including Siemens Sinumerik 828D systems), I know the gap between raw shop-floor realities and desktop CAM software.
+              With over a decade of hands-on expertise operating and programming <strong>industrial CNC machines</strong>—including CNC Lathes, Milling Centers, and Siemens Sinumerik 828D systems—I know the exact friction between shop-floor execution and desktop software.
             </p>
             <p>
-              I bridge this gap by programming native, offline-first Android apps that bring complex engineering mathematics, DSP audio pipelines, and algorithmic precision directly to machinists' fingertips.
+              I eliminate that friction by building native, offline-first Android solutions that deliver high-precision engineering algorithms, real-time machining calculations, and workshop-proven reliability directly into operators' hands.
             </p>
           </div>
 
           <div class="skills-deck">
             <div class="skill-card">
-              <h4>Industrial Engineering</h4>
+              <h4>Industrial CNC Engineering</h4>
               <div class="tag-cluster">
                 <span class="tag">CNC Turning</span>
                 <span class="tag">CNC Milling</span>
-                <span class="tag">Metal Spinning</span>
-                <span class="tag">Flow Forming</span>
+                <span class="tag">CNC Programming</span>
                 <span class="tag">G-Code Parsing</span>
                 <span class="tag">Sinumerik 828D</span>
+                <span class="tag">Speeds &amp; Feeds Engine</span>
               </div>
             </div>
 
@@ -952,11 +928,11 @@
             </div>
 
             <div class="skill-card">
-              <h4>Design & Architecture</h4>
+              <h4>Architecture & Design</h4>
               <div class="tag-cluster">
                 <span class="tag">Glassmorphism UI</span>
                 <span class="tag">Clean Architecture</span>
-                <span class="tag">Offline-First</span>
+                <span class="tag">Offline-First Engine</span>
                 <span class="tag">Material You</span>
               </div>
             </div>
@@ -965,7 +941,6 @@
       </div>
     </section>
 
-    <!-- Career Roadmap -->
     <section id="journey">
       <div class="container">
         <div class="badge-pill">Milestones</div>
@@ -975,7 +950,7 @@
           <div class="tl-node">
             <div class="tl-era">Engineering Foundation</div>
             <div class="tl-heading">10+ Years Precision Machining</div>
-            <div class="tl-text">Extensive industrial experience with tool geometries, feeds, speeds, cutting mechanics, and shear forming algorithms.</div>
+            <div class="tl-text">Extensive industrial experience with tool geometries, feeds, speeds, cutting mechanics, and CNC systems.</div>
           </div>
 
           <div class="tl-node">
@@ -999,7 +974,6 @@
       </div>
     </section>
 
-    <!-- Contact & Public Inquiries -->
     <section id="contact">
       <div class="container">
         <div class="contact-card">
@@ -1014,7 +988,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-links">
@@ -1026,16 +999,14 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Fallback Data if apps.json is unavailable
     const FALLBACK_DATA = {
       "updated_at": null,
       "apps": [
         { id: "com.machinist.toolbox", name: "Machinist Nexus", tag: "Engineering Tools", description: "AI-assisted machining calculators — milling, turning, threads, gears — with an offline Mach-AI assistant.", icon: "https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg=s256", installs: "50+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.machinist.toolbox" },
         { id: "com.turningcalculator.pro", name: "SmartTurn", tag: "Engineering Tools", description: "CNC turning calculator — cutting speed, feed rate, MRR, and tool life across 25+ materials.", icon: "https://play-lh.googleusercontent.com/TGcV0eSSEkty8V4JWuju4AIdXSZ4j0AXwWzwmm77D8kLNxNBPXr49NQhzkCdMNGrE3xUzybOLZUZK7ezoVZX6Q=s256", installs: "100+", score: 5.0, ratings: 7, url: "https://play.google.com/store/apps/details?id=com.turningcalculator.pro" },
         { id: "com.cncmilling.calculator", name: "SmartMill", tag: "Engineering Tools", description: "CNC milling calculator with physical-accuracy engine, offline machine library, and PDF reports.", icon: "https://play-lh.googleusercontent.com/YLth2dlS03McruSAjK5SilcJqNhs0G72hrjQZuhNC3n5FRsDxdr6lenXzzn-JJpSL-Bg0Cnc-yI-JQdhaDt9Hg=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.cncmilling.calculator" },
-        { id: "com.metalspinning.calculator", name: "Smart Spin", tag: "Engineering Tools", description: "Precision analysis for Metal Spinning, Shear Spinning & Flow Forming — materials, mandrel geometry, and forming forces.", icon: "https://play-lh.googleusercontent.com/sSi-k7LFO7PsFKIDGTUT7Ob7ZjxxqetvONJB9HlxUC4gLUfrdycSOJ4Fn0tkWyi59MC9p6Uay8Cc-mLipzc4BQ=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.metalspinning.calculator" },
+        { id: "com.metalspinning.calculator", name: "Smart Spin", tag: "Engineering Tools", description: "Precision analysis for CNC metal spinning, tooling profiles, and forming forces.", icon: "https://play-lh.googleusercontent.com/sSi-k7LFO7PsFKIDGTUT7Ob7ZjxxqetvONJB9HlxUC4gLUfrdycSOJ4Fn0tkWyi59MC9p6Uay8Cc-mLipzc4BQ=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.metalspinning.calculator" },
         { id: "com.ramzan.prayer.hadees", name: "Deenly", tag: "Islamic Lifestyle", description: "Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.", icon: "https://play-lh.googleusercontent.com/al_6vOLbcyyf2AEopVSqjsLDMwD6beAQyq5mzAQvG8UFjEcO3R99sKmviMBce0go5BOQ-L7e6ZS3m6VyRWnP=s256", installs: "100+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.ramzan.prayer.hadees" },
         { id: "com.al.alishaat", name: "Al-Fajar", tag: "Islamic Audio Library", description: "Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.", icon: "https://play-lh.googleusercontent.com/YN_UXRulxoQZLTW21LavjXwdU17v9ANDRxZg50Vm-lRoXEZBKQKXmBNB9TPdqW9h8ctDBmsdH5wjwi0lIhUwyg=s256", installs: "10+", score: null, ratings: 0, url: "https://play.google.com/store/apps/details?id=com.al.alishaat" },
         { id: "com.ludomaster.pk", name: "LudoMaster", tag: "Game", description: "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.", icon: "https://play-lh.googleusercontent.com/3IIXri1UggJlQ44xIyF5ZqLNkEks1UFpG_Wod_awlURE5-qchn3Us1Lu3feFm54JFh9BIwlJ4VM4b2zR6Jih2vs=s256", installs: "100+", score: 4.0, ratings: 10, url: "https://play.google.com/store/apps/details?id=com.ludomaster.pk" }
@@ -1056,9 +1027,10 @@
         const card = document.createElement('div');
         card.className = 'app-card';
 
-        const ratingMarkup = app.score 
-          ? `<span class="star">★ ${Number(app.score).toFixed(1)}</span>` 
-          : `<span style="color: var(--text-muted);">★ Unrated</span>`;
+        // Rating sirf tab dikhao jab mojood ho, warna unrated mat dikhao
+        const ratingMarkup = (app.score && Number(app.score) > 0)
+          ? `<span class="star">★ ${Number(app.score).toFixed(1)}</span>`
+          : '';
 
         card.innerHTML = `
           <div>
@@ -1083,22 +1055,19 @@
         grid.appendChild(card);
       });
 
-      // Update Top Bar Stats
       document.getElementById('statApps').textContent = data.apps.length;
-      const scoredApps = data.apps.filter(a => a.score);
+      const scoredApps = data.apps.filter(a => a.score && Number(a.score) > 0);
       if (scoredApps.length > 0) {
         const topScore = Math.max(...scoredApps.map(a => a.score));
         document.getElementById('statRating').textContent = topScore.toFixed(1) + '★';
       }
     }
 
-    // Fetch live apps data or fallback
     fetch('./apps.json', { cache: 'no-store' })
       .then(res => { if (!res.ok) throw new Error(); return res.json(); })
       .then(renderAppCards)
       .catch(() => renderAppCards(FALLBACK_DATA));
 
-    // Smooth Cursor Spotlight
     const spotlight = document.getElementById('cursorSpotlight');
     if (spotlight && window.matchMedia('(hover: hover)').matches) {
       window.addEventListener('mousemove', (e) => {
