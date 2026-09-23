@@ -503,7 +503,7 @@
             <h2><i class="fas fa-envelope"></i> Contact Information</h2>
             <div class="contact-info">
                 <p><i class="fas fa-user" style="color: var(--gold);"></i> <strong>Developer:</strong> Abdus Salam</p>
-                <p><i class="fas fa-envelope" style="color: var(--gold);"></i> <strong>Email:</strong> <a href="mailto:absalamofficial@gmail.com" style="color: var(--gold-light); text-decoration: none;">absalamofficial@gmail.com</a></p>
+                <p><i class="fas fa-envelope" style="color: var(--gold);"></i> <strong>Email:</strong> <a href="mailto:salamkhan.apps@gmail.com" style="color: var(--gold-light); text-decoration: none;">salamkhan.apps@gmail.com</a></p>
                 <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> <strong>Location:</strong> Timergara, Lower Dir, Pakistan</p>
                 <p><i class="fas fa-phone" style="color: var(--gold);"></i> <strong>Support Hours:</strong> Monday-Friday, 9 AM - 6 PM (Pakistan Time)</p>
                 <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <strong>WhatsApp Support:</strong> Available for urgent queries</p>
@@ -545,7 +545,6 @@
         
         setTimeout(() => {
             toast.classList.remove('show');
-            // Reset after 300ms for next use
             setTimeout(() => {
                 if (!isError) {
                     icon.className = 'fas fa-check-circle';
@@ -558,34 +557,24 @@
     
     async function copyPolicy() {
         try {
-            // Get the policy content div
             const policyDiv = document.getElementById('policyContent');
-            
-            // Clone the div to avoid modifying the original
             const cloneDiv = policyDiv.cloneNode(true);
             
-            // Remove any button elements from clone (though there shouldn't be any inside now)
             const buttonsInClone = cloneDiv.querySelectorAll('button');
             buttonsInClone.forEach(btn => btn.remove());
             
-            // Get text content
             let text = cloneDiv.innerText || cloneDiv.textContent;
-            
-            // Clean up extra whitespace
             text = text.replace(/\s+/g, ' ').trim();
             
-            // Add a nice header for copied content
             const header = "AL ISHAAT: ISLAMIC AUDIO LIBRARY\nPRIVACY POLICY\n" + "=".repeat(50) + "\n\n";
-            const footer = "\n\n" + "=".repeat(50) + "\nFor more information, contact: absalamofficial@gmail.com";
+            const footer = "\n\n" + "=".repeat(50) + "\nFor more information, contact: salamkhan.apps@gmail.com";
             
             const finalText = header + text + footer;
             
-            // Modern clipboard API with fallback
             if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(finalText);
                 showToast('✓ Privacy policy copied successfully!');
                 
-                // Animate the copy button
                 const btn = document.querySelector('.copy-btn');
                 const originalHTML = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
@@ -596,7 +585,6 @@
                     btn.style.background = 'linear-gradient(135deg, #d4af37, #b8960c)';
                 }, 2000);
             } else {
-                // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = finalText;
                 textArea.style.position = 'fixed';
@@ -630,10 +618,8 @@
         }
     }
     
-    // Add keyboard shortcut (Ctrl+C on policy content)
     document.addEventListener('keydown', function(e) {
         if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
-            // Check if something is selected
             const selection = window.getSelection().toString();
             if (!selection) {
                 e.preventDefault();
@@ -642,7 +628,6 @@
         }
     });
     
-    // Add smooth scroll for anchor links (if any added in future)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -653,7 +638,6 @@
         });
     });
     
-    // Add ripple effect to button
     const btn = document.querySelector('.copy-btn');
     btn.addEventListener('click', function(e) {
         let ripple = document.createElement('span');
@@ -671,7 +655,6 @@
         }, 600);
     });
     
-    // Add ripple styles dynamically
     const style = document.createElement('style');
     style.textContent = `
         .copy-btn {
