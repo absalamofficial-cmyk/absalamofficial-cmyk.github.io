@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T12:12:29Z",
+  "updated_at": "2026-10-04T21:13:14Z",
   "apps": [
     {
       "id": "com.machinist.toolbox",
@@ -84,6 +84,18 @@
       "score": null,
       "ratings": null,
       "url": "https://play.google.com/store/apps/details?id=com.ludomaster.pk"
+    },
+    {
+      "id": "com.pdfviewer.pk",
+      "name": "PDF Viewer",
+      "full_name": "PDF Viewer:Read,Edit & Convert",
+      "tag": "Utility",
+      "description": "Fast, lightweight PDF viewer with offline reading, smooth zoom, and easy file management.",
+      "icon": "https://play-lh.googleusercontent.com/aLMot4kWBE60lR85cABGuDxfbpDfwbrzE6onKZ0GqS80IcrtxrQPWS0-g9BTNIIs0FMVdTvw8_6-eicwPmcPLcg",
+      "installs": "10+",
+      "score": null,
+      "ratings": null,
+      "url": "https://play.google.com/store/apps/details?id=com.pdfviewer.pk"
     }
   ]
 }
