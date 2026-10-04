@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Privacy Policy · Deenly: Prayer, Hadith & Tilawat</title>
-    
+    <title>Privacy Policy · Abdus Salam Apps</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         * {
             margin: 0;
@@ -23,6 +23,8 @@
             --gold-dark: #b8960c;
             --green: #10b981;
             --blue: #3b82f6;
+            --cyan: #00f2fe;
+            --purple: #9b51e0;
             --text-white: #ffffff;
             --text-gray: #9ca3af;
             --border-dim: #2a2f3c;
@@ -77,9 +79,62 @@
         .last-updated {
             color: var(--text-gray);
             font-size: 0.9rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid var(--border-dim);
+        }
+
+        /* App selector tabs */
+        .app-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+            padding: 15px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-dim);
+            border-radius: 20px;
+        }
+
+        .app-tab {
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-dim);
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-tab:hover {
+            color: var(--text-white);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .app-tab.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(16, 185, 129, 0.15));
+            color: var(--gold);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .policy-pane {
+            display: none;
+        }
+
+        .policy-pane.active {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section {
@@ -200,15 +255,19 @@
             .section h2 {
                 font-size: 1.2rem;
             }
+            .app-tab {
+                font-size: 0.78rem;
+                padding: 8px 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="privacy-card">
-            
+
             <div class="app-badge">
-                <i class="fas fa-mosque"></i> Deenly · Prayer · Hadith · Tilawat
+                <i class="fas fa-shield-halved"></i> Abdus Salam · Privacy Center
             </div>
 
             <h1>Privacy Policy</h1>
@@ -216,110 +275,389 @@
                 <i class="far fa-calendar-alt"></i> Last Updated: April 21, 2026
             </div>
 
-            <!-- INTRODUCTION -->
-            <div class="section">
-                <h2><i class="fas fa-info-circle"></i> Introduction</h2>
-                <p><strong style="color: var(--gold);">Deenly: Prayer, Hadith & Tilawat</strong> (formerly known as Ramzan Prayer & Hadees) is a 100% free Islamic application developed by Abdus Salam. We are committed to protecting your privacy. This policy explains how we handle your information when you use our app.</p>
-                <p><strong style="color: var(--green);">✓ This app is completely free · No advertisements · No in-app purchases</strong></p>
+            <!-- APP SELECTOR TABS -->
+            <div class="app-selector" id="appSelector">
+                <button class="app-tab active" data-app="deenly">
+                    <i class="fas fa-mosque"></i> Deenly
+                </button>
+                <button class="app-tab" data-app="alfajar">
+                    <i class="fas fa-headphones"></i> Al-Fajar
+                </button>
+                <button class="app-tab" data-app="machinist">
+                    <i class="fas fa-gears"></i> Machinist Nexus
+                </button>
+                <button class="app-tab" data-app="smartturn">
+                    <i class="fas fa-sync"></i> SmartTurn
+                </button>
+                <button class="app-tab" data-app="smartmill">
+                    <i class="fas fa-industry"></i> SmartMill
+                </button>
+                <button class="app-tab" data-app="smartspin">
+                    <i class="fas fa-compact-disc"></i> Smart Spin
+                </button>
+                <button class="app-tab" data-app="ludo">
+                    <i class="fas fa-dice"></i> LudoMaster
+                </button>
+                <button class="app-tab" data-app="pdfviewer">
+                    <i class="fas fa-file-pdf"></i> PDF Viewer
+                </button>
             </div>
 
-            <!-- ZERO DATA COLLECTION -->
-            <div class="highlight-box">
-                <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ WE DO NOT COLLECT ANY PERSONAL DATA</strong></p>
-                <p style="margin-bottom: 0;">Deenly does not collect, store, or transmit any personal information. All data remains locally on your device. We do not use Google Analytics, Firebase Analytics, or any tracking tools.</p>
+            <!-- ===================== DEENLY ===================== -->
+            <div class="policy-pane active" id="pane-deenly">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">Deenly: Prayer, Hadith & Tilawat</strong> (formerly known as Ramzan Prayer & Hadees) is a 100% free Islamic application developed by Abdus Salam. We are committed to protecting your privacy. This policy explains how we handle your information when you use our app.</p>
+                    <p><strong style="color: var(--green);">✓ This app is completely free · No advertisements · No in-app purchases</strong></p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ WE DO NOT COLLECT ANY PERSONAL DATA</strong></p>
+                    <p style="margin-bottom: 0;">Deenly does not collect, store, or transmit any personal information. All data remains locally on your device. We do not use Google Analytics, Firebase Analytics, or any tracking tools.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-location-dot"></i> Location Permission</h2>
+                    <p>The app requests location access for one purpose only:</p>
+                    <ul>
+                        <li>To calculate accurate prayer times based on your current location</li>
+                        <li>To determine Qibla direction using your device's compass</li>
+                    </ul>
+                    <p><strong style="color: var(--green);">Important:</strong> Location data is processed entirely on your device. It is NEVER sent to any server, cloud, or third party. You can deny location permission and still use manual location entry.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-compass"></i> Qibla Compass</h2>
+                    <p>The 3D Qibla compass uses your device's magnetometer and accelerometer sensors. This data is processed locally and is not accessible to us or any third party. No sensor data is ever recorded or transmitted.</p>
+                </div>
+
+                <div class="gold-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🎧 Tilawat (Quran Recitation) Privacy</strong></p>
+                    <p style="margin-bottom: 0;">The Tilawat feature streams Quranic recitations by <strong>Sheikh Al Sudais</strong>. Audio streaming uses your internet connection but no personal data is collected. We do not track which Surahs you listen to, how long you listen, or any listening patterns. No audio is stored permanently on your device.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-book"></i> Hadith Library</h2>
+                    <p>The Hadith collection is stored locally within the app. No internet connection is required to read Hadiths. We do not track which Hadiths you read, your bookmarks, favorites, or how much time you spend in the app. Everything stays on your device.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-clock"></i> Prayer Times</h2>
+                    <p>Prayer time calculations are performed locally on your device using your GPS coordinates or manually entered location. No location data ever leaves your device. The app uses established Islamic calculation methods (Karachi, MWL, ISNA) which are built into the app.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-bell"></i> Smart Alarms & Notifications</h2>
+                    <p>The app uses Android's alarm manager to schedule prayer and Sehri/Iftar notifications. No data about your alarm settings or notification interactions is collected. All scheduling is handled locally on your device. The smart alarm system works even in deep sleep mode without sending any data externally.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Location:</strong> Used only for prayer times & Qibla (local processing only)</p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Used only for Tilawat streaming and app updates</p>
+                    <p><strong>Notifications:</strong> Used for prayer alarms (optional, user-controlled)</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>Our app is suitable for users of all ages. We do not knowingly collect any personal information from children under 13. Since we collect no data at all, children can use the app with complete privacy and safety. Parents can feel confident letting their children use Deenly.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-shield"></i> Data Security</h2>
+                    <p>Because we collect no data, there is no risk of data breach, hacking, or unauthorized access. All app functionality works offline or with minimal internet for Tilawat streaming. Your privacy is 100% protected by design. We follow Android security best practices and keep the app updated.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>Deenly does NOT use:</p>
+                    <ul>
+                        <li>Google Analytics or Firebase Analytics</li>
+                        <li>Any crash reporting tools (Crashlytics, etc.)</li>
+                        <li>Advertising networks or SDKs</li>
+                        <li>Any tracking or monitoring tools</li>
+                    </ul>
+                    <p>The Tilawat feature streams audio from secure servers, but no personal data is shared with any third party. The app is distributed through Google Play Store, which may collect basic anonymized install data as per Google's policies.</p>
+                </div>
             </div>
 
-            <!-- LOCATION PERMISSION -->
-            <div class="section">
-                <h2><i class="fas fa-location-dot"></i> Location Permission</h2>
-                <p>The app requests location access for one purpose only:</p>
-                <ul>
-                    <li>To calculate accurate prayer times based on your current location</li>
-                    <li>To determine Qibla direction using your device's compass</li>
-                </ul>
-                <p><strong style="color: var(--green);">Important:</strong> Location data is processed entirely on your device. It is NEVER sent to any server, cloud, or third party. You can deny location permission and still use manual location entry.</p>
+            <!-- ===================== AL-FAJAR ===================== -->
+            <div class="policy-pane" id="pane-alfajar">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">Al-Fajar Islamic Audio Library</strong> is a 100% free, ad-free audio platform developed by Abdus Salam. It provides Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.</p>
+                    <p><strong style="color: var(--green);">✓ Completely free · No ads · No in-app purchases</strong></p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ ZERO PERSONAL DATA COLLECTION</strong></p>
+                    <p style="margin-bottom: 0;">Al-Fajar does not collect, store, or share any personal information. No analytics, no tracking, no advertising SDKs.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-download"></i> Offline Downloads</h2>
+                    <p>Downloaded audio files are stored locally on your device in the app's private storage. We do not track which lectures you download, your listening history, or your favorites. All such data stays on your device and can be cleared anytime from Android settings.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-wifi"></i> Internet Usage</h2>
+                    <p>The app uses internet only to:</p>
+                    <ul>
+                        <li>Stream or download audio lectures</li>
+                        <li>Fetch new content listings from our public content server</li>
+                        <li>Check for app updates via Google Play</li>
+                    </ul>
+                    <p>No personal identifiers (name, email, device ID) are transmitted during these requests.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Streaming and downloading audio</p>
+                    <p style="margin-bottom: 5px;"><strong>Storage:</strong> Saving downloaded audio files</p>
+                    <p><strong>Notifications:</strong> Optional playback controls</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>Al-Fajar does NOT use any analytics, crash reporting, advertising, or tracking SDKs. Content is served from our own secure servers.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>The app is safe for all ages. Since we collect no data, children can use it freely and parents can be confident in its safety.</p>
+                </div>
             </div>
 
-            <!-- QIBLA COMPASS -->
-            <div class="section">
-                <h2><i class="fas fa-compass"></i> Qibla Compass</h2>
-                <p>The 3D Qibla compass uses your device's magnetometer and accelerometer sensors. This data is processed locally and is not accessible to us or any third party. No sensor data is ever recorded or transmitted.</p>
+            <!-- ===================== MACHINIST NEXUS ===================== -->
+            <div class="policy-pane" id="pane-machinist">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">Machinist Nexus: Calculators</strong> is a professional engineering tool suite developed by Abdus Salam for CNC machinists and engineers. It includes AI-assisted calculators for milling, turning, threads, and gears, plus an offline Mach-AI assistant.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ ALL CALCULATIONS RUN LOCALLY</strong></p>
+                    <p style="margin-bottom: 0;">All engineering calculations and the Mach-AI assistant run entirely on your device. We do not collect, store, or transmit any input values, calculation results, or usage patterns.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-robot"></i> Mach-AI Assistant</h2>
+                    <p>The Mach-AI assistant is an <strong>offline, rule-based system</strong> built into the app. It does not send your queries to any external server or AI service. All responses are generated locally on your device.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-calculator"></i> Calculation Data</h2>
+                    <p>Any values you enter (diameters, speeds, feeds, materials) are processed in memory only and are never stored permanently or transmitted. Closing the app clears all working data.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Optional — only for app updates via Google Play</p>
+                    <p><strong>Storage:</strong> Optional — only if you export PDF reports</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>Machinist Nexus does NOT use analytics, advertising, crash reporting, or tracking SDKs of any kind.</p>
+                </div>
             </div>
 
-            <!-- TILAWAT PRIVACY -->
-            <div class="gold-box">
-                <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🎧 Tilawat (Quran Recitation) Privacy</strong></p>
-                <p style="margin-bottom: 0;">The Tilawat feature streams Quranic recitations by <strong>Sheikh Al Sudais</strong>. Audio streaming uses your internet connection but no personal data is collected. We do not track which Surahs you listen to, how long you listen, or any listening patterns. No audio is stored permanently on your device.</p>
+            <!-- ===================== SMARTTURN ===================== -->
+            <div class="policy-pane" id="pane-smartturn">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">SmartTurn: CNC Turning Calculator</strong> is a professional CNC turning calculator developed by Abdus Salam. It computes cutting speed, feed rate, MRR, and tool life across 25+ materials.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ OFFLINE-FIRST · ZERO DATA COLLECTION</strong></p>
+                    <p style="margin-bottom: 0;">All calculations run locally on your device. No input values, results, or usage data is collected or transmitted.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-calculator"></i> Calculation Data</h2>
+                    <p>Every calculation is performed locally in memory. Nothing is stored permanently, uploaded, or shared. Your machining parameters remain 100% private.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Optional — only for app updates</p>
+                    <p><strong>Storage:</strong> Optional — only if you save reports</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>SmartTurn does NOT use any analytics, ads, crash reporting, or tracking tools.</p>
+                </div>
             </div>
 
-            <!-- HADITH CONTENT -->
-            <div class="section">
-                <h2><i class="fas fa-book"></i> Hadith Library</h2>
-                <p>The Hadith collection is stored locally within the app. No internet connection is required to read Hadiths. We do not track which Hadiths you read, your bookmarks, favorites, or how much time you spend in the app. Everything stays on your device.</p>
+            <!-- ===================== SMARTMILL ===================== -->
+            <div class="policy-pane" id="pane-smartmill">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">SmartMill: CNC Milling Calculator</strong> is a professional CNC milling calculator with a physical-accuracy engine, offline machine library, and PDF report generation, developed by Abdus Salam.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ OFFLINE-FIRST · ZERO DATA COLLECTION</strong></p>
+                    <p style="margin-bottom: 0;">All calculations run locally on your device. The machine library is bundled offline. No usage data leaves your phone.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-file-pdf"></i> PDF Reports</h2>
+                    <p>PDF reports are generated locally on your device and saved to your chosen storage location. We have no access to any report content, filenames, or destinations.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Optional — only for app updates</p>
+                    <p><strong>Storage:</strong> Required only if you save/export PDF reports</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>SmartMill does NOT use any analytics, ads, crash reporting, or tracking tools.</p>
+                </div>
             </div>
 
-            <!-- PRAYER TIMES -->
-            <div class="section">
-                <h2><i class="fas fa-clock"></i> Prayer Times</h2>
-                <p>Prayer time calculations are performed locally on your device using your GPS coordinates or manually entered location. No location data ever leaves your device. The app uses established Islamic calculation methods (Karachi, MWL, ISNA) which are built into the app.</p>
+            <!-- ===================== SMART SPIN ===================== -->
+            <div class="policy-pane" id="pane-smartspin">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">Smart Spin: Metal Forming Suite</strong> is a precision analysis tool for Metal Spinning, Shear Spinning & Flow Forming — covering materials, mandrel geometry, and forming forces. Developed by Abdus Salam.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ OFFLINE-FIRST · ZERO DATA COLLECTION</strong></p>
+                    <p style="margin-bottom: 0;">All calculations run entirely on your device. No usage, input, or result data is collected or transmitted.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-calculator"></i> Calculation Data</h2>
+                    <p>All material properties, mandrel geometry, and forming force calculations are computed locally. Nothing is stored or shared externally.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p><strong>Internet:</strong> Optional — only for app updates via Google Play</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>Smart Spin does NOT use any analytics, ads, crash reporting, or tracking tools.</p>
+                </div>
             </div>
 
-            <!-- SMART ALARMS -->
-            <div class="section">
-                <h2><i class="fas fa-bell"></i> Smart Alarms & Notifications</h2>
-                <p>The app uses Android's alarm manager to schedule prayer and Sehri/Iftar notifications. No data about your alarm settings or notification interactions is collected. All scheduling is handled locally on your device. The smart alarm system works even in deep sleep mode without sending any data externally.</p>
+            <!-- ===================== LUDOMASTER ===================== -->
+            <div class="policy-pane" id="pane-ludo">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">LudoMaster: Online Multiplayer</strong> is a real-time multiplayer Ludo game developed by Abdus Salam, featuring private rooms, a global leaderboard, and a glass-morphic UI.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ MINIMAL DATA · NO PERSONAL INFO</strong></p>
+                    <p style="margin-bottom: 0;">LudoMaster does not collect your name, email, phone number, or contacts. Only an anonymous player ID is used for matchmaking and leaderboard ranking.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-user-secret"></i> Anonymous Account</h2>
+                    <p>The game creates an <strong>anonymous player ID</strong> on first launch to enable multiplayer matchmaking and leaderboard tracking. This ID is not linked to any personal information.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-trophy"></i> Gameplay Data</h2>
+                    <p>Only the following gameplay data is stored on our servers to enable multiplayer features:</p>
+                    <ul>
+                        <li>Anonymous player ID and chosen display name</li>
+                        <li>Game results (win/loss) for the leaderboard</li>
+                        <li>In-game statistics used for matchmaking</li>
+                    </ul>
+                    <p>No chat logs, no personal messages, and no device info is stored.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-database"></i> Server Storage</h2>
+                    <p>Game state is synchronized in real time to enable low-latency multiplayer. This data is stored on secure Firebase servers and is used strictly for gameplay. It is never sold or shared with advertisers.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Internet:</strong> Required for real-time multiplayer</p>
+                    <p><strong>Notifications:</strong> Optional — for game invites and turn alerts</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>LudoMaster uses <strong>Firebase Realtime Database</strong> and <strong>Firebase Authentication (Anonymous)</strong> for multiplayer functionality. No analytics, ads, or tracking SDKs are used.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>The game is family-friendly and safe for all ages. We collect no personal information from any user, including children under 13.</p>
+                </div>
             </div>
 
-            <!-- PERMISSIONS -->
-            <div class="info-box">
-                <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
-                <p style="margin-bottom: 5px;"><strong>Location:</strong> Used only for prayer times & Qibla (local processing only)</p>
-                <p style="margin-bottom: 5px;"><strong>Internet:</strong> Used only for Tilawat streaming and app updates</p>
-                <p><strong>Notifications:</strong> Used for prayer alarms (optional, user-controlled)</p>
+            <!-- ===================== PDF VIEWER ===================== -->
+            <div class="policy-pane" id="pane-pdfviewer">
+                <div class="section">
+                    <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+                    <p><strong style="color: var(--gold);">PDF Viewer</strong> is a fast, lightweight PDF reader developed by Abdus Salam. It supports offline reading, smooth zoom, search, and easy file management.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>🛡️ YOUR DOCUMENTS STAY ON YOUR DEVICE</strong></p>
+                    <p style="margin-bottom: 0;">PDF Viewer does not upload, transmit, or share your PDF files with anyone. All documents are opened and rendered locally on your device.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-file-pdf"></i> Document Privacy</h2>
+                    <p>All PDF files you open remain strictly on your device. We do not:</p>
+                    <ul>
+                        <li>Upload your files to any server</li>
+                        <li>Read or analyze document contents</li>
+                        <li>Track which files you open or how often</li>
+                        <li>Share your reading history with anyone</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-folder-open"></i> File Access</h2>
+                    <p>The app requests storage access only to list and open PDF files you choose. We never scan or access files unrelated to your PDF selection.</p>
+                </div>
+
+                <div class="info-box">
+                    <p style="margin-bottom: 10px;"><strong><i class="fas fa-shield-alt"></i> Permissions Explained</strong></p>
+                    <p style="margin-bottom: 5px;"><strong>Storage:</strong> Required to open and view PDF files</p>
+                    <p><strong>Internet:</strong> Optional — only for app updates via Google Play</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
+                    <p>PDF Viewer does NOT use any analytics, ads, crash reporting, or tracking tools. The app is entirely self-contained.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                    <p>The app is safe for all ages. Since no data is collected, parents can be confident about their children's privacy.</p>
+                </div>
             </div>
 
-            <!-- CHILDREN'S PRIVACY -->
-            <div class="section">
-                <h2><i class="fas fa-child"></i> Children's Privacy</h2>
-                <p>Our app is suitable for users of all ages. We do not knowingly collect any personal information from children under 13. Since we collect no data at all, children can use the app with complete privacy and safety. Parents can feel confident letting their children use Deenly.</p>
-            </div>
-
-            <!-- DATA SECURITY -->
-            <div class="section">
-                <h2><i class="fas fa-shield"></i> Data Security</h2>
-                <p>Because we collect no data, there is no risk of data breach, hacking, or unauthorized access. All app functionality works offline or with minimal internet for Tilawat streaming. Your privacy is 100% protected by design. We follow Android security best practices and keep the app updated.</p>
-            </div>
-
-            <!-- THIRD PARTY SERVICES -->
-            <div class="section">
-                <h2><i class="fas fa-share-alt"></i> Third Party Services</h2>
-                <p>Deenly does NOT use:</p>
-                <ul>
-                    <li>Google Analytics or Firebase Analytics</li>
-                    <li>Any crash reporting tools (Crashlytics, etc.)</li>
-                    <li>Advertising networks or SDKs</li>
-                    <li>Any tracking or monitoring tools</li>
-                </ul>
-                <p>The Tilawat feature streams audio from secure servers, but no personal data is shared with any third party. The app is distributed through Google Play Store, which may collect basic anonymized install data as per Google's policies.</p>
-            </div>
-
-            <!-- YOUR RIGHTS -->
+            <!-- ===================== SHARED SECTIONS ===================== -->
             <div class="section">
                 <h2><i class="fas fa-user-check"></i> Your Privacy Rights</h2>
-                <p>Since we collect no personal data, there is no data to access, delete, or export. You have complete control over your device and the app. You can:</p>
+                <p>Across all our apps, you have complete control:</p>
                 <ul>
-                    <li>Use the app completely offline (except Tilawat streaming)</li>
-                    <li>Deny location permission and use manual city entry</li>
-                    <li>Clear app data from your device settings at any time</li>
-                    <li>Uninstall the app completely whenever you want</li>
-                    <li>Disable notifications from Android settings</li>
+                    <li>Use the apps completely offline (except apps requiring streaming/multiplayer)</li>
+                    <li>Deny optional permissions and continue using the app</li>
+                    <li>Clear app data from Android settings at any time</li>
+                    <li>Uninstall the app whenever you want</li>
                 </ul>
             </div>
 
-            <!-- CHANGES -->
             <div class="section">
                 <h2><i class="fas fa-pen"></i> Changes to This Policy</h2>
-                <p>If we ever need to update this privacy policy, we will post the new version here and update the "Last Updated" date. However, our commitment to zero data collection will never change. We will always keep Deenly free, private, and secure. Continued use of the app after changes means you accept the updated policy.</p>
+                <p>If we ever update any of these policies, we will post the new version on this page and update the "Last Updated" date. Our commitment to zero personal-data collection will never change. Continued use of any app after changes means you accept the updated policy.</p>
             </div>
 
             <!-- CONTACT -->
@@ -328,7 +666,7 @@
                 <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Abdus Salam</h3>
                 <p style="color: var(--text-gray); margin-bottom: 5px;">Android Developer</p>
                 <p style="color: var(--text-gray); margin-bottom: 20px;">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
-                
+
                 <a href="mailto:salamkhan.apps@gmail.com" style="display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0a0f1c; padding: 12px 30px; border-radius: 60px; text-decoration: none; font-weight: 700; margin-top: 10px;">
                     <i class="fas fa-envelope"></i> salamkhan.apps@gmail.com
                 </a>
@@ -345,13 +683,38 @@
                     <a href="about-developer.html" class="footer-link"><i class="fas fa-user-tie"></i> Developer</a>
                 </div>
                 <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 30px;">
-                    © 2026 Abdus Salam · Deenly: Prayer, Hadith & Tilawat
+                    © 2026 Abdus Salam · All Apps
                 </p>
                 <p style="color: var(--text-gray); font-size: 0.75rem; margin-top: 8px;">
-                    Formerly known as Ramzan Prayer & Hadees · 100% Free · Zero Data Collection
+                    Zero personal-data collection · Privacy-first design
                 </p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.app-tab');
+        const panes = document.querySelectorAll('.policy-pane');
+
+        function activateApp(appKey) {
+            tabs.forEach(t => t.classList.toggle('active', t.dataset.app === appKey));
+            panes.forEach(p => p.classList.toggle('active', p.id === 'pane-' + appKey));
+            // Update URL hash so links can deep-link to specific app
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + appKey);
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => activateApp(tab.dataset.app));
+        });
+
+        // If URL has #appkey, activate that tab on load
+        const hash = window.location.hash.replace('#', '');
+        if (hash && document.getElementById('pane-' + hash)) {
+            activateApp(hash);
+        }
+    </script>
 </body>
 </html>
