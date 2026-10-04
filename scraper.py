@@ -33,6 +33,7 @@ PACKAGE_IDS = {
     "com.ramzan.prayer.hadees": ("Islamic Lifestyle", "Prayer times, smart Azan alarms, Hadith library, Tilawat, and a 3D Qibla compass.", "Deenly"),
     "com.al.alishaat": ("Islamic Audio Library", "Free, ad-free audio library of Tafseer, Dars-e-Hadith, Bayanat, and Tilawat with offline downloads.", "Al-Fajar"),
     "com.ludomaster.pk": ("Game", "Real-time multiplayer Ludo with private rooms, global leaderboard, and glass-morphic UI.", "LudoMaster"),
+    "com.pdfviewer.pk": ("Utility", "Fast, lightweight PDF viewer with offline reading, smooth zoom, and easy file management.", "PDF Viewer"),
 }
 
 
