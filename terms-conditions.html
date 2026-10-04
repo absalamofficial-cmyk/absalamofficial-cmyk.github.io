@@ -3,165 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Terms & Conditions · Deenly: Prayer, Hadith & Tilawat</title>
-    
-    <!-- Fonts & Icons -->
+    <title>Terms & Conditions · Abdus Salam Apps</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* ===== DEENLY PREMIUM THEME - Midnight Blue & Gold ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary-bg: #0a0f1c;
-            --secondary-bg: #111827;
+            --bg-dark: #05070a;
+            --bg-surface: #0f1520;
             --card-bg: #1a1f2c;
-            --border-light: #2a2f3c;
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --accent-blue: #3b82f6;
-            --accent-gold: #f59e0b;
-            --important-red: #ef4444;
-            --deenly-gold: #d4af37;
+            --border-dim: #2a2f3c;
+            --text-white: #f3f4f6;
+            --text-gray: #9ca3af;
+            --gold: #d4af37;
+            --gold-dark: #b8960c;
+            --cyan: #00f2fe;
+            --green: #10b981;
+            --blue: #3b82f6;
+            --red: #ef4444;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
+            background: radial-gradient(circle at 20% 30%, #0a1a2a, #030712);
+            color: var(--text-white);
             line-height: 1.7;
             padding: 30px 20px;
             min-height: 100vh;
         }
 
-        .page-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1000px; margin: 0 auto; }
 
         .terms-card {
-            background: var(--secondary-bg);
-            border-radius: 32px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
+            background: rgba(15, 25, 35, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
         }
 
-        .terms-header {
-            background: linear-gradient(145deg, #0f1520, #0a0f14);
-            padding: 60px 50px;
-            border-bottom: 1px solid var(--border-light);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--gold);
+            padding: 10px 25px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
-        .terms-header::before {
-            content: "🕌";
-            position: absolute;
-            font-size: 8rem;
-            opacity: 0.03;
-            bottom: -20px;
-            right: -20px;
-            pointer-events: none;
-        }
-
-        .terms-header h1 {
+        h1 {
             font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, var(--deenly-gold));
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), var(--green));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .app-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(59, 130, 246, 0.1));
-            color: var(--deenly-gold);
-            padding: 8px 22px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            margin-bottom: 20px;
-        }
-
-        .app-name-large {
-            font-size: 1.2rem;
-            color: var(--deenly-gold);
-            letter-spacing: 1px;
-            margin-top: 10px;
         }
 
         .last-updated {
-            color: var(--text-secondary);
+            color: var(--text-gray);
             font-size: 0.9rem;
-            margin-top: 15px;
-            display: inline-block;
-            background: rgba(255,255,255,0.05);
-            padding: 8px 25px;
-            border-radius: 60px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-dim);
         }
 
-        .terms-content {
-            padding: 50px;
-            background: var(--secondary-bg);
+        /* App tabs */
+        .app-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+            padding: 15px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-dim);
+            border-radius: 20px;
+        }
+
+        .app-tab {
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-dim);
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-tab:hover { color: var(--text-white); border-color: rgba(212, 175, 55, 0.4); }
+
+        .app-tab.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(16, 185, 129, 0.15));
+            color: var(--gold);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .policy-pane { display: none; }
+        .policy-pane.active { display: block; animation: fadeIn 0.35s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-light);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-dim);
             border-radius: 24px;
             padding: 30px;
             margin-bottom: 25px;
-            transition: all 0.2s ease;
+            transition: all 0.3s;
         }
 
-        .section:hover {
-            border-color: var(--deenly-gold);
-            background: #1e2533;
-        }
+        .section:hover { border-color: rgba(212, 175, 55, 0.3); }
 
         .section h2 {
-            font-size: 1.3rem;
+            color: var(--gold);
+            font-size: 1.35rem;
             font-weight: 700;
-            color: white;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .section h2 i {
-            color: var(--deenly-gold);
-            font-size: 1.2rem;
-            width: 28px;
-        }
+        .section h2 i { color: var(--green); width: 28px; }
 
-        .section p {
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
+        .section p { color: var(--text-gray); margin-bottom: 15px; }
 
-        .section ul {
-            list-style: none;
-            margin: 15px 0;
-        }
+        .section ul { list-style: none; margin: 15px 0; }
 
         .section li {
-            color: var(--text-secondary);
+            color: var(--text-gray);
             margin-bottom: 12px;
             padding-left: 28px;
             position: relative;
@@ -169,192 +157,119 @@
 
         .section li:before {
             content: "•";
-            color: var(--deenly-gold);
+            color: var(--gold);
             font-size: 1.4rem;
             position: absolute;
             left: 8px;
             top: -4px;
         }
 
-        .important-note {
-            background: rgba(239, 68, 68, 0.05);
-            border-left: 6px solid var(--important-red);
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.06);
+            border-left: 6px solid var(--green);
             border-radius: 16px;
             padding: 25px;
-            margin: 25px 0 15px 0;
-        }
-
-        .warning-box {
-            background: rgba(245, 158, 11, 0.05);
-            border-left: 6px solid var(--accent-gold);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 25px 0 15px 0;
-        }
-
-        .info-box {
-            background: rgba(59, 130, 246, 0.05);
-            border-left: 6px solid var(--accent-blue);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 25px 0 15px 0;
+            margin: 25px 0;
         }
 
         .gold-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
-            border-left: 6px solid var(--deenly-gold);
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 6px solid var(--gold);
             border-radius: 16px;
             padding: 25px;
-            margin: 25px 0 15px 0;
+            margin: 25px 0;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.06);
+            border-left: 6px solid var(--blue);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.06);
+            border-left: 6px solid #f59e0b;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .danger-box {
+            background: rgba(239, 68, 68, 0.06);
+            border-left: 6px solid var(--red);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
         }
 
         .contact-card {
-            background: linear-gradient(145deg, #1a1f2c, #151a26);
-            border: 1px solid var(--border-light);
+            background: rgba(255,255,255,0.03);
             border-radius: 24px;
-            padding: 35px;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .contact-email {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--deenly-gold), #b8960c);
-            color: #0a0f1c;
-            padding: 14px 35px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 700;
+            padding: 30px;
             margin-top: 20px;
-            transition: 0.2s;
-        }
-
-        .contact-email:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .terms-footer {
-            background: #0a0f14;
-            padding: 40px 50px;
-            border-top: 1px solid var(--border-light);
             text-align: center;
+            border: 1px solid var(--border-dim);
         }
 
-        .copy-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-            padding: 14px 35px;
-            border-radius: 60px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 1rem;
-        }
-
-        .copy-btn:hover {
-            background: var(--card-bg);
-            border-color: var(--deenly-gold);
-            color: var(--deenly-gold);
-        }
-
-        .copy-btn:hover i {
-            color: var(--deenly-gold);
-        }
-
-        .copied-message {
-            color: #10b981;
-            margin-top: 20px;
-            font-weight: 500;
-            display: none;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         .footer-link {
-            color: var(--text-secondary);
+            color: var(--text-gray);
             text-decoration: none;
-            margin-top: 25px;
-            display: inline-block;
-            font-size: 0.9rem;
-            border-bottom: 1px dashed var(--border-light);
-            padding-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
         }
 
-        .footer-link:hover {
-            color: var(--deenly-gold);
-            border-bottom-color: var(--deenly-gold);
-        }
+        .footer-link:hover { color: var(--gold); }
 
         @media (max-width: 768px) {
-            .terms-header { padding: 40px 25px; }
-            .terms-header h1 { font-size: 2rem; }
-            .terms-content { padding: 30px 20px; }
-            .section { padding: 25px 20px; }
-            .terms-footer { padding: 30px 25px; }
-        }
-
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.4s, visibility 0.4s;
-        }
-        
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loader-circle {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(212, 175, 55, 0.1);
-            border-top-color: var(--deenly-gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+            .terms-card { padding: 30px 25px; }
+            h1 { font-size: 2rem; }
+            .section h2 { font-size: 1.2rem; }
+            .app-tab { font-size: 0.78rem; padding: 8px 14px; }
         }
     </style>
 </head>
 <body>
-    <div class="loader" id="loader">
-        <div class="loader-circle"></div>
-    </div>
-
-    <div class="page-wrapper">
+    <div class="container">
         <div class="terms-card">
-            
-            <div class="terms-header">
-                <span class="app-badge">
-                    <i class="fas fa-file-contract"></i> Legal Document
-                </span>
-                <h1>Terms & Conditions</h1>
-                <div class="app-name-large">
-                    <i class="fas fa-mosque"></i> Deenly: Prayer, Hadith & Tilawat
-                </div>
-                <span class="last-updated">
-                    <i class="far fa-calendar-alt"></i> Last Updated: April 21, 2026
-                </span>
+
+            <div class="app-badge">
+                <i class="fas fa-file-contract"></i> Abdus Salam · Legal Center
             </div>
 
-            <div class="terms-content" id="termsContent">
-                
+            <h1>Terms & Conditions</h1>
+            <div class="last-updated">
+                <i class="far fa-calendar-alt"></i> Last Updated: April 21, 2026
+            </div>
+
+            <!-- APP SELECTOR TABS -->
+            <div class="app-selector" id="appSelector">
+                <button class="app-tab active" data-app="deenly"><i class="fas fa-mosque"></i> Deenly</button>
+                <button class="app-tab" data-app="alfajar"><i class="fas fa-headphones"></i> Al-Fajar</button>
+                <button class="app-tab" data-app="machinist"><i class="fas fa-gears"></i> Machinist Nexus</button>
+                <button class="app-tab" data-app="smartturn"><i class="fas fa-sync"></i> SmartTurn</button>
+                <button class="app-tab" data-app="smartmill"><i class="fas fa-industry"></i> SmartMill</button>
+                <button class="app-tab" data-app="smartspin"><i class="fas fa-compact-disc"></i> Smart Spin</button>
+                <button class="app-tab" data-app="ludo"><i class="fas fa-dice"></i> LudoMaster</button>
+                <button class="app-tab" data-app="pdfviewer"><i class="fas fa-file-pdf"></i> PDF Viewer</button>
+            </div>
+
+            <!-- ===================== DEENLY ===================== -->
+            <div class="policy-pane active" id="pane-deenly">
                 <div class="section">
                     <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
-                    <p>By downloading, installing, or using <strong style="color: var(--deenly-gold);">Deenly: Prayer, Hadith & Tilawat</strong> ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the App.</p>
+                    <p>By downloading, installing, or using <strong style="color: var(--gold);">Deenly: Prayer, Hadith & Tilawat</strong> ("the App"), you agree to be bound by these Terms and Conditions. If you do not agree, please do not use the App.</p>
                 </div>
 
                 <div class="section">
@@ -365,212 +280,424 @@
 
                 <div class="section">
                     <h2><i class="fas fa-key"></i> 3. App License</h2>
-                    <p><strong style="color: white;">3.1</strong> We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes.</p>
-                    <p><strong style="color: white;">3.2</strong> This license is for use on Android devices that you own or control.</p>
-                    <p><strong style="color: white;">3.3</strong> You may not:</p>
-                    <ul>
-                        <li>Copy, modify, or create derivative works of the App</li>
-                        <li>Reverse engineer, decompile, or attempt to extract source code</li>
-                        <li>Remove any copyright or proprietary notices</li>
-                        <li>Use the App for any illegal purpose</li>
-                        <li>Resell, lease, or distribute the App</li>
-                    </ul>
+                    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes on Android devices you own or control. You may not copy, modify, reverse engineer, or redistribute the App.</p>
                 </div>
 
-                <!-- NEW SECTION: TILAWAT (QURAN RECITATION) -->
                 <div class="section">
                     <h2><i class="fas fa-headphones"></i> 4. Tilawat (Quran Recitation) Terms</h2>
                     <div class="gold-box">
-                        <p><strong style="color: var(--deenly-gold);">🎧 IMPORTANT: Tilawat Feature</strong></p>
-                        <p style="margin-top: 10px;"><strong style="color: white;">4.1</strong> The App provides Quranic audio recitations for spiritual and educational purposes.</p>
-                        <p style="margin-top: 10px;"><strong style="color: white;">4.2</strong> All recitations are sourced from authorized Qaris (reciters).</p>
-                        <p style="margin-top: 10px;"><strong style="color: white;">4.3</strong> You may NOT redistribute, download permanently, or use recitations for commercial purposes.</p>
-                        <p style="margin-top: 10px;"><strong style="color: white;">4.4</strong> Streaming recitations requires internet connection for best quality.</p>
+                        <p><strong style="color: var(--gold);">🎧 IMPORTANT: Tilawat Feature</strong></p>
+                        <p style="margin-top: 10px;">4.1 The App provides Quranic audio recitations for spiritual and educational purposes.</p>
+                        <p style="margin-top: 10px;">4.2 All recitations are sourced from authorized Qaris (reciters).</p>
+                        <p style="margin-top: 10px;">4.3 You may NOT redistribute, download permanently, or use recitations for commercial purposes.</p>
+                        <p style="margin-top: 10px;">4.4 Streaming recitations requires internet connection.</p>
                         <p style="margin-top: 10px; color: #fcd34d;">⚠️ The Holy Quran is the literal word of Allah. Please treat recitations with utmost respect. Do not play in inappropriate places.</p>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2><i class="fas fa-shield-alt"></i> 5. User Responsibilities</h2>
-                    <p><strong style="color: white;">5.1</strong> <span style="color: var(--deenly-gold);">Accurate Information:</span> You must provide accurate location information for prayer time calculations.</p>
-                    <p><strong style="color: white;">5.2</strong> <span style="color: var(--deenly-gold);">Device Security:</span> You are responsible for maintaining the security of your device.</p>
-                    <p><strong style="color: white;">5.3</strong> <span style="color: var(--deenly-gold);">Prohibited Activities:</span></p>
-                    <ul>
-                        <li>Attempting to disrupt App functionality</li>
-                        <li>Using automated systems to access the App</li>
-                        <li>Violating any laws through App usage</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h2><i class="fas fa-clock"></i> 6. Prayer Time Accuracy</h2>
+                    <h2><i class="fas fa-clock"></i> 5. Prayer Time Accuracy</h2>
                     <div class="warning-box">
                         <p><strong style="color: #fcd34d;">⚠️ IMPORTANT DISCLAIMER:</strong></p>
-                        <p style="margin-top: 10px;">6.1 The App provides prayer time calculations based on established Islamic methodologies. These are calculated times and may differ from local mosque announcements.</p>
-                        <p style="margin-top: 15px;"><strong style="color: white;">You are responsible for:</strong></p>
-                        <ul style="margin-top: 10px;">
-                            <li>Verifying prayer times with local Islamic authorities</li>
-                            <li>Following moon sighting announcements for Ramadan/Eid</li>
-                            <li>Adjusting times based on local customs</li>
-                        </ul>
-                        <p style="margin-top: 15px; color: #f87171;">6.4 We are not liable for any missed prayers due to time discrepancies.</p>
+                        <p style="margin-top: 10px;">Prayer times are calculated using established Islamic methodologies. These are calculated times and may differ from local mosque announcements. You are responsible for verifying prayer times with local Islamic authorities and following moon sighting announcements for Ramadan/Eid.</p>
+                        <p style="margin-top: 15px; color: #f87171;">We are not liable for any missed prayers due to time discrepancies.</p>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2><i class="fas fa-compass"></i> 7. Qibla Direction</h2>
+                    <h2><i class="fas fa-compass"></i> 6. Qibla Direction</h2>
                     <div class="info-box">
                         <p><strong style="color: #93c5fd;">🕋 QIBLA DISCLAIMER:</strong></p>
-                        <p style="margin-top: 10px;">7.1 Qibla direction is calculated using mathematical formulas. Accuracy may vary due to device sensor calibration, magnetic interference, building structures, and geographical location.</p>
-                        <p style="margin-top: 15px;">7.2 For precise Qibla direction, consult with local Islamic centers. The 3D visualization is for guidance only.</p>
+                        <p style="margin-top: 10px;">Qibla direction is calculated using mathematical formulas. Accuracy may vary due to device sensor calibration, magnetic interference, building structures, and geographical location. For precise Qibla, consult local Islamic centers.</p>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2><i class="fas fa-book"></i> 8. Hadith Content Disclaimer</h2>
-                    <div class="important-note">
+                    <h2><i class="fas fa-book"></i> 7. Hadith Content Disclaimer</h2>
+                    <div class="danger-box">
                         <p><strong style="color: #fca5a5;">📜 CRITICAL LEGAL NOTICE:</strong></p>
-                        <p style="margin-top: 15px;"><strong style="color: white;">8.1</strong> All Hadith texts are sourced from widely accepted Islamic collections. Translations may contain errors or limitations - Arabic text is primary.</p>
-                        <p style="margin-top: 15px;"><strong style="color: white; font-size: 1.1rem;">8.2 This App is NOT a religious authority.</strong> Consult qualified Islamic scholars for religious rulings.</p>
-                        <p style="margin-top: 15px;"><strong style="color: white;">8.3</strong> The developer is a software engineer, NOT an Islamic scholar.</p>
-                        <p style="margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px;"><strong style="color: #fca5a5;">8.4 Any errors in text or translation are UNINTENTIONAL technical errors.</strong></p>
-                        <p style="margin-top: 15px;">8.5 You must verify important religious content with authentic sources.</p>
-                        <p style="margin-top: 15px;">8.6 Report any content errors to: <strong style="color: #60a5fa;"><a href="mailto:salamkhan.apps@gmail.com" style="color: #60a5fa; text-decoration: none;">salamkhan.apps@gmail.com</a></strong></p>
+                        <p style="margin-top: 15px;">7.1 All Hadith texts are sourced from widely accepted Islamic collections. Translations may contain errors — Arabic text is primary.</p>
+                        <p style="margin-top: 15px;"><strong style="color: white; font-size: 1.1rem;">7.2 This App is NOT a religious authority.</strong> Consult qualified Islamic scholars for religious rulings.</p>
+                        <p style="margin-top: 15px;">7.3 The developer is a software engineer, NOT an Islamic scholar.</p>
+                        <p style="margin-top: 15px;">7.4 Any errors in text or translation are UNINTENTIONAL technical errors.</p>
+                        <p style="margin-top: 15px;">7.5 Report content errors to: <a href="mailto:salamkhan.apps@gmail.com" style="color: #60a5fa;">salamkhan.apps@gmail.com</a></p>
                     </div>
                 </div>
 
                 <div class="section">
-                    <h2><i class="fas fa-moon"></i> 9. Ramadan Features</h2>
-                    <p><strong style="color: white;">9.1</strong> Sehri/Iftar times are calculated, not confirmed by moon sighting.</p>
-                    <p><strong style="color: white;">9.2</strong> You must verify Ramadan start/end dates with local moon sighting committees.</p>
-                    <p><strong style="color: white;">9.3</strong> Taraweeh calculations are approximate.</p>
-                    <p><strong style="color: white;">9.4</strong> Fasting is a religious obligation; the App only provides assistance.</p>
+                    <h2><i class="fas fa-moon"></i> 8. Ramadan Features</h2>
+                    <p>Sehri/Iftar times are calculated, not confirmed by moon sighting. You must verify Ramadan start/end dates with local moon sighting committees. Fasting is a religious obligation; the App only provides assistance.</p>
                 </div>
 
                 <div class="section">
-                    <h2><i class="fas fa-copyright"></i> 10. Intellectual Property</h2>
-                    <p><strong style="color: white;">10.1</strong> All App content including code, design, and graphics are property of Abdus Salam (developer).</p>
-                    <p><strong style="color: white;">10.2</strong> Hadith texts and Quranic recitations are Islamic heritage; arrangement and streaming rights are proprietary.</p>
-                    <p><strong style="color: white;">10.3</strong> "Deenly" is a registered trademark.</p>
-                </div>
-
-                <div class="section">
-                    <h2><i class="fas fa-lock"></i> 11. Privacy</h2>
-                    <p><strong style="color: white;">11.1</strong> Our Privacy Policy is incorporated into these Terms.</p>
-                    <p><strong style="color: white;">11.2</strong> Location data is processed locally only.</p>
-                    <p><strong style="color: white;">11.3</strong> No personal data is collected or shared with third parties.</p>
-                    <p><strong style="color: white;">11.4</strong> Tilawat streaming may use network connection but no data is stored.</p>
-                </div>
-
-                <div class="section">
-                    <h2><i class="fas fa-exclamation-triangle"></i> 12-16. Legal Provisions</h2>
-                    <p><strong style="color: white;">12. DISCLAIMER OF WARRANTIES:</strong> THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE." WE MAKE NO WARRANTIES about accuracy or uninterrupted access.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">13. LIMITATION OF LIABILITY:</strong> We are not liable for any indirect, incidental damages. Total liability limited to amount you paid for App (currently $0).</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">14. INDEMNIFICATION:</strong> You agree to indemnify and hold harmless the developer from any claims arising from your violation of these Terms.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">15. TERMINATION:</strong> We may terminate your access if you violate these Terms.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">16. MODIFICATIONS:</strong> We may modify these Terms at any time. Continued use constitutes acceptance.</p>
-                    <p style="margin-top: 15px;"><strong style="color: white;">17. GOVERNING LAW:</strong> These Terms are governed by laws of Pakistan. Disputes shall be resolved in courts of Pakistan.</p>
-                </div>
-
-                <div class="contact-card">
-                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--deenly-gold); margin-bottom: 15px;"></i>
-                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Abdus Salam</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 5px;">Software Engineer & Developer</p>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
-                    
-                    <a href="mailto:salamkhan.apps@gmail.com" class="contact-email">
-                        <i class="fas fa-envelope"></i> salamkhan.apps@gmail.com
-                    </a>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px;">
-                        <i class="fas fa-clock"></i> Response Time: 3-5 business days
-                    </p>
-                </div>
-
-                <div class="section" style="margin-bottom: 0;">
-                    <h2><i class="fas fa-check-double"></i> 17. User Acknowledgements</h2>
-                    <p>By using Deenly, you acknowledge that:</p>
-                    <ul style="margin-top: 15px;">
-                        <li>This is a tool, not a religious authority</li>
-                        <li>Final religious decisions rest with you</li>
-                        <li>Technology has limitations in religious matters</li>
-                        <li>You use the App at your own discretion</li>
-                        <li>You will verify important matters with Islamic scholars</li>
-                        <li>Tilawat (Quran recitation) is for personal spiritual use only</li>
-                    </ul>
+                    <h2><i class="fas fa-exclamation-triangle"></i> 9. Legal Provisions</h2>
+                    <p><strong style="color: white;">9.1 DISCLAIMER OF WARRANTIES:</strong> THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE."</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">9.2 LIMITATION OF LIABILITY:</strong> We are not liable for indirect or incidental damages. Total liability limited to amount you paid (currently $0).</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">9.3 GOVERNING LAW:</strong> These Terms are governed by laws of Pakistan.</p>
                 </div>
             </div>
 
-            <div class="terms-footer">
-                <button class="copy-btn" onclick="copyTerms()">
-                    <i class="fas fa-copy"></i> Copy Terms & Conditions
-                </button>
-                <div class="copied-message" id="copiedMessage">
-                    <i class="fas fa-check-circle"></i> Copied to clipboard successfully!
+            <!-- ===================== AL-FAJAR ===================== -->
+            <div class="policy-pane" id="pane-alfajar">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">Al-Fajar Islamic Audio Library</strong>, you agree to these Terms. If you disagree, please discontinue use.</p>
                 </div>
-                
-                <a href="index.html" class="footer-link">
-                    <i class="fas fa-arrow-left"></i> Back to Home
+
+                <div class="section">
+                    <h2><i class="fas fa-user-check"></i> 2. Eligibility</h2>
+                    <p>You must be at least 13 years old or have parental consent to use this App.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-headphones"></i> 3. Content Usage</h2>
+                    <div class="gold-box">
+                        <p><strong style="color: var(--gold);">🎧 AUDIO CONTENT TERMS:</strong></p>
+                        <p style="margin-top: 10px;">3.1 All audio content (Tafseer, Dars-e-Hadith, Bayanat, Tilawat) is provided for personal, spiritual, and educational use only.</p>
+                        <p style="margin-top: 10px;">3.2 You may download content for offline personal use via the App's built-in feature.</p>
+                        <p style="margin-top: 10px;">3.3 You may NOT redistribute, re-upload, or commercially exploit any audio content.</p>
+                        <p style="margin-top: 10px;">3.4 Some content is sourced from third-party scholars; credit belongs to original creators.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-download"></i> 4. Offline Downloads</h2>
+                    <p>Downloaded files are stored locally on your device. You are responsible for managing device storage. We are not liable for any data loss due to device reset, storage corruption, or app uninstall.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-shield-alt"></i> 5. Prohibited Activities</h2>
+                    <ul>
+                        <li>Re-uploading audio to other platforms</li>
+                        <li>Using content for commercial purposes</li>
+                        <li>Modifying or claiming ownership of content</li>
+                        <li>Attempting to bypass app security</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 6. Legal Provisions</h2>
+                    <p><strong style="color: white;">6.1</strong> THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.2</strong> We are not liable for any indirect damages arising from app usage.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.3 GOVERNING LAW:</strong> Governed by laws of Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== MACHINIST NEXUS ===================== -->
+            <div class="policy-pane" id="pane-machinist">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">Machinist Nexus: Calculators</strong>, you agree to these Terms. This is a professional engineering tool — use it responsibly.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-user-check"></i> 2. Eligibility</h2>
+                    <p>Intended for professional machinists, engineers, and students aged 13+. Younger users should have adult supervision.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-calculator"></i> 3. Calculation Accuracy Disclaimer</h2>
+                    <div class="danger-box">
+                        <p><strong style="color: #fca5a5;">⚠️ CRITICAL ENGINEERING DISCLAIMER:</strong></p>
+                        <p style="margin-top: 15px;">3.1 All calculations (speeds, feeds, thread dimensions, gear geometry) are provided as <strong style="color: white;">reference tools only</strong>.</p>
+                        <p style="margin-top: 15px;">3.2 You are solely responsible for verifying all values against official machining handbooks, manufacturer specifications, and safety standards.</p>
+                        <p style="margin-top: 15px;">3.3 The developer is NOT liable for any tool breakage, workpiece damage, machine failure, personal injury, or financial loss resulting from reliance on these calculations.</p>
+                        <p style="margin-top: 15px;">3.4 Always follow your machine manufacturer's safety guidelines and local workplace safety regulations.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-robot"></i> 4. Mach-AI Assistant</h2>
+                    <p>The offline Mach-AI assistant provides general machining guidance. It is rule-based and not a substitute for professional engineering judgment. Responses are informational only.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-key"></i> 5. License & Restrictions</h2>
+                    <p>You receive a personal, non-transferable license. You may NOT:</p>
+                    <ul>
+                        <li>Reverse engineer or decompile the calculation engine</li>
+                        <li>Extract, copy, or redistribute the material database</li>
+                        <li>Use the App in safety-critical automated systems</li>
+                        <li>Resell or commercialize the App or its outputs</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 6. Legal Provisions</h2>
+                    <p><strong style="color: white;">6.1</strong> THE APP IS PROVIDED "AS IS" — no warranty of accuracy is given.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.2</strong> Total liability limited to amount paid ($0).</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.3 GOVERNING LAW:</strong> Governed by laws of Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== SMARTTURN ===================== -->
+            <div class="policy-pane" id="pane-smartturn">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">SmartTurn: CNC Turning Calculator</strong>, you accept these Terms.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-sync"></i> 2. Professional Use Disclaimer</h2>
+                    <div class="danger-box">
+                        <p><strong style="color: #fca5a5;">⚠️ ENGINEERING SAFETY NOTICE:</strong></p>
+                        <p style="margin-top: 15px;">2.1 Cutting speed, feed rate, MRR, and tool life values are <strong style="color: white;">reference estimates</strong>.</p>
+                        <p style="margin-top: 15px;">2.2 Actual machining outcomes depend on tool grade, coolant, machine rigidity, material batch, and operator skill.</p>
+                        <p style="margin-top: 15px;">2.3 You must verify values with your tool supplier's data sheets and machine manufacturer recommendations.</p>
+                        <p style="margin-top: 15px;">2.4 Developer not liable for tool wear, breakage, scrapped parts, or workplace injuries.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-key"></i> 3. License</h2>
+                    <p>Personal, non-transferable, non-commercial license. No reverse engineering, no redistribution, no resale of the calculation engine or material database.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 4. Legal Provisions</h2>
+                    <p><strong style="color: white;">4.1</strong> PROVIDED "AS IS" WITHOUT WARRANTY.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.2</strong> No liability for direct or indirect damages.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.3 GOVERNING LAW:</strong> Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== SMARTMILL ===================== -->
+            <div class="policy-pane" id="pane-smartmill">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">SmartMill: CNC Milling Calculator</strong>, you accept these Terms.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-industry"></i> 2. Professional Use Disclaimer</h2>
+                    <div class="danger-box">
+                        <p><strong style="color: #fca5a5;">⚠️ ENGINEERING SAFETY NOTICE:</strong></p>
+                        <p style="margin-top: 15px;">2.1 All milling calculations (RPM, feed, chip load, MRR, power) are <strong style="color: white;">reference estimates</strong>.</p>
+                        <p style="margin-top: 15px;">2.2 Actual results vary with tool coating, coolant strategy, machine rigidity, and workpiece material batch.</p>
+                        <p style="margin-top: 15px;">2.3 Always verify against tool manufacturer data sheets and machine specs.</p>
+                        <p style="margin-top: 15px;">2.4 Developer is not liable for tool damage, workpiece scrapping, spindle damage, or injuries.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-file-pdf"></i> 3. PDF Report Generation</h2>
+                    <p>Generated PDF reports are for your internal documentation. You are responsible for their content, storage, and distribution. Do not include confidential information you are not authorized to share.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 4. Legal Provisions</h2>
+                    <p><strong style="color: white;">4.1</strong> PROVIDED "AS IS."</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.2</strong> Total liability limited to $0 (free app).</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.3 GOVERNING LAW:</strong> Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== SMART SPIN ===================== -->
+            <div class="policy-pane" id="pane-smartspin">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">Smart Spin: Metal Forming Suite</strong>, you accept these Terms.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-compact-disc"></i> 2. Professional Use Disclaimer</h2>
+                    <div class="danger-box">
+                        <p><strong style="color: #fca5a5;">⚠️ METAL FORMING SAFETY NOTICE:</strong></p>
+                        <p style="margin-top: 15px;">2.1 Metal spinning, shear spinning, and flow forming calculations are <strong style="color: white;">reference estimates</strong>.</p>
+                        <p style="margin-top: 15px;">2.2 Mandrel geometry, forming forces, and material behavior vary by alloy, thickness, temperature, and machine capability.</p>
+                        <p style="margin-top: 15px;">2.3 Verify all parameters against shop-floor trials and material supplier data.</p>
+                        <p style="margin-top: 15px;">2.4 Developer not liable for tool failure, workpiece defects, machine damage, or operator injury.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-key"></i> 3. License</h2>
+                    <p>Personal, non-transferable license. No reverse engineering, redistribution, or commercial resale.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 4. Legal Provisions</h2>
+                    <p><strong style="color: white;">4.1</strong> PROVIDED "AS IS."</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.2</strong> No liability for damages.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">4.3 GOVERNING LAW:</strong> Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== LUDOMASTER ===================== -->
+            <div class="policy-pane" id="pane-ludo">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Agreement to Terms</h2>
+                    <p>Welcome to <strong style="color: var(--gold);">LudoMaster: Online Multiplayer</strong>. By accessing or using the App, you agree to be bound by these Terms. If you disagree, please discontinue use. You must be at least 13 years old or have parental consent.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-users"></i> 2. User Conduct & Fair Play</h2>
+                    <p>To maintain a healthy gaming environment, you agree NOT to:</p>
+                    <ul>
+                        <li>Use abusive, profane, or derogatory language in chat</li>
+                        <li>Harass, bully, or intimidate other players</li>
+                        <li>Exploit game bugs or glitches for unfair advantage</li>
+                        <li>Use "collusion" (teaming up in 4-player matches)</li>
+                        <li>Impersonate other players or the developer</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-shield-alt"></i> 3. Zero Tolerance Anti-Cheat Policy</h2>
+                    <div class="danger-box">
+                        <p><strong style="color: #fca5a5;">🚫 STRICT ANTI-CHEAT:</strong></p>
+                        <p style="margin-top: 15px;">Use of <strong style="color: white;">Modified APKs, Memory Editors (GameGuardian, etc.), or Macro scripts</strong> will result in an immediate and permanent ban of your account and device ID.</p>
+                        <p style="margin-top: 15px;">No refunds or appeals will be entertained for banned accounts.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-coins"></i> 4. Virtual Items & Currency</h2>
+                    <div class="gold-box">
+                        <p><strong style="color: var(--gold);">💰 VIRTUAL ITEMS:</strong></p>
+                        <p style="margin-top: 10px;">4.1 LudoMaster includes virtual "Coins" and "Gems."</p>
+                        <p style="margin-top: 10px;">4.2 These items have <strong style="color: white;">NO REAL-WORLD MONETARY VALUE</strong>.</p>
+                        <p style="margin-top: 10px;">4.3 They cannot be exchanged for cash or transferred outside the app.</p>
+                        <p style="margin-top: 10px;">4.4 We reserve the right to reset or modify balances in case of technical errors or detected fraud.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-user-lock"></i> 5. Account Responsibility</h2>
+                    <p>You are responsible for maintaining the security of your account. We are not liable for loss of coins or progress due to unauthorized access to your device or third-party accounts.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-server"></i> 6. Service Availability & Updates</h2>
+                    <p>We may modify, suspend, or discontinue the service at any time for maintenance, updates, or server migrations. We are not liable for data loss during server downtimes.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 7. Limitation of Liability</h2>
+                    <p>The App is provided "AS IS" and "AS AVAILABLE." The developer is not liable for any direct, indirect, or incidental damages from app usage, including device overheating, data loss, or emotional distress from gameplay.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-gavel"></i> 8. Governing Law</h2>
+                    <p>These Terms are governed by the laws of <strong style="color: white;">Pakistan</strong>. Disputes handled exclusively in Pakistani courts.</p>
+                </div>
+            </div>
+
+            <!-- ===================== PDF VIEWER ===================== -->
+            <div class="policy-pane" id="pane-pdfviewer">
+                <div class="section">
+                    <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+                    <p>By using <strong style="color: var(--gold);">PDF Viewer</strong>, you accept these Terms. If you disagree, please discontinue use.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-user-check"></i> 2. Eligibility</h2>
+                    <p>You must be at least 13 years old or have parental consent.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-file-pdf"></i> 3. Document Handling</h2>
+                    <div class="info-box">
+                        <p><strong style="color: #93c5fd;">📄 DOCUMENT DISCLAIMER:</strong></p>
+                        <p style="margin-top: 10px;">3.1 PDF Viewer opens and renders documents locally on your device.</p>
+                        <p style="margin-top: 10px;">3.2 We do NOT upload, analyze, or transmit your documents anywhere.</p>
+                        <p style="margin-top: 10px;">3.3 You are responsible for the legality of documents you open (no copyright-infringing or illegal content).</p>
+                        <p style="margin-top: 10px;">3.4 We are not liable for any content within PDFs you view.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-key"></i> 4. License</h2>
+                    <p>Personal, non-transferable license for viewing PDFs on your device. No reverse engineering, redistribution, or commercial exploitation.</p>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-shield-alt"></i> 5. Prohibited Activities</h2>
+                    <ul>
+                        <li>Using the app to view illegal or copyrighted content without permission</li>
+                        <li>Attempting to extract or tamper with app code</li>
+                        <li>Using automated systems to interact with the app</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> 6. Legal Provisions</h2>
+                    <p><strong style="color: white;">6.1</strong> THE APP IS PROVIDED "AS IS" WITHOUT WARRANTY.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.2</strong> No liability for data loss, file corruption, or damages.</p>
+                    <p style="margin-top: 12px;"><strong style="color: white;">6.3 GOVERNING LAW:</strong> Pakistan.</p>
+                </div>
+            </div>
+
+            <!-- ===================== SHARED SECTIONS ===================== -->
+            <div class="section">
+                <h2><i class="fas fa-user-check"></i> Your Rights</h2>
+                <p>Across all our apps, you have the right to:</p>
+                <ul>
+                    <li>Uninstall the app at any time</li>
+                    <li>Clear app data from Android settings</li>
+                    <li>Deny optional permissions</li>
+                    <li>Contact us with questions or complaints</li>
+                    <li>Request clarification on any term</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-pen"></i> Changes to These Terms</h2>
+                <p>We may update these Terms from time to time. When we do, we'll update the "Last Updated" date at the top. Continued use of any app after changes means you accept the updated Terms. If you disagree with any change, please discontinue using the affected app.</p>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="contact-card">
+                <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Abdus Salam</h3>
+                <p style="color: var(--text-gray); margin-bottom: 5px;">Software Engineer & Android Developer</p>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan</p>
+
+                <a href="mailto:salamkhan.apps@gmail.com" style="display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #0a0f1c; padding: 12px 30px; border-radius: 60px; text-decoration: none; font-weight: 700; margin-top: 10px;">
+                    <i class="fas fa-envelope"></i> salamkhan.apps@gmail.com
                 </a>
-                
-                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 30px;">
-                    © 2026 Abdus Salam · Deenly: Prayer, Hadith & Tilawat · All rights reserved.
-                    <br>
-                    <span style="font-size: 0.75rem;">Formerly known as Ramzan Prayer & Hadees</span>
+                <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 20px;">
+                    <i class="fas fa-clock"></i> Response Time: 3-5 business days
+                </p>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="margin-top: 40px; text-align: center; border-top: 1px solid var(--border-dim); padding-top: 35px;">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="privacy-policy.html" class="footer-link"><i class="fas fa-shield"></i> Privacy Policy</a>
+                    <a href="about-developer.html" class="footer-link"><i class="fas fa-user-tie"></i> Developer</a>
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.85rem; margin-top: 30px;">
+                    © 2026 Abdus Salam · All Apps
+                </p>
+                <p style="color: var(--text-gray); font-size: 0.75rem; margin-top: 8px;">
+                    Fair use · Legal compliance · User-first design
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 500);
-        });
+        const tabs = document.querySelectorAll('.app-tab');
+        const panes = document.querySelectorAll('.policy-pane');
 
-        function copyTerms() {
-            const termsContent = document.getElementById('termsContent');
-            const range = document.createRange();
-            range.selectNode(termsContent);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            
-            try {
-                document.execCommand('copy');
-                const message = document.getElementById('copiedMessage');
-                message.style.display = 'block';
-                
-                setTimeout(() => {
-                    message.style.display = 'none';
-                }, 3000);
-                
-            } catch (err) {
-                alert('Failed to copy text. Please select and copy manually.');
+        function activateApp(appKey) {
+            tabs.forEach(t => t.classList.toggle('active', t.dataset.app === appKey));
+            panes.forEach(p => p.classList.toggle('active', p.id === 'pane-' + appKey));
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + appKey);
             }
-            
-            window.getSelection().removeAllRanges();
         }
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -20px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section, .contact-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => activateApp(tab.dataset.app));
         });
+
+        const hash = window.location.hash.replace('#', '');
+        if (hash && document.getElementById('pane-' + hash)) {
+            activateApp(hash);
+        }
     </script>
 </body>
 </html>
