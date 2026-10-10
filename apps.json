@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T12:20:30Z",
+  "updated_at": "2026-10-10T21:30:48Z",
   "apps": [
     {
       "id": "com.machinist.toolbox",
@@ -92,7 +92,7 @@
       "tag": "Utility",
       "description": "Fast, lightweight PDF viewer with offline reading, smooth zoom, and easy file management.",
       "icon": "https://play-lh.googleusercontent.com/aLMot4kWBE60lR85cABGuDxfbpDfwbrzE6onKZ0GqS80IcrtxrQPWS0-g9BTNIIs0FMVdTvw8_6-eicwPmcPLcg",
-      "installs": "10+",
+      "installs": "50+",
       "score": null,
       "ratings": null,
       "url": "https://play.google.com/store/apps/details?id=com.pdfviewer.pk"
