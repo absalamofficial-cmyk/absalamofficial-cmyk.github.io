@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T21:17:59Z",
+  "updated_at": "2026-10-24T04:21:02Z",
   "apps": [
     {
       "id": "com.machinist.toolbox",
@@ -8,7 +8,7 @@
       "tag": "Engineering Tools",
       "description": "AI-assisted machining calculators \u2014 milling, turning, threads, gears \u2014 with an offline Mach-AI assistant.",
       "icon": "https://play-lh.googleusercontent.com/WU0P8_wKhSW8t03o3wGBScu3WRSP1BvbZmRZ6OJHbDZKyF275kqxs5C-XqJ42C7xLClULB2LUzj6pPjS-Zwmxbg",
-      "installs": "50+",
+      "installs": "100+",
       "score": null,
       "ratings": null,
       "url": "https://play.google.com/store/apps/details?id=com.machinist.toolbox"
